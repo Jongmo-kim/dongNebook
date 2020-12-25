@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="user">
+	<insert id="insertUser" parameterType="user">
+		insert into "USER" values(
+				user_seq.nextval,
+				#{category.categoryNo},
+				#{userId},
+				#{userPw},
+				#{userName},
+				#{phone},
+				#{email},
+				#{addr}
+			)
+	</insert>
+	<select id="selectOneUser" parameterType="user" resultType="user">
+		select 
+			user_no,
+			user_id,
+			user_pw,
+			user_name,
+			phone,
+			email,
+			addr
+		from "USER"
+		<trim prefix="where" prefixOverrides="AND">
+			<if test="userNo != 0">
+				 user_No = #{userNo}
+			</if>
+			<if test="userId != null">
+				 AND user_id = #{userId}
+			</if>
+			<if test="userPw != null">
+				AND user_pw = #{userPw}
+			</if>
+			<if test="userName != null">
+				AND user_name = #{userName}
+			</if>
+			<if test="email != null">
+				AND email = #{email}
+			</if>
+		</trim>
+	</select>
+	<update id="updateUser" parameterType="user">
+		update "USER"
+		<trim prefix="set" suffixOverrides="," prefixOverrides=",">
+			<if test="userId != null">user_Id = #{userId}</if>
+			<if test="userPw != null">,user_Pw = #{userPw}</if>
+			<if test="userName != null">,user_Name = #{userName}</if>
+			<if test="phone != null">,phone = #{phone}</if>
+			<if test="email != null">,email = #{email}</if>
+			<if test="addr != null">,addr = #{addr},</if>
+		</trim>
+		where user_no = #{userNo}
+	</update>
+	<delete id="deleteUser" parameterType="user">
+		delete from "USER"
+		<trim prefix="where" suffixOverrides="AND">
+			<if test="userNo != null">user_No = #{userNo}</if>
+			<if test="userId != null">AND user_Id = #{userId}</if>
+		</trim>
+	</delete>
+</mapper>
