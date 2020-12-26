@@ -10,7 +10,7 @@
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	<h1>메인페이지석호천하에바보멍청이말미잘--</h1>
+	<h1>메인페이지--</h1>
 	<hr>
 </body>
 </html>
