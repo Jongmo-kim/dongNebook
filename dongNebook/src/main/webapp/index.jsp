@@ -11,6 +11,6 @@
 <body>
 	<jsp:include page="/views/common/header.jsp" />
 	<h1>메인페이지</h1>
-	<hr>
+	<hr><hr><hr><hr><hr>
 </body>
 </html>
