@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>메인페이지(Spring-Mybatis)</h1>
+	<h1>메인페이지(Spring-Mybatis)김종모</h1>
 	<hr>
 			<form action="/login.kh" method="post">
 				아이디 : <input type="text" name="memberId"><br>
