@@ -15,7 +15,7 @@
 			<select name="categoryName">
 				<option value="컴퓨터">컴퓨터</option>
 				<option value="사회">사회</option>
-			</select>
+			</select><br>
 			아이디 <input type="text" name="userId"><br>
 			비밀번호 <input type="password" name="userPw"><br>
 			<button>로그인하기</button>

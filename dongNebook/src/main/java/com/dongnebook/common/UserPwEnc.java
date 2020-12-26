@@ -27,6 +27,9 @@ public class UserPwEnc {
 	@Pointcut("execution(* com.dongnebook.user.model.service.UserService.loginUser(..))")
 	public void loginPointcut() {}
 	
+	@Pointcut("execution(* com.dongnebook.user.model.service.UserService.updateUser(..))")
+	public void updatePointcut() {}
+	
 	@Before("insertPointcut()")
 	public Object beforeInsert(JoinPoint jp){
 		return encype(jp);
@@ -37,13 +40,19 @@ public class UserPwEnc {
 		return encype(jp);
 	}
 	
+	@Before("updatePointcut()")
+	public Object beforeUpdate(JoinPoint jp) {
+		return encype(jp);
+	}
 	private JoinPoint encype(JoinPoint jp) {
 		Object[] args = jp.getArgs();
 		User u = (User)args[0];
-		try {
-			u.setUserPw(enc.encPw(u.getUserPw()));
-		} catch (Exception e) {
-			e.printStackTrace();
+		if(u.getUserPw() !=null) {
+			try {
+				u.setUserPw(enc.encPw(u.getUserPw()));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return jp;
 	}

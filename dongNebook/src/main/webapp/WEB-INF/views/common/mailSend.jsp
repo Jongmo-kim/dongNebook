@@ -4,16 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>동네 북</title>
-
+<title>메일보내기</title>
 <jsp:include page="/views/common/linkHead.jsp"/>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	<h1>메인페이지</h1>
 	<hr>
 	  <h4>메일 보내기</h4>
-    <form action="user/mailSending.do" method="post">
+    <form action="mailSending.do" method="post">
       <div>
         <input type="text" name="tomail" size="120"
         style="width: 100%" placeholder="상대의 이메일"
@@ -37,5 +35,4 @@
         <input type="submit" value="메일 보내기" class="btn btn-warning">
       </div>
     </form>
-</body>
 </html>

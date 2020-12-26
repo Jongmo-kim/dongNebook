@@ -3,11 +3,15 @@ package com.dongnebook.user.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dongnebook.category.model.vo.Category;
+import com.dongnebook.mail.Mail;
+import com.dongnebook.mail.MailService;
 import com.dongnebook.user.model.service.UserService;
 import com.dongnebook.user.model.vo.User;
 
@@ -100,5 +104,9 @@ public class UserController {
 		}
 		model.addAttribute("loc", "/");
 		return "common/msg";
+	}
+	@RequestMapping("/pwChangeFrm.do")
+	public String pwChangeFrm() {
+		return "user/pwChangeFrm";
 	}
 }

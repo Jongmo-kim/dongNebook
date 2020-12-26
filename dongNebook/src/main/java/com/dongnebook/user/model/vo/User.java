@@ -2,9 +2,6 @@ package com.dongnebook.user.model.vo;
 
 import com.dongnebook.category.model.vo.Category;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * @author 김종모 

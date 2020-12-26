@@ -15,7 +15,7 @@
 		<select name="categoryName">
 			<option value="컴퓨터">컴퓨터</option>
 			<option value="사회">사회</option>
-		</select>
+		</select><br>
 		<input type="hidden" name="userNo" value="${loginUser.userNo }"><br>
 		아이디 <input type="text" name="userId" value="${loginUser.userId }"><br>
 		이름 <input type="text" name="userName" value="${loginUser.userName }"><br>
@@ -23,6 +23,10 @@
 		이메일 <input type="text" name="email" value="${loginUser.email }"><br>
 		주소 <input type="text" name="addr" value="${loginUser.addr }"><br>
 		<input type="submit" value="수정하기">
+	</form>
+	<form action="/user/pwChangeFrm.do" method="post">
+		<input type="hidden" name="userNo" value="${loginUser.userNo }"><br>
+		<button>비밀번호 수정하기</button>
 	</form>
 </body>
 </html>

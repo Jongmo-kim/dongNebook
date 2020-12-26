@@ -14,19 +14,19 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
-			<!-- web socket-->
+	
+		<!-- 메일 -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		
+		<!-- web socket-->
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-websocket</artifactId>
 		    <version>5.0.6.RELEASE</version>
-		</dependency>
-		
-		<!-- lombok -->
-		<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		    <version>1.18.12</version>
-		    <scope>provided</scope>
 		</dependency>
 		<!-- JDBC 연결용 라이브러리-->
 		<dependency>
@@ -92,7 +92,11 @@
 		    <artifactId>spring-core</artifactId>
 		    <version>${org.springframework-version}</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.springframework</groupId>  
+			<artifactId>spring-context-support</artifactId>
+			<version>5.0.6.RELEASE</version>  
+		</dependency> 
 				
 		<!-- AspectJ -->
 		<dependency>
