@@ -11,7 +11,7 @@
 	<jsp:include page="/views/common/header.jsp" />
 	<hr>
 	  <h4>메일 보내기</h4>
-    <form action="mailSending.do" method="post">
+    <form action="/mailSending.do" method="post">
       <div>
         <input type="text" name="tomail" size="120"
         style="width: 100%" placeholder="상대의 이메일"
