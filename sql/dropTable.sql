@@ -1,4 +1,27 @@
+DROP TABLE NOTICE;
+DROP TABLE "ADMIN";
+DROP TABLE CALENDAR;
+DROP TABLE BOOK_RENTAL_RESERVE;
+DROP TABLE BOOK_PROPOSAL;
+DROP TABLE BOOK_FAVORITES;
+DROP TABLE BOOK_REVIEW;
+DROP TABLE BOOK_RENTAL;
 drop table "USER";
 drop table "CATEGORY";
+drop table book;
+drop table rental_location;
+drop table image;
+
+drop sequence notice_seq;
+drop sequence book_seq;
+drop sequence admin_seq;
+drop sequence calendar_seq;
+drop sequence book_proposal_seq;
+drop sequence book_favorites_seq;
+drop sequence book_review_seq;
+drop sequence book_rental_reserve_seq;
+drop sequence rental_location_seq;
+drop sequence book_rental_seq;
 drop sequence user_seq;
 drop sequence category_seq;
+drop sequence image_seq;
