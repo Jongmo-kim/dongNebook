@@ -2,6 +2,7 @@ package com.dongnebook.user.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -11,9 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dongnebook.category.model.vo.Category;
 import com.dongnebook.mail.Mail;
+import com.dongnebook.mail.MailController;
+import com.dongnebook.mail.MailException;
 import com.dongnebook.mail.MailService;
 import com.dongnebook.user.model.service.UserService;
+import com.dongnebook.user.model.vo.UpdateException;
 import com.dongnebook.user.model.vo.User;
+import com.dongnebook.user.model.vo.UserException;
 
 /**
  * @author 김종모
@@ -95,18 +100,94 @@ public class UserController {
 	@RequestMapping("/delete.do")
 	public String delete(User u,Model model,HttpSession session) {
 		int result = service.deleteUser(u);
-		if(result >0) {
-			model.addAttribute("msg", "탈퇴 성공");
-			session.invalidate();
+		String msg = "";
+		try {
+			isUpdateFail(result);
 			model.addAttribute("result", "true");
-		}else {
-			model.addAttribute("msg", "탈퇴 실패");
+			msg = "탈퇴 성공";
+			session.invalidate();
+		} catch (Exception e) {
+			msg = e.getMessage();
+		} finally {
+			model.addAttribute("msg", msg);
+			model.addAttribute("loc", "/");
 		}
-		model.addAttribute("loc", "/");
 		return "common/msg";
 	}
 	@RequestMapping("/pwChangeFrm.do")
 	public String pwChangeFrm() {
 		return "user/pwChangeFrm";
+	}
+	
+	@RequestMapping("/idSearchFrm.do")
+	public String searchIdFrm() {
+		return "user/idSearchFrm";
+	}
+	
+	@Autowired
+	MailController mailController;
+	
+	@RequestMapping("/searchId.do")
+	public String searchId(Model model,User u) {
+		User searchUser = service.selectOneUser(u);
+		String msg = "";
+		try {
+			isUserNull(searchUser);
+			sendMail(searchUser.getEmail(), "아이디 찾기", "귀하의 아이디는" + searchUser.getUserId());
+			model.addAttribute("result", "true");
+		} catch(Exception e){
+			msg = e.getMessage();
+		}finally {
+			model.addAttribute("loc", "/");
+			model.addAttribute("msg", msg);
+		}
+		return "common/msg";
+	}
+	
+	@RequestMapping("/pwSearchFrm.do")
+	public String pwSearchFrm() {
+		return "user/pwSearchFrm";
+	}
+	
+	@RequestMapping("/pwSearch.do")
+	public String pwSearch(User u,Model model) {
+		User searchUser = service.selectOneUser(u);
+		String tempPw = RandomStringUtils.random(8,"0123123456qwertyuiopasdfghjklzxcvbnm");
+		String msg = "";
+		try {
+			isUserNull(searchUser);
+			searchUser.setUserPw(tempPw);
+			int result = service.updateUser(searchUser);
+			isUpdateFail(result);
+			sendMail(searchUser.getEmail(), "비밀번호 찾기", "귀하의 비밀번호는" + tempPw);
+			msg = "메일 전송 성공  메일을 확인해주세요";
+			model.addAttribute("result", "true");
+		}catch (Exception e) {
+			msg = e.getMessage();
+		}finally {
+			model.addAttribute("loc", "/");
+			model.addAttribute("msg", msg);
+		}
+		return "common/msg";
+	}
+
+	private void sendMail(String email, String title, String content) throws MailException {
+		if(!mailController.mailSend(email, title, content)) {
+			throw new MailException("메일을 보내지 못했습니다.");
+		}
+		
+	}
+
+	private void isUpdateFail(int result) throws UpdateException {
+			if(result==0) {
+				throw new UpdateException("수정이 진행되지 않았습니다.");
+			}
+		
+	}
+
+	private void isUserNull(User u) throws UserException{
+			if(u==null) {
+				throw new UserException("해당 정보로 검색된 회원이 없습니다.");
+			}
 	}
 }
