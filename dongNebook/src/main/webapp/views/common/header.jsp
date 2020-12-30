@@ -5,6 +5,7 @@
 <h3>common</h3>
 <ul>
 	<li><a href="/common/mailSendFrm.do">메일보내기 </a></li>
+	<li><a href="/views/common/test.jsp">테스트페이지</a></li>
 </ul>
 <c:choose>
 <c:when test="${loginUser == null }">

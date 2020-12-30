@@ -15,6 +15,13 @@ CREATE TABLE "USER"(
 
 ALTER TABLE "USER" ADD CONSTRAINT category_no_foreign_key 
 FOREIGN KEY(category_no) REFERENCES "CATEGORY"(category_no) ON DELETE CASCADE;
+CREATE TABLE ALRAM(
+    ALRAM_NO NUMBER PRIMARY KEY,
+    USER_NO NUMBER,
+    ALRAM_CONTENT VARCHAR2(500),
+    ENROLL_DATE DATE,
+    ALRAM_CHECK CHAR(1) DEFAULT('N') CHECK(ALRAM_CHECK IN ('Y','N'))
+);
 
 CREATE TABLE NOTICE(
     NOTICE_NO NUMBER PRIMARY KEY,
@@ -152,3 +159,4 @@ create sequence book_seq;
 create sequence user_seq;
 create sequence category_seq;
 create sequence image_seq;
+CREATE SEQUENCE ALRAM_SEQ;

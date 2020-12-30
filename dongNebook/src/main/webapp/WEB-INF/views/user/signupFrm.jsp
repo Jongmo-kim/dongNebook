@@ -29,11 +29,13 @@
 	<jsp:include page="/views/common/header.jsp" />
 	<form action="/user/signup.do" method="post">
 		<h1>회원가입</h1><hr>
-		카테고리
-		<select name="categoryName">
-			<option value="컴퓨터">컴퓨터</option>
-			<option value="사회">사회</option>
-		</select>
+		 <div class="container">
+	    <h2>Get it hair</h2>
+	    <h3>회원가입</h3>
+	    <p>이미 동서남북의 회원이신가요? 
+	    <a href="/user/idSearchFrm.do">ID</a> / <a href="/user/pwChangeFrm.do">PW</a>찾기</p>
+	    <p style="font-size:14px;">가입을 하면 동서남북의 이용약관, <a href="/views/signup/terms.jsp">개인정보취급방침</a> 및 <a href="/views/signup/privacy.jsp">개인정보3자제공에 동의하게 됩니다.</a><p>
+	
 		<hr>
 	        <div class="name inputBox">
 	            <input autofocus type="text" class="form-textbox" id="nameInput"name="userName">
@@ -92,7 +94,18 @@
 	            <input type="text" class="form-textbox" name="addrDetail">
 	            <span class="form-label">상세주소</span>
 	        </div>
-		<input type="submit" value="회원가입하기">
+	        	카테고리
+		<select name="categoryName">
+			<option value="컴퓨터">컴퓨터</option>
+			<option value="사회">사회</option>
+		</select>
+		<div class="submitBtn" style="text-align:center;">
+			<button>회원가입하기</button>
+		</div>
+		
+		</div>
+		
 	</form>
+	
 </body>
 </html>

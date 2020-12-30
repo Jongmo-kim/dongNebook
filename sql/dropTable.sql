@@ -1,3 +1,4 @@
+drop table alram;
 DROP TABLE NOTICE;
 DROP TABLE "ADMIN";
 DROP TABLE CALENDAR;
@@ -25,3 +26,4 @@ drop sequence book_rental_seq;
 drop sequence user_seq;
 drop sequence category_seq;
 drop sequence image_seq;
+drop sequence alram_seq;
