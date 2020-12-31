@@ -2,6 +2,11 @@ package com.dongnebook.notice.model.vo;
 
 import java.sql.Date;
 
+/**
+ * @author 진수경
+ *
+ */
+
 public class Notice {
     private int noticeNo;
 	private String noticeWriter;
@@ -66,5 +71,11 @@ public class Notice {
 	}
 	public void setEnrollDate(Date enrollDate) {
 		this.enrollDate = enrollDate;
+	}
+	
+	@Override
+	public String toString() {
+		return "Notice [noticeNo=" + noticeNo + ", noticeWriter=" + noticeWriter + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
+				+ ", filename=" + filename + ", filepath=" + filepath + ", enrollDate=" + enrollDate + "]";
 	}
 }

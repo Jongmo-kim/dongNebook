@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="notice">
+	<select id="noticeList" resultType="notice">
+		select
+			notice_no as noticeNo,
+			notice_writer as noticeWriter,
+			notice_title as noticeTitle,
+			notice_content as noticeContent,
+			filename,
+			filepath,
+			enroll_date as enrollDate
+		from notice
+	</select>
+</mapper>
