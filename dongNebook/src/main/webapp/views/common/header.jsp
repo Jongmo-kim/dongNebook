@@ -6,6 +6,7 @@
 <ul>
 	<li><a href="/common/mailSendFrm.do">메일보내기 </a></li>
 	<li><a href="/views/common/test.jsp">테스트페이지</a></li>
+	<li><a href="/views/book/searchBook.jsp">책 검색하기</a></li>
 </ul>
 <c:choose>
 <c:when test="${loginUser == null }">
