@@ -3,6 +3,7 @@ package com.dongnebook.book.model.service;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dongnebook.book.model.dao.BookDao;
 import com.dongnebook.book.model.vo.Book;
@@ -16,7 +17,7 @@ public class BookService {
 	
 	@Autowired
 	private BookDao dao;
-
+	
 	public int insertBook(Book b) {
 		return dao.insertBook(b);
 	}

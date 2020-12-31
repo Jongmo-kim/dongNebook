@@ -17,6 +17,6 @@ public class BookDao {
 	private SqlSessionTemplate session;
 
 	public int insertBook(Book b) {
-		return 0;
+		return session.insert("book.insertBook", b);
 	}
 }

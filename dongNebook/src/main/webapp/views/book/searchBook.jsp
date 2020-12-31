@@ -34,16 +34,17 @@
 				<li>제안</li>
 				<li>제안</li>
 				<li>제안</li>
-	
 			</ul>
 		</div>
 	</div>
 	<div class="searchedBookBox">
-		<input type="text" value="책이름">
-		<input type="text" value="책이름">
-		<input type="text" value="책이름">
-		<input type="text" value="책이름">
-		<input type="text" value="책이름">
+		<input type="text" value="책번호"><br>
+		<input type="text" value="책이름"><br>
+		<input type="text" value="책종류"><br>
+		<input type="text" value="저자"><br>
+		<input type="text" value="출판사"><br>
+		<input type="text" value="소개글"><br>
+		
 	</div>
 </body>
 </html>
