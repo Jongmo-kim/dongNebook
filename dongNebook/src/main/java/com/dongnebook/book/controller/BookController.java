@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dongnebook.book.model.service.BookService;
 import com.dongnebook.book.model.vo.Book;
+import com.dongnebook.book.model.vo.BookPageData;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -39,5 +40,30 @@ public class BookController {
 			return b.getBookName()+" 입력 실패";
 		}
 		
+	}
+	
+	@RequestMapping("/bookList")
+	public String bookList(Model model,int reqPage) {
+		BookPageData bpd = service.searchBookList(reqPage);
+		
+		model.addAttribute("list",bpd.getList());
+		model.addAttribute("pageNavi",bpd.getPageNavi());
+		
+		return "book/bookList";
+	}
+	@RequestMapping("/bookDelete")
+	public String bookDelete(Model model,Book b) {
+		System.out.println(b.getBookNo());
+		int result = service.bookDelete(b.getBookNo());
+		
+		if(result > 0) {
+			model.addAttribute("msg","삭제 성공");
+			model.addAttribute("result", "true");
+		}else {
+			model.addAttribute("msg","삭제 실패");
+		}
+		model.addAttribute("loc","/book/bookList.do?reqPage=1");
+		
+		return "common/msg";
 	}
 }
