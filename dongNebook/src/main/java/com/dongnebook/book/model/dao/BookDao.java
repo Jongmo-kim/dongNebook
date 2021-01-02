@@ -11,10 +11,6 @@ import org.springframework.stereotype.Repository;
 import com.dongnebook.book.model.vo.Book;
 
 
-/**
- * @author 김종모
- *
- */
 
 @Repository
 
@@ -40,8 +36,8 @@ public class BookDao {
 	}
 
 	public int bookDelete(int bookNo) {
-		
 		return session.delete("book.bookDelete",bookNo);
+	}
 	public ArrayList<Book> selectBookByKeyword(String inputStr, String searchKeyword) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("inputStr", inputStr);

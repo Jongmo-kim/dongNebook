@@ -6,11 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<jsp:include page="/views/common/linkHead.jsp"/>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <link rel="stylesheet" href="/css/rental/rentalLoc.css?v=<%=System.currentTimeMillis()%>">
 </head>
 <body>
-
 	<div class="admin-contents-frame">
         <div class="admin-contents-main">
             도서검색

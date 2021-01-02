@@ -6,9 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<jsp:include page="/views/common/linkHead.jsp"/>
 </head>
 <body>
-	<h1>책 리스트</h1>
+		<jsp:include page="/views/common/header.jsp" />
+	
+	<h1 style="font-size:30px;">책 리스트</h1>
 	<hr>
 	<table border=1>
 		<tr>

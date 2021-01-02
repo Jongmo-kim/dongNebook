@@ -86,6 +86,7 @@ public class BookService {
 	public int bookDelete(int bookNo) {
 		
 		return dao.bookDelete(bookNo);
+	}
 	public ArrayList<Book> selectBookByKeyword(String inputStr, String searchKeyword) {
 		return dao.selectBookByKeyword(inputStr, searchKeyword);
 	}

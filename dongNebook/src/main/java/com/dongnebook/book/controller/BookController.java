@@ -67,6 +67,7 @@ public class BookController {
 		model.addAttribute("loc","/book/bookList.do?reqPage=1");
 		
 		return "common/msg";
+	}
 	@RequestMapping("/searchBookFrm.do")
 	public String searchBookFrm(){
 		return "book/searchBook";
