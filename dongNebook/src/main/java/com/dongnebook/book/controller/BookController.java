@@ -1,5 +1,7 @@
 package com.dongnebook.book.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +15,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * @author 김종모
+ * @author 김종모, 윤석호
  *
  */
 @Controller
@@ -65,5 +67,15 @@ public class BookController {
 		model.addAttribute("loc","/book/bookList.do?reqPage=1");
 		
 		return "common/msg";
+	@RequestMapping("/searchBookFrm.do")
+	public String searchBookFrm(){
+		return "book/searchBook";
+	}
+	@RequestMapping("/searchBook.do")
+	public String searchBook(Model model,String inputStr, String searchKeyword,int reqPage) {
+		System.out.println(reqPage);
+		ArrayList<Book> list = service.selectBookByKeyword(inputStr,searchKeyword,reqPage);
+		model.addAttribute("bookList", list);
+		return "book/searchBook";
 	}
 }
