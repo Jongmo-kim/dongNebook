@@ -35,10 +35,10 @@ public class BookDao {
 	}
 
 	public ArrayList<Book> selectBookByKeyword(String inputStr, String searchKeyword, int reqPage) {
-		HashMap<String, String> map = new HashMap<String, String>();
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("inputStr", inputStr);
 		map.put("searchKeyword", searchKeyword);
-		map.put("reqPage", Integer.toString(reqPage));
+		map.put("reqPage", reqPage);
 		List<Book> list = session.selectList("book.selectBookByKeyword", map);
 		return (ArrayList<Book>)list;
 	}
