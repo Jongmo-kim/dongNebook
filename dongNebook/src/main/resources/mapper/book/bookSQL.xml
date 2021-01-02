@@ -12,4 +12,34 @@
 			#{imageurl}
 		)
 	</insert>
+	<select id="selectBookByKeyword" parameterType="map" resultType="book">
+		
+		select 
+			book_no ,
+			book_name ,
+			book_kind ,
+			book_writer,
+			book_publisher,
+			book_introduce,
+			imageurl
+		from book
+		where 1=1
+		<choose>
+			<when test="searchKeyword.equals('책이름')">
+				AND book_name like '%' || #{inputStr} || '%'
+			</when>
+			<when test="searchKeyword.equals('저자')">
+				AND book_writer like '%' || #{inputStr} || '%'
+			</when>
+			<when test="searchKeyword.equals('출판사')">
+				AND book_publisher like '%' || #{inputStr} || '%'
+			</when>
+			<otherwise>
+				and book_name like '%' || #{inputStr} || '%'
+        		or book_publisher like '%' || #{inputStr} || '%'
+        		or book_writer like '%' || #{inputStr} || '%'
+			</otherwise>
+		</choose>
+		
+	</select>
 </mapper>

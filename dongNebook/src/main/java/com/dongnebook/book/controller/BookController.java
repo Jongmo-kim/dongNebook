@@ -1,5 +1,7 @@
 package com.dongnebook.book.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,5 +41,17 @@ public class BookController {
 			return b.getBookName()+" 입력 실패";
 		}
 		
+	}
+	
+	@RequestMapping("/searchBookFrm.do")
+	public String searchBookFrm(){
+		return "book/searchBook";
+	}
+	@RequestMapping("/searchBook.do")
+	public String searchBook(Model model,String inputStr, String searchKeyword,int reqPage) {
+		System.out.println(reqPage);
+		ArrayList<Book> list = service.selectBookByKeyword(inputStr,searchKeyword,reqPage);
+		model.addAttribute("bookList", list);
+		return "book/searchBook";
 	}
 }

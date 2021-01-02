@@ -1,5 +1,9 @@
 package com.dongnebook.book.model.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,5 +24,22 @@ public class BookDao {
 
 	public int insertBook(Book b) {
 		return session.insert("book.insertBook", b);
+	}
+
+	public ArrayList<Book> selectBookByKeyword(String inputStr, String searchKeyword) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("inputStr", inputStr);
+		map.put("searchKeyword", searchKeyword);
+		List<Book> list = session.selectList("book.selectBookByKeyword", map);
+		return (ArrayList<Book>)list;
+	}
+
+	public ArrayList<Book> selectBookByKeyword(String inputStr, String searchKeyword, int reqPage) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("inputStr", inputStr);
+		map.put("searchKeyword", searchKeyword);
+		map.put("reqPage", Integer.toString(reqPage));
+		List<Book> list = session.selectList("book.selectBookByKeyword", map);
+		return (ArrayList<Book>)list;
 	}
 }

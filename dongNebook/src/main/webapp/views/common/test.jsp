@@ -922,6 +922,9 @@ function bookinsert(item){
 		data: {item:JSON.stringify(item)},
 		complete: function(data){
 			console.log(data);
+		},
+		success: function(data){
+			console.log(data);
 		}
 	})
 }

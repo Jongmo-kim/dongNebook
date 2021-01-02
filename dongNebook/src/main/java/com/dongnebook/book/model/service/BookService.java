@@ -1,5 +1,7 @@
 package com.dongnebook.book.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,5 +22,13 @@ public class BookService {
 	
 	public int insertBook(Book b) {
 		return dao.insertBook(b);
+	}
+
+	public ArrayList<Book> selectBookByKeyword(String inputStr, String searchKeyword) {
+		return dao.selectBookByKeyword(inputStr, searchKeyword);
+	}
+
+	public ArrayList<Book> selectBookByKeyword(String inputStr, String searchKeyword, int reqPage) {
+		return dao.selectBookByKeyword(inputStr, searchKeyword,reqPage);
 	}
 }
