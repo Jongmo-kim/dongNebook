@@ -74,7 +74,6 @@ public class BookController {
 	}
 	@RequestMapping("/searchBook.do")
 	public String searchBook(Model model,String inputStr, String searchKeyword,int reqPage) {
-		System.out.println(reqPage);
 		ArrayList<Book> list = service.selectBookByKeyword(inputStr,searchKeyword,reqPage);
 		model.addAttribute("bookList", list);
 		return "book/searchBook";
