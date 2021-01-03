@@ -78,4 +78,18 @@ public class BookController {
 		model.addAttribute("bookList", list);
 		return "book/searchBook";
 	}
+	@RequestMapping("/updateBook.do")
+	public String updateBook(Model model,Book b) {
+		int result = service.updateBook(b);
+		
+		if(result>0) {
+			model.addAttribute("msg", "수정 성공");
+			model.addAttribute("result", "true");
+		}else {
+			model.addAttribute("msg","수정 실패");
+		}
+		model.addAttribute("loc", "/");
+		
+		return "common/msg";
+	}
 }
