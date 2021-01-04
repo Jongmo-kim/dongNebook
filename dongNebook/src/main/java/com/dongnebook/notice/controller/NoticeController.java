@@ -27,6 +27,6 @@ public class NoticeController {
 		for(Notice n : list) {
 			System.out.println(n.toString());
 		}
-		return "";
+		return "notice/noticeList";
 	}
 }
