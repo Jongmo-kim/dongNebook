@@ -80,6 +80,7 @@ public class BookController {
 	}
 	@RequestMapping("/updateBook.do")
 	public String updateBook(Model model,Book b) {
+		System.out.println(b.getBookName());
 		int result = service.updateBook(b);
 		
 		if(result>0) {

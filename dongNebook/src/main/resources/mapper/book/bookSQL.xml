@@ -67,7 +67,7 @@
 	
 		
 	</select>
-	<update id="updatebook" parameterType="book">
-		update book set book_count=#{bookCount} where book_no=#{bookNo};
+	<update id="updateBook" parameterType="book">
+		update book set book_name=#{bookName},book_kind=#{bookKind} where book_no=#{bookNo}
 	</update>
 </mapper>
