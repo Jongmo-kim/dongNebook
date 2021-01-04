@@ -19,7 +19,7 @@
 		</tr>
 		<c:forEach items="${list }" var ="n">
 			<tr>
-				<td>${n.noticeNo }</td><td>${n.noticeTitle }</td><td>${n.noticeContent }</td><td>${n.noticeWriter }</td><td>${n.filename }</td><td>${n.filepath }</td><td>${n.enrollDate }</td>			
+				<td>${n.rNum }</td><td>${n.noticeTitle }</td><td>${n.noticeContent }</td><td>${n.noticeWriter }</td><td>${n.filename }</td><td>${n.filepath }</td><td>${n.enrollDate }</td>			
 			</tr>
 		</c:forEach>
 	</table>

@@ -8,6 +8,7 @@ import java.sql.Date;
  */
 
 public class Notice {
+	private int rNum;
     private int noticeNo;
 	private String noticeWriter;
 	private String noticeTitle;
@@ -30,6 +31,26 @@ public class Notice {
 		this.filepath = filepath;
 		this.enrollDate = enrollDate;
 	}
+	
+	public Notice(int rNum, int noticeNo, String noticeWriter, String noticeTitle, String noticeContent,
+			String filename, String filepath, Date enrollDate) {
+		super();
+		this.rNum = rNum;
+		this.noticeNo = noticeNo;
+		this.noticeWriter = noticeWriter;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+		this.filename = filename;
+		this.filepath = filepath;
+		this.enrollDate = enrollDate;
+	}
+	public int getrNum() {
+		return rNum;
+	}
+	public void setrNum(int rNum) {
+		this.rNum = rNum;
+	}
+	
 	public int getNoticeNo() {
 		return noticeNo;
 	}

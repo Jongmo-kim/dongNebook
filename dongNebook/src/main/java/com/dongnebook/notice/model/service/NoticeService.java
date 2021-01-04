@@ -51,8 +51,6 @@ public class NoticeService {
 		//1~5, 6~10, 11~15, 16~20
 		//reqPage = 1 / 0*5+1 = 1
 		//reqPage = 2 / 1*5+1 = 6
-		//reqPage = 5 / 4*5+1 = 21
-		//int pageNo = (reqPage-1)*pageNaviSize + 1;
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
 		
 		//페이지네비 html 태그 작성
