@@ -12,6 +12,10 @@
 	<jsp:include page="/views/common/header.jsp" />
 	<h1>메인페이지--</h1>
 	<hr>
-	<h3><a href="/notice/noticeList.do">공지사항 리스트</a></h3>
+	
+	<h3>notice</h3>
+	<ul>
+		<li><a href="/notice/noticeList.do?reqPage=1">공지사항 리스트</a></li>
+	</ul>
 </body>
 </html>

@@ -19,12 +19,11 @@
 		</tr>
 		<c:forEach items="${list }" var ="n">
 			<tr>
-				<td>${n.getNoticeNo }</td><td>${n.getNoticeTitle }</td><td>${n.getNoticeContent }</td><td>${n.getNoticeWriter }</td><td>${n.getFilename }</td><td>${n.getFilepath }</td><td>${n.getEnrollDate }</td>			
+				<td>${n.noticeNo }</td><td>${n.noticeTitle }</td><td>${n.noticeContent }</td><td>${n.noticeWriter }</td><td>${n.filename }</td><td>${n.filepath }</td><td>${n.enrollDate }</td>			
 			</tr>
 		</c:forEach>
 	</table>
-
-			<%-- <p style="text-align:center">${pageNavi }</p> --%>
+	<p style="text-align:center">${pageNavi }</p>
 
 </body>
 </html>

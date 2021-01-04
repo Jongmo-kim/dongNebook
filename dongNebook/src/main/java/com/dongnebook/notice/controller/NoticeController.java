@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dongnebook.notice.model.service.NoticeService;
 import com.dongnebook.notice.model.vo.Notice;
+import com.dongnebook.notice.model.vo.NoticePageData;
 
 /**
  * @author 진수경
@@ -22,11 +23,12 @@ public class NoticeController {
 	private NoticeService service;
 	
 	@RequestMapping("/noticeList.do")
-	public String noticeList(Model model) {
-		ArrayList<Notice> list = service.noticeList();
-		for(Notice n : list) {
-			System.out.println(n.toString());
-		}
+	public String noticeList(Model model, int reqPage) {
+		NoticePageData npd = service.selectNoticeList(reqPage);
+		
+		model.addAttribute("list",npd.getList());
+		model.addAttribute("pageNavi",npd.getPageNavi());
+		
 		return "notice/noticeList";
 	}
 }
