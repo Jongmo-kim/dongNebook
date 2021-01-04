@@ -2,6 +2,9 @@ package com.dongnebook.book.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
+import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.dongnebook.book.model.service.BookService;
 import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.book.model.vo.BookPageData;
+import com.dongnebook.user.model.vo.User;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -73,9 +77,15 @@ public class BookController {
 		return "book/searchBook";
 	}
 	@RequestMapping("/searchBook.do")
-	public String searchBook(Model model,String inputStr, String searchKeyword,int reqPage) {
+	public String searchBook(Model model,String inputStr, String searchKeyword,int reqPage,HttpSession session) {
 		ArrayList<Book> list = service.selectBookByKeyword(inputStr,searchKeyword,reqPage);
 		model.addAttribute("bookList", list);
+		
+		//여기부턴 북마크용 데이터 입출력 입니다.
+		
+		User loginUser = (User)session.getAttribute("loginUser");
+		ArrayList<String> bookMarkList=service.selectBookMarkList(loginUser.getUserNo());
+		model.addAttribute("bookMarkList", bookMarkList);
 		return "book/searchBook";
 	}
 	@RequestMapping("/updateBook.do")

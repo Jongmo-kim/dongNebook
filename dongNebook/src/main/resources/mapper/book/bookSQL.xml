@@ -70,4 +70,7 @@
 	<update id="updateBook" parameterType="book">
 		update book set book_name=#{bookName},book_kind=#{bookKind} where book_no=#{bookNo}
 	</update>
+	<select id="selectBookMark" parameterType="_int" resultType="string">
+		select book_name from bookmark where user_no=#{userNo}
+	</select>
 </mapper>

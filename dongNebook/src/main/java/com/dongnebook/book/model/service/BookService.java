@@ -99,4 +99,8 @@ public class BookService {
 		
 		return dao.updateBook(b);
 	}
+
+	public ArrayList<String> selectBookMarkList(int userNo) {
+		return dao.selectBookMarkList(userNo);
+	}
 }
