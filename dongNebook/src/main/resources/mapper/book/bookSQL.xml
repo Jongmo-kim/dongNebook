@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="book">
+	<insert id="insertBook" parameterType="book">
+		insert into Book values(
+			book_seq.nextval,
+			#{bookName},
+			#{bookKind},
+			#{bookWriter},
+			#{bookPublisher},
+			#{bookIntroduce},
+			#{imageurl}
+		)
+	</insert>
+	<select id="selectTotalCount" resultType="_int">
+		select count(*) from book
+	</select>
+	<select id="selectBookList" parameterType="hashMap" resultType="book">
+		select * from 
+		(select rownum as rnum, n.* from(select * from book order by 1 desc)n) 
+		where rnum between #{start} and #{end}
+	</select>
+	<delete id="bookDelete" parameterType="_int">
+		delete from book where book_no=#{bookNo}
+	</delete>
+	<select id="selectBookByKeyword" parameterType="map" resultType="book">
+			
+	SELECT *
+	FROM
+	  (
+	    SELECT 
+	        ROWNUM as rnum,
+	        book_no ,
+	        book_name ,
+	        book_kind ,
+	        book_writer,
+	        book_publisher,
+	        book_introduce,
+	        imageurl
+	    FROM 
+	           (select
+					*
+				from
+					book
+				where 1=1
+					<choose>
+						<when test="searchKeyword.equals('책이름')">
+							AND book_name like '%' || #{inputStr} || '%'
+						</when>
+						<when test="searchKeyword.equals('저자')">
+							AND book_writer like '%' || #{inputStr} || '%'
+						</when>
+						<when test="searchKeyword.equals('출판사')">
+							AND book_publisher like '%' || #{inputStr} || '%'
+						</when>
+						<otherwise>
+							and book_name like '%' || #{inputStr} || '%'
+							or book_publisher like '%' || #{inputStr} || '%'
+							or book_writer like '%' || #{inputStr} || '%'
+						</otherwise>
+					</choose>
+				)
+	    where rownum <![CDATA[ <= ]]>	 (#{reqPage}-1)*10+10
+	    ORDER BY book_no DESC
+	  )book
+	WHERE book.rnum >= (#{reqPage}-1)*10+1
+	
+		
+	</select>
+</mapper>

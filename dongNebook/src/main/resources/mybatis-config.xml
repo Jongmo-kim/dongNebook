@@ -8,6 +8,11 @@
 	<typeAliases>
 		<typeAlias type="com.dongnebook.user.model.vo.User" alias="user"/>
 		<typeAlias type="com.dongnebook.category.model.vo.Category" alias="category"/>
+<<<<<<< HEAD
 		<typeAlias type="com.dongnebook.notice.model.vo.Notice" alias="notice"/>
+=======
+		<typeAlias type="com.dongnebook.book.model.vo.Book" alias="book"/>
+		<typeAlias type="com.dongnebook.rental.model.vo.RentalLoc" alias="loc"/>
+>>>>>>> develop/0.0.0
 	</typeAliases>
 </configuration>

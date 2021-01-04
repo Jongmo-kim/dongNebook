@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>이용 약관</title>
+<title>Insert title here</title>
 </head>
 <body>
-
+	<a href="/book/bookList.do?reqPage=1">북 리스트</a>
 </body>
 </html>

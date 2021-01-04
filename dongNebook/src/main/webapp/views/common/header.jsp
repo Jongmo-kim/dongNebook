@@ -2,11 +2,16 @@
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<h3>우리 조장님이 열심히 만든 rental</h3>
+<ul>
+	<li><a href="/views/rental/rental_loc.jsp">상호대차페이지</a></li>
+	<li><a href="/book/bookList.do?reqPage=1">북리스트페이지</a></li>
+</ul>
 <h3>common</h3>
 <ul>
 	<li><a href="/common/mailSendFrm.do">메일보내기 </a></li>
 	<li><a href="/views/common/test.jsp">테스트페이지</a></li>
-	<li><a href="/views/book/searchBook.jsp">책 검색하기</a></li>
+	<li><a href="/book/searchBookFrm.do">책 검색하기</a></li>
 </ul>
 <c:choose>
 <c:when test="${loginUser == null }">
