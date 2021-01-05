@@ -94,4 +94,13 @@ public class BookService {
 	public ArrayList<Book> selectBookByKeyword(String inputStr, String searchKeyword, int reqPage) {
 		return dao.selectBookByKeyword(inputStr, searchKeyword,reqPage);
 	}
+
+	public int updateBook(Book b) {
+		
+		return dao.updateBook(b);
+	}
+
+	public ArrayList<String> selectBookMarkList(int userNo) {
+		return dao.selectBookMarkList(userNo);
+	}
 }

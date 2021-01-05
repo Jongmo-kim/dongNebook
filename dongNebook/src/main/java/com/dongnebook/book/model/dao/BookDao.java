@@ -54,4 +54,13 @@ public class BookDao {
 		List<Book> list = session.selectList("book.selectBookByKeyword", map);
 		return (ArrayList<Book>)list;
 	}
+
+	public int updateBook(Book b) {
+		return session.update("book.updateBook", b);
+	}
+
+	public ArrayList<String> selectBookMarkList(int userNo) {
+		List<String> list = session.selectList("book.selectBookMark", userNo);
+		return (ArrayList<String>)list;
+	}
 }
