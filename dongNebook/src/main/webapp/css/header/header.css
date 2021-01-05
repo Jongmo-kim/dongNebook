@@ -98,18 +98,16 @@
         .menu-frame:hover .sub-frame{
             display: block;
         }
-        .menu>ul:hover {
+        /* .menu>ul:hover {
             height: 300px;
-        }
+        } */
 
         .sub * {
             text-align: center;
             display: block;
             padding: 5px;
         }
-  #menu-sub-start{
-            padding-left: 210px;
-        }
+  
         .sub>li>a:hover {
             font-weight: bold;
         }
