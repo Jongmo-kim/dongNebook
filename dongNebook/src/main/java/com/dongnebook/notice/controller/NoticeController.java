@@ -2,14 +2,18 @@ package com.dongnebook.notice.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dongnebook.notice.model.service.NoticeService;
 import com.dongnebook.notice.model.vo.Notice;
 import com.dongnebook.notice.model.vo.NoticePageData;
+import com.dongnebook.user.model.vo.User;
 
 /**
  * @author 진수경
@@ -30,5 +34,36 @@ public class NoticeController {
 		model.addAttribute("pageNavi",npd.getPageNavi());
 		
 		return "notice/noticeList";
+	}
+	
+	@RequestMapping("/noticeFrm.do")
+	//로그인 했다는 가정하에 진행
+	public String noticeFrm(User u,Model model,HttpSession session) {
+		User loginUser = (User)session.getAttribute("loginUser");
+		model.addAttribute("u",loginUser);
+		return "notice/noticeFrm";
+	}
+	
+	@RequestMapping("/insertNotice.do")
+	public String insertNotice(Model model) {
+		model.addAttribute("msg", "공지사항 등록 성공");
+		model.addAttribute("loc", "/");
+		return "common/msg";
+	}
+	
+	
+	@RequestMapping("/deleteNotice.do")
+	public String deleteNotice(Model model, int[] rNum) {
+		int result = service.deleteNotice(rNum);
+		if(result<0) {
+			model.addAttribute("msg", "삭제 성공");
+			model.addAttribute("result",true);
+		}
+		else {
+			model.addAttribute("msg", "삭제 실패\n관리자에게 문의하세요");
+			model.addAttribute("result",false);
+		}
+		model.addAttribute("loc", "/");
+		return "common/msg";
 	}
 }

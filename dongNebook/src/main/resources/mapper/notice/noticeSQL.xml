@@ -18,4 +18,10 @@
 	<select id="selectTotalCount" resultType="_int">
 		select count(*) from notice
 	</select>
+	<delete id="deleteNotice" parameterType="_int">
+		delete
+			from (select rownum as rnum, n.* 
+				from(select * from notice order by 1 desc)n)
+		where rnum = #{_int}
+	</delete>
 </mapper>

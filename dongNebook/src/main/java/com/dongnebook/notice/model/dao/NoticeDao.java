@@ -7,6 +7,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dongnebook.notice.model.vo.Notice;
 
@@ -35,5 +36,14 @@ public class NoticeDao {
 
 	public int totalCount() {
 		return sqlSession.selectOne("notice.selectTotalCount", int.class);
+	}
+
+	@Transactional
+	public int deleteNotice(int[] rNum) {
+		int result = 0;
+		for(int i=0; i<rNum.length; i++) {
+			result = sqlSession.delete("notice.deleteNotice", rNum[i]);
+		}
+		return result;
 	}
 }
