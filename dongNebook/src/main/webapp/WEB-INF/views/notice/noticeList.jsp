@@ -40,11 +40,14 @@
 		});
 		function deleteNotice(){
 			//몇 번째 체크박스가 체크되어 있는지 확인
-			//var num = $("input:checkbox[name=noticeCheck]:checked").length;
+			var arr = new Array();
 			$("input:checkbox[name=noticeCheck]:checked").each(function(idx,item){
-			    alert($("input:checkbox[name=noticeCheck]").eq(idx).val());
+			    arr.push($("input:checkbox[name=noticeCheck]:checked").eq(idx).val());
 			});
-			//location.href="/notice/deleteNotice.do";
+			for(var i=0; i<arr.length; i++){
+				console.log(arr[i]);
+			}
+			location.href="/notice/deleteNotice.do?rNum="+arr;
 		}
 	</script>
 </body>

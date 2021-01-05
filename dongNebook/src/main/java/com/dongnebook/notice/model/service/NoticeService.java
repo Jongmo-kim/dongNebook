@@ -79,4 +79,9 @@ public class NoticeService {
 		NoticePageData npd = new NoticePageData(list, pageNavi);
 		return npd;
 	}
+
+	public int deleteNotice(int[] rNum) {
+		int result = dao.deleteNotice(rNum);
+		return result;
+	}
 }
