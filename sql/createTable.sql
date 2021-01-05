@@ -146,6 +146,15 @@ create table image(
     filepath varchar2(50)
 );
 
+create table bookmark(
+    user_no number,
+    isbn13 varchar2(20),
+    primary key(user_no,isbn13)
+);
+
+ALTER TABLE bookmark ADD CONSTRAINT bookmark_user_no_Fk
+FOREIGN KEY(USER_NO) REFERENCES "USER"(USER_NO) ON DELETE CASCADE;
+
 create sequence notice_seq;
 create sequence admin_seq;
 create sequence calendar_seq;
