@@ -80,8 +80,8 @@ public class NoticeService {
 		return npd;
 	}
 
-	public int deleteNotice(int[] rNum) {
-		int result = dao.deleteNotice(rNum);
+	public int deleteNotice(int[] noticeNo) {
+		int result = dao.deleteNotice(noticeNo);
 		return result;
 	}
 }

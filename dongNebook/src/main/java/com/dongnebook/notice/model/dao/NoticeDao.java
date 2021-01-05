@@ -39,10 +39,13 @@ public class NoticeDao {
 	}
 
 	@Transactional
-	public int deleteNotice(int[] rNum) {
+	public int deleteNotice(int[] noticeNo) {
 		int result = 0;
-		for(int i=0; i<rNum.length; i++) {
-			result = sqlSession.delete("notice.deleteNotice", rNum[i]);
+		for(int i=0; i<noticeNo.length; i++) {
+			result = sqlSession.delete("notice.deleteNotice", noticeNo[i]);
+			if(result<0) {
+				return 0;
+			}
 		}
 		return result;
 	}

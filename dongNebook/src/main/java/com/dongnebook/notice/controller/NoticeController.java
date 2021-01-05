@@ -53,17 +53,17 @@ public class NoticeController {
 	
 	
 	@RequestMapping("/deleteNotice.do")
-	public String deleteNotice(Model model, int[] rNum) {
-		int result = service.deleteNotice(rNum);
-		if(result<0) {
+	public String deleteNotice(Model model, int[] noticeNo) {
+		int result = service.deleteNotice(noticeNo);
+		if(result>0) {
 			model.addAttribute("msg", "삭제 성공");
 			model.addAttribute("result",true);
 		}
 		else {
-			model.addAttribute("msg", "삭제 실패\n관리자에게 문의하세요");
+			model.addAttribute("msg", "삭제 실패");
 			model.addAttribute("result",false);
 		}
-		model.addAttribute("loc", "/");
+		model.addAttribute("loc", "/notice/noticeList.do?reqPage=1");
 		return "common/msg";
 	}
 }
