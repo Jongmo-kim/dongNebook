@@ -10,6 +10,7 @@
 		<typeAlias type="com.dongnebook.category.model.vo.Category" alias="category"/>
 		<typeAlias type="com.dongnebook.notice.model.vo.Notice" alias="notice"/>
 		<typeAlias type="com.dongnebook.book.model.vo.Book" alias="book"/>
+		<typeAlias type="com.dongnebook.bookmark.model.vo.Bookmark" alias="bookmark"/>
 		<typeAlias type="com.dongnebook.rental.model.vo.RentalLoc" alias="loc"/>
 
 	</typeAliases>

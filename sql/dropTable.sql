@@ -12,6 +12,7 @@ drop table "CATEGORY";
 drop table book;
 drop table rental_location;
 drop table image;
+drop table bookmark;
 
 drop sequence notice_seq;
 drop sequence book_seq;

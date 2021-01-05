@@ -63,4 +63,5 @@ public class BookDao {
 		List<String> list = session.selectList("book.selectBookMark", userNo);
 		return (ArrayList<String>)list;
 	}
+
 }
