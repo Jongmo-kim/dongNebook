@@ -128,3 +128,27 @@
             float: left;
             line-height: 50px;
         }
+ #menu-sub-start{
+            
+        }
+          .sub-frame {
+            position: absolute;
+            background-color: whitesmoke;
+            width: 100%;
+            left: 0px;
+            display: none;
+            z-index:101;
+            padding-left: 210px;
+        }
+        
+        .menu-frame{
+            width: 800px;
+            padding: 0px;
+            height: 50px;
+            margin: 0px;
+            float: left;
+            line-height: 50px;
+        }
+        .member-sign{
+            float: right;
+        }
