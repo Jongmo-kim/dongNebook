@@ -47,7 +47,9 @@
 		<table>
 			<tr>
 				<th>책 번호</th>
-				<th>북마크</th>
+				<c:if test="${loginUser!=null }">
+					<th>북마크</th>
+				</c:if>
 				<th>책 이름</th>
 				<th>책 종류</th>
 				<th>저자</th>
@@ -58,22 +60,25 @@
 			<c:forEach var="b" items="${bookList }">
 			<tr>
 				<td>${b.bookNo }</td>
+				
 				<!-- 여기는 북마크 전용 구간입니다. -->
-				<c:set var="chk" value="false"/>
-				<c:forEach var="m" items="${bookMarkList }">
-					<c:if test="${b.ISBN13 eq m }">
-						<c:set var="chk" value="true"/>
+				<c:if test="${loginUser!=null }">
+					<c:set var="chk" value="false"/>
+					<c:forEach var="m" items="${bookMarkList }">
+						<c:if test="${b.ISBN13 eq m }">
+							<c:set var="chk" value="true"/>
+						</c:if>
+					</c:forEach>
+					<c:if test= "${chk == false}">
+						<td><label for="bookmark-chk${b.bookNo }" id="label-chk${b.bookNo }"><img src="/image/bookmark/bookmark-false.png"></label><input type="checkbox" id="bookmark-chk${b.bookNo }" style="display:none" onclick="bookmarkChkBox(checked,'label-chk${b.bookNo }','${b.ISBN13 }')"></td>
 					</c:if>
-				</c:forEach>
-				<c:if test= "${chk == false}">
-					<td><label for="bookmark-chk${b.bookNo }" id="label-chk${b.bookNo }"><img src="/image/bookmark/bookmark-false.png"></label><input type="checkbox" id="bookmark-chk${b.bookNo }" style="display:none" onclick="bookmarkChkBox(checked,'label-chk${b.bookNo }','${b.ISBN13 }')"></td>
-				</c:if>
-				<c:if test= "${chk == true}">
-					<td><label for="bookmark-chk${b.bookNo }" id="label-chk${b.bookNo }"><img src="/image/bookmark/bookmark-true.png"></label><input type="checkbox" id="bookmark-chk${b.bookNo }" style="display:none" checked=true onclick="bookmarkChkBox(checked,'label-chk${b.bookNo }','${b.ISBN13 }')"></td>
-				</c:if>
-				<!-- 
-				<td><label for="bookmark-chk${b.bookNo }"><img id="bookmark-false${b.bookNo }" src="/image/bookmark/bookmark-false.png"></label><input type="checkbox" id="bookmark-chk${b.bookNo }" onclick="bookmarkChkBox(checked,${b.bookNo })"><label for="bookmark-chk${b.bookNo }"><img id="bookmark-true${b.bookNo }" src="/image/bookmark/bookmark-true.png"></label></td>
-				 -->
+					<c:if test= "${chk == true}">
+						<td><label for="bookmark-chk${b.bookNo }" id="label-chk${b.bookNo }"><img src="/image/bookmark/bookmark-true.png"></label><input type="checkbox" id="bookmark-chk${b.bookNo }" style="display:none" checked=true onclick="bookmarkChkBox(checked,'label-chk${b.bookNo }','${b.ISBN13 }')"></td>
+					</c:if>
+					<!-- 
+					<td><label for="bookmark-chk${b.bookNo }"><img id="bookmark-false${b.bookNo }" src="/image/bookmark/bookmark-false.png"></label><input type="checkbox" id="bookmark-chk${b.bookNo }" onclick="bookmarkChkBox(checked,${b.bookNo })"><label for="bookmark-chk${b.bookNo }"><img id="bookmark-true${b.bookNo }" src="/image/bookmark/bookmark-true.png"></label></td>
+					 -->
+				 </c:if>
 				 <!-- 여기는 북마크 전용 구간입니다. -->
 				<td>${b.bookName }</td>
 				<td>${b.bookKind }</td>

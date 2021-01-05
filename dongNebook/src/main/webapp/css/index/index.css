@@ -1,3 +1,8 @@
+	@media screen {
+  		html {
+  		 width:1430px; 
+  		 }
+}
 .mainImg {
             width: 100%;
             z-index: 0;
@@ -129,26 +134,5 @@
             position: fixed;
         }
 
-        .sub-frame {
-            position: absolute;
-            background-color: whitesmoke;
-            width: 100%;
-            left: 0px;
-            display: none;
-            z-index:101;
-        }
-        
-        .menu-frame{
-            width: 800px;
-            padding: 0px;
-            height: 50px;
-            margin: 0px;
-            float: left;
-            line-height: 50px;
-        }
-        .member-sign{
-            float: right;
-        }
-        #menu-sub-start{
-            padding-left: 210px;
-        }
+      
+       
