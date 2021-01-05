@@ -53,7 +53,6 @@ public class BookController {
 	@RequestMapping("/bookList")
 	public String bookList(Model model,int reqPage) {
 		BookPageData bpd = service.searchBookList(reqPage);
-		
 		model.addAttribute("list",bpd.getList());
 		model.addAttribute("pageNavi",bpd.getPageNavi());
 		
