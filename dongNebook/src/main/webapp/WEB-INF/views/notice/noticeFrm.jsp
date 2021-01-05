@@ -11,7 +11,7 @@
 <body>
 	<section>
 		<!-- 파일 업로드를 하려면 method는 post, enctype는 multipart/form-data를 써야지만 업로드가 가능함! 파일을 업로드 할 폼이라고 미리 명시하는 것 -->
-			<form action="/insertNotice.do" method="post" enctype="multipart/form-data">
+			<form action="/notice/insertNotice.do" method="post" enctype="multipart/form-data">
 				<table border="1">
 					<tr>
 						<th colspan="2">공지사항 작성</th>
