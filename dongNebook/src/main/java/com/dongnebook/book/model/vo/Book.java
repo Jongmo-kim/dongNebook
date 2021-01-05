@@ -8,8 +8,10 @@ public class Book {
 	private String bookPublisher;
 	private String bookIntroduce;
 	private String imageurl;
+	private String ISBN13;
+	private int bookCount;
 	public Book(int bookNo, String bookName, String bookKind, String bookWriter, String bookPublisher,
-			String bookIntroduce, String imageurl) {
+			String bookIntroduce, String imageurl, String ISBN13, int bookCount) {
 		super();
 		this.bookNo = bookNo;
 		this.bookName = bookName;
@@ -18,6 +20,8 @@ public class Book {
 		this.bookPublisher = bookPublisher;
 		this.bookIntroduce = bookIntroduce;
 		this.imageurl = imageurl;
+		this.ISBN13 = ISBN13;
+		this.bookCount = bookCount;
 	}
 	public Book() {
 		super();
@@ -64,11 +68,23 @@ public class Book {
 	public void setImageurl(String imageurl) {
 		this.imageurl = imageurl;
 	}
+	public String getISBN13() {
+		return ISBN13;
+	}
+	public void setISBN13(String iSBN13) {
+		ISBN13 = iSBN13;
+	}
+	public int getBookCount() {
+		return bookCount;
+	}
+	public void setBookCount(int bookCount) {
+		this.bookCount = bookCount;
+	}
 	@Override
 	public String toString() {
 		return "Book [bookNo=" + bookNo + ", bookName=" + bookName + ", bookKind=" + bookKind + ", bookWriter="
 				+ bookWriter + ", bookPublisher=" + bookPublisher + ", bookIntroduce=" + bookIntroduce + ", imageurl="
-				+ imageurl + "]";
+				+ imageurl + ", ISBN13=" + ISBN13 + ", bookCount=" + bookCount + "]";
 	}
 	
 	
