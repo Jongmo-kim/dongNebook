@@ -12,7 +12,7 @@
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	
+	<jsp:include page="/views/common/testModal.jsp" />
 	 <div class="content">
         <div class="imgMain"><img class="mainImg" src="../image/index/main2.jpg">
             <div>
