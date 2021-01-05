@@ -49,4 +49,12 @@ public class NoticeController {
 		model.addAttribute("loc", "/");
 		return "common/msg";
 	}
+	
+	@RequestMapping("/deleteNotice.do")
+	public String deleteNotice(Model model) {
+		model.addAttribute("msg", "삭제 성공");
+		model.addAttribute("loc", "/");
+		model.addAttribute("result",true);
+		return "common/msg";
+	}
 }
