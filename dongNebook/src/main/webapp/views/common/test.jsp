@@ -908,6 +908,7 @@ const resultFunc = function(success, data){//const = final  상수형변수
 			console.log(data.item[i].cover);
 			let cover500 = data.item[i].cover.replace(/coversum/g,'cover500');
 			console.log(cover500);
+			console.log(data);
 			bookinsert(data.item[i]);
 			$("#grid").append("<li class='book-item small-12 medium-6 columns' data-groups='[classic]' data-date-created='1937' data-title='Of Mice and Men' data-color='#fcc278'>"+"<div class='bk-img'>"+"<div class='bk-wrapper'>"+"<div class='bk-book bk-bookdefault'>"+"<div class='bk-front'>"+"<div class='bk-cover' style='background-image: url("+cover500+")'>"+"</div>"+"</div>"+"<div class='bk-back'>"+"</div>"+"<div class='bk-left'></div></div></div></div><div class='item-details'><h3 class='book-item_title'>"+data.item[i].title+"</h3><p class='author'>"+data.item[i].author+"</p><p>"+data.item[i].description+"</p><a href='#' class='button'>신청</a></div></li>");
 		}	

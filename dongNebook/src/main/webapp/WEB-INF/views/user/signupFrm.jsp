@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>회원가입하기</title>
 <jsp:include page="/views/common/linkHead.jsp"/>
+
 <link rel="stylesheet" href="/css/user/inputBox.css?v=<%=System.currentTimeMillis()%>">
 <script type="text/javascript" src="/js/user/inputBox.js?v=<%=System.currentTimeMillis()%>"></script>
 <link rel="stylesheet" href="/css/user/signupFrm.css?v=<%=System.currentTimeMillis()%>">

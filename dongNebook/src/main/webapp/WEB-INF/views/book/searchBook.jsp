@@ -12,6 +12,14 @@
 <link rel="stylesheet" href="/css/book/searchBook.css?v=<%=System.currentTimeMillis()%>">
 <script type="text/javascript" src="/js/book/searchBook.js?v=<%=System.currentTimeMillis()%>"></script>
 </head>
+<style>
+	.bookMarkFalse{
+		background-image: url("/image/bookmark/bookmark-false.png");
+	}
+	.bookMarkTrue{
+		background-image:url("/image/bookmark/bookmark-true.png");
+	}
+</style>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
 	
@@ -39,6 +47,7 @@
 		<table>
 			<tr>
 				<th>책 번호</th>
+				<th>북마크</th>
 				<th>책 이름</th>
 				<th>책 종류</th>
 				<th>저자</th>
@@ -49,6 +58,23 @@
 			<c:forEach var="b" items="${bookList }">
 			<tr>
 				<td>${b.bookNo }</td>
+				<!-- 여기는 북마크 전용 구간입니다. -->
+				<c:set var="chk" value="false"/>
+				<c:forEach var="m" items="${bookMarkList }">
+					<c:if test="${b.bookName eq m }">
+						<c:set var="chk" value="true"/>
+					</c:if>
+				</c:forEach>
+				<c:if test= "${chk == false}">
+					<td><label for="bookmark-chk${b.bookNo }" id="label-chk${b.bookNo }"><img src="/image/bookmark/bookmark-false.png"></label><input type="checkbox" id="bookmark-chk${b.bookNo }" style="display:none" onclick="bookmarkChkBox(checked,'label-chk${b.bookNo }')"></td>
+				</c:if>
+				<c:if test= "${chk == true}">
+					<td><label for="bookmark-chk${b.bookNo }" id="label-chk${b.bookNo }"><img src="/image/bookmark/bookmark-true.png"></label><input type="checkbox" id="bookmark-chk${b.bookNo }" style="display:none" checked=true onclick="bookmarkChkBox(checked,'label-chk${b.bookNo }')"></td>
+				</c:if>
+				<!-- 
+				<td><label for="bookmark-chk${b.bookNo }"><img id="bookmark-false${b.bookNo }" src="/image/bookmark/bookmark-false.png"></label><input type="checkbox" id="bookmark-chk${b.bookNo }" onclick="bookmarkChkBox(checked,${b.bookNo })"><label for="bookmark-chk${b.bookNo }"><img id="bookmark-true${b.bookNo }" src="/image/bookmark/bookmark-true.png"></label></td>
+				 -->
+				 <!-- 여기는 북마크 전용 구간입니다. -->
 				<td>${b.bookName }</td>
 				<td>${b.bookKind }</td>
 				<td>${b.bookWriter }</td>
@@ -59,5 +85,18 @@
 			</c:forEach>
 		</table>
 	</div>
+	<script>
+		
+		function bookmarkChkBox(chk,id){
+			console.log(id);
+			if(chk){
+				var book=document.getElementById(id);
+				book.innerHTML="<img src='/image/bookmark/bookmark-true.png'>";
+			}else{
+				var book=document.getElementById(id);
+				book.innerHTML="<img src='/image/bookmark/bookmark-false.png'>";
+			}
+		}
+	</script>
 </body>
 </html>

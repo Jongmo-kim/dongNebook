@@ -3,3 +3,130 @@
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 13pt;
 }
+ body{
+            margin: 0 auto;
+            position: relative;
+            width: 1200px;
+        }
+ header {
+            margin: 0 auto;
+            width: 1200px;
+            box-sizing: border-box;
+            height:75px;
+        }
+
+        header div {
+            float: left;
+        }
+
+        header>div a {
+            text-decoration: none;
+            color: black;
+            display: inline-block;
+        }
+
+        header>div {
+            height: 70px;
+        }
+
+      
+
+        .logo>a {}
+
+        .logo>a>img {
+            width: 210px;
+        }
+
+        .content {
+            margin: 0 auto;
+            width: 1200px;
+            box-sizing: border-box;
+
+        }
+
+        .menu {
+            width: 1200px;
+
+        }
+
+        .menu>ul>li {
+            margin: 0 auto;
+            float: left;
+            height: 50px;
+            width: calc(800px/4);
+            list-style-type: none;
+            text-align: center;
+        }
+
+        .menu1 {
+           
+        }
+
+        .menu>ul>li>a {
+            font-size: 25px;
+            color: black;
+            display: block;
+        }
+
+        .sub {
+            background-color: whitesmoke;
+            width: 170px;
+            float: left;
+            padding: 0;
+            /*겹쳐서 배치*/
+            z-index: 100;
+            width: calc(800px/4);
+        }
+        .sub>li {
+            list-style-type: none;
+            height: 40px;
+        }
+
+        .sub>li>a {
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 30px;
+        }
+        .menu1 a{
+            height: 50px;
+        }
+        .menu>ul:hover #menu-sub-start,
+        .sub:hover {
+            display: block;
+
+        }
+        .menu-frame:hover .sub-frame{
+            display: block;
+        }
+        .menu>ul:hover {
+            height: 300px;
+        }
+
+        .sub * {
+            text-align: center;
+            display: block;
+            padding: 5px;
+        }
+  #menu-sub-start{
+            padding-left: 210px;
+        }
+        .sub>li>a:hover {
+            font-weight: bold;
+        }
+          .sub-frame {
+            position: absolute;
+            background-color: whitesmoke;
+            width: 100%;
+            left: 0px;
+            display: none;
+            z-index:101;
+        }
+        
+        .menu-frame{
+            width: 800px;
+            padding: 0px;
+            height: 50px;
+            margin: 0px;
+            float: left;
+            line-height: 50px;
+        }
