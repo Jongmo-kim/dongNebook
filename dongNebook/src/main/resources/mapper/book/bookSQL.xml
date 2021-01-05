@@ -9,6 +9,8 @@
 			#{bookWriter},
 			#{bookPublisher},
 			#{bookIntroduce},
+			#{ISBN13},
+			#{bookCount},
 			#{imageurl}
 		)
 	</insert>
@@ -30,12 +32,14 @@
 	  (
 	    SELECT 
 	        ROWNUM as rnum,
-	        book_no ,
-	        book_name ,
-	        book_kind ,
+	        book_no,
+	        book_name,
+	        book_kind,
 	        book_writer,
 	        book_publisher,
 	        book_introduce,
+	        ISBN13,
+	        book_count,
 	        imageurl
 	    FROM 
 	           (select
