@@ -1,4 +1,8 @@
-
+@media screen {
+  		html {
+  		 width:1430px; 
+  		 }
+}
         .additional-info{
 		    color:#DE071C;
 		    font-size:13px;

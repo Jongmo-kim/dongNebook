@@ -1,3 +1,8 @@
+	@media screen {
+  		html {
+  		 width:1430px; 
+  		 }
+}
 .mainImg {
             width: 100%;
             z-index: 0;
