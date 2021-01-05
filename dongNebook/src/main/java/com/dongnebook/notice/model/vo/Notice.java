@@ -1,6 +1,8 @@
 package com.dongnebook.notice.model.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+
 
 /**
  * @author 진수경
@@ -16,6 +18,7 @@ public class Notice {
 	private String filename;
 	private String filepath;
 	private Date enrollDate;
+	private ArrayList<FileVO> fileList;
 	public Notice() {
 		super();
 		// TODO Auto-generated constructor stub
