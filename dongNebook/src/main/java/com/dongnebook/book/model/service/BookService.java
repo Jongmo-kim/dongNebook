@@ -103,4 +103,6 @@ public class BookService {
 	public ArrayList<String> selectBookMarkList(int userNo) {
 		return dao.selectBookMarkList(userNo);
 	}
+
+	
 }

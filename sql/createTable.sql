@@ -49,6 +49,8 @@ CREATE TABLE BOOK(
     BOOK_WRITER VARCHAR2(200),
     BOOK_PUBLISHER VARCHAR2(500),
     BOOK_INTRODUCE VARCHAR2(2000),
+    ISBN13 varchar2(20) unique,
+    book_count number default 0,
     IMAGEURL VARCHAR2(100)
 );
 
@@ -145,6 +147,18 @@ create table image(
     filename varchar2(50),
     filepath varchar2(50)
 );
+
+create table bookmark(
+    user_no number,
+    isbn13 varchar2(20),
+    primary key(user_no,isbn13)
+);
+
+ALTER TABLE bookmark ADD CONSTRAINT bookmark_user_no_Fk
+FOREIGN KEY(USER_NO) REFERENCES "USER"(USER_NO) ON DELETE CASCADE;
+
+ALTER TABLE bookmark ADD CONSTRAINT bookmark_isbn_Fk
+FOREIGN KEY(isbn13) REFERENCES book(isbn13) ON DELETE CASCADE;
 
 create sequence notice_seq;
 create sequence admin_seq;

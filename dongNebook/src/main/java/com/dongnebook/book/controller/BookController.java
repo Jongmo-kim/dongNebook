@@ -38,6 +38,8 @@ public class BookController {
 		b.setBookPublisher(o.getAsJsonObject().get("publisher").getAsString());
 		b.setBookWriter(o.getAsJsonObject().get("author").getAsString());
 		b.setImageurl(o.getAsJsonObject().get("cover").getAsString());
+		b.setISBN13(o.getAsJsonObject().get("isbn13").getAsString());
+		b.setBookCount(1);
 		System.out.println(b);
 		int result = service.insertBook(b);
 		if(result > 0) {
@@ -51,7 +53,6 @@ public class BookController {
 	@RequestMapping("/bookList")
 	public String bookList(Model model,int reqPage) {
 		BookPageData bpd = service.searchBookList(reqPage);
-		
 		model.addAttribute("list",bpd.getList());
 		model.addAttribute("pageNavi",bpd.getPageNavi());
 		
@@ -84,8 +85,12 @@ public class BookController {
 		//여기부턴 북마크용 데이터 입출력 입니다.
 		
 		User loginUser = (User)session.getAttribute("loginUser");
-		ArrayList<String> bookMarkList=service.selectBookMarkList(loginUser.getUserNo());
-		model.addAttribute("bookMarkList", bookMarkList);
+		if(loginUser!=null) {
+			System.out.println(1);
+			ArrayList<String> bookMarkList=service.selectBookMarkList(loginUser.getUserNo());
+			model.addAttribute("bookMarkList", bookMarkList);
+		}
+		
 		return "book/searchBook";
 	}
 	@RequestMapping("/updateBook.do")
