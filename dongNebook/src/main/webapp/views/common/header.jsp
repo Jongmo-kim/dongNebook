@@ -5,7 +5,7 @@
     <div class="menu">
        <div class="logo"><a href="/"><img src="../image/header/logo.png"></a></div>
         <ul class="menu-frame">
-            <li class="menu1" id="menu-start"><a href="#">조장님</a>
+            <li class="menu1" id="menu-start"><a href="#">님</a>
                 <div class="sub-frame">
                     <ul class="sub" id="menu-sub-start">
                         	<li><a href="/views/rental/rental_loc.jsp">상호대차페이지</a></li>
