@@ -85,8 +85,12 @@ public class BookController {
 		//여기부턴 북마크용 데이터 입출력 입니다.
 		
 		User loginUser = (User)session.getAttribute("loginUser");
-		ArrayList<String> bookMarkList=service.selectBookMarkList(loginUser.getUserNo());
-		model.addAttribute("bookMarkList", bookMarkList);
+		if(loginUser!=null) {
+			System.out.println(1);
+			ArrayList<String> bookMarkList=service.selectBookMarkList(loginUser.getUserNo());
+			model.addAttribute("bookMarkList", bookMarkList);
+		}
+		
 		return "book/searchBook";
 	}
 	@RequestMapping("/updateBook.do")
