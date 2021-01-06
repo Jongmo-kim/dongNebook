@@ -13,43 +13,11 @@
 			<param-name>forceEncdoing</param-name>
 			<param-value>true</param-value>
 		</init-param>
-		<!-- CORS 설정우회
-		http://tomcat.apache.org/tomcat-8.5-doc/config/filter.html#CORS_Filter
-		
-		 -->
-		<filter-name>CorsFilter</filter-name>
-			<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
-		<init-param>
-		  <param-name>cors.allowed.origins</param-name>
-		  <param-value>https://www.apache.org</param-value>
-		</init-param>
-		<init-param>
-		  <param-name>cors.allowed.methods</param-name>
-		  <param-value>GET,POST,HEAD,OPTIONS,PUT</param-value>
-		</init-param>
-		<init-param>
-		  <param-name>cors.allowed.headers</param-name>
-		  <param-value>Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers</param-value>
-		</init-param>
-		<init-param>
-		  <param-name>cors.exposed.headers</param-name>
-		  <param-value>Access-Control-Allow-Origin,Access-Control-Allow-Credentials</param-value>
-		</init-param>
-		<init-param>
-		  <param-name>cors.support.credentials</param-name>
-		  <param-value>true</param-value>
-		</init-param>
-		<init-param>
-		  <param-name>cors.preflight.maxage</param-name>
-		  <param-value>10</param-value>
-		</init-param>
-		</filter>
 	<filter-mapping>
-	  	<filter-name>CorsFilter</filter-name>
-	  	<url-pattern>/*</url-pattern>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	</filter>
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>

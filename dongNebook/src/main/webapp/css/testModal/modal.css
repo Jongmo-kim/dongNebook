@@ -7,9 +7,68 @@
     width: 100px;
     height: 100px;
 }
+/* multipleBoardWrap*/
+ ::-webkit-scrollbar {
+         width:10px;    /*-- 세로 스크롤바 굵기 --*/
+         height:10px;  /*-- 가로 스크롤바 높이 --*/
+     }
+     ::-webkit-scrollbar-track-piece  {
+         background-color:transparent;   /*-- 스크롤 색상 --*/
+     }
+     ::-webkit-scrollbar-thumb {
+         width: 5px;     /*-- ?? --*/
+         background-color:#868686;    /*-- 스클로 배경 색상 --*/
+     } 
+     .multipleBoardWrap{
+         border: 1px solid;
+         height: 700px;
+         width: 500px;
+         overflow: scroll;
+         overflow-x: hidden;
+         flex-direction: column;
+     }
+     .multipleBoardWrap >div > div{
+         width:100%;
+         border: 1px dashed red;
+         
+     }
+     .boardHeader{
+         display:flex;
+         flex-direction: row-reverse;
+     }
+     .boardHeader > p{
+         font-size:15px;
+         font-weight: bold;
+     }
+     .boardHeader  > img{
+         height: 50px;
+         width: 50px;
+     }
+     .boardContent > .textContent{
+         margin-left: 25px;
+         margin-right: 25px;
+     }
+     .boardContent > .imageContent{
+         text-align: center;
+         padding-top: 10px;
+     }
+     .boardContent > .imageContent > img{
+         width: 300px;
+         height: 300px;
+         border : 1px solid;
+     }
+     .boardContent{
+         height: 500px;
+     }
+     .boardFooter{
+         height: 100px;
+     }
 /* Bootstrap Overloading */
 @media (min-width: 576px){
 	.modal-dialog {
 	    max-width: 700px;
 	}
+}
+.modal-body{
+	margin: 0 auto;
 }

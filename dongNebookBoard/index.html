@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>메인페이지</title>
+    <style>
+        ::-webkit-scrollbar {
+            width:10px;    /*-- 세로 스크롤바 굵기 --*/
+            height:10px;  /*-- 가로 스크롤바 높이 --*/
+        }
+        ::-webkit-scrollbar-track-piece  {
+            background-color:transparent;   /*-- 스크롤 색상 --*/
+        }
+        ::-webkit-scrollbar-thumb {
+            width: 5px;     /*-- ?? --*/
+            background-color:#868686;    /*-- 스클로 배경 색상 --*/
+        } 
+        .multipleBoardWrap{
+            border: 1px solid;
+            height: 700px;
+            width: 500px;
+            overflow: scroll;
+            overflow-x: hidden;
+            flex-direction: column;
+        }
+        .multipleBoardWrap >div > div{
+            width:100%;
+            border: 1px dashed red;
+            
+        }
+        .boardHeader{
+            display:flex;
+            flex-direction: row-reverse;
+        }
+        .boardHeader > p{
+            font-size:15px;
+            font-weight: bold;
+        }
+        .boardHeader  > img{
+            height: 50px;
+            width: 50px;
+        }
+        .boardContent > .textContent{
+            margin-left: 25px;
+            margin-right: 25px;
+        }
+        .boardContent > .imageContent{
+            text-align: center;
+            padding-top: 10px;
+        }
+        .boardContent > .imageContent > img{
+            width: 300px;
+            height: 300px;
+            border : 1px solid;
+        }
+        .boardContent{
+            height: 500px;
+        }
+        .boardFooter{
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="multipleBoardWrap">
+        <div class="boardBody">
+            <div class="boardHeader">
+                <p>김종모님</p>
+                <img src="male-face-12.svg" />
+                
+                
+            </div>
+            <div class="boardContent">
+                <div class="imageContent">
+                    <img src="800x0.jpg" alt="book">
+                </div>
+                <div class="textContent">
+                    <p>이 책은 너무 재미있어서 5천억번이나 봤습니다.</p> <p>여러분도 꼭보세요!</p>
+                </div>
+            </div>
+            <div class="boardFooter">
+                <div class="tagContent">
+                    <a href="#">#프리드버그_선형대수학5판</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
