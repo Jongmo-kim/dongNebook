@@ -31,13 +31,14 @@ public class BookmarkDao {
 		return session.delete("book.deleteBookMark", bookMark);
 	}
 
-	public Bookmark searchBookMarck(int userNo) {
-		return session.selectOne("book.searchBookMark",userNo);
+	public ArrayList<Bookmark> searchBookMark(int userNo) {
+		List<Bookmark> list = session.selectList("book.searchBookMark", userNo);
+		return (ArrayList<Bookmark>)list;
 	}
 
-	public ArrayList<Book> searchBookmarkList(String isbn13) {
-		List<Book> list = session.selectList("book.searchBookMarkList", isbn13);
-		return (ArrayList<Book>)list;
+	public Book searchBookmarkList(String isbn13) {
+		
+		return session.selectOne("book.searchBookList", isbn13);
 	}
 	
 }

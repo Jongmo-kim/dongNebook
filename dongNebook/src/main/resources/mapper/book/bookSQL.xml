@@ -92,11 +92,9 @@
 			ISBN13 as ISBN13
 		from bookmark where user_no = #{userNo}
 	</select>
-	<select id="searchBookMarkList" parameterType="string" resultType="book">
+	<select id="searchBookList" parameterType="string" resultType="book">
 		select
-			book_name as bookName,
-			book_writer as bookWriter,
-			imageurl
+			*
 		from book where isbn13 = #{ISBN13}
 	</select>
 </mapper>
