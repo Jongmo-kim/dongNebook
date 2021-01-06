@@ -19,7 +19,7 @@
 			<th>책이름</th>
 			<th>저자</th>
 		</tr>
-				<c:forEach items="${list }" var ="b">
+				<c:forEach items="${bookList }" var ="b">
 			<tr>
 				<td><img alt="${b.bookName }Image" src="${b.imageurl }"></td>
 				<td>${b.bookName }</td>

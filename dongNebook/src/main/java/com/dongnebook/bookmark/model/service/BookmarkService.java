@@ -25,13 +25,12 @@ public class BookmarkService {
 		return dao.deleteBookmark(isbn,userNo);
 	}
 
-	public Bookmark searchBookMark(int userNo) {
-		return dao.searchBookMarck(userNo);
+	public ArrayList<Bookmark> searchBookMark(int userNo) {
+		return dao.searchBookMark(userNo);
 	}
 
-	public ArrayList<Book> searchBookMarkList(String isbn13) {
-		ArrayList<Book> list = dao.searchBookmarkList(isbn13);
-		return list;
+	public Book searchBookMarkList(String isbn13) {
+		return dao.searchBookmarkList(isbn13);
 	}
 
 	
