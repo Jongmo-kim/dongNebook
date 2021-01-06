@@ -21,7 +21,7 @@
 						<li><a href="/book/searchBookFrm.do">책 검색하기</a></li>
                     </ul>
                     <ul class="sub">
-                        <li><a href="/rnak/rankList.do?reqPage=1">대출 순위</a></li>
+                        <li><a href="/rank/rankList.do?reqPage=1">대출 순위</a></li>
                     </ul>
                </div>
             </li>
