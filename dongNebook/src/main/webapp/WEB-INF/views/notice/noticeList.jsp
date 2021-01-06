@@ -15,19 +15,22 @@
 	<hr>
 	<table border=1>
 		<tr>
-			<th><input type="checkbox" class="allCheck"></th><th>공지사항 번호</th><th>제목</th><th>내용</th><th>작성자</th><th>filename</th><th>filepath</th><th>작성일</th>
+			<th><input type="checkbox" class="allCheck"></th><th>공지사항 번호</th><th>제목</th><th>내용</th><th>작성자</th><th>작성일</th>
 		</tr>
 		<c:forEach items="${list }" var ="n">
 			<tr>
-				<td><input type="checkbox" name="noticeCheck" value=${n.noticeNo }></td><td>${n.rNum }</td><td><a href="/noticeView.do?noticeNo=${n.noticeNo}">${n.noticeTitle }</a></td><td>${n.noticeContent }</td><td>${n.noticeWriter }</td><td>${n.filename }</td><td>${n.filepath }</td><td>${n.enrollDate }</td>			
+				<td><input type="checkbox" name="noticeCheck" value=${n.noticeNo }></td><td>${n.rNum }</td><td><a href="/notice/noticeView.do?noticeNo=${n.noticeNo}">${n.noticeTitle }</a></td><td>${n.noticeContent }</td><td>${n.noticeWriter }</td><td>${n.enrollDate }</td>			
 			</tr>
 		</c:forEach>
 	</table>
 	<p style="text-align:center">${pageNavi }</p>
+	<button onclick="insertNotice();" class="btn btn-primary">추가</button>
 	<button onclick="deleteNotice();" class="btn btn-danger">삭제</button>
 	
 	<script>
 		$(function(){
+			
+			
 			$(".allCheck").click(function (){
 				//전체 체크
 				if($(".allCheck").is(":checked") == true){
@@ -39,6 +42,9 @@
 				}
 			});
 		});
+		function insertNotice(){
+			location.href="/notice/noticeFrm.do";
+		}
 		
 		function deleteNotice(){
 			//몇 번째 체크박스가 체크되어 있는지 확인

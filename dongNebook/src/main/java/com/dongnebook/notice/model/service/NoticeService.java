@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dongnebook.notice.model.dao.NoticeDao;
-import com.dongnebook.notice.model.vo.FileVO;
 import com.dongnebook.notice.model.vo.Notice;
 import com.dongnebook.notice.model.vo.NoticePageData;
 
@@ -96,5 +95,10 @@ public class NoticeService {
 //			}
 //		}
 		return 0;
+	}
+
+	public Notice selectNotice(int noticeNo) {
+		Notice n = dao.selectNotice(noticeNo);
+		return n;
 	}
 }

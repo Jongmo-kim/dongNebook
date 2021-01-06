@@ -3,6 +3,8 @@ package com.dongnebook.notice.model.vo;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import com.dongnebook.common.FileVO;
+
 
 /**
  * @author 진수경

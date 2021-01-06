@@ -8,12 +8,13 @@
 			notice_writer as noticeWriter,
 			notice_title as noticeTitle,
 			notice_content as noticeContent,
-			filename,
-			filepath,
 			enroll_date as enrollDate
 		from (select rownum as rnum, n.* 
 				from(select * from notice order by 1 desc)n) 
 		where rnum between #{start} and #{end}
+	</select>
+	<select id="selectNotice" parameterType="_int" resultType="notice">
+		select * from notice where notice_no=#{_int}
 	</select>
 	<select id="selectTotalCount" resultType="_int">
 		select count(*) from notice

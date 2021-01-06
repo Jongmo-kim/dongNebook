@@ -1,35 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<jsp:include page="/views/common/linkHead.jsp"/>
 </head>
 <body>
-   <table border="1">
-      <tr>
-         <th>제목</th>
-         <td>${n.noticeTitle }</td>
-      </tr>
-      <tr>
-         <th>작성자</th>
-         <td>${n.noticeWriter }</td>
-      </tr>
-      <tr>
-         <th>작성일</th>
-         <td>${n.noticeDate }</td>
-      </tr>
-      <tr>
-         <th>첨부파일</th>
-         <td><a href="javascript:fileDownload('${n.filename }','${n.filepath }')">${n.filename }</a></td>
-      </tr>
-      <tr>
-         <th>내용</th>
-         <td>${n.noticeContent }</td>
-      </tr>
-   </table>
-
+	<jsp:include page="/views/common/header.jsp" />
+	<table border="1">
+		<tr>
+			<th>제목</th>
+			<td>${n.noticeTitle }</td>
+		</tr>
+		<tr>
+			<th>작성자</th>
+			<td>${n.noticeWriter }</td>
+		</tr>
+		<tr>
+			<th>작성일</th>
+			<td>${n.enrollDate }</td>
+		</tr>
+		<tr>
+			<th>첨부파일</th>
+			<td>
+				<%-- <a href="javascript:fileDownload('${n.filename }','${n.filepath }')">${n.filename }</a> --%>
+			</td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td>${n.noticeContent }</td>
+		</tr>
+	</table>
+	<a href="/notice/noticeList.do?reqPage=1">목록으로 돌아가기</a>
 
 	<script>
       //첨부파일 다운로드

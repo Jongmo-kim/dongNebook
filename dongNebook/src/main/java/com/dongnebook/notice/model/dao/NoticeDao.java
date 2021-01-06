@@ -49,4 +49,8 @@ public class NoticeDao {
 		}
 		return result;
 	}
+
+	public Notice selectNotice(int noticeNo) {
+		return sqlSession.selectOne("notice.selectNotice", noticeNo);
+	}
 }

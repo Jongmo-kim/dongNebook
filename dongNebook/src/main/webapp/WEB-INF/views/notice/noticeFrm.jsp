@@ -22,7 +22,9 @@
 					</tr>
 					<tr>
 						<th>첨부파일</th>
-						<td><input multiple="multiple" type="file" name="filename"></td>
+						<td>
+							<input multiple="multiple" type="file" name="filename">
+						</td>
 					</tr>
 					<tr>
 						<th>작성자</th>
