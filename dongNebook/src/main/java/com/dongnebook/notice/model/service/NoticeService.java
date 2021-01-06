@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dongnebook.common.FileVO;
 import com.dongnebook.notice.model.dao.NoticeDao;
 import com.dongnebook.notice.model.vo.Notice;
 import com.dongnebook.notice.model.vo.NoticePageData;
@@ -86,14 +87,14 @@ public class NoticeService {
 	}
 
 	public int insertNotice(Notice n) {
-//		int result = dao.insertBoard(n);
-//		if(result>0) {
-//			int noticeNo = dao.selectNoticeNo();
-//			//첨부파일이 없으면 list 길이는 0이라서 for문 동작 안함
-//			for(FileVO fv : n.getFileList()) {	
-//				result = dao.insertFile(noticeNo, fv.getFilename(), fv.getFilepath());
-//			}
-//		}
+		int result = dao.insertNotice(n);
+		if(result>0) {
+			int noticeNo = dao.selectNoticeNo();
+			for(FileVO fv : n.getFileList()) {	
+				fv.setTableNo(noticeNo);
+				result = dao.insertFile(fv);
+			}
+		}
 		return 0;
 	}
 

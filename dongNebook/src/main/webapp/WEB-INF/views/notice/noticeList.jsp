@@ -24,7 +24,9 @@
 		</c:forEach>
 	</table>
 	<p style="text-align:center">${pageNavi }</p>
-	<button onclick="insertNotice();" class="btn btn-primary">추가</button>
+	<c:if test="${sessionScope.loginUser!=null}">
+		<button onclick="insertNotice();" class="btn btn-primary">추가</button>
+	</c:if>
 	<button onclick="deleteNotice();" class="btn btn-danger">삭제</button>
 	
 	<script>

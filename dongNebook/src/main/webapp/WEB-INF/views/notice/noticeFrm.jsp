@@ -7,18 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<jsp:include page="/views/common/linkHead.jsp"/>
 </head>
 <body>
+	<jsp:include page="/views/common/header.jsp" />
 	<section>
 		<!-- 파일 업로드를 하려면 method는 post, enctype는 multipart/form-data를 써야지만 업로드가 가능함! 파일을 업로드 할 폼이라고 미리 명시하는 것 -->
-			<form action="/notice/insertNotice.do" method="post" enctype="multipart/form-data">
+ 			<form action="/notice/insertNotice.do" method="post" enctype="multipart/form-data">
 				<table border="1">
 					<tr>
 						<th colspan="2">공지사항 작성</th>
 					</tr>
 					<tr>
 						<th>제목</th>
-						<td><input type="text" class="form-control" name="noticeTitle"></td>
+						<td><input type="text" name="noticeTitle"></td>
 					</tr>
 					<tr>
 						<th>첨부파일</th>
@@ -29,16 +31,12 @@
 					<tr>
 						<th>작성자</th>
 						<td>
-							<!-- 화면에 보여주는 용도 -->
-							${u.userId}
-							
-							<!-- Servlet에 넘겨주는 용도 -->
-							<input type="hidden" name="noticeWriter" value="${u.userId }">
+							<input type="text" name="noticeWriter" value="${sessionScope.loginUser.userId }" readonly>
 						</td>
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><textarea name="noticeContent" class="form-control" row="3" col="40"></textarea></td>
+						<td><textarea name="noticeContent" row="3" col="40"></textarea></td>
 					</tr>
 					<tr>
 						<th colspan="2">
@@ -47,7 +45,7 @@
 					</tr>
 				</table>
 			</form>
-		</div>
+			<a href="/notice/noticeList.do?reqPage=1">목록으로 돌아가기</a>
 	</section>
 </body>
 </html>

@@ -38,7 +38,7 @@
 	<script>
       //첨부파일 다운로드
        function fileDownload(filename,filepath){//인코딩작업해주려고 자바스크립트로 함
-         var url = "/noticeDownload.do";
+         var url = "/notice/noticeDownload.do";
          var encFilename = encodeURIComponent(filename);
          var encFilepath = encodeURIComponent(filepath);
          location.href=url+"?filename="+encFilename+"&filepath="+encFilepath+"&noticeNo="+${n.noticeNo};

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dongnebook.common.FileVO;
 import com.dongnebook.notice.model.vo.Notice;
 
 /**
@@ -52,5 +53,17 @@ public class NoticeDao {
 
 	public Notice selectNotice(int noticeNo) {
 		return sqlSession.selectOne("notice.selectNotice", noticeNo);
+	}
+
+	public int insertNotice(Notice n) {
+		return sqlSession.insert("notice.insertNotice", n);
+	}
+
+	public int selectNoticeNo() {
+		return sqlSession.selectOne("notice.selectNoticeNo", int.class);
+	}
+
+	public int insertFile(FileVO fv) {
+		return sqlSession.insert("notice.insertFile", fv);
 	}
 }

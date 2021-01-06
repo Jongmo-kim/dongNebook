@@ -24,4 +24,13 @@
 			from notice
 		where notice_no = #{_int}
 	</delete>
+	<insert id="insertNotice" parameterType="notice">
+		insert into notice values(notice_seq.nextval, #{noticeWriter}, #{noticeTitle}, #{noticeContent}, #{enrollDate})
+	</insert>
+	<select id="selectNoticeNo" resultType="_int">
+		select max(notice_no) from notice
+	</select>
+	<insert id="insertFile">
+		insert into "FILE" values(file_seq.nextval, #{tableNo}, #{tableName}, #{filename}, #{filepath})
+	</insert>
 </mapper>

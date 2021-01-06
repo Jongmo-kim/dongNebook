@@ -56,8 +56,6 @@ public class NoticeController {
 	@RequestMapping("/noticeFrm.do")
 	//로그인 했다는 가정하에 진행
 	public String noticeFrm(User u,Model model,HttpSession session) {
-		User loginUser = (User)session.getAttribute("loginUser");
-		model.addAttribute("u",loginUser);
 		return "notice/noticeFrm";
 	}
 
@@ -73,6 +71,7 @@ public class NoticeController {
 
 		//1. 업로드 경로 지정
 		// 경로를 c드라이브부터 현재 프로젝트의 webapp까지 찾아와 줌
+		System.out.println(n.toString());
 		String root = request.getSession().getServletContext().getRealPath("/");
 		String path = root + "resources/upload/notice/";
 
@@ -95,6 +94,7 @@ public class NoticeController {
 					FileVO f = new FileVO();
 					f.setFilename(filename);
 					f.setFilepath(filepath);
+					f.setTableName("notice");
 					fileList.add(f);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -102,7 +102,7 @@ public class NoticeController {
 				}
 			}
 		}	//for문 끝
-		
+		n.setFileList(fileList);
 		int result = service.insertNotice(n);
 
 		if(result>0) {
@@ -141,7 +141,7 @@ public class NoticeController {
 		return "notice/noticeView";
 	}
 	
-	@RequestMapping("/NoticeDownload.do")
+	@RequestMapping("/noticeDownload.do")
     public void NoticeDownload(String filename, String filepath, int noticeNo, HttpServletRequest request, HttpServletResponse response) {
        String path = request.getSession().getServletContext().getRealPath("/") + "resources/upload/notice/";
         
