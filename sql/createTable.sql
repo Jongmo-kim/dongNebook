@@ -141,9 +141,10 @@ CREATE TABLE CALENDAR(
     CALENDAR_ENDDATE DATE
 );
 
-create table image(
-    image_no number primary key,
-    tableName varchar2(20) not null,
+create table "FILE"(
+    file_no number primary key,
+    table_no number not null,
+    table_name varchar2(20) not null,
     filename varchar2(50),
     filepath varchar2(50)
 );
@@ -172,5 +173,5 @@ create sequence book_rental_seq;
 create sequence book_seq;
 create sequence user_seq;
 create sequence category_seq;
-create sequence image_seq;
+create sequence file_seq;
 CREATE SEQUENCE ALRAM_SEQ;
