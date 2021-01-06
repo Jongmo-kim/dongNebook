@@ -1,18 +1,20 @@
-package com.dongnebook.notice.model.vo;
+package com.dongnebook.common;
 
 public class FileVO {
 	private int fileNo;
-	private int boardNo;
+	private int tableNo;
+	private String tableName;
 	private String filename;
 	private String filepath;
 	public FileVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public FileVO(int fileNo, int boardNo, String filename, String filepath) {
+	public FileVO(int fileNo, int tableNo, String tableName, String filename, String filepath) {
 		super();
 		this.fileNo = fileNo;
-		this.boardNo = boardNo;
+		this.tableNo = tableNo;
+		this.tableName = tableName;
 		this.filename = filename;
 		this.filepath = filepath;
 	}
@@ -22,11 +24,17 @@ public class FileVO {
 	public void setFileNo(int fileNo) {
 		this.fileNo = fileNo;
 	}
-	public int getBoardNo() {
-		return boardNo;
+	public int getTableNo() {
+		return tableNo;
 	}
-	public void setBoardNo(int boardNo) {
-		this.boardNo = boardNo;
+	public void setTableNo(int tableNo) {
+		this.tableNo = tableNo;
+	}
+	public String getTableName() {
+		return tableName;
+	}
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
 	}
 	public String getFilename() {
 		return filename;
@@ -40,5 +48,4 @@ public class FileVO {
 	public void setFilepath(String filepath) {
 		this.filepath = filepath;
 	}
-	
 }

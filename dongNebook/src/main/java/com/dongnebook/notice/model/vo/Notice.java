@@ -3,6 +3,8 @@ package com.dongnebook.notice.model.vo;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import com.dongnebook.common.FileVO;
+
 
 /**
  * @author 진수경
@@ -15,45 +17,31 @@ public class Notice {
 	private String noticeWriter;
 	private String noticeTitle;
 	private String noticeContent;
-	private String filename;
-	private String filepath;
 	private Date enrollDate;
 	private ArrayList<FileVO> fileList;
+	
 	public Notice() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Notice(int noticeNo, String noticeWriter, String noticeTitle, String noticeContent, String filename,
-			String filepath, Date enrollDate) {
-		super();
-		this.noticeNo = noticeNo;
-		this.noticeWriter = noticeWriter;
-		this.noticeTitle = noticeTitle;
-		this.noticeContent = noticeContent;
-		this.filename = filename;
-		this.filepath = filepath;
-		this.enrollDate = enrollDate;
-	}
-	
 	public Notice(int rNum, int noticeNo, String noticeWriter, String noticeTitle, String noticeContent,
-			String filename, String filepath, Date enrollDate) {
+			Date enrollDate, ArrayList<FileVO> fileList) {
 		super();
 		this.rNum = rNum;
 		this.noticeNo = noticeNo;
 		this.noticeWriter = noticeWriter;
 		this.noticeTitle = noticeTitle;
 		this.noticeContent = noticeContent;
-		this.filename = filename;
-		this.filepath = filepath;
 		this.enrollDate = enrollDate;
+		this.fileList = fileList;
 	}
+	
 	public int getrNum() {
 		return rNum;
 	}
 	public void setrNum(int rNum) {
 		this.rNum = rNum;
 	}
-	
 	public int getNoticeNo() {
 		return noticeNo;
 	}
@@ -78,28 +66,22 @@ public class Notice {
 	public void setNoticeContent(String noticeContent) {
 		this.noticeContent = noticeContent;
 	}
-	public String getFilename() {
-		return filename;
-	}
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-	public String getFilepath() {
-		return filepath;
-	}
-	public void setFilepath(String filepath) {
-		this.filepath = filepath;
-	}
 	public Date getEnrollDate() {
 		return enrollDate;
 	}
 	public void setEnrollDate(Date enrollDate) {
 		this.enrollDate = enrollDate;
 	}
+	public ArrayList<FileVO> getFileList() {
+		return fileList;
+	}
+	public void setFileList(ArrayList<FileVO> fileList) {
+		this.fileList = fileList;
+	}
 	
 	@Override
 	public String toString() {
 		return "Notice [noticeNo=" + noticeNo + ", noticeWriter=" + noticeWriter + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
-				+ ", filename=" + filename + ", filepath=" + filepath + ", enrollDate=" + enrollDate + "]";
+				+ ", enrollDate=" + enrollDate + "]";
 	}
 }
