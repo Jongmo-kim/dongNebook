@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dongnebook.notice.model.dao.NoticeDao;
+import com.dongnebook.notice.model.vo.FileVO;
 import com.dongnebook.notice.model.vo.Notice;
 import com.dongnebook.notice.model.vo.NoticePageData;
 
@@ -80,8 +81,20 @@ public class NoticeService {
 		return npd;
 	}
 
-	public int deleteNotice(int[] rNum) {
-		int result = dao.deleteNotice(rNum);
+	public int deleteNotice(int[] noticeNo) {
+		int result = dao.deleteNotice(noticeNo);
 		return result;
+	}
+
+	public int insertNotice(Notice n) {
+//		int result = dao.insertBoard(n);
+//		if(result>0) {
+//			int noticeNo = dao.selectNoticeNo();
+//			//첨부파일이 없으면 list 길이는 0이라서 for문 동작 안함
+//			for(FileVO fv : n.getFileList()) {	
+//				result = dao.insertFile(noticeNo, fv.getFilename(), fv.getFilepath());
+//			}
+//		}
+		return 0;
 	}
 }

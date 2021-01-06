@@ -20,8 +20,7 @@
 	</select>
 	<delete id="deleteNotice" parameterType="_int">
 		delete
-			from (select rownum as rnum, n.* 
-				from(select * from notice order by 1 desc)n)
-		where rnum = #{_int}
+			from notice
+		where notice_no = #{_int}
 	</delete>
 </mapper>
