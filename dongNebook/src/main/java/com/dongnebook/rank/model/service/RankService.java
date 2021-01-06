@@ -41,7 +41,7 @@ public class RankService {
 		if(reqPage <=3 ) {
 			pageNo = 1;
 		}else if(pageNo > totalPage-4) {
-			pageNo = totalPage-4;
+			pageNo = totalPage-3;
 		}
 		
 		
