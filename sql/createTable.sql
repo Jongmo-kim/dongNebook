@@ -174,4 +174,8 @@ create sequence book_seq;
 create sequence user_seq;
 create sequence category_seq;
 create sequence file_seq;
-CREATE SEQUENCE ALRAM_SEQ;
+create sequence alram_seq;
+
+----------------------------------------------
+
+alter table book add rCount number;
