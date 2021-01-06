@@ -6,6 +6,7 @@ public class FileVO {
 	private String tableName;
 	private String filename;
 	private String filepath;
+	
 	public FileVO() {
 		super();
 		// TODO Auto-generated constructor stub
