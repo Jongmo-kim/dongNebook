@@ -174,3 +174,9 @@ create sequence user_seq;
 create sequence category_seq;
 create sequence image_seq;
 CREATE SEQUENCE ALRAM_SEQ;
+
+----------------------------------------------
+book 테이블 수정
+alter table book add rCount number;
+update book set rCount=8 where book_no=8;
+commit;
