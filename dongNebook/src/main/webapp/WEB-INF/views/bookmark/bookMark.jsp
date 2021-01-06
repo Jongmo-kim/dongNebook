@@ -15,12 +15,14 @@
 	<hr>
 	<table border=1>
 		<tr>
+			<th>선택</th>
 			<th>이미지</th>
 			<th>책이름</th>
 			<th>저자</th>
 		</tr>
 				<c:forEach items="${list }" var ="b">
 			<tr>
+				<td><input type="checkbox" class="chk"></td>
 				<td><img alt="${b.bookName }Image" src="${b.imageurl }"></td>
 				<td>${b.bookName }</td>
 				<td>${b.bookWriter }</td>
