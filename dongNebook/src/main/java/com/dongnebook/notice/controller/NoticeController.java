@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dongnebook.common.FileOverlap;
+import com.dongnebook.common.FileVO;
 import com.dongnebook.notice.model.service.NoticeService;
-import com.dongnebook.notice.model.vo.FileVO;
 import com.dongnebook.notice.model.vo.Notice;
 import com.dongnebook.notice.model.vo.NoticePageData;
 import com.dongnebook.user.model.vo.User;
@@ -63,7 +63,7 @@ public class NoticeController {
 		 */
 
 		//1. 업로드 경로 지정
-		// 경로를 c드라이브부터 현재 프로젝트의 webapp까지! 찾아와 줌
+		// 경로를 c드라이브부터 현재 프로젝트의 webapp까지 찾아와 줌
 		String root = request.getSession().getServletContext().getRealPath("/");
 		String path = root + "resources/upload/notice/";
 
