@@ -71,4 +71,12 @@ public class NoticeDao {
 		List<FileVO> list = sqlSession.selectList("notice.selectFile", noticeNo);
 		return (ArrayList<FileVO>) list;
 	}
+
+	public int updateNotice(Notice n) {
+		return sqlSession.update("notice.updateNotice", n);
+	}
+
+	public int deleteFile(FileVO fv) {
+		return sqlSession.delete("notice.deleteFile", fv);
+	}
 }

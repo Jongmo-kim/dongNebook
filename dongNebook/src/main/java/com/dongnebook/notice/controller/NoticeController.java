@@ -49,13 +49,16 @@ public class NoticeController {
 		return "notice/noticeList";
 	}
 
+	@RequestMapping("/noticeUpdateFrm.do")
+	public String noticeUpdateFrm(Model model, int noticeNo) {
+		Notice n = service.selectNotice(noticeNo);
+		model.addAttribute("n", n);
+		System.out.println(n.toString());
+		return "notice/noticeUpdateFrm";
+	}
+	
 	@RequestMapping("/noticeFrm.do")
-	public String noticeFrm(User u,Model model,HttpSession session, Integer noticeNo) {
-		Notice n = null;
-		if(noticeNo != null) {
-			n = service.selectNotice(noticeNo);
-			model.addAttribute("n", n);
-		}
+	public String noticeFrm() {
 		return "notice/noticeFrm";
 	}
 
@@ -106,14 +109,13 @@ public class NoticeController {
 		n.setFileList(fileList);
 		int result = service.insertNotice(n);
 
-		if(result<0) {
+		if(result>0) {
 			model.addAttribute("msg", "공지사항 등록 성공");
 			model.addAttribute("loc", "/notice/noticeList.do?reqPage=1");
-			model.addAttribute("result", true);
+			model.addAttribute("result", "true");
 		} else {
 			model.addAttribute("msg", "공지사항 등록 실패\n관리자에게 문의하세요.");
 			model.addAttribute("loc", "/notice/noticeList.do?reqPage=1");
-			model.addAttribute("result", false);
 		}
 
 		return "common/msg";
@@ -125,11 +127,10 @@ public class NoticeController {
 		int result = service.deleteNotice(noticeNo);
 		if(result<0) {
 			model.addAttribute("msg", "삭제 성공");
-			model.addAttribute("result",true);
+			model.addAttribute("result", "true");
 		}
 		else {
 			model.addAttribute("msg", "삭제 실패");
-			model.addAttribute("result",false);
 		}
 		model.addAttribute("loc", "/notice/noticeList.do?reqPage=1");
 		return "common/msg";
@@ -191,8 +192,8 @@ public class NoticeController {
 
 	@RequestMapping("/updateNotice.do")
 	public String updateNotice(Notice n, MultipartFile[] files, Model model) {
-		//int result = service.updateNotice(n);
-		int result=1;
+		int result = service.updateNotice(n);
+		
 		if(result>0) {
 			model.addAttribute("msg", "수정 성공");
 			model.addAttribute("loc", "/notice/noticeView.do?noticeNo="+n.getNoticeNo());

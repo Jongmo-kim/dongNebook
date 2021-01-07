@@ -93,6 +93,9 @@ public class NoticeService {
 			for(FileVO fv : n.getFileList()) {	
 				fv.setTableNo(noticeNo);
 				result = dao.insertFile(fv);
+				if(result<0) {
+					return -1;
+				}
 			}
 		}
 		return result;
@@ -103,5 +106,23 @@ public class NoticeService {
 		ArrayList<FileVO> list = dao.selectFile(noticeNo);
 		n.setFileList(list);
 		return n;
+	}
+	
+	@Transactional
+	public int updateNotice(Notice n) {
+		int result = dao.updateNotice(n);
+		System.out.println("updateNotice:"+result);
+		if(result>0) {
+			for(FileVO fv : n.getFileList()) {
+				fv.setTableNo(n.getNoticeNo());
+				System.out.println("deleteFile:"+result);
+				result = dao.deleteFile(fv);	
+				if(result>0) {
+					System.out.println("insertFile:"+result);
+					result = dao.insertFile(fv);
+				}
+			}
+		}
+		return result;
 	}
 }

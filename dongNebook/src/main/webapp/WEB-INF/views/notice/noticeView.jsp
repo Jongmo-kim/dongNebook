@@ -7,6 +7,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <jsp:include page="/views/common/linkHead.jsp" />
+<style>
+	table>tbody>tr>th{
+		width:150px;
+	}
+	table>tbody>tr>td{
+		width:1000px;
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
@@ -58,7 +66,7 @@
      	}
 		
 		function updateNotice(){
-			location.href="/notice/noticeFrm.do?noticeNo="+${n.noticeNo};
+			location.href="/notice/noticeUpdateFrm.do?noticeNo="+${n.noticeNo};
 		}
    </script>
 
