@@ -47,7 +47,6 @@ public class BookController {
 		}else {
 			return b.getBookName()+" 입력 실패";
 		}
-		
 	}
 	
 	@RequestMapping("/bookList")

@@ -83,4 +83,18 @@
 	<delete id="deleteBookMark" parameterType="bookmark">
 		delete from bookmark where user_no=#{userNo} and isbn13=#{ISBN13}
 	</delete>
+	<select id="searchUser" parameterType="user" resultType="user">
+		select user_no as userNo from bookmark
+	</select>
+	<select id="searchBookMark" parameterType="_int" resultType="bookmark">
+		select 
+			user_no as userNo,
+			ISBN13 as ISBN13
+		from bookmark where user_no = #{userNo}
+	</select>
+	<select id="searchBookList" parameterType="string" resultType="book">
+		select
+			*
+		from book where isbn13 = #{ISBN13}
+	</select>
 </mapper>

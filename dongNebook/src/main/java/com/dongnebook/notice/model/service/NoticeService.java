@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.dongnebook.common.FileVO;
 import com.dongnebook.notice.model.dao.NoticeDao;
 import com.dongnebook.notice.model.vo.Notice;
 import com.dongnebook.notice.model.vo.NoticePageData;
@@ -21,8 +23,7 @@ public class NoticeService {
 	private NoticeDao dao;
 	
 	public ArrayList<Notice> noticeList(){
-		ArrayList<Notice> list = dao.noticeList();
-		return list;
+		return dao.noticeList();
 	}
 
 	public NoticePageData selectNoticeList(int reqPage) {
@@ -80,8 +81,27 @@ public class NoticeService {
 		return npd;
 	}
 
-	public int deleteNotice(int[] rNum) {
-		int result = dao.deleteNotice(rNum);
+	public int deleteNotice(int[] noticeNo) {
+		return dao.deleteNotice(noticeNo);
+	}
+
+	@Transactional
+	public int insertNotice(Notice n) {
+		int result = dao.insertNotice(n);
+		if(result>0) {
+			int noticeNo = dao.selectNoticeNo();
+			for(FileVO fv : n.getFileList()) {	
+				fv.setTableNo(noticeNo);
+				result = dao.insertFile(fv);
+			}
+		}
 		return result;
+	}
+
+	public Notice selectNotice(int noticeNo) {
+		Notice n = dao.selectNotice(noticeNo);
+		ArrayList<FileVO> list = dao.selectFile(noticeNo);
+		n.setFileList(list);
+		return n;
 	}
 }

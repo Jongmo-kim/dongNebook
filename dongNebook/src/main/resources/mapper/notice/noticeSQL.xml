@@ -8,20 +8,32 @@
 			notice_writer as noticeWriter,
 			notice_title as noticeTitle,
 			notice_content as noticeContent,
-			filename,
-			filepath,
 			enroll_date as enrollDate
 		from (select rownum as rnum, n.* 
 				from(select * from notice order by 1 desc)n) 
 		where rnum between #{start} and #{end}
+	</select>
+	<select id="selectNotice" parameterType="_int" resultType="notice">
+		select * from notice where notice_no=#{_int}
 	</select>
 	<select id="selectTotalCount" resultType="_int">
 		select count(*) from notice
 	</select>
 	<delete id="deleteNotice" parameterType="_int">
 		delete
-			from (select rownum as rnum, n.* 
-				from(select * from notice order by 1 desc)n)
-		where rnum = #{_int}
+			from notice
+		where notice_no = #{_int}
 	</delete>
+	<insert id="insertNotice" parameterType="notice">
+		insert into notice values(notice_seq.nextval, #{noticeWriter}, #{noticeTitle}, #{noticeContent}, sysdate)
+	</insert>
+	<select id="selectNoticeNo" resultType="_int">
+		select max(notice_no) from notice
+	</select>
+	<insert id="insertFile">
+		insert into "FILE" values(file_seq.nextval, #{tableNo}, #{tableName}, #{filename}, #{filepath})
+	</insert>
+	<select id="selectFile" resultType="fileVO">
+		select * from "FILE" where table_name='notice' and table_no=#{_int}
+	</select>
 </mapper>

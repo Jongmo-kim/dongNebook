@@ -12,6 +12,7 @@
 		<typeAlias type="com.dongnebook.book.model.vo.Book" alias="book"/>
 		<typeAlias type="com.dongnebook.bookmark.model.vo.Bookmark" alias="bookmark"/>
 		<typeAlias type="com.dongnebook.rental.model.vo.RentalLoc" alias="loc"/>
+		<typeAlias type="com.dongnebook.common.FileVO" alias="fileVO"/>
 
 	</typeAliases>
 </configuration>

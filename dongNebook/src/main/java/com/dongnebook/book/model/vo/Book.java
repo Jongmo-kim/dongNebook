@@ -10,8 +10,10 @@ public class Book {
 	private String imageurl;
 	private String ISBN13;
 	private int bookCount;
+	private int rCount;
+	private int rankNum;
 	public Book(int bookNo, String bookName, String bookKind, String bookWriter, String bookPublisher,
-			String bookIntroduce, String imageurl, String ISBN13, int bookCount) {
+			String bookIntroduce, String imageurl, String ISBN13, int bookCount, int rCount, int rankNum) {
 		super();
 		this.bookNo = bookNo;
 		this.bookName = bookName;
@@ -22,6 +24,8 @@ public class Book {
 		this.imageurl = imageurl;
 		this.ISBN13 = ISBN13;
 		this.bookCount = bookCount;
+		this.rCount = rCount;
+		this.rankNum = rankNum;
 	}
 	public Book() {
 		super();
@@ -79,6 +83,19 @@ public class Book {
 	}
 	public void setBookCount(int bookCount) {
 		this.bookCount = bookCount;
+	}
+	
+	public int getrCount() {
+		return rCount;
+	}
+	public void setrCount(int rCount) {
+		this.rCount = rCount;
+	}
+	public int getRankNum() {
+		return rankNum;
+	}
+	public void setRankNum(int rankNum) {
+		this.rankNum = rankNum;
 	}
 	@Override
 	public String toString() {
