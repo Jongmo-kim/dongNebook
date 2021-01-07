@@ -25,13 +25,13 @@
 					<tr>
 						<th>첨부파일</th>
 						<td>
-							<input multiple="multiple" type="file" name="filename">
+							<input type="file" name="files" multiple>
 						</td>
 					</tr>
 					<tr>
 						<th>작성자</th>
 						<td>
-							<input type="text" name="noticeWriter" value="${sessionScope.loginUser.userId }" readonly>
+							<input type="text" name="noticeWriter" value="${sessionScope.loginUser.userName }" readonly>
 						</td>
 					</tr>
 					<tr>

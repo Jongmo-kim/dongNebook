@@ -25,7 +25,7 @@
 		where notice_no = #{_int}
 	</delete>
 	<insert id="insertNotice" parameterType="notice">
-		insert into notice values(notice_seq.nextval, #{noticeWriter}, #{noticeTitle}, #{noticeContent}, #{enrollDate})
+		insert into notice values(notice_seq.nextval, #{noticeWriter}, #{noticeTitle}, #{noticeContent}, sysdate)
 	</insert>
 	<select id="selectNoticeNo" resultType="_int">
 		select max(notice_no) from notice
@@ -33,4 +33,7 @@
 	<insert id="insertFile">
 		insert into "FILE" values(file_seq.nextval, #{tableNo}, #{tableName}, #{filename}, #{filepath})
 	</insert>
+	<select id="selectFile" resultType="fileVO">
+		select * from "FILE" where table_name='notice' and table_no=#{_int}
+	</select>
 </mapper>

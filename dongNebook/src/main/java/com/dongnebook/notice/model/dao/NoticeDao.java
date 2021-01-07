@@ -66,4 +66,9 @@ public class NoticeDao {
 	public int insertFile(FileVO fv) {
 		return sqlSession.insert("notice.insertFile", fv);
 	}
+
+	public ArrayList<FileVO> selectFile(int noticeNo) {
+		List<FileVO> list = sqlSession.selectList("notice.selectFile", noticeNo);
+		return (ArrayList<FileVO>) list;
+	}
 }

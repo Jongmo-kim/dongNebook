@@ -9,7 +9,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -20,10 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.dongnebook.common.FileOverlap;
 import com.dongnebook.common.FileVO;
@@ -69,9 +65,10 @@ public class NoticeController {
 		 * Model : 결과처리를 위한 매개변수
 		 */
 
-		//1. 업로드 경로 지정
-		// 경로를 c드라이브부터 현재 프로젝트의 webapp까지 찾아와 줌
+		//notice 넘어왔나 확인
 		System.out.println(n.toString());
+		
+		
 		String root = request.getSession().getServletContext().getRealPath("/");
 		String path = root + "resources/upload/notice/";
 
@@ -105,13 +102,13 @@ public class NoticeController {
 		n.setFileList(fileList);
 		int result = service.insertNotice(n);
 
-		if(result>0) {
+		if(result<0) {
 			model.addAttribute("msg", "공지사항 등록 성공");
-			model.addAttribute("loc", "/");
+			model.addAttribute("loc", "/notice/noticeList.do?reqPage=1");
 			model.addAttribute("result", true);
 		} else {
-			model.addAttribute("msg", "공지사항 등록 실패");
-			model.addAttribute("loc", "/");
+			model.addAttribute("msg", "공지사항 등록 실패\n관리자에게 문의하세요.");
+			model.addAttribute("loc", "/notice/noticeList.do?reqPage=1");
 			model.addAttribute("result", false);
 		}
 		
@@ -122,7 +119,7 @@ public class NoticeController {
 	@RequestMapping("/deleteNotice.do")
 	public String deleteNotice(Model model, int[] noticeNo) {
 		int result = service.deleteNotice(noticeNo);
-		if(result>0) {
+		if(result<0) {
 			model.addAttribute("msg", "삭제 성공");
 			model.addAttribute("result",true);
 		}
