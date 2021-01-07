@@ -50,8 +50,12 @@ public class NoticeController {
 	}
 
 	@RequestMapping("/noticeFrm.do")
-	//로그인 했다는 가정하에 진행
-	public String noticeFrm(User u,Model model,HttpSession session) {
+	public String noticeFrm(User u,Model model,HttpSession session, Integer noticeNo) {
+		Notice n = null;
+		if(noticeNo != null) {
+			n = service.selectNotice(noticeNo);
+			model.addAttribute("n", n);
+		}
 		return "notice/noticeFrm";
 	}
 
@@ -67,8 +71,8 @@ public class NoticeController {
 
 		//notice 넘어왔나 확인
 		System.out.println(n.toString());
-		
-		
+
+
 		String root = request.getSession().getServletContext().getRealPath("/");
 		String path = root + "resources/upload/notice/";
 
@@ -111,7 +115,7 @@ public class NoticeController {
 			model.addAttribute("loc", "/notice/noticeList.do?reqPage=1");
 			model.addAttribute("result", false);
 		}
-		
+
 		return "common/msg";
 	}
 
@@ -130,58 +134,74 @@ public class NoticeController {
 		model.addAttribute("loc", "/notice/noticeList.do?reqPage=1");
 		return "common/msg";
 	}
-	
+
 	@RequestMapping("/noticeView.do")
 	public String noticeView(Model model, int noticeNo) {
 		Notice n = service.selectNotice(noticeNo);
 		model.addAttribute("n", n);
 		return "notice/noticeView";
 	}
-	
+
 	@RequestMapping("/noticeDownload.do")
-    public void NoticeDownload(String filename, String filepath, int noticeNo, HttpServletRequest request, HttpServletResponse response) {
-       String path = request.getSession().getServletContext().getRealPath("/") + "resources/upload/notice/";
-        
-        FileInputStream fis;
-        try {
-           fis = new FileInputStream(path+filepath);
-           BufferedInputStream bis = new BufferedInputStream(fis);
-           
-           ServletOutputStream sos;
-           try {
-              sos = response.getOutputStream();
-              BufferedOutputStream bos = new BufferedOutputStream(sos);
-              
-              String resFilename = "";
-              
-              boolean bool = request.getHeader("user-agent").indexOf("MSIE") != -1 || request.getHeader("user-agent").indexOf("Trident") != -1;
-              System.out.println(bool);
-              if(bool) {//사용자의 브라우저가 IE인 경우
-                 resFilename = URLEncoder.encode(filename,"UTF-8");
-                 resFilename = resFilename.replace("\\\\", "%20");
-              }else {// 그 외 브라우저인 경우
-                 resFilename = new String(filename.getBytes("UTF-8"),"ISO-8859-1");
-              }
-              
-              response.setContentType("application/octet-stream");//파일받으면된다는 응답이 온것
-              response.setHeader("Content-Disposition", "attachment;filename="+resFilename);//resFilename : 파일 다운로드받을때의 파일명
-              //파일 전송
-              int read = -1;
-              while((read=bis.read())!=-1) {
-                 bos.write(read);
-              }
-              bos.close();
-              bis.close();
-           } catch (IOException e) {
-              // TODO Auto-generated catch block
-              e.printStackTrace();
-           }
-           
-        } catch (FileNotFoundException e) {
-           // TODO Auto-generated catch block
-           e.printStackTrace();
-        }
-        
-        //return "redirect:/noticeView.do?noticeNo="+noticeNo;
-    }
+	public void NoticeDownload(String filename, String filepath, int noticeNo, HttpServletRequest request, HttpServletResponse response) {
+		String path = request.getSession().getServletContext().getRealPath("/") + "resources/upload/notice/";
+
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream(path+filepath);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+
+			ServletOutputStream sos;
+			try {
+				sos = response.getOutputStream();
+				BufferedOutputStream bos = new BufferedOutputStream(sos);
+
+				String resFilename = "";
+
+				boolean bool = request.getHeader("user-agent").indexOf("MSIE") != -1 || request.getHeader("user-agent").indexOf("Trident") != -1;
+				System.out.println(bool);
+				if(bool) {//사용자의 브라우저가 IE인 경우
+					resFilename = URLEncoder.encode(filename,"UTF-8");
+					resFilename = resFilename.replace("\\\\", "%20");
+				}else {// 그 외 브라우저인 경우
+					resFilename = new String(filename.getBytes("UTF-8"),"ISO-8859-1");
+				}
+
+				response.setContentType("application/octet-stream");//파일받으면된다는 응답이 온것
+				response.setHeader("Content-Disposition", "attachment;filename="+resFilename);//resFilename : 파일 다운로드받을때의 파일명
+				//파일 전송
+				int read = -1;
+				while((read=bis.read())!=-1) {
+					bos.write(read);
+				}
+				bos.close();
+				bis.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		//return "redirect:/noticeView.do?noticeNo="+noticeNo;
+	}
+
+	@RequestMapping("/updateNotice.do")
+	public String updateNotice(Notice n, MultipartFile[] files, Model model) {
+		//int result = service.updateNotice(n);
+		int result=1;
+		if(result>0) {
+			model.addAttribute("msg", "수정 성공");
+			model.addAttribute("loc", "/notice/noticeView.do?noticeNo="+n.getNoticeNo());
+			model.addAttribute("result", true);
+		} else {
+			model.addAttribute("msg", "수정 실패");
+			model.addAttribute("loc", "/notice/noticeView.do?noticeNo="+n.getNoticeNo());
+			model.addAttribute("result", false);
+		}
+		return "common/msg";
+	}
 }

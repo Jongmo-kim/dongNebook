@@ -25,7 +25,7 @@
 		</tr>
 		<tr>
 			<th>첨부파일</th>
-			<td class="fileTd">
+			<td>
 				<c:forEach items="${n.fileList }" var="f">
 					<script>
 						console.log('${f.filepath}');
@@ -37,7 +37,7 @@
 		<tr>
 			<th>내용</th>
 			<td>
-				${n.getNoticeContentBr() }<br>
+				${n.noticeContentBr }<br>
 				<c:forEach items="${n.fileList }" var="f">
 					<img src='/resources/upload/notice/${f.filepath }' width="500px"><br>
 				</c:forEach>
@@ -45,16 +45,21 @@
 		</tr>
 	</table>
 	<a href="/notice/noticeList.do?reqPage=1">목록으로 돌아가기</a>
-	<button onclick="updateNotice();" class="btn btn-primary">수정하기</button>
-
+	<c:if test="${n.noticeWriter.equals(sessionScope.loginUser.userName) }">
+		<button onclick="updateNotice();" class="btn btn-primary">수정하기</button>
+	</c:if>
 	<script>
       //첨부파일 다운로드
-       function fileDownload(filename,filepath){//인코딩작업해주려고 자바스크립트로 함
-         var url = "/notice/noticeDownload.do";
-         var encFilename = encodeURIComponent(filename);
-         var encFilepath = encodeURIComponent(filepath);
-         location.href=url+"?filename="+encFilename+"&filepath="+encFilepath+"&noticeNo="+${n.noticeNo};
-      }
+		function fileDownload(filename,filepath){//인코딩작업해주려고 자바스크립트로 함
+        	var url = "/notice/noticeDownload.do";
+        	var encFilename = encodeURIComponent(filename);
+        	var encFilepath = encodeURIComponent(filepath);
+        	location.href=url+"?filename="+encFilename+"&filepath="+encFilepath+"&noticeNo="+${n.noticeNo};
+     	}
+		
+		function updateNotice(){
+			location.href="/notice/noticeFrm.do?noticeNo="+${n.noticeNo};
+		}
    </script>
 
 </body>
