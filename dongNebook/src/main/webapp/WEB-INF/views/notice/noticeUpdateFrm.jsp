@@ -24,25 +24,26 @@
 			</tr>
 			<tr>
 				<th>첨부파일</th>
+				<td>
+				<input type="file" name="filename" multiple>
 				<c:choose>
 					<c:when test="${n.fileList != null}">
-						<td>
+						
 							<c:forEach items="${n.fileList }" var="f">
-								<input type="hidden" class="status" name="status" value="stay"> 
-								<img src="/common/file.png" width="16px" class="delFile">
-								<span class="delFile">${f.filename }</span>
-								<button type="button"class="btn btn-primary btn-sm delFile fileDelBtn">삭제</button>
-								<input type="hidden" name="oldFilename" value=${f.filename }>
-								<input type="hidden" name="oldFilepath" value=${f.filepath }>
-								
-								<input type="file" name="filename" id="file" style="display: none;" multiple>
+								<div class="fileWrap">
+									<input type="hidden" class="status" name="status" value="stay"> 
+									<img src="/common/file.png" width="16px" class="delFile">
+									<span class="delFile">${f.filename }</span>
+									<button type="button"class="btn btn-primary btn-sm delFile fileDelBtn">삭제</button>
+									
+									<!-- 기존 파일 -->
+									<input type="hidden" name="oldFilename" class="oldFilename" value=${f.filename }>
+									<input type="hidden" name="oldFilepath" class="oldFilepath" value=${f.filepath }>
+								</div>
 							</c:forEach>
-						</td>
 					</c:when>
-					<c:otherwise>
-						<td><input type="file" name="filename" multiple></td>
-					</c:otherwise>
 				</c:choose>
+				</td>
 			</tr>
 			<tr>
 				<th>작성자</th>
@@ -58,14 +59,27 @@
 				</th>
 			</tr>
 		</table>
+		<input type="hidden" name="delFileList" id="delFileList">
 	</form>
 	<script>
-		$("#fileDelBtn").click(function() {
+		var arr = new Array();	
+		$(".fileDelBtn").click(function() {
 			var idx = $(".fileDelBtn").index(this);
 			if (confirm('첨부파일을 삭제하시겠습니까?')) {
-				$(".delFile").hide();
-				$("#file").show();
-				$("#status").value("delete");
+				//해당 파일의 div를 숨김처리
+				$(".fileWrap").eq(idx).hide();
+				
+				//삭제한 첨부파일의 이름을 받아온 후 배열에 넣어줌
+				//var delFileName = $(".fileWrap").eq(idx).children('span').html();
+				var delFilepath = $(".oldFilepath").eq(idx).val();
+				arr.push(delFilepath);
+				
+				//input hidden에 첨부파일의 이름(filepath)을 넣어줌
+				$("#delFileList").val(arr);
+				
+				//$("#status").eq(idx).value("delete");
+				
+				//모든 div가 숨김처리되면 input file이 보이게 하고싶음
 			}
 		});
 	</script>

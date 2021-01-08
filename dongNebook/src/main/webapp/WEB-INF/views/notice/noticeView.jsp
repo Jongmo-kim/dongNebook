@@ -18,6 +18,10 @@
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
+	<c:if test="${n.noticeWriter.equals(sessionScope.loginUser.userName) }">
+		<button onclick="deleteNotice();" class="btn btn-danger">삭제하기</button>
+		<button onclick="updateNotice();" class="btn btn-primary">수정하기</button>
+	</c:if>
 	<table border="1">
 		<tr>
 			<th>제목</th>
@@ -53,9 +57,6 @@
 		</tr>
 	</table>
 	<a href="/notice/noticeList.do?reqPage=1">목록으로 돌아가기</a>
-	<c:if test="${n.noticeWriter.equals(sessionScope.loginUser.userName) }">
-		<button onclick="updateNotice();" class="btn btn-primary">수정하기</button>
-	</c:if>
 	<script>
       //첨부파일 다운로드
 		function fileDownload(filename,filepath){//인코딩작업해주려고 자바스크립트로 함
@@ -66,7 +67,11 @@
      	}
 		
 		function updateNotice(){
-			location.href="/notice/noticeUpdateFrm.do?noticeNo="+${n.noticeNo};
+			location.href="/notice/updateNoticeFrm.do?noticeNo="+${n.noticeNo};
+		}
+		
+		function deleteNotice(){
+			location.href="/notice/deleteNotice.do?noticeNo="+${n.noticeNo};
 		}
    </script>
 

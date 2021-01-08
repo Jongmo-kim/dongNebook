@@ -129,13 +129,17 @@ public class NoticeService {
 	}
 	
 	@Transactional
-	public int deleteNoticeLogic(int noticeNo) {
-		boolean delResult = false;
-			Notice n = selectNotice(noticeNo);
-			int result = deleteNotice(noticeNo);
-			if(result>0) {	//notice가 삭제되었으므로 파일도 삭제
-				return 1;
-			}
-			return -1;
+	public Notice deleteNoticeLogic(int noticeNo) {
+		Notice n = null;
+		n = selectNotice(noticeNo);
+		int result = deleteNotice(noticeNo);
+		if(result>0) {	//notice가 삭제되었으므로 파일도 삭제(controller에서 처리)
+			return n;
+		}
+		return null;
+	}
+
+	public int deleteFile(FileVO fv) {
+		return dao.deleteFile(fv);
 	}
 }

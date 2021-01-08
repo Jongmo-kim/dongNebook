@@ -51,8 +51,8 @@
 	        var files = fileInput.files;
 	        var file;
 	        for (var i = 0; i < files.length; i++) {
-	            file = files[i];
-	            alert(file.name);
+
+	            alert(files[i].name);
 	        }
 	    });
 	</script>
