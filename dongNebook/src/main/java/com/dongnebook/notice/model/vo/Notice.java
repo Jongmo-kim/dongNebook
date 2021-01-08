@@ -36,6 +36,13 @@ public class Notice {
 		this.fileList = fileList;
 	}
 	
+	public Notice(String noticeWriter, String noticeTitle, String noticeContent) {
+		super();
+		this.noticeWriter = noticeWriter;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+	}
+	
 	public int getrNum() {
 		return rNum;
 	}
@@ -62,6 +69,9 @@ public class Notice {
 	}
 	public String getNoticeContent() {
 		return noticeContent;
+	}
+	public String getNoticeContentBr() {
+		return noticeContent.replaceAll("\r\n","<br>");
 	}
 	public void setNoticeContent(String noticeContent) {
 		this.noticeContent = noticeContent;

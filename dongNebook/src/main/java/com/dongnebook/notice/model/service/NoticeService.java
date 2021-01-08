@@ -1,10 +1,12 @@
 package com.dongnebook.notice.model.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dongnebook.common.FileVO;
 import com.dongnebook.notice.model.dao.NoticeDao;
@@ -22,8 +24,7 @@ public class NoticeService {
 	private NoticeDao dao;
 	
 	public ArrayList<Notice> noticeList(){
-		ArrayList<Notice> list = dao.noticeList();
-		return list;
+		return dao.noticeList();
 	}
 
 	public NoticePageData selectNoticeList(int reqPage) {
@@ -81,11 +82,12 @@ public class NoticeService {
 		return npd;
 	}
 
-	public int deleteNotice(int[] noticeNo) {
-		int result = dao.deleteNotice(noticeNo);
-		return result;
+	@Transactional
+	public int deleteNotice(int noticeNo) {
+		return dao.deleteNotice(noticeNo);
 	}
 
+	@Transactional
 	public int insertNotice(Notice n) {
 		int result = dao.insertNotice(n);
 		if(result>0) {
@@ -93,13 +95,43 @@ public class NoticeService {
 			for(FileVO fv : n.getFileList()) {	
 				fv.setTableNo(noticeNo);
 				result = dao.insertFile(fv);
+				if(result<0) {
+					return -1;
+				}
 			}
 		}
-		return 0;
+		return result;
 	}
 
+	public int insertFile(FileVO fv) {
+		return dao.insertFile(fv);
+	}
+	
 	public Notice selectNotice(int noticeNo) {
 		Notice n = dao.selectNotice(noticeNo);
+		ArrayList<FileVO> list = dao.selectFile(noticeNo);
+		n.setFileList(list);
 		return n;
+	}
+	
+	@Transactional
+	public int updateNotice(Notice n) {
+		return dao.updateNotice(n);
+	}
+
+	public int deleteFile(int noticeNo) {
+		return dao.deleteFile(noticeNo);
+	}
+
+	@Transactional
+	public int deleteFilepath(Notice n, String[] delFileList) {
+		int result = 0;
+		for(int i=0; i<delFileList.length; i++) {
+			FileVO fv = new FileVO();
+			fv.setTableNo(n.getNoticeNo());
+			fv.setFilepath(delFileList[i]);
+			result = dao.deleteFilepath(fv);
+		}
+		return result;
 	}
 }
