@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+   <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
@@ -23,14 +24,16 @@
 		</tr>
 				<c:forEach items="${bookList }" var ="b">
 			<tr>
-				<td><input type="checkbox" class="chk"  onClick="count_chk(this);"></td>
+				<td><input type="checkbox" class="chk"  onClick="count_chk(this);">
+				<input type=hidden value="${b.bookNo }">
+				</td>
 				<td><img alt="${b.bookName }Image" src="${b.imageurl }"></td>
 				<td>${b.bookName }</td>
 				<td>${b.bookWriter }</td>
 			</tr>
 		</c:forEach>
 	</table>
-	
+	<button id="submit">체크된 값 </button>
 	<input type="submit">
 	<input type="reset" value="reset">
 	</form>
@@ -44,11 +47,23 @@
          totalChecked -=1;
      }
       if(totalChecked>maxChecked){
-          alert("3개만 가능");
+          alert("최대 3권만 가능");
           obj.checked = false;
           totalChecked -=1;
       }
     }
+    $(function(){
+        $("#submit").click(function(){
+       var chkArr = new Array();
+       var chk = $("input[name=box]:checked");
+       $(".chk:checked").each(function() { 
+            chkArr.push($(this).next().val());
+           
+             });
+            alert(chkArr);
+   })
+       })
+    
 	</script>
 </body>
 </html>

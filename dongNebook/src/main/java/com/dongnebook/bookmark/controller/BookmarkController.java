@@ -51,7 +51,7 @@ public class BookmarkController {
 		int userNo = loginUser.getUserNo();
 		ArrayList<Bookmark> bookmark = service.searchBookMark(userNo);
 		System.out.println(bookmark.get(0).getISBN13());
-		ArrayList<Book> list=new ArrayList<Book>(); 
+		ArrayList<Book> list=new ArrayList<Book>();
 		for(int i=0;i<bookmark.size();i++) {
 			Book book=service.searchBookMarkList(bookmark.get(i).getISBN13());
 			list.add(book);			
