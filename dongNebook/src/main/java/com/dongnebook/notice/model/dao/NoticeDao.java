@@ -39,16 +39,8 @@ public class NoticeDao {
 		return sqlSession.selectOne("notice.selectTotalCount", int.class);
 	}
 
-	@Transactional
-	public int deleteNotice(int[] noticeNo) {
-		int result = 0;
-		for(int i=0; i<noticeNo.length; i++) {
-			result = sqlSession.delete("notice.deleteNotice", noticeNo[i]);
-			if(result<0) {
-				return 0;
-			}
-		}
-		return result;
+	public int deleteNotice(int noticeNo) {
+		return sqlSession.delete("notice.deleteNotice", noticeNo);
 	}
 
 	public Notice selectNotice(int noticeNo) {

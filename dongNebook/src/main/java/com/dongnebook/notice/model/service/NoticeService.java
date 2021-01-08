@@ -1,5 +1,6 @@
 package com.dongnebook.notice.model.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,7 +82,8 @@ public class NoticeService {
 		return npd;
 	}
 
-	public int deleteNotice(int[] noticeNo) {
+	@Transactional
+	public int deleteNotice(int noticeNo) {
 		return dao.deleteNotice(noticeNo);
 	}
 
@@ -124,5 +126,16 @@ public class NoticeService {
 			}
 		}
 		return result;
+	}
+	
+	@Transactional
+	public int deleteNoticeLogic(int noticeNo) {
+		boolean delResult = false;
+			Notice n = selectNotice(noticeNo);
+			int result = deleteNotice(noticeNo);
+			if(result>0) {	//notice가 삭제되었으므로 파일도 삭제
+				return 1;
+			}
+			return -1;
 	}
 }

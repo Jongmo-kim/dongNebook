@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -123,10 +124,33 @@ public class NoticeController {
 
 
 	@RequestMapping("/deleteNotice.do")
-	public String deleteNotice(Model model, int[] noticeNo) {
-		int result = service.deleteNotice(noticeNo);
-
-		if(result>0) {
+	public String deleteNotice(Model model, int[] noticeNo, HttpServletRequest request) {
+//		boolean delResult = false;
+//		for(int i=0; i<noticeNo.length; i++) {
+//			Notice n = service.selectNotice(noticeNo[i]);
+//			int result = service.deleteNotice(noticeNo[i]);
+//			if(result>0) {	//notice가 삭제되었으므로 파일도 삭제
+//				//해당 공지사항에 첨부파일이 있는 경우
+//				for(FileVO fv : n.getFileList()) {
+//					String root = request.getSession().getServletContext().getRealPath("/");
+//					String saveDirectory = root+"resources/upload/notice/";
+//
+//					//지울 파일을 받아옴. 뒤에 반드시 Filepath를 붙여줘야 함
+//					File delFile = new File(saveDirectory+fv.getFilepath()); 
+//					delResult = delFile.delete();
+//					if(delResult) {
+//						System.out.println("파일 삭제 성공");
+//					} else {
+//						System.out.println("파일 삭제 실패");
+//					}
+//				}
+//			}
+//		}
+		int result = 0;
+		for(int i=0; i<noticeNo.length; i++) {
+			result = service.deleteNoticeLogic(noticeNo[i]);
+		}
+		if(delResult) {
 			model.addAttribute("msg", "삭제 성공");
 			model.addAttribute("result", "true");
 		}
