@@ -103,6 +103,10 @@ public class NoticeService {
 		return result;
 	}
 
+	public int insertFile(FileVO fv) {
+		return dao.insertFile(fv);
+	}
+	
 	public Notice selectNotice(int noticeNo) {
 		Notice n = dao.selectNotice(noticeNo);
 		ArrayList<FileVO> list = dao.selectFile(noticeNo);
@@ -112,34 +116,22 @@ public class NoticeService {
 	
 	@Transactional
 	public int updateNotice(Notice n) {
-		int result = dao.updateNotice(n);
-		System.out.println("updateNotice:"+result);
-		if(result>0) {
-			for(FileVO fv : n.getFileList()) {
-				fv.setTableNo(n.getNoticeNo());
-				System.out.println("deleteFile:"+result);
-				result = dao.deleteFile(fv);	
-				if(result>0) {
-					System.out.println("insertFile:"+result);
-					result = dao.insertFile(fv);
-				}
-			}
-		}
-		return result;
-	}
-	
-	@Transactional
-	public Notice deleteNoticeLogic(int noticeNo) {
-		Notice n = null;
-		n = selectNotice(noticeNo);
-		int result = deleteNotice(noticeNo);
-		if(result>0) {	//notice가 삭제되었으므로 파일도 삭제(controller에서 처리)
-			return n;
-		}
-		return null;
+		return dao.updateNotice(n);
 	}
 
-	public int deleteFile(FileVO fv) {
-		return dao.deleteFile(fv);
+	public int deleteFile(int noticeNo) {
+		return dao.deleteFile(noticeNo);
+	}
+
+	@Transactional
+	public int deleteFilepath(Notice n, String[] delFileList) {
+		int result = 0;
+		for(int i=0; i<delFileList.length; i++) {
+			FileVO fv = new FileVO();
+			fv.setTableNo(n.getNoticeNo());
+			fv.setFilepath(delFileList[i]);
+			result = dao.deleteFilepath(fv);
+		}
+		return result;
 	}
 }

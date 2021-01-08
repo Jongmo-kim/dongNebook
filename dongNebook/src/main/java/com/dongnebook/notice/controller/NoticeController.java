@@ -131,18 +131,21 @@ public class NoticeController {
 					//지울 파일을 받아옴. 뒤에 반드시 Filepath를 붙여줘야 함
 					File delFile = new File(saveDirectory+fv.getFilepath()); 
 					delResult = delFile.delete();
-					if(delResult) {
-						int result1 = service.deleteFile(fv);
-						System.out.println("파일 삭제 성공");
-						if(result1>0) {
-							delResult = true;
-							System.out.println("파일DB 삭제 성공");
-						} else {
-							delResult = false;
-						}
+				}
+				
+				if(delResult) {
+					System.out.println("프로젝트 파일 삭제 성공");
+					int result1 = service.deleteFile(n.getNoticeNo());
+					System.out.println("result1값 >> "+result1);
+					if(result1>0) {
+						delResult = true;
+						System.out.println("파일DB 삭제 성공");
 					} else {
-						System.out.println("파일 삭제 실패");
+						delResult = false;
+						System.out.println("파일DB 삭제 실패");
 					}
+				} else {
+					System.out.println("파일 삭제 실패");
 				}
 			}
 		}
@@ -213,16 +216,92 @@ public class NoticeController {
 	}
 
 	@RequestMapping("/updateNotice.do")
-	public String updateNotice(Notice n, MultipartFile[] files, String[] delFileList, Model model) {
+	public String updateNotice(Notice n, MultipartFile[] files, String[] delFileList, HttpServletRequest request, Model model) {
 		//1. jsp에서 지울 파일들의 이름(filepath)과 추가한 파일들의 이름(MultipartFile[] files)을 받아온다.
 		//2. 먼저 파일을 DB에서 지운다.
 		//3. 2가 성공하면 지울 파일들의 이름과 현재 프로젝트에 있는 파일들의 이름을 비교하여 지운다.
 		//4. 추가한 파일을 DB에 넣는다.
 		//5. 4가 성공하면 파일을 프로젝트에 추가한다.
 		
+
+		String root = request.getSession().getServletContext().getRealPath("/");
+		String saveDirectory = root+"resources/upload/notice/";
+
 		
-		int result = 1;
-		if(result>0) {
+		//1. notice 수정
+		int result = service.updateNotice(n);
+		//2. 만약 delFileList가 있을 경우 파일을 DB에서 지운다.
+		boolean delResult = true;
+		int result1 = 1;
+		if(delFileList != null) {
+			result1 = service.deleteFilepath(n, delFileList);
+		}
+		
+		
+		//3. 지울 파일들의 이름과 현재 프로젝트에 있는 파일들의 이름을 비교하여 지운다.
+		if(result1>0) {
+			for(int i=0; i<delFileList.length; i++) {
+				File delFile = new File(saveDirectory+delFileList[i]); 
+				delResult = delFile.delete();
+				if(delResult) {
+					delResult = true;
+					System.out.println("파일 삭제 성공");
+				} else {
+					delResult = false;
+					System.out.println("파일 삭제 실패");
+				}
+			}
+		}
+		
+		//4. 추가한 파일을 DB에 넣는다.
+		int result2 = 1;
+		if(delResult) {
+			System.out.println("delResult속");
+			//첨부파일이 없다면 for문 실행되지 않음
+			for(MultipartFile file : files) {
+				System.out.println("첨부파일 있음!");
+				if(!file.isEmpty()) {
+					System.out.println("isEmpty if문 속");
+					//사용자가 올린 파일명
+					String filename = file.getOriginalFilename();
+					System.out.println("filename > "+filename);
+					//파일 rename
+					String filepath = new FileOverlap().rename(saveDirectory, filename);
+					System.out.println("filename : "+filename);
+					System.out.println("filepath : "+filepath);
+					try {
+						byte[] bytes = file.getBytes();
+						File upFile = new File(saveDirectory+filepath);
+						FileOutputStream fos = new FileOutputStream(upFile);
+						BufferedOutputStream bos = new BufferedOutputStream(fos);
+						bos.write(bytes);
+						bos.close();
+						FileVO fv = new FileVO();
+						fv.setFilename(filename);
+						fv.setFilepath(filepath);
+						fv.setTableName("notice");
+						fv.setTableNo(n.getNoticeNo());
+						result2 = service.insertFile(fv);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}	//for문 끝
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		if(result2>0) {
 			model.addAttribute("msg", "수정 성공");
 			model.addAttribute("loc", "/notice/noticeView.do?noticeNo="+n.getNoticeNo());
 			model.addAttribute("result", true);

@@ -68,7 +68,11 @@ public class NoticeDao {
 		return sqlSession.update("notice.updateNotice", n);
 	}
 
-	public int deleteFile(FileVO fv) {
-		return sqlSession.delete("notice.deleteFile", fv);
+	public int deleteFile(int noticeNo) {
+		return sqlSession.delete("notice.deleteFile", noticeNo);
+	}
+
+	public int deleteFilepath(FileVO fv) {
+		return sqlSession.delete("notice.deleteFilepath", fv);
 	}
 }
