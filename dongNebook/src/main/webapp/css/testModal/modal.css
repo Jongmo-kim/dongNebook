@@ -63,6 +63,13 @@
      .boardFooter{
          height: 100px;
      }
+     .loadingContent{
+            background-image: url(../../image/common/loading.svg);
+            background-repeat: no-repeat;
+            background-size: 150px;
+            height: 150px;
+            background-position: 50% 50%;
+        }
 /* Bootstrap Overloading */
 @media (min-width: 576px){
 	.modal-dialog {

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <title>메인페이지</title>
     <style>
@@ -18,7 +19,6 @@
             background-color:#868686;    /*-- 스클로 배경 색상 --*/
         } 
         .multipleBoardWrap{
-            border: 1px solid;
             height: 700px;
             width: 500px;
             overflow: scroll;
@@ -61,6 +61,13 @@
         .boardFooter{
             height: 100px;
         }
+        .loadingContent{
+            background-image: url(loading.svg);
+            background-repeat: no-repeat;
+            background-size: 150px;
+            height: 150px;
+            background-position: 50% 50%;
+        }
     </style>
 </head>
 <body>
@@ -86,7 +93,65 @@
                 </div>
             </div>
         </div>
+        <div class="boardBody">
+            <div class="boardHeader">
+                <p>김종모님</p>
+                <img src="male-face-12.svg" />
+                
+                
+            </div>
+            <div class="boardContent">
+                <div class="imageContent">
+                    <img src="800x0.jpg" alt="book">
+                </div>
+                <div class="textContent">
+                    <p>이 책은 너무 재미있어서 5천억번이나 봤습니다.</p> <p>여러분도 꼭보세요!</p>
+                </div>
+            </div>
+            <div class="boardFooter">
+                <div class="tagContent">
+                    <a href="#">#프리드버그_선형대수학5판</a>
+                </div>
+            </div>
+        </div>
+        <div class="boardBody">
+            <div class="boardHeader">
+                <p>김종모님</p>
+                <img src="male-face-12.svg" />
+                
+                
+            </div>
+            <div class="boardContent">
+                <div class="imageContent">
+                    <img src="800x0.jpg" alt="book">
+                </div>
+                <div class="textContent">
+                    <p>이 책은 너무 재미있어서 5천억번이나 봤습니다.</p> <p>여러분도 꼭보세요!</p>
+                </div>
+            </div>
+            <div class="boardFooter">
+                <div class="tagContent">
+                    <a href="#">#프리드버그_선형대수학5판</a>
+                </div>
+            </div>
+        </div>
+        <div class="loadingContent">
+        </div>
     </div>
-    
+    <script>
+        const multiBoard = document.querySelector('.multipleBoardWrap');
+        // multiBoard.onscroll = function(){
+        //     const currScroll = multiBoard.scrollHeight- multiBoard.offsetHeight;
+        //     if(isEndScroll(this.scrollTop)){
+        //         const bodyStr =' <div class="boardBody"> <div class="boardHeader"><p>김종모님</p><img src="male-face-12.svg" /></div><div class="boardContent"><div class="imageContent"><img src="800x0.jpg" alt="book"></div><div class="textContent"><p>이 책은 너무 재미있어서 5천억번이나 봤습니다.</p> <p>여러분도 꼭보세요!</p></div></div><div class="boardFooter"><div class="tagContent"><a href="#">#프리드버그_선형대수학5판</a></div></div></div> ';
+        //         const addBody = $.parseHTML(bodyStr)[1];
+        //         $(multiBoard).append(addBody);
+        //     }
+        // };
+        function isEndScroll(currScroll){
+            const maxScroll = multiBoard.scrollHeight- multiBoard.offsetHeight;
+            return currScroll == maxScroll;
+        }
+    </script>
 </body>
 </html>

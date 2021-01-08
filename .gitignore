@@ -4,11 +4,14 @@
 # ignore properties file
 config.properties
 pom.properties
+
 ### team2 ###
 .project
 .classpath
 Servers/
-
+config.js
+package-lock.json
+.eslintcache
 ### react ###
 .DS_*
 *.log
