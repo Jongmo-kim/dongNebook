@@ -125,7 +125,8 @@ public class NoticeController {
 	@RequestMapping("/deleteNotice.do")
 	public String deleteNotice(Model model, int[] noticeNo) {
 		int result = service.deleteNotice(noticeNo);
-		if(result<0) {
+
+		if(result>0) {
 			model.addAttribute("msg", "삭제 성공");
 			model.addAttribute("result", "true");
 		}

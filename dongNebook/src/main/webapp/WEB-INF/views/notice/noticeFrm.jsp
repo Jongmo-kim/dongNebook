@@ -25,7 +25,7 @@
 						</tr>
 						<tr>
 							<th>첨부파일</th>
-							<td><input type="file" name="files" multiple></td>
+							<td><input type="file" name="files" id="input-file" multiple></td>
 						</tr>
 						<tr>
 							<th>작성자</th>
@@ -45,6 +45,16 @@
 				</form>
 		<a href="/notice/noticeList.do?reqPage=1">목록으로 돌아가기</a>
 	</section>
-
+	<script>
+		$("input[type=file]").change(function () {
+			var fileInput = document.getElementById("input-file");
+	        var files = fileInput.files;
+	        var file;
+	        for (var i = 0; i < files.length; i++) {
+	            file = files[i];
+	            alert(file.name);
+	        }
+	    });
+	</script>
 </body>
 </html>
