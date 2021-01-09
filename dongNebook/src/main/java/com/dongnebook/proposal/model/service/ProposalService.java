@@ -64,4 +64,12 @@ public class ProposalService {
 		return ppd;
 	}
 
+	public int insertBook(Book b) {
+		return dao.insertBook(b);
+	}
+
+	public int deleteBook(Book b) {
+		return dao.deleteBook(b);
+	}
+
 }

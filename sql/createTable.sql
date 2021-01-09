@@ -175,5 +175,19 @@ create sequence file_seq;
 create sequence alram_seq;
 
 ----------------------------------------------
-
+book 테이블 rCount 수정
 alter table book add rCount number;
+alter table book drop column rCount;
+alter table book add rCount number default 0;
+----------------------------------book_proposal테이블 수정
+
+alter table book_proposal drop column book_no;
+alter table book_proposal drop column reason;
+alter table book_proposal add book_name varchar2(500);
+alter table book_proposal add BOOK_KIND varchar2(300);
+alter table book_proposal add BOOK_INTRODUCE varchar2(2000);
+alter table book_proposal add ISBN13 varchar2(20) unique;
+alter table book_proposal add book_count number default 0;
+alter table book_proposal add IMAGEURL VARCHAR2(100);
+alter table book_proposal add rCount number default 0;
+

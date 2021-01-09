@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.proposal.model.service.ProposalService;
 import com.dongnebook.proposal.model.vo.ProposalVO;
 import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
@@ -28,6 +29,14 @@ public class ProposalDao {
 
 	public int totalCount() {
 		return session.selectOne("pro.totalCount");
+	}
+
+	public int insertBook(Book b) {
+		return session.insert("pro.inserBook", b);
+	}
+
+	public int deleteBook(Book b) {
+		return session.delete("pro.deleteBook",b);
 	}
 
 }
