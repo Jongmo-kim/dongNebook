@@ -4,14 +4,13 @@ $(function(){
         addBoard();
         addBoard();
         function scrollFunc(){
-            console.log(this.scrollTop);
             if(isEndScroll(this.scrollTop)){
                 addBoard();
             }
         }
         function addBoard(){
             $.ajax({
-                url:'http://127.0.0.1:3001/boardModal',
+                url:'/boardModal.do',
                 success:function(data){
                     const addBody = $.parseHTML(data.addBody);
                     $(multiBoard).append(addBody[1]);

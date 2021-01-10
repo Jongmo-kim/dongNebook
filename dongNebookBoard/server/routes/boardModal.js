@@ -11,7 +11,7 @@ function doRelease(connection){
     }
   })
 }
-function getData(){
+async function getData(){
   var data;
   oracledb.getConnection(config, (err, conn)=>{
     if(err){
@@ -35,7 +35,7 @@ function getData(){
 }
 router.get('/', function(req, res, next) {
   
-  var data = getData();
+  var data = await getData();
   console.log(data);
   res.json({
     addBody: `
