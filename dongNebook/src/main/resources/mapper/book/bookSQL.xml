@@ -97,4 +97,10 @@
 			*
 		from book where isbn13 = #{ISBN13}
 	</select>
+	
+	<select id="selectOneBook" parameterType="_int" resultType="book">
+		select
+			*
+		from book where book_no = #{bookNo}
+	</select>
 </mapper>

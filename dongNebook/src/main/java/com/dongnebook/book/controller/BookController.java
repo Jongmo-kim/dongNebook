@@ -107,4 +107,11 @@ public class BookController {
 		
 		return "common/msg";
 	}
+	@RequestMapping("/selectOneBook.do")
+	public String selectOneBook(Model model, int bookNo) {
+		System.out.println(bookNo);
+		Book book = service.selectOneBook(bookNo);
+		
+		return "book/selectOneBook";
+	}
 }

@@ -104,5 +104,9 @@ public class BookService {
 		return dao.selectBookMarkList(userNo);
 	}
 
+	public Book selectOneBook(int bookNo) {
+		return dao.selectOneBook(bookNo);
+	}
+
 	
 }
