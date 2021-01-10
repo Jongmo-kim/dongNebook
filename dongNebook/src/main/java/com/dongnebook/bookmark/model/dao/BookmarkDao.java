@@ -1,10 +1,15 @@
 package com.dongnebook.bookmark.model.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.bookmark.model.vo.Bookmark;
+import com.dongnebook.user.model.vo.User;
 
 @Repository
 public class BookmarkDao {
@@ -24,6 +29,16 @@ public class BookmarkDao {
 		bookMark.setUserNo(userNo);
 		bookMark.setISBN13(isbn);
 		return session.delete("book.deleteBookMark", bookMark);
+	}
+
+	public ArrayList<Bookmark> searchBookMark(int userNo) {
+		List<Bookmark> list = session.selectList("book.searchBookMark", userNo);
+		return (ArrayList<Bookmark>)list;
+	}
+
+	public Book searchBookmarkList(String isbn13) {
+		
+		return session.selectOne("book.searchBookList", isbn13);
 	}
 	
 }

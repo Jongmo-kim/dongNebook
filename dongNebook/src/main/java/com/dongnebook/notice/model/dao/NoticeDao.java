@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dongnebook.common.FileVO;
 import com.dongnebook.notice.model.vo.Notice;
 
 /**
@@ -38,12 +39,40 @@ public class NoticeDao {
 		return sqlSession.selectOne("notice.selectTotalCount", int.class);
 	}
 
-	@Transactional
-	public int deleteNotice(int[] rNum) {
-		int result = 0;
-		for(int i=0; i<rNum.length; i++) {
-			result = sqlSession.delete("notice.deleteNotice", rNum[i]);
-		}
-		return result;
+	public int deleteNotice(int noticeNo) {
+		return sqlSession.delete("notice.deleteNotice", noticeNo);
+	}
+
+	public Notice selectNotice(int noticeNo) {
+		return sqlSession.selectOne("notice.selectNotice", noticeNo);
+	}
+
+	public int insertNotice(Notice n) {
+		return sqlSession.insert("notice.insertNotice", n);
+	}
+
+	public int selectNoticeNo() {
+		return sqlSession.selectOne("notice.selectNoticeNo", int.class);
+	}
+
+	public int insertFile(FileVO fv) {
+		return sqlSession.insert("notice.insertFile", fv);
+	}
+
+	public ArrayList<FileVO> selectFile(int noticeNo) {
+		List<FileVO> list = sqlSession.selectList("notice.selectFile", noticeNo);
+		return (ArrayList<FileVO>) list;
+	}
+
+	public int updateNotice(Notice n) {
+		return sqlSession.update("notice.updateNotice", n);
+	}
+
+	public int deleteFile(int noticeNo) {
+		return sqlSession.delete("notice.deleteFile", noticeNo);
+	}
+
+	public int deleteFilepath(FileVO fv) {
+		return sqlSession.delete("notice.deleteFilepath", fv);
 	}
 }
