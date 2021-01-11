@@ -5,18 +5,18 @@ import java.sql.Date;
 public class Calendar {
 	private int calendarNo;
 	private String calendarTitle;
-	private Date calendarStartdate;
-	private Date calendarEnddate;
+	private Date calendarStartDate;
+	private Date calendarEndDate;
 	public Calendar() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Calendar(int calendarNo, String calendarTitle, Date calendarStartdate, Date calendarEnddate) {
+	public Calendar(int calendarNo, String calendarTitle, Date calendarStartDate, Date calendarEndDate) {
 		super();
 		this.calendarNo = calendarNo;
 		this.calendarTitle = calendarTitle;
-		this.calendarStartdate = calendarStartdate;
-		this.calendarEnddate = calendarEnddate;
+		this.calendarStartDate = calendarStartDate;
+		this.calendarEndDate = calendarEndDate;
 	}
 	public int getCalendarNo() {
 		return calendarNo;
@@ -30,17 +30,17 @@ public class Calendar {
 	public void setCalendarTitle(String calendarTitle) {
 		this.calendarTitle = calendarTitle;
 	}
-	public Date getCalendarStartdate() {
-		return calendarStartdate;
+	public Date getCalendarStartDate() {
+		return calendarStartDate;
 	}
-	public void setCalendarStartdate(Date calendarStartdate) {
-		this.calendarStartdate = calendarStartdate;
+	public void setCalendarStartDate(Date calendarStartDate) {
+		this.calendarStartDate = calendarStartDate;
 	}
-	public Date getCalendarEnddate() {
-		return calendarEnddate;
+	public Date getCalendarEndDate() {
+		return calendarEndDate;
 	}
-	public void setCalendarEnddate(Date calendarEnddate) {
-		this.calendarEnddate = calendarEnddate;
+	public void setCalendarEndDate(Date calendarEndDate) {
+		this.calendarEndDate = calendarEndDate;
 	}
 	
 }
