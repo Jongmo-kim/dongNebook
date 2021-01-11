@@ -19,6 +19,7 @@ public class CalendarController {
 	@RequestMapping("/calendarView.do")
 	public String calendarView(Model model) {
 		ArrayList<Calendar> list = service.selectCalendarList();
+		model.addAttribute("list", list);
 		return "calendar/calendarView";
 	}
 	
