@@ -32,8 +32,8 @@
       dayMaxEvents: true, // allow "more" link when too many events
       events: [
         <%for (int i = 0; i < list.size(); i++) {
-	Calendar c = list.get(i);
-	if (i == list.size()) {%>
+			Calendar c = list.get(i);
+			if (i == list.size()) {%>
 				{
 			    	title : '<%=c.getCalendarTitle()%>',
 			    	start : '<%=c.getCalendarStartDate()%>',
@@ -66,10 +66,6 @@
 	margin: 0 auto;
 }
 
-.modal-body {
-	height: 500px;
-}
-
 .fc-day:hover {
 	background: #EEF7FF;
 	cursor: pointer;
@@ -98,13 +94,32 @@
 				</div>
 
 				<!-- Modal body -->
-				<div class="modal-body"></div>
+				<div class="modal-body">
+					<div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="calendarTitle">일정명</label>
+                                <input class="inputModal" type="text" name="calendarTitle" id="calendarTitle" required="required" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="calendarStartDate">시작</label>
+                                <input class="inputModal" type="date" name="calendarStartDate" id="calendarStartDate" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="calendarEndDate">끝</label>
+                                <input class="inputModal" type="date" name="calendarEndDate" id="calendarEndDate" />
+                            </div>
+                        </div>
+				</div>
 
 				<!-- Modal footer -->
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal"
 						style="border: 1px solid #cecece">취소</button>
-					<button type="button" class="btn btn-primary" id="saveEvent">저장</button>
+					<button type="button" class="btn btn-primary" onclick="saveCalendar();">저장</button>
 				</div>
 
 			</div>
@@ -121,11 +136,38 @@
 	<br>
 	<br>
 	<script>
+		function saveCalendar(){
+			var title = $("#calendarTitle").val();
+			var start = $("#calendarStartDate").val();
+			var end = $("#calendarEndDate").val();
+			
+			$.ajax({
+				url : "/calendar/insertCalendar.do",
+				type : "get",
+				data : {title:title,
+						start:start,
+						end:end},
+				success:function(data){
+					if(data!=null){
+						event.push({
+							title : data.title,
+							start : data.start , 
+							end : data.end
+						});
+					}				
+				},
+				error:function(){
+					alert("일정 등록 실패");
+				}
+			});
+			$('#myModal').modal('hide'); 
+		}
+	
 		$(".test").click(function(){
 			$('#myModal').modal(); 
 		});
 		$(".fc-daygrid-day-frame").click(function(){
-			$("#myModal").css('display', 'block');
+			$('#myModal').modal(); 
 		});
 	</script>
 </body>

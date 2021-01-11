@@ -18,4 +18,8 @@ public class CalendarDao {
 		List<Calendar> list = sqlSession.selectList("calendar.selectCalendarList");
 		return (ArrayList<Calendar>)list;
 	}
+
+	public int insertCalendar(Calendar c) {
+		return sqlSession.insert("calendar.insertCalendar", c);
+	}
 }

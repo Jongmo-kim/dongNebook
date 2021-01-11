@@ -9,4 +9,7 @@
 			calendar_enddate as calendarEndDate
 		from calendar
 	</select>
+	<insert id="insertCalendar">
+		insert into calendar values(calendar_seq.nextval, #{calendarTitle}, #{calendarStartDate}, #{calendarEndDate})
+	</insert>
 </mapper>

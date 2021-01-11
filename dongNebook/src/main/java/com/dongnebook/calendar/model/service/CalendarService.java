@@ -16,4 +16,8 @@ public class CalendarService {
 	public ArrayList<Calendar> selectCalendarList() {
 		return dao.selectCalendarList();
 	}
+
+	public int insertCalendar(Calendar c) {
+		return dao.insertCalendar(c);
+	}
 }
