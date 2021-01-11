@@ -17,6 +17,8 @@
 
 <!-- CSS FILES -->
 <link href="/css/header/header.css" type="text/css" rel="stylesheet">
+<link href="/css/footer/footer.css" type="text/css" rel="stylesheet">
+
 
 <!-- jQuery -->
 <script type="text/javascript" src="/js/jquery-3.3.1.js"></script>

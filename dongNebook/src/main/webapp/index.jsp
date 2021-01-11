@@ -56,8 +56,8 @@
          </div>
     </div>
     <br>
-    <footer>footer
-    </footer> 
+    <jsp:include page="/views/common/footer.jsp" />
+    
 	
 </body>
 </html>

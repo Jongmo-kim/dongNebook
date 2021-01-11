@@ -1,6 +1,4 @@
 @charset "UTF-8";
-
-
 .guessedBox{
 	overflow:scroll; width:350px; height:200px;
 	overflow-y:scroll;
@@ -33,4 +31,12 @@
 ::-webkit-scrollbar-thumb {
   background: #79bd9a;
   border-radius: 0px;
+}
+
+/* bookmark */
+.bookMarkFalse{
+	background-image: url("/image/bookmark/bookmark-false.png");
+}
+.bookMarkTrue{
+	background-image:url("/image/bookmark/bookmark-true.png");
 }

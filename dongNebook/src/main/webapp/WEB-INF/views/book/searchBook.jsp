@@ -12,14 +12,6 @@
 <link rel="stylesheet" href="/css/book/searchBook.css?v=<%=System.currentTimeMillis()%>">
 <script type="text/javascript" src="/js/book/searchBook.js?v=<%=System.currentTimeMillis()%>"></script>
 </head>
-<style>
-	.bookMarkFalse{
-		background-image: url("/image/bookmark/bookmark-false.png");
-	}
-	.bookMarkTrue{
-		background-image:url("/image/bookmark/bookmark-true.png");
-	}
-</style>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
 	
@@ -43,6 +35,7 @@
 			</form>
 		</div>
 		<div class="guessedBox">
+			
 		</div>
 		<table>
 			<tr>
@@ -92,39 +85,7 @@
 	</div>
 	<script>
 		
-		function bookmarkChkBox(chk,id,isbn){
-			console.log(isbn);
-			if(chk){
-				$.ajax({
-					url : "/book/insertBookmark.do",
-					type :"get",
-					data : {isbn:isbn},
-					success:function(data){
-						console.log("성공");
-						var book=document.getElementById(id);
-						book.innerHTML="<img src='/image/bookmark/bookmark-true.png'>";						
-					},error:function(request,status,error){
-
-						console.log("실패");
-					}
-				});
-				
-			}else if(chk==false){
-				$.ajax({
-					url : "/book/deleteBookmark.do",
-					type :"get",
-					data : {isbn:isbn},
-					success:function(data){
-						console.log("성공");
-						var book=document.getElementById(id);
-						book.innerHTML="<img src='/image/bookmark/bookmark-false.png'>";						
-					},error:function(request,status,error){
-
-						console.log("실패");
-					}
-				});
-			}
-		}
+		
 	</script>
 </body>
 </html>
