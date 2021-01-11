@@ -47,14 +47,14 @@ public class RankService {
 		
 		//이전버튼 생성
 		if(pageNo != 1) {
-			pageNavi += "<a href='/rank/rankList.do?reqPage="+(pageNo-1)+"'>[이전]</a>";
+			pageNavi += "<li class='page-item'><a class='btn page-link' href='/rank/rankList.do?reqPage="+(pageNo-1)+"'>이전</a>";
 		}
 		for(int i=0;i<pageNaviSize;i++) {
 			
 			if(reqPage == pageNo) {
-				pageNavi += "<span class='selectPage'>"+pageNo+"</span>";
+				pageNavi += "<li class='page-item'><span class='selectPage page-link'>"+pageNo+"</span>";
 			}else {
-				pageNavi += "<a class='btn' href='/rank/rankList.do?reqPage="+(pageNo)+"'>"+pageNo+"</a>";
+				pageNavi += "<li class='page-item'><a class='btn page-link' href='/rank/rankList.do?reqPage="+(pageNo)+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 			if(pageNo > totalPage) {
@@ -62,7 +62,7 @@ public class RankService {
 			}
 		}
 		if(pageNo <= totalPage) {
-			pageNavi += "<a class='btn' href='/rank/rankList.do?reqPage="+(pageNo)+"'>다음</a>";
+			pageNavi += "<li class='page-item'><a class='btn page-link' href='/rank/rankList.do?reqPage="+(pageNo)+"'>다음</a>";
 		}
 		BookPageData npd=new BookPageData(list,pageNavi);
 		return npd;
