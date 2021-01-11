@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/css/user/inputBox.css?v=<%=System.currentTimeMillis()%>">
 <script type="text/javascript" src="/js/user/inputBox.js?v=<%=System.currentTimeMillis()%>"></script>
 <link rel="stylesheet" href="/css/user/signupFrm.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" href="/css/common/button.css">
 <%-- <script type="text/javascript" src="/js/user/signupFrm.js?v=<%=System.currentTimeMillis()%>"></script> --%>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
@@ -23,7 +24,6 @@
         }
     }).open();
 	}
-
 </script>
 </head>
 <body>
@@ -88,7 +88,7 @@
 	        <div class="name inputBox">
 	            <input type="text" class="form-textbox readonly" value=" "readonly name="addrPostcode">
 	            <span class="form-label label-focused">Zipcode</span>
-	            <button class="btn btn-primary" id="searchBtn" type="button" onclick="addrSearch()">주소검색</button>
+	            <button class="btn btn-outline-primary" id="searchBtn" type="button" onclick="addrSearch()">주소검색</button>
 	        </div>
 	        
 	        <div class="name inputBox">
@@ -98,7 +98,7 @@
 	    	<hr>
 	    	
 			<div class="submitBtn" style="text-align:center;">
-				<button class="btn btn-primary">
+				<button class="btn btn-outline-primary">
 				회원가입하기</button>
 			</div>
 			

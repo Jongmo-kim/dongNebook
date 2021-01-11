@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Get it hair이용 약관</title>
+<title>이용 약관</title>
 <jsp:include page="/views/common/linkHead.jsp"/>
 </head>
 <body>
