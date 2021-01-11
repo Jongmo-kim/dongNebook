@@ -33,5 +33,9 @@ public class BookmarkService {
 		return dao.searchBookmarkList(isbn13);
 	}
 
+	public int rentalCount(int userNo) {
+		return dao.rentalCount(userNo);
+	}
+
 	
 }

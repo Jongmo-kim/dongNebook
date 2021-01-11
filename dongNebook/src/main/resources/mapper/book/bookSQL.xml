@@ -98,4 +98,7 @@
 			*
 		from book where isbn13 = #{ISBN13}
 	</select>
+	<select id="rentalCount">
+	select count(*) from book_rental where user_no = #{userNo}
+	</select>
 </mapper>

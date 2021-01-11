@@ -10,11 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.bookmark.model.service.BookmarkService;
 import com.dongnebook.bookmark.model.vo.Bookmark;
+import com.dongnebook.rental.model.vo.RentalLoc;
 import com.dongnebook.user.model.vo.User;
 
 @Controller
@@ -43,8 +45,8 @@ public class BookmarkController {
 		
 		return result;
 	}
-	@RequestMapping("/bookMarkList.do")
 	
+	@RequestMapping("/bookMarkList.do")
 	public String searchUser(HttpSession session, Model model) {
 		User loginUser = (User)session.getAttribute("loginUser");
 		System.out.println(loginUser.getUserNo());
@@ -61,4 +63,15 @@ public class BookmarkController {
 		return "bookmark/bookMark";
 	}
 	
+	@RequestMapping(value = "/rentalCount.do", method=RequestMethod.POST)
+	@ResponseBody
+	public String rentalCount(HttpSession session, Model model) {
+		User loginUser = (User)session.getAttribute("loginUser");
+		int userNo = loginUser.getUserNo();
+		int rentalCount = service.rentalCount(userNo);
+		System.out.println(rentalCount);
+		
+		model.addAttribute("rentalCount", rentalCount);
+		return "bookmark/bookMark";
+	}
 }

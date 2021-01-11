@@ -40,36 +40,43 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<button id="submit">체크된 값 </button>
-	<input type="submit">
-	<input type="reset" value="reset">
+	<input type="hidden" class="userNo" value="${loginUser.userNo}">
+	<input type="button" onclick="rental();" value="대여">
 	</form>
 	<script>
     var maxChecked=3;
     var totalChecked = 0;
     function count_chk(obj){
-     if(obj.checked){
-         totalChecked +=1;
-     }else{
-         totalChecked -=1;
-     }
-      if(totalChecked>maxChecked){
-          alert("최대 3권만 가능");
-          obj.checked = false;
-          totalChecked -=1;
-      }
+    	
+    	
+    	
     }
+    function rental(){
+    	var userNo = $(".userNo").val();
+		$.ajax({
+    		url : "rentalCount.do",
+    		type : "post",
+    		data : {userNo : userNo},
+    		seccess : function(data){
+    			alert(data);
+    		},
+    		error : function(data){
+    			alert("실패");
+    		}
+    			
+    	});
+	}
     $(function(){
-        $("#submit").click(function(){
+       $("#submit").click(function(){
        var chkArr = new Array();
        var chk = $("input[name=box]:checked");
        $(".chk:checked").each(function() { 
             chkArr.push($(this).next().val());
            
-             });
+           });
             alert(chkArr);
-   })
-       })
+   		})
+    })
     
 	</script>
 </body>
