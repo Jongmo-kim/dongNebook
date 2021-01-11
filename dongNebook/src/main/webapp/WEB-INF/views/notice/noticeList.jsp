@@ -31,8 +31,6 @@
 	
 	<script>
 		$(function(){
-			
-			
 			$(".allCheck").click(function (){
 				//전체 체크
 				if($(".allCheck").is(":checked") == true){

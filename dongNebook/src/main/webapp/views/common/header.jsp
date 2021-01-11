@@ -22,6 +22,7 @@
                     </ul>
                     <ul class="sub">
                         <li><a href="/rank/rankList.do?reqPage=1">대출 순위</a></li>
+                        <li><a href="/calendar/calendarView.do">일정 조회</a></li>
                     </ul>
                </div>
             </li>
@@ -32,7 +33,7 @@
 
             </li>
             <li class="menu1"><a href="#">남은 메뉴</a>
-
+				
             </li>
         </ul>
         <div class="member-sign">
