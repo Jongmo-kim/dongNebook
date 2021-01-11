@@ -31,7 +31,7 @@
 	<form action="/user/signup.do" method="post">
 		<h1>회원가입</h1><hr>
 		 <div class="container">
-	    <h2>Get it hair</h2>
+	    <h2>동서남북 도서관</h2>
 	    <h3>회원가입</h3>
 	    <p>이미 동서남북의 회원이신가요? 
 	    <a href="/user/idSearchFrm.do">ID</a> / <a href="/user/pwChangeFrm.do">PW</a>찾기</p>
@@ -95,18 +95,16 @@
 	            <input type="text" class="form-textbox" name="addrDetail">
 	            <span class="form-label">상세주소</span>
 	        </div>
-	        	카테고리
-		<select name="categoryName">
-			<option value="컴퓨터">컴퓨터</option>
-			<option value="사회">사회</option>
-		</select>
-		<div class="submitBtn" style="text-align:center;">
-			<button>회원가입하기</button>
-		</div>
-		
+	    	<hr>
+	    	
+			<div class="submitBtn" style="text-align:center;">
+				<button class="btn btn-primary">
+				회원가입하기</button>
+			</div>
+			
 		</div>
 		
 	</form>
-	
+	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>
