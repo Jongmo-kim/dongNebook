@@ -11,94 +11,136 @@
 <title>Insert title here</title>
  <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
      <style>
-         body{
-             width: 100%;
-         }
-         table{
-             margin: 0 auto;
-             margin-top: 50px;
-             border-top: 3px solid lightgray;
-             border-bottom: 3px solid lightgray;
-         }
-         table>tbody>tr{
-             text-align: center;
-         }
-         table>tbody>tr>td{
-            border-bottom: 1px solid lightgray; 
-         }
-         table>tbody>tr:last-child>td{
-            border-bottom: none;
-         }
- 	table>tbody>tr:first-child>td:nth-child(2){
-        
- 		width : 500px;
-        height: 50px;
-        font-size: 18px;
-        font-weight: bold;
- 	}
-         table>tbody>tr:first-child>td:nth-child(3){
- 		width : 100px;
-        height: 50px;
-        font-size: 18px;
-        font-weight: bold;
- 	}
-          table>tbody>tr:first-child>td:nth-child(4){
- 		width : 100px;
-        height: 50px;
-        font-size: 18px;
-        font-weight: bold;
- 	}
-         table>tbody>tr>td:first-child{
-             width: 50px;
-         }
-         table>tbody>tr>td{
-             height: 35px;
-         }
-         [type=button]{
-         margin-top:30px;
-             width: 90px;
-             height: 40px;
-             font-size: 20px;
-         }
+     #pageNavi{
+         text-align:center;
+     }
+     .pagination{
+	margin-top : 50px;
+	margin-bottom : 50px;
+	}
+	.pagination>li>a{
+        color: #79bd9a;
+        border:none;
+    }
+	.pagination>li>.selectPage{
+	color: black; 
+	border:none;
+	}
+	.pagination>li>a:hover{
+	color : #79bd9a;
+	}
+         table {
+         width : 1000px;
+            margin: 0 auto;
+            margin-top:100px;
+            border-top: 3px solid lightgray;
+            border-bottom: 3px solid lightgray;
+            text-align: center;
+        }
+
+        table>tbody>tr:first-child>th{
+            border-bottom: 2px solid lightgray;
+            border-right: 1px dashed lightgray;
+        }
+        table>tbody>tr:first-child>th:last-child{
+            border-right: none;
+        }
+        table>tbody>tr:first-child>th{
+            height: 50px;
+            border-right: 1px dashed lightgray;
+        }
+        table>tbody>tr:first-child>th:first-child{
+            width: 50px;
+        }
+        table>tbody>tr:first-child>th:nth-child(2){
+            width: 100px;
+        }
+         table>tbody>tr:first-child>th:nth-child(3){
+            width: 500px;
+        }
+         table>tbody>tr:first-child>th:nth-child(4){
+            width: 150px;
+        }
+        table>tbody>tr:first-child>th:nth-child(5){
+            width: 150px;
+        }
+        table>tbody>tr:first-child>th:nth-child(6){
+            width: 100px;
+        }
+        table>tbody>tr>td {
+            font-size: 15px;
+            border-top: 1px solid lightgray;
+            height: 150px;
+            border-right: 1px dashed lightgray;
+        }
+        table>tbody>tr>td:last-child{
+             border-right: none;
+        }
+        table>tbody>tr>td:nth-child(3){
+            text-align: left;
+        }
+
+        table>tbody>tr>td:nth-child(3)>p:first-child {
+            font-size: 20px;
+        }
+
+        table>tbody>tr>td:nth-child(3)>p:nth-child(2) {
+            font-size: 15px;
+            color:gray;
+        }
+
+        table>tbody>tr>td:nth-child(3)>p:last-child {
+            font-size: 15px;
+            color: gray;
+        }
          .button{
          	text-align:center;
          }
-         #pageNavi{
-         margin-top:50px;
-         text-align:center;
+         .pbtn{
+         	margin-top:50px;
+         	border: 1px solid lightgray;
+         	background-color:white;
+         	font-size : 18px;
+         }
+         .pbtn:hover{
+         background-color: lightgray;
          }
  </style>
- 
+ <jsp:include page="/views/common/linkHead.jsp"/>
 </head>
 <body>
-<h1>도서 승인/반려</h1>
+<jsp:include page="/views/common/header.jsp" />
     <table>
     <tr>
-        <td><input type="checkbox" id="allChk"></td>
-        <td>제목</td>
-        <td>저자</td>
-        <td>신청자</td>
+        <th><input type="checkbox" id="allChk"></th>
+        <th>이미지</th>
+        <th>제목</th>
+        <th>카테고리</th>
+        <th>출판사</th>
+        <th>신청자</th>
     </tr>
     <c:forEach items="${list }" var="b" varStatus="status">
     <tr>
         <td><input type="checkbox" class="chk"></td>
-        <td>${b.bookName }</td>
-        
-        <input type="hidden" value="${b.bookKind }">
-        <input type="hidden" value="${b.bookPublisher }">
-        <input type="hidden" value="${b.bookIntroduce }">
-        <input type="hidden" value="${b.imageurl }">
-        <input type="hidden" value="${b.ISBN13 }">
-        <td>${b.bookWriter }</td>
+        <td>${b.imageurl}</td>
+               <td>
+                   <p>${b.bookName }</p>
+                   <p>${b.bookWriter }</p>
+                   <p>${b.ISBN13 }</p>
+               </td>
+               <td>${b.bookKind }</td>
+
+               <td>${b.bookPublisher }</td>
+               <input type="hidden" value="${b.bookIntroduce }">
         <td>${userList.get(status.index).userName }</td>
     </tr>
     </c:forEach>
         </table>
         <div class="button">
-        <input type="button" class="insertBtn" value="승인">
-        <input type="button" class="deleteProposal" value="반려">
+        <input type="button" class="insertBtn pbtn" value="승인">
+        <input type="button" class="deleteProposal pbtn" value="반려">
    		</div>
-   		<div id="pageNavi">${pageNavi }</div>
+   		<div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
     <script>
     $(".insertBtn").click(function() {
         var inputs = $(".chk:checked");
@@ -106,14 +148,14 @@
         //idx는 순서 내가 체크한 순서
         $(".chk:checked").each(function(idx, item){
         	var book = new Object();
-        	var bookName = $(item).parent().next().html();
-        	var bookKind = $(item).parent().next().next().val();
-        	var bookPublisher = $(item).parent().next().next().next().val();
-        	var bookIntroduce = $(item).parent().next().next().next().next().val();
-        	var imageurl = $(item).parent().next().next().next().next().next().val();
-        	var ISBN13 = $(item).parent().next().next().next().next().next().next().val();
-        	var bookWriter = $(item).parent().parent().find("td").eq(2).html();
-        	
+            var imageurl = $(item).parent().next().html();
+            var bookName = $(item).parent().parent().find("td").eq(2).find("p").eq(0).html();
+            var bookWriter = $(item).parent().parent().find("td").eq(2).find("p").eq(1).html();
+            var ISBN13 = $(item).parent().parent().find("td").eq(2).find("p").eq(2).html();
+            var bookKind = $(item).parent().next().next().next().html();
+            var bookPublisher = $(item).parent().parent().find("td").eq(4).html();
+            var bookIntroduce = $(item).parent().next().next().next().next().next().val();
+
         	book.bookName = bookName;
         	book.bookKind = bookKind;
         	book.bookPublisher = bookPublisher;
@@ -145,14 +187,14 @@
     	var list = new Array();
     	$(".chk:checked").each(function(idx,item){
     		var book = new Object();
-        	var bookName = $(item).parent().next().html();
-        	var bookKind = $(item).parent().next().next().val();
-        	var bookPublisher = $(item).parent().next().next().next().val();
-        	var bookIntroduce = $(item).parent().next().next().next().next().val();
-        	var imageurl = $(item).parent().next().next().next().next().next().val();
-        	var ISBN13 = $(item).parent().next().next().next().next().next().next().val();
-        	var bookWriter = $(item).parent().parent().find("td").eq(2).html();
-        	
+    		var imageurl = $(item).parent().next().html();
+            var bookName = $(item).parent().parent().find("td").eq(2).find("p").eq(0).html();
+            var bookWriter = $(item).parent().parent().find("td").eq(2).find("p").eq(1).html();
+            var ISBN13 = $(item).parent().parent().find("td").eq(2).find("p").eq(2).html();
+            var bookKind = $(item).parent().next().next().next().html();
+            var bookPublisher = $(item).parent().parent().find("td").eq(4).html();
+            var bookIntroduce = $(item).parent().next().next().next().next().next().val();
+
         	book.bookName = bookName;
         	book.bookKind = bookKind;
         	book.bookPublisher = bookPublisher;
@@ -160,7 +202,6 @@
         	book.imageurl = imageurl;
         	book.ISBN13 = ISBN13;
         	book.bookWriter = bookWriter;
-        	
         	list.push(book);
     	});
     	$.ajax({

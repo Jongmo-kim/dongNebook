@@ -3,11 +3,6 @@
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 13pt;
 }
-@media screen {
-  		html {
-  		 width:1430px; 
-  		 }
-}
  body{
             margin: 0 auto;
             position: relative;
@@ -17,7 +12,7 @@
             margin: 0 auto;
             width: 1200px;
             box-sizing: border-box;
-            height:75px;
+/*             height:75px; */
         }
 
         header div {
