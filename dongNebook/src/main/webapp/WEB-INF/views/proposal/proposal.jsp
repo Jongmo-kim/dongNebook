@@ -9,6 +9,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
      <style>
      #pageNavi{
@@ -93,22 +97,37 @@
             font-size: 15px;
             color: gray;
         }
-         .button{
+         .botton{
          	text-align:center;
          }
          .pbtn{
          	width: 100px;
          	height : 50px;
          	margin-top:50px;
-         	border: 1px solid #3b8686;
+         	border: 2px solid #3b8686;
          	background-color:white;
          	font-size : 18px;
          	color : #404040;
          	border-radius: 5px;
+         	outline:none;
+         	margin-right : 5px;
+         	margin-left : 5px;
          }
          .pbtn:hover{
         background-color: #3b8686;
         color: white;
+         }
+         #hideB{
+         border: 1px solid #3b8686;
+         background-color:#3b8686;
+         color:white;
+         }
+        #con{
+         margin:0;
+         }
+         .bn{
+         	font-size : 19px;
+         	font-weight : bold;
          }
  </style>
  <jsp:include page="/views/common/linkHead.jsp"/>
@@ -141,12 +160,81 @@
     </tr>
     </c:forEach>
         </table>
+        
+   		
+   		
+<div class="container" id="con">
+  <!-- Button to Open the Modal -->
+  <div class="botton">
+  <button type="button" class="pbtn success" data-toggle="modal" data-target="#myModal">
+    승인
+  </button>
+    <button type="button" class="pbtn deleteB" data-toggle="modal" data-target="#myModal">
+   반려
+  </button>
+  </div>
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">승인하시겠습니까?</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body result">
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
         <div class="button">
-        <input type="button" class="insertBtn pbtn" value="승인">
-        <input type="button" class="deleteProposal pbtn" value="반려">
+        <input type="button" id = "hideB" class="btn insertBtn hideB sb" value="승인">
+        <input type="button" id = "hideB" class="btn deleteProposal hideB db" value="반려">
    		</div>
+          <button type="button" class="btn" id = "hideB" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+   		
+   		
    		<div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
+   		
+   		
     <script>
+    
+    $(function() {
+        $(".success").click(function() {
+          var list = new Array();
+          $(".sb").show();
+          $(".db").hide();
+      	var str = '';
+          $(".chk:checked").each(function(idx, item){
+            	str += "<span class='bn'>"+ $(item).parent().parent().find("td").eq(2).find("p").eq(0).html()+"&nbsp"+"</span>";
+            	str += $(item).parent().parent().find("td").eq(2).find("p").eq(1).html()+"<br>";
+            
+          });
+          $(".result").html(str);
+        });
+    $(".deleteB").click(function() {
+    	$(".db").show();
+    	$(".sb").hide();
+    	var str = '';
+        $(".chk:checked").each(function(idx, item){
+          	str += "<span class='bn'>"+ $(item).parent().parent().find("td").eq(2).find("p").eq(0).html()+"&nbsp"+"</span>";
+          	str += $(item).parent().parent().find("td").eq(2).find("p").eq(1).html()+"<br>";
+          
+        });
+        $(".result").html(str);
+      });
+    });
+    
     $(".insertBtn").click(function() {
         var inputs = $(".chk:checked");
         var allList = new Array();
