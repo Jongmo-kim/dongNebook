@@ -19,49 +19,59 @@
 	document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      headerToolbar: {
-        left: 'prevYear,prev,next,nextYear today',
-        center: 'title',
-        right: 'dayGridMonth,dayGridWeek,dayGridDay,listYear'
-      },
-      locale : "ko",
-      // initialDate: '2020-09-12',
-      navLinks: true, // can click day/week names to navigate views
-      editable: false,
-      dayMaxEvents: true, // allow "more" link when too many events
-      events: [
-        <%for (int i = 0; i < list.size(); i++) {
-			Calendar c = list.get(i);
-			if (i == list.size()) {%>
-				{
-					no : <%=c.getCalendarNo()%>,
-			    	title : '<%=c.getCalendarTitle()%>',
-			    	start : '<%=c.getCalendarStartDate()%>',
-			    	end : '<%=c.getCalendarEndDate()%>'
-			    }	
-        	<%} else {%>
-	        	{
-	        		no : <%=c.getCalendarNo()%>,
-			    	title : '<%=c.getCalendarTitle()%>',
-			    	start : '<%=c.getCalendarStartDate()%>',
-			    	end : '<%=c.getCalendarEndDate()%>'
-			    },	
-        	<%}%>
-        <%}%>
-      ],
-      //이벤트가 아니라 VO 객체에서 값을 꺼내오기
-      eventClick: function (event, jsEvent, view) {
-          editEvent(event);
-      }
-    });
-    calendar.render();
+	var calendar = new FullCalendar.Calendar(calendarEl, {
+		dateClick: function(info) {
+			//alert('Clicked on: ' + info.dateStr);
+			var date = info.dateStr;
+			$('#addCalendar').modal(); 
+			$("#calendarStartDate").val(date);
+		},
+		//커스텀 버튼
+		customButtons: {
+		    myCustomButton: {
+		      text: '커스텀 버튼',
+		      click: function() {
+		        window.open("https://fullcalendar.io/docs/customButtons");
+		      }
+		    }
+		  },
+		headerToolbar: {
+        	left: 'prevYear,prev,next,nextYear today myCustomButton',
+    	    center: 'title',
+    	    right: 'dayGridMonth,dayGridWeek,dayGridDay,listYear'
+    	  },
+	      locale : "ko",
+	      // initialDate: '2020-09-12',
+	      navLinks: false, // can click day/week names to navigate views
+	      editable: false,
+	      dayMaxEvents: true, // allow "more" link when too many events
+	      events: [
+	        <%for (int i = 0; i < list.size(); i++) {
+				Calendar c = list.get(i);
+				if (i == list.size()) {%>
+					{
+						id : <%=c.getCalendarNo()%>,
+				    	title : '<%=c.getCalendarTitle()%>',
+				    	start : '<%=c.getCalendarStartDate()%>',
+				    	end : '<%=c.getCalendarEndDate()%>'
+				    }	
+	        	<%} else {%>
+		        	{
+		        		id : <%=c.getCalendarNo()%>,
+				    	title : '<%=c.getCalendarTitle()%>',
+				    	start : '<%=c.getCalendarStartDate()%>',
+				    	end : '<%=c.getCalendarEndDate()%>'
+				    },	
+	        	<%}%>
+	        <%}%>
+	      ],
+ 	      //이벤트가 아니라 VO 객체에서 값을 꺼내오기
+ 	      eventClick: function (info) {
+	          editEvent(info);
+	      } 
+	    });
+	    calendar.render();
   });
-	function editEvent(event, element, view) {
-		var data = event.event._def;
-		console.log($(this).no);
-		console.log(data.title);
-	}
 </script>
 <style>
 #calendar {
@@ -82,11 +92,10 @@
 	<jsp:include page="/views/common/header.jsp" />
 
 	<!-- Button to Open the Modal -->
-	<button type="button" class="btn btn-primary" data-toggle="modal"
-		data-target="#myModal">Open modal</button>
-	<p class="test">test</p>
+<!-- 	<button type="button" class="btn btn-primary" data-toggle="modal"
+		data-target="#myModal">Open modal</button> -->
 	<!-- The Modal -->
-	<div class="modal" id="myModal">
+	<div class="modal" id="addCalendar">
 		<div class="modal-dialog">
 			<div class="modal-content">
 
@@ -99,30 +108,34 @@
 				<!-- Modal body -->
 				<div class="modal-body">
 					<div class="row">
-                            <div class="col-xs-12">
-                                <label class="col-xs-4" for="calendarTitle">일정명</label>
-                                <input class="inputModal" type="text" name="calendarTitle" id="calendarTitle" required="required" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <label class="col-xs-4" for="calendarStartDate">시작</label>
-                                <input class="inputModal" type="date" name="calendarStartDate" id="calendarStartDate" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <label class="col-xs-4" for="calendarEndDate">끝</label>
-                                <input class="inputModal" type="date" name="calendarEndDate" id="calendarEndDate" />
-                            </div>
-                        </div>
+						<div class="col-xs-12">
+							<label class="col-xs-4" for="calendarTitle">일정명</label> <input
+								class="inputModal" type="text" name="calendarTitle"
+								id="calendarTitle" required="required" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<label class="col-xs-4" for="calendarStartDate">시작</label> <input
+								class="inputModal" type="date" name="calendarStartDate"
+								id="calendarStartDate" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<label class="col-xs-4" for="calendarEndDate">끝</label> <input
+								class="inputModal" type="date" name="calendarEndDate"
+								id="calendarEndDate" />
+						</div>
+					</div>
 				</div>
 
 				<!-- Modal footer -->
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal"
 						style="border: 1px solid #cecece">취소</button>
-					<button type="button" class="btn btn-primary" onclick="saveCalendar();">저장</button>
+					<button type="button" class="btn btn-primary"
+						onclick="saveCalendar();">저장</button>
 				</div>
 
 			</div>
@@ -154,12 +167,15 @@
 					alert("일정 등록 실패");
 				}
 			});
-			$('#myModal').modal('hide'); 
+			$('#addCalendar').modal('hide'); 
 		}
-	
-		$(".fc-body").on('click', function () {
-			$('#myModal').modal(); 
-        });
+		
+		function editEvent(info) {
+			//console.log(info.event);
+			console.log(info.event.title);
+			console.log(info.event.id);
+		}
+		
 	</script>
 </body>
 </html>
