@@ -97,13 +97,18 @@
          	text-align:center;
          }
          .pbtn{
+         	width: 100px;
+         	height : 50px;
          	margin-top:50px;
-         	border: 1px solid lightgray;
+         	border: 1px solid #3b8686;
          	background-color:white;
          	font-size : 18px;
+         	color : #404040;
+         	border-radius: 5px;
          }
          .pbtn:hover{
-         background-color: lightgray;
+        background-color: #3b8686;
+        color: white;
          }
  </style>
  <jsp:include page="/views/common/linkHead.jsp"/>

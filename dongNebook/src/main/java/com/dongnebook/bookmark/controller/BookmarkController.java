@@ -63,15 +63,21 @@ public class BookmarkController {
 		return "bookmark/bookMark";
 	}
 	
-	@RequestMapping(value = "/rentalCount.do", method=RequestMethod.POST)
+	@RequestMapping("/rentalCount.do")
 	@ResponseBody
-	public String rentalCount(HttpSession session, Model model) {
-		User loginUser = (User)session.getAttribute("loginUser");
-		int userNo = loginUser.getUserNo();
+	public String rentalCount(int userNo, Model model) {
 		int rentalCount = service.rentalCount(userNo);
-		System.out.println(rentalCount);
+		System.out.println("유저 번호 = "+userNo);
+		System.out.println("대여된 책 = "+rentalCount);
 		
-		model.addAttribute("rentalCount", rentalCount);
-		return "bookmark/bookMark";
+		if(rentalCount == 0) {
+			return "0";
+		}else if(rentalCount == 1) {
+			return "1";
+		}else if(rentalCount == 2) {
+			return "2";
+		}else {
+			return "3";
+		}
 	}
 }
