@@ -42,5 +42,9 @@ public class Calendar {
 	public void setCalendarEndDate(Date calendarEndDate) {
 		this.calendarEndDate = calendarEndDate;
 	}
-	
+	@Override
+	public String toString() {
+		return "Calendar [calendarNo = "+calendarNo+", calendarTitle = "+calendarTitle
+				+", calendarStartDate = "+calendarStartDate+", calendarEndDate = "+calendarEndDate+"]";
+	}
 }

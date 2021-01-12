@@ -18,4 +18,16 @@ public class CalendarDao {
 		List<Calendar> list = sqlSession.selectList("calendar.selectCalendarList");
 		return (ArrayList<Calendar>)list;
 	}
+
+	public int insertCalendar(Calendar c) {
+		return sqlSession.insert("calendar.insertCalendar", c);
+	}
+
+	public int maxCalendarNo() {
+		return sqlSession.selectOne("calendar.maxCalendarNo");
+	}
+
+	public Calendar selectOneCalendar(int calNo) {
+		return sqlSession.selectOne("calendar.selectOneCalendar", calNo);
+	}
 }
