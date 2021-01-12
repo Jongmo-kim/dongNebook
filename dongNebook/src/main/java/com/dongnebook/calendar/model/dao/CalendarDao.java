@@ -27,7 +27,15 @@ public class CalendarDao {
 		return sqlSession.selectOne("calendar.maxCalendarNo");
 	}
 
-	public Calendar selectOneCalendar(int calNo) {
-		return sqlSession.selectOne("calendar.selectOneCalendar", calNo);
+	public Calendar selectOneCalendar(int calendarNo) {
+		return sqlSession.selectOne("calendar.selectOneCalendar", calendarNo);
+	}
+
+	public int deleteCalendar(int calendarNo) {
+		return sqlSession.delete("calendar.deleteCalendar", calendarNo);
+	}
+
+	public int updateCalendar(Calendar c) {
+		return sqlSession.update("calendar.updateCalendar", c);
 	}
 }

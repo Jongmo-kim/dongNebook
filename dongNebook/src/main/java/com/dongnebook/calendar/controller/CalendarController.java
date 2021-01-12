@@ -4,9 +4,11 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dongnebook.calendar.model.service.CalendarService;
@@ -29,18 +31,22 @@ public class CalendarController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/insertCalendar.do", produces = "application/json;charset=utf-8")
-	public String insertCalendar(String title, Date start, Date end, Model model) {
-		System.out.println(title);
+	public String insertCalendar(String title, @DateTimeFormat(pattern="yyyy-MM-dd") Date start, @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") Date end, Model model) {
+		System.out.println(title); 
 		System.out.println(start);
 		System.out.println(end);
 		//여기까지 잘 넘어옴
+		
 		Calendar c = new Calendar();
 		c.setCalendarTitle(title);
 		c.setCalendarStartDate(start);
 		c.setCalendarEndDate(end);
+		
 		int result = service.insertCalendar(c);
-		int calNo = service.maxCalendarNo();
-		Calendar cal = service.selectOneCalendar(calNo);
+		int calendarNo = service.maxCalendarNo();
+		//추가한 캘린더 객체 가져오기
+		Calendar cal = service.selectOneCalendar(calendarNo);
+		
 		JsonObject obj = new JsonObject();
 		if(result>0) {
 			obj.addProperty("no", cal.getCalendarNo());
@@ -51,6 +57,33 @@ public class CalendarController {
 		} else {
 			return null;
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/deleteCalendar.do")
+	public String deleteCalendar(int calendarNo) {
+		int result = service.deleteCalendar(calendarNo);
+		if(result>0) {
+			return "1";
+		} else {
+			return "-1";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/updateCalendar.do")
+	public String updateCalendar(int calendarNo, String title, Date start, Date end) {
+		Calendar c = new Calendar();
+		c.setCalendarNo(calendarNo);
+		c.setCalendarTitle(title);
+		c.setCalendarStartDate(start);
+		c.setCalendarEndDate(end);
 		
+		int result = service.updateCalendar(c);
+		if(result>0) {
+			return "1";
+		} else {
+			return "-1";
+		}
 	}
 }

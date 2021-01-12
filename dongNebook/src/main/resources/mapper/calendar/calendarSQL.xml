@@ -24,4 +24,10 @@
 	<select id="maxCalendarNo" resultType="_int">
 		select max(calendar_no) from calendar
 	</select>
+	<delete id="deleteCalendar">
+		delete from calendar where calendar_no = #{_int}
+	</delete>
+	<update id="updateCalendar" parameterType="calendar">
+		update calendar set calendar_title=#{calendarTitle}, calendar_startdate=#{calendarStartDate}, calendar_enddate=#{calendarEndDate} where calendar_no=#{calendarNo}
+	</update>
 </mapper>
