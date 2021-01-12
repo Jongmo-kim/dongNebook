@@ -2,10 +2,14 @@ package com.dongnebook.calendar.model.vo;
 
 import java.sql.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Calendar {
 	private int calendarNo;
 	private String calendarTitle;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date calendarStartDate;
+	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	private Date calendarEndDate;
 	public Calendar() {
 		super();

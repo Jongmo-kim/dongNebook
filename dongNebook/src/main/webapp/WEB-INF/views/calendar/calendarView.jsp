@@ -23,9 +23,9 @@
 		//커스텀 버튼
 		customButtons: {
 		    myCustomButton: {
-		      text: '커스텀 버튼',
+		      text: 'eventObj',
 		      click: function() {
-		        window.open("https://fullcalendar.io/docs/customButtons");
+		        window.open("https://fullcalendar.io/docs/event-object");
 				}
 			}
 		},
@@ -62,15 +62,53 @@
 	      ],
 			//캘린더 날짜 클릭
 			dateClick: function(info) {
-				//alert('Clicked on: ' + info.dateStr);
+				//dateStr : 클릭한 td의 날짜를 받아옴
 				var date = info.dateStr;
-				$('#addCalendar').modal(); 
+				$('#myModal').modal(); 
+				
+				$('#insertCalendar').show();
+				$('#updateCalendar').hide();
+				
 				$("#calendarStartDate").val(date);
-				$("#calendarEndDate").val(date);
+				$("#calendarEndDate").val(date);				
+
+				$(".modal-title").html('새로운 일정');
 			},
  	      //일정 수정
  	      eventClick: function (info) {
-	          editEvent(info);
+ 	    	//start -> Mon Jan 11 2021 00:00:00 GMT+0900 형태
+ 	    	//startStr -> 2021-01-11 형태
+ 	        
+ 	        
+ 	        console.log("title : "+info.event.title);
+			console.log("id : "+info.event.id);
+			console.log("start : "+info.event.startStr);
+			console.log("end : "+info.event.endStr);
+			
+			var title = info.event.title;
+			var start = info.event.startStr;
+			var end = info.event.endStr;
+			
+			//info.event.end : 만약 end가 null -> 하루짜리 일정이라면 끝나는 날짜와 시작 날짜를 같게 함
+			//info.event.endStr : 만약 길이가 10 미만이라면(형태가 yyyy-mm-dd 형태가 아니라면)
+			if(end.length < 10){	
+				end = start;
+			}
+			console.log("end : "+end);
+			
+			$('#myModal').modal(); 
+			$(".modal-title").html('일정 수정');
+			$('#updateCalendar').show();
+			$('#insertCalendar').hide();
+			
+			$("#calendarTitle").val(title);
+			$("#calendarStartDate").val(start);
+			$("#calendarEndDate").val(end);
+			
+			//updateBtn과 deleteBtn에 해당 event의 id값을 넣어둔다.
+			//두개 같은 id가 들어가는데 외우기 쉽게 각각의 버튼에 넣어둠
+			$("#deleteBtn").val(info.event.id);
+			$("#updateBtn").val(info.event.id);
 	      }
 	    });
 	    calendar.render();
@@ -96,13 +134,14 @@
 
 	<!-- Button to Open the Modal -->
 	<!-- The Modal -->
-	<div class="modal fade" id="addCalendar">
+	<div class="modal fade" id="myModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 
 				<!-- Modal Header -->
 				<div class="modal-header">
-					<h4 class="modal-title">일정 추가</h4>
+					<!-- 모달 Title. -->
+					<h4 class="modal-title"></h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 
@@ -132,14 +171,14 @@
 				</div>
 
 				<!-- Modal footer -->
-				<div class="modal-footer addCalendar">
+				<div class="modal-footer" id="insertCalendar">
 					<button type="button" class="btn btn-default" data-dismiss="modal" style="border: 1px solid #cecece">취소</button>
 					<button type="button" class="btn btn-primary" onclick="insertCalendar();">저장</button>
 				</div>
-				<div class="modal-footer updateCalendar">
+				<div class="modal-footer" id="updateCalendar">
 					<button type="button" class="btn btn-default" data-dismiss="modal" style="border: 1px solid #cecece">취소</button>
-					<button type="button" class="btn btn-danger" onclick="deleteCalendar();">삭제</button>
-					<button type="button" class="btn btn-primary" onclick="updateCalendar();">수정</button>
+					<button type="button" class="btn btn-danger" id="deleteBtn" onclick="deleteCalendar();">삭제</button>
+					<button type="button" class="btn btn-primary" id="updateBtn" onclick="updateCalendar();">수정</button>
 				</div>
 
 			</div>
@@ -154,7 +193,11 @@
 		function insertCalendar(){
 			var title = $("#calendarTitle").val();
 			var start = $("#calendarStartDate").val();
-			var end = $("#calendarEndDate").val();
+			var endDate = $("#calendarEndDate").val();
+			var end = new Date(endDate);	//var endDate = new Date(end + 'T23:59:59'); // 입력받은 날짜의 시간을 23:59:59로 바꿔줌
+			end.setHours(23);
+			end.setMinutes(59);
+			end.setSeconds(59);
 			
 			$.ajax({
 				url : "/calendar/insertCalendar.do",
@@ -165,23 +208,81 @@
 				success:function(data){
 					if(data!=null){
 						location.reload();
+					} else {
+						alert("일정 등록 실패");
 					}				
 				},
 				error:function(){
-					alert("일정 등록 실패");
+					alert("ajax error");
 				}
 			});
-			$('#addCalendar').modal('hide'); 
+			$('#myModal').modal('hide'); 
 		}
 		
 		function editEvent(info) {
-			//console.log(info.event);
-			console.log(info.event.title);
-			console.log(info.event.id);
+			//console.log(info.event); //x
 			
-			
+			//console.log(info.event.title);
+			//console.log(info.event.id);
 		}
 		
+		function deleteCalendar(){
+			var result = confirm("해당 일정을 삭제하시겠습니까?");
+			if(result){
+				var calendarNo = $("#deleteBtn").val();
+				
+				$.ajax({
+					url : "/calendar/deleteCalendar.do",
+					type : "get",
+					data : {calendarNo : calendarNo},
+					success: function(data){
+						if(data>0){
+							location.reload();	
+							alert("일정 삭제 성공");
+						} else {
+							alert("일정 삭제 실패");
+						}
+					}, 
+					error:function(){
+						alert("ajax error");
+					}
+				});
+			}
+			
+			$('#myModal').modal('hide'); 
+		}
+		
+		function updateCalendar(){
+			var calendarNo = $("#updateBtn").val();
+			var title = $("#calendarTitle").val();
+			var start = $("#calendarStartDate").val();
+			var end = $("#calendarEndDate").val();
+			console.log("############updateCalendar############");
+			console.log(calendarNo);
+			console.log(title);
+			console.log(start);
+			console.log(end);
+			$.ajax({
+				url : "/calendar/updateCalendar.do",
+				type : "get",
+				data : {calendarNo:calendarNo,
+						title:title,
+						start:start,
+						end:end},
+				success:function(data){
+					if(data>0){
+						alert("일정 수정 성공");
+						location.reload();	
+					} else {
+						alert("일정 삭제 실패");
+					}
+				}, 
+				error:function(){
+					alert("ajax error");
+				}
+			});
+			$('#myModal').modal('hide'); 
+		}
 	</script>
 </body>
 </html>
