@@ -1,3 +1,26 @@
+$(function(){
+	const inputTag = $("#searchFrm");
+	$(inputTag).on('keyup',searchFrmKeyupFunc);
+});
+
+function searchFrmKeyupFunc(){
+	const inputVal = $(this).val();
+	if(inputVal.length > 2){
+		getAutocompleteBooks(inputVal);
+	}
+}
+
+function getAutocompleteBooks(inputVal){
+	$.ajax({
+		url : "/book/autocomplete.do",
+		type :"get",
+		data : {inputVal : inputVal},
+		success: setAutocompleteBooks
+	})
+}
+function setAutocompleteBooks(data){
+	console.log(data);
+}
 function bookmarkChkBox(chk,id,isbn){
 			console.log(isbn);
 			if(chk){

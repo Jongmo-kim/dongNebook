@@ -2,16 +2,20 @@ package com.dongnebook.book.controller;
 
 import java.util.ArrayList;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dongnebook.book.model.service.BookService;
 import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.book.model.vo.BookPageData;
+import com.dongnebook.common.hangulTrie;
+import com.dongnebook.common.hangulTrie.trieNode;
 import com.dongnebook.user.model.vo.User;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -26,6 +30,23 @@ import com.google.gson.JsonParser;
 public class BookController {
 	@Autowired
 	private BookService service;
+	
+	private hangulTrie trie;
+	
+	BookController(){
+		trie = new hangulTrie();
+	}
+	/*
+	 * 자동완성을 위한 메소드
+	 * sql을 조회하여 오는것보단 차라리 서버를 시작할때 저장된 모든 북을 가져온다.
+	 */
+	@PostConstruct
+	public void booklistInit() {
+		ArrayList<Book> bookList = service.selectBookByKeyword("1", "전체", 1);
+		for(Book b  : bookList) {
+			trie.insert(b.getBookName());
+		}
+	}
 	
 	@RequestMapping("/insertAsJson")
 	public String insert(Book b, Model model,String item) {
@@ -105,5 +126,15 @@ public class BookController {
 		model.addAttribute("loc", "/");
 		
 		return "common/msg";
+	}
+	 
+	@ResponseBody
+	@RequestMapping("/autocomplete.do")
+	public String autocomplete(String inputVal) {
+		ArrayList<trieNode> nodes = trie.findAllLeafsInclude(inputVal);
+		for(trieNode n : nodes) {
+			System.out.println(n.getCurrString());
+		}
+		return "1";
 	}
 }
