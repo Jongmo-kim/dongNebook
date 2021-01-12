@@ -180,7 +180,7 @@
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">승인하시겠습니까?</h4>
+          <h4 class="modal-title"></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
@@ -214,12 +214,14 @@
           var list = new Array();
           $(".sb").show();
           $(".db").hide();
+          
       	var str = '';
           $(".chk:checked").each(function(idx, item){
             	str += "<span class='bn'>"+ $(item).parent().parent().find("td").eq(2).find("p").eq(0).html()+"&nbsp"+"</span>";
             	str += $(item).parent().parent().find("td").eq(2).find("p").eq(1).html()+"<br>";
             
           });
+          $(".modal-title").html("승인하시겠습니까?");
           $(".result").html(str);
         });
     $(".deleteB").click(function() {
@@ -231,6 +233,7 @@
           	str += $(item).parent().parent().find("td").eq(2).find("p").eq(1).html()+"<br>";
           
         });
+        $(".modal-title").html("반려하시겠습니까?");
         $(".result").html(str);
       });
     });
