@@ -32,15 +32,17 @@
       dayMaxEvents: true, // allow "more" link when too many events
       events: [
         <%for (int i = 0; i < list.size(); i++) {
-	Calendar c = list.get(i);
-	if (i == list.size()) {%>
+			Calendar c = list.get(i);
+			if (i == list.size()) {%>
 				{
+					no : <%=c.getCalendarNo()%>,
 			    	title : '<%=c.getCalendarTitle()%>',
 			    	start : '<%=c.getCalendarStartDate()%>',
 			    	end : '<%=c.getCalendarEndDate()%>'
 			    }	
         	<%} else {%>
 	        	{
+	        		no : <%=c.getCalendarNo()%>,
 			    	title : '<%=c.getCalendarTitle()%>',
 			    	start : '<%=c.getCalendarStartDate()%>',
 			    	end : '<%=c.getCalendarEndDate()%>'
@@ -48,6 +50,7 @@
         	<%}%>
         <%}%>
       ],
+      //이벤트가 아니라 VO 객체에서 값을 꺼내오기
       eventClick: function (event, jsEvent, view) {
           editEvent(event);
       }
@@ -56,18 +59,14 @@
   });
 	function editEvent(event, element, view) {
 		var data = event.event._def;
-		//console.log(event);
-		console.log(data.title)
+		console.log($(this).no);
+		console.log(data.title);
 	}
 </script>
 <style>
 #calendar {
 	max-width: 1100px;
 	margin: 0 auto;
-}
-
-.modal-body {
-	height: 500px;
 }
 
 .fc-day:hover {
@@ -98,35 +97,69 @@
 				</div>
 
 				<!-- Modal body -->
-				<div class="modal-body"></div>
+				<div class="modal-body">
+					<div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="calendarTitle">일정명</label>
+                                <input class="inputModal" type="text" name="calendarTitle" id="calendarTitle" required="required" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="calendarStartDate">시작</label>
+                                <input class="inputModal" type="date" name="calendarStartDate" id="calendarStartDate" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="calendarEndDate">끝</label>
+                                <input class="inputModal" type="date" name="calendarEndDate" id="calendarEndDate" />
+                            </div>
+                        </div>
+				</div>
 
 				<!-- Modal footer -->
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal"
 						style="border: 1px solid #cecece">취소</button>
-					<button type="button" class="btn btn-primary" id="saveEvent">저장</button>
+					<button type="button" class="btn btn-primary" onclick="saveCalendar();">저장</button>
 				</div>
 
 			</div>
 		</div>
 	</div>
 
-
-
-
-
-
 	<div id='calendar'></div>
 	<br>
 	<br>
 	<br>
 	<script>
-		$(".test").click(function(){
+		function saveCalendar(){
+			var title = $("#calendarTitle").val();
+			var start = $("#calendarStartDate").val();
+			var end = $("#calendarEndDate").val();
+			
+			$.ajax({
+				url : "/calendar/insertCalendar.do",
+				type : "get",
+				data : {title:title,
+						start:start,
+						end:end},
+				success:function(data){
+					if(data!=null){
+						location.reload();
+					}				
+				},
+				error:function(){
+					alert("일정 등록 실패");
+				}
+			});
+			$('#myModal').modal('hide'); 
+		}
+	
+		$(".fc-body").on('click', function () {
 			$('#myModal').modal(); 
-		});
-		$(".fc-daygrid-day-frame").click(function(){
-			$("#myModal").css('display', 'block');
-		});
+        });
 	</script>
 </body>
 </html>
