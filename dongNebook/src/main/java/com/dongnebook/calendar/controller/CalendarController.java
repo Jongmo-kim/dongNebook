@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dongnebook.calendar.model.service.CalendarService;
 import com.dongnebook.calendar.model.vo.Calendar;
@@ -26,7 +27,7 @@ public class CalendarController {
 		return "calendar/calendarView";
 	}
 	
-	
+	@ResponseBody
 	@RequestMapping(value = "/insertCalendar.do", produces = "application/json;charset=utf-8")
 	public String insertCalendar(String title, Date start, Date end, Model model) {
 		System.out.println(title);
@@ -38,14 +39,17 @@ public class CalendarController {
 		c.setCalendarStartDate(start);
 		c.setCalendarEndDate(end);
 		int result = service.insertCalendar(c);
+		int calNo = service.maxCalendarNo();
+		Calendar cal = service.selectOneCalendar(calNo);
 		JsonObject obj = new JsonObject();
 		if(result>0) {
-			obj.addProperty("title", title);
-			obj.addProperty("start", String.valueOf(start));
-			obj.addProperty("end", String.valueOf(end));
+			obj.addProperty("no", cal.getCalendarNo());
+			obj.addProperty("title", cal.getCalendarTitle());
+			obj.addProperty("start", String.valueOf(cal.getCalendarStartDate()));
+			obj.addProperty("end", String.valueOf(cal.getCalendarEndDate()));
 			return new Gson().toJson(obj);
 		} else {
-			return "";
+			return null;
 		}
 		
 	}

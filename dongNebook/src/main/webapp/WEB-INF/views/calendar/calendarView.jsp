@@ -35,12 +35,14 @@
 			Calendar c = list.get(i);
 			if (i == list.size()) {%>
 				{
+					no : <%=c.getCalendarNo()%>,
 			    	title : '<%=c.getCalendarTitle()%>',
 			    	start : '<%=c.getCalendarStartDate()%>',
 			    	end : '<%=c.getCalendarEndDate()%>'
 			    }	
         	<%} else {%>
 	        	{
+	        		no : <%=c.getCalendarNo()%>,
 			    	title : '<%=c.getCalendarTitle()%>',
 			    	start : '<%=c.getCalendarStartDate()%>',
 			    	end : '<%=c.getCalendarEndDate()%>'
@@ -48,6 +50,7 @@
         	<%}%>
         <%}%>
       ],
+      //이벤트가 아니라 VO 객체에서 값을 꺼내오기
       eventClick: function (event, jsEvent, view) {
           editEvent(event);
       }
@@ -56,8 +59,8 @@
   });
 	function editEvent(event, element, view) {
 		var data = event.event._def;
-		//console.log(event);
-		console.log(data.title)
+		console.log($(this).no);
+		console.log(data.title);
 	}
 </script>
 <style>
@@ -126,11 +129,6 @@
 		</div>
 	</div>
 
-
-
-
-
-
 	<div id='calendar'></div>
 	<br>
 	<br>
@@ -149,11 +147,7 @@
 						end:end},
 				success:function(data){
 					if(data!=null){
-						event.push({
-							title : data.title,
-							start : data.start , 
-							end : data.end
-						});
+						location.reload();
 					}				
 				},
 				error:function(){
@@ -163,12 +157,9 @@
 			$('#myModal').modal('hide'); 
 		}
 	
-		$(".test").click(function(){
+		$(".fc-body").on('click', function () {
 			$('#myModal').modal(); 
-		});
-		$(".fc-daygrid-day-frame").click(function(){
-			$('#myModal').modal(); 
-		});
+        });
 	</script>
 </body>
 </html>
