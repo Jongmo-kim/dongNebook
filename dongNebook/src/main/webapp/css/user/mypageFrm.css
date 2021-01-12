@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 .submitBtn{
 	text-align:center;
 	padding-top: 25px;
@@ -9,6 +8,8 @@
 	height: 50px;
 	
 }
-.searchFrm{
-	text-align:right;
+#searchBtn{
+	position: absolute;
+ 	top: 5.5px; 
+	right: -100px;
 }
