@@ -40,5 +40,9 @@ public class BookmarkDao {
 		
 		return session.selectOne("book.searchBookList", isbn13);
 	}
+
+	public int rentalCount(int userNo) {
+		return session.selectOne("book.rentalCount",userNo);
+	}
 	
 }
