@@ -66,6 +66,7 @@
            var date = info.dateStr;
            $('#myModal').modal(); 
            $("#calendarStartDate").val(date);
+           $("#calendarEndDate").val(date);
         },
          //일정 수정
          eventClick: function (info) {
