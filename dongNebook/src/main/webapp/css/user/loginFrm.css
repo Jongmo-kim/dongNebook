@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.submitBtn{
+	text-align:center;
+	padding-top: 25px;
+}
+.submitBtn > button{
+	width:33%;
+	height: 50px;
+	
+}
+.searchFrm{
+	text-align:right;
+}

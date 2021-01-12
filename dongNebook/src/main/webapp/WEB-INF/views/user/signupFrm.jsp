@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/css/user/inputBox.css?v=<%=System.currentTimeMillis()%>">
 <script type="text/javascript" src="/js/user/inputBox.js?v=<%=System.currentTimeMillis()%>"></script>
 <link rel="stylesheet" href="/css/user/signupFrm.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" href="/css/common/button.css">
 <%-- <script type="text/javascript" src="/js/user/signupFrm.js?v=<%=System.currentTimeMillis()%>"></script> --%>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
@@ -23,7 +24,6 @@
         }
     }).open();
 	}
-
 </script>
 </head>
 <body>
@@ -31,7 +31,7 @@
 	<form action="/user/signup.do" method="post">
 		<h1>회원가입</h1><hr>
 		 <div class="container">
-	    <h2>Get it hair</h2>
+	    <h2>동서남북 도서관</h2>
 	    <h3>회원가입</h3>
 	    <p>이미 동서남북의 회원이신가요? 
 	    <a href="/user/idSearchFrm.do">ID</a> / <a href="/user/pwChangeFrm.do">PW</a>찾기</p>
@@ -88,25 +88,23 @@
 	        <div class="name inputBox">
 	            <input type="text" class="form-textbox readonly" value=" "readonly name="addrPostcode">
 	            <span class="form-label label-focused">Zipcode</span>
-	            <button class="btn btn-primary" id="searchBtn" type="button" onclick="addrSearch()">주소검색</button>
+	            <button class="btn btn-outline-primary" id="searchBtn" type="button" onclick="addrSearch()">주소검색</button>
 	        </div>
 	        
 	        <div class="name inputBox">
 	            <input type="text" class="form-textbox" name="addrDetail">
 	            <span class="form-label">상세주소</span>
 	        </div>
-	        	카테고리
-		<select name="categoryName">
-			<option value="컴퓨터">컴퓨터</option>
-			<option value="사회">사회</option>
-		</select>
-		<div class="submitBtn" style="text-align:center;">
-			<button>회원가입하기</button>
-		</div>
-		
+	    	<hr>
+	    	
+			<div class="submitBtn" style="text-align:center;">
+				<button class="btn btn-outline-primary">
+				회원가입하기</button>
+			</div>
+			
 		</div>
 		
 	</form>
-	
+	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>

@@ -38,19 +38,18 @@ public class ProposalService {
 		int pageNo = reqPage-2;
 		if(reqPage <=3) {
 			pageNo = 1;
-		}else if(pageNo == 4){
-			pageNo = 2;
-		}else if(pageNo> totalPage-4) {
+		}else if(pageNo > totalPage-4) {
 			pageNo = totalPage-4;
 		}
+		
 		if(pageNo != 1) {
-			pageNavi += "<a class= 'btn' href='/proposal/proposalList.do?reqPge="+(pageNo-1)+"'>이전</a>'";
+			pageNavi += "<li class='page-item'><a class='btn page-link' href='/proposal/proposalList.do?reqPage="+(pageNo-1)+"'>이전</a>";
 		}
 		for(int i=0; i<pageNaviSize; i++) {
 			if(reqPage == pageNo) {
-				pageNavi += "<span class='selectPage'>"+pageNo+"</span>";
+				pageNavi += "<li class='page-item'><span class='selectPage page-link'>"+pageNo+"</span>";
 			}else {
-				pageNavi += "<a class='btn' href='/proposal/proposalList.do?reqPage="+(pageNo)+"'>"+pageNo+"</a>";
+				pageNavi += "<li class='page-item'><a class='btn page-link' href='/proposal/proposalList.do?reqPage="+pageNo+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 			if(pageNo > totalPage) {
@@ -58,7 +57,7 @@ public class ProposalService {
 			}
 		}
 		if(pageNo <= totalPage) {
-			pageNavi += "<a class='btn' href='/proposal/proposalList.do?reqPage="+(pageNo)+"'>다음</a>";
+			pageNavi += "<li class='page-item'><a class='btn page-link' href='/proposal/proposalList.do?reqPage="+(pageNo)+"'>다음</a>";
 		}
 		ProposalPageData ppd = new ProposalPageData(list, pageNavi);
 		return ppd;
