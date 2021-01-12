@@ -73,7 +73,7 @@
 					 -->
 				 </c:if>
 				 <!-- 여기는 북마크 전용 구간입니다. -->
-				<td>${b.bookName }</td>
+				<td><a href="/book/selectOneBook.do?bookNo=${b.bookNo}">${b.bookName }</a></td>
 				<td>${b.bookKind }</td>
 				<td>${b.bookWriter }</td>
 				<td>${b.bookPublisher }</td>

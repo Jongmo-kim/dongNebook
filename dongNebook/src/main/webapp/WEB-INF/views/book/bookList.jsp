@@ -19,7 +19,7 @@
 		</tr>
 		<c:forEach items="${list }" var ="b">
 			<tr>
-				<td>${b.bookName }</td><td>${b.bookKind }</td><td>${b.bookWriter }</td><td>${b.bookPublisher}</td><td>${b.bookIntroduce }</td><td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="updateInform(${b.bookNo },'${b.bookName}','${b.bookKind}','${b.bookWriter}','${b.bookPublisher}','${b.bookIntroduce}')">
+				<td><a href="/book/selectOneBook.do?bookNo=${b.bookNo}">${b.bookName }</a></td><td>${b.bookKind }</td><td>${b.bookWriter }</td><td>${b.bookPublisher}</td><td>${b.bookIntroduce }</td><td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="updateInform(${b.bookNo },'${b.bookName}','${b.bookKind}','${b.bookWriter}','${b.bookPublisher}','${b.bookIntroduce}')">
     수정
  				</button></td><td><a href="/book/bookDelete.do?bookNo=${b.bookNo}">삭제</td>			
 			</tr>

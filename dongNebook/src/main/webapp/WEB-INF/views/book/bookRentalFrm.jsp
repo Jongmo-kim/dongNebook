@@ -12,6 +12,8 @@
 	<jsp:include page="/views/common/header.jsp" />
 	
 	<h1 style="font-size:30px;">책 대출</h1>
+	<c:if test="${loginUser!=null }">
 
+ 	</c:if>
 </body>
 </html>

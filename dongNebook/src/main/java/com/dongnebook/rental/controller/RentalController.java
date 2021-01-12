@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dongnebook.rental.model.service.RentalService;
+import com.dongnebook.rental.model.vo.BookRentalReserve;
 import com.dongnebook.rental.model.vo.RentalLoc;
 
 @Controller
@@ -38,7 +39,27 @@ public class RentalController {
 		System.out.println(lastLoc.getPhone());
 		
 		return "common/msg";
-		
+	}
+	@RequestMapping("/bookRental.do")
+	public String bookRental( Model model, int[] bookNo) {
+		for(int i : bookNo) {
+			System.out.println(i);			
+		}
+		return "book/bookRental";
+	}
+	@RequestMapping("/insertReserve.do")
+	public String insertReserve(Model model, int bookNo, int userNo) {
+		BookRentalReserve reserve = new BookRentalReserve();
+		reserve.setBookNo(bookNo);
+		reserve.setUserNo(userNo);
+		int result = service.insertReserve(reserve);
+		if(result>0) {
+			model.addAttribute("msg","예약 성공");
+		}else {
+			model.addAttribute("msg","예약 실패");
+		}
+		model.addAttribute("loc","/");
+		return "common/msg";
 	}
 	
 }

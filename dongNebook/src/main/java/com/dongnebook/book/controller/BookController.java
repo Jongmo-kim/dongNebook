@@ -111,16 +111,4 @@ public class BookController {
 		model.addAttribute("b", book);
 		return "book/selectOneBook";
 	}
-	@RequestMapping("/bookRental.do")
-	public String bookRental( Model model, int[] bookNo) {
-		for(int i : bookNo) {
-			System.out.println(i);			
-		}
-		/*String[] books = request.getParameterValues("bookNo");
-		for(int i=0; i<books.length; i++) {
-			System.out.println(books[i]);
-		}
-		*/
-		return "book/bookRental";
-	}
 }

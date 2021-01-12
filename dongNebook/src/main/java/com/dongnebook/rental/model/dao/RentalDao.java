@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dongnebook.rental.model.vo.BookRentalReserve;
 import com.dongnebook.rental.model.vo.RentalLoc;
 
 @Repository
@@ -26,6 +27,10 @@ public class RentalDao {
 		}
 		
 		return loc;
+	}
+
+	public int insertReserve(BookRentalReserve reserve) {
+		return session.insert("book.insertReserve", reserve);
 	}
 	
 }
