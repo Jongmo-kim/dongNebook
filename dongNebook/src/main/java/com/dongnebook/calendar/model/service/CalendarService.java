@@ -25,7 +25,15 @@ public class CalendarService {
 		return dao.maxCalendarNo();
 	}
 
-	public Calendar selectOneCalendar(int calNo) {
-		return dao.selectOneCalendar(calNo);
+	public Calendar selectOneCalendar(int calendarNo) {
+		return dao.selectOneCalendar(calendarNo);
+	}
+
+	public int deleteCalendar(int calendarNo) {
+		return dao.deleteCalendar(calendarNo);
+	}
+
+	public int updateCalendar(Calendar c) {
+		return dao.updateCalendar(c);
 	}
 }
