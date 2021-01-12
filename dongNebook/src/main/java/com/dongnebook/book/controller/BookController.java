@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
-import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +14,6 @@ import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.book.model.vo.BookPageData;
 import com.dongnebook.user.model.vo.User;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
@@ -109,9 +107,20 @@ public class BookController {
 	}
 	@RequestMapping("/selectOneBook.do")
 	public String selectOneBook(Model model, int bookNo) {
-		System.out.println(bookNo);
 		Book book = service.selectOneBook(bookNo);
-		
+		model.addAttribute("b", book);
 		return "book/selectOneBook";
+	}
+	@RequestMapping("/bookRental.do")
+	public String bookRental( Model model, int[] bookNo) {
+		for(int i : bookNo) {
+			System.out.println(i);			
+		}
+		/*String[] books = request.getParameterValues("bookNo");
+		for(int i=0; i<books.length; i++) {
+			System.out.println(books[i]);
+		}
+		*/
+		return "book/bookRental";
 	}
 }
