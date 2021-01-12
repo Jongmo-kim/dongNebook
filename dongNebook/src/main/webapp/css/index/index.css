@@ -19,7 +19,7 @@
         .imgMain>div:nth-child(2)>input:first-child {
             float: left;
             width: 50%;
-            height: 40px;
+            height: 45px;
             outline: none;
             background-color: rgb(255, 255, 255);
             border: none;
@@ -29,7 +29,7 @@
         }
 
         .imgMain>div:nth-child(2)>input:last-child {
-            height: 42px;
+            height: 45px;
             width: 45px;
             vertical-align: top;
             background-color: rgb(255, 255, 255);
@@ -63,7 +63,7 @@
             width: 93%;
             margin: 0 auto;
             border: 1px solid gray;
-            height: 250px;
+            height: 350px;
 
         }
 
@@ -91,7 +91,6 @@
             font-size: 20px;
             box-sizing: border-box;
         }
-
         .book li {
             list-style-type: none;
         }
@@ -105,16 +104,28 @@
             padding: 0;
             justify-content: center;
             display: flex;
+            margin:0;
         }
 
         .bookContent>ul>li {
             width: 150px;
-            height: 150px;
-            border: 1px solid black;
+            height: 250px;
             margin-top: 20px;
-            margin-right: 30px;
+            margin-right: 25px;
+            margin-left: 25px;
         }
-
+		.bookImg{
+		border: 1px solid black;
+		height: 200px;
+		margin-bottom : 10px;
+		}
+		.info{
+		border: 1px solid black;
+		height: 50px;
+		}
+		.info>p{
+		margin-bottom : 0;
+		}
         footer {
             margin: 0 auto;
             width: 1200px;
