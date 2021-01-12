@@ -66,6 +66,7 @@
 				var date = info.dateStr;
 				$('#addCalendar').modal(); 
 				$("#calendarStartDate").val(date);
+				$("#calendarEndDate").val(date);
 			},
  	      //일정 수정
  	      eventClick: function (info) {
@@ -94,7 +95,6 @@
 	<jsp:include page="/views/common/header.jsp" />
 
 	<!-- Button to Open the Modal -->
- 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Open modal</button>
 	<!-- The Modal -->
 	<div class="modal fade" id="addCalendar">
 		<div class="modal-dialog">
