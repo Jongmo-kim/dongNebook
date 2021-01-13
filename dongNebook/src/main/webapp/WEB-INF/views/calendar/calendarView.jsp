@@ -43,7 +43,7 @@
 	    	  //일정 불러오기
 	        <%for (int i = 0; i < list.size(); i++) {
 				Calendar c = list.get(i);
-				if (i == list.size()) {%>
+				if (i == list.size()-1) {%>
 					{
 						id : <%=c.getCalendarNo()%>,
 				    	title : '<%=c.getCalendarTitle()%>',
@@ -103,8 +103,12 @@
 			$('#insertCalendar').hide();
 			
 			$("#calendarTitle").val(title);
-			$("#calendarStartDate").val(start);
-			$("#calendarEndDate").val(end);
+			var startDate = start.substr(0, 10);
+			var endDate = end.substr(0, 10);
+			console.log(startDate);
+			console.log(endDate);
+			$("#calendarStartDate").val(startDate);
+			$("#calendarEndDate").val(endDate);
 			
 			//updateBtn과 deleteBtn에 해당 event의 id값을 넣어둔다.
 			//두개 같은 id가 들어가는데 외우기 쉽게 각각의 버튼에 넣어둠
@@ -120,13 +124,18 @@
 	max-width: 1100px;
 	margin: 0 auto;
 }
-
+.fc-event-time{
+   display : none;
+}
 .fc-day:hover {
 	background: #EEF7FF;
 	cursor: pointer;
 	-webkit-transition: all 0.2s linear;
 	-o-transition: all 0.2s linear;
 	transition: all 0.2s linear;
+}
+.fc-list-event-time{
+	display : none;
 }
 </style>
 </head>
