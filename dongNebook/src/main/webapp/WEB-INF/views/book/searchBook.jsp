@@ -42,6 +42,7 @@
 			</form>
 		</div>
 		<div class="guessedBox">
+			
 		</div>
 	</div>
 		<table>
