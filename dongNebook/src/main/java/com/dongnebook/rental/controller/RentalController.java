@@ -1,10 +1,13 @@
 package com.dongnebook.rental.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.rental.model.service.RentalService;
 import com.dongnebook.rental.model.vo.BookRentalReserve;
 import com.dongnebook.rental.model.vo.RentalLoc;
@@ -42,8 +45,12 @@ public class RentalController {
 	}
 	@RequestMapping("/bookRental.do")
 	public String bookRental( Model model, int[] bookNo) {
-		for(int i : bookNo) {
-			System.out.println(i);			
+		ArrayList<Book> list = null;
+		if(bookNo.length>0) {
+			for(int i : bookNo) {
+				System.out.println(i);
+			}			
+			list = service.selectBooks(bookNo);
 		}
 		return "book/bookRental";
 	}

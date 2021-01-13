@@ -108,6 +108,9 @@
 		insert into book_rental_reserve values(book_rental_reserve_seq.nextval,#{bookNo},#{userNo})
 	</insert>
 	<select id="rentalCount" parameterType="_int" resultType="_int">
-	select count(*) from book_rental where user_no = #{userNo}
+		select count(*) from book_rental where user_no = #{userNo}
+	</select>
+	<select id="selectBooks" parameterType="_int" resultType="book">
+		select * from book where book_no=#{bookNo} or book_no=#{bookNo} or book_no=#{bookNo};
 	</select>
 </mapper>

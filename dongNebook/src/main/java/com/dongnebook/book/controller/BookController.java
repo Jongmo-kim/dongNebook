@@ -127,15 +127,12 @@ public class BookController {
 		
 		return "common/msg";
 	}
-<<<<<<< HEAD
 	@RequestMapping("/selectOneBook.do")
 	public String selectOneBook(Model model, int bookNo) {
 		Book book = service.selectOneBook(bookNo);
 		model.addAttribute("b", book);
 		return "book/selectOneBook";
 	}
-=======
-	 
 	@ResponseBody
 	@RequestMapping("/autocomplete.do")
 	public JsonArray autocomplete(String inputVal) {
@@ -147,7 +144,6 @@ public class BookController {
 		return arr;
 	}
 	
->>>>>>> develop/0.0.0
 	@RequestMapping("/searchInAladin")
 	public String searchInAladin() {
 		return "book/searchInAladin";
