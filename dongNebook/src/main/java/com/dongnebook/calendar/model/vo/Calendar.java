@@ -1,21 +1,15 @@
 package com.dongnebook.calendar.model.vo;
 
-import java.sql.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class Calendar {
 	private int calendarNo;
 	private String calendarTitle;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date calendarStartDate;
-	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
-	private Date calendarEndDate;
+	private String calendarStartDate;
+	private String calendarEndDate;
 	public Calendar() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Calendar(int calendarNo, String calendarTitle, Date calendarStartDate, Date calendarEndDate) {
+	public Calendar(int calendarNo, String calendarTitle, String calendarStartDate, String calendarEndDate) {
 		super();
 		this.calendarNo = calendarNo;
 		this.calendarTitle = calendarTitle;
@@ -34,16 +28,16 @@ public class Calendar {
 	public void setCalendarTitle(String calendarTitle) {
 		this.calendarTitle = calendarTitle;
 	}
-	public Date getCalendarStartDate() {
+	public String getCalendarStartDate() {
 		return calendarStartDate;
 	}
-	public void setCalendarStartDate(Date calendarStartDate) {
+	public void setCalendarStartDate(String calendarStartDate) {
 		this.calendarStartDate = calendarStartDate;
 	}
-	public Date getCalendarEndDate() {
+	public String getCalendarEndDate() {
 		return calendarEndDate;
 	}
-	public void setCalendarEndDate(Date calendarEndDate) {
+	public void setCalendarEndDate(String calendarEndDate) {
 		this.calendarEndDate = calendarEndDate;
 	}
 	@Override

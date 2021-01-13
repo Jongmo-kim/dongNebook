@@ -33,24 +33,18 @@ public class CalendarController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/insertCalendar.do", produces = "application/json;charset=utf-8")
-	public String insertCalendar(String title, @DateTimeFormat(pattern="yyyy-MM-dd") Date start, @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") Date end, Model model) {
+	public String insertCalendar(String title, String start, String end) {
 		System.out.println(title); 
 		System.out.println(start);
 		System.out.println(end);
 
-		/*
-		Date s = Date.valueOf(start);
-		Date e = Date.valueOf(end); -> 시간을 더했더니 Mon Jan 11 2021 00:00:00 GMT+0900 형태로 됨
-		
-
-		System.out.println("startClass>"+s.getClass());
-		System.out.println("endClass>"+e.getClass());
-		 */
 		
 		Calendar c = new Calendar();
 		c.setCalendarTitle(title);
-		c.setCalendarStartDate(start);
-		c.setCalendarEndDate(end);
+		//시간을 더해줌
+		c.setCalendarStartDate(start+" 00:00:00");
+		//시간을 이렇개 해주지 않으면 하루가 덜 출력됨
+		c.setCalendarEndDate(end+" 23:59:59");
 		
 		int result = service.insertCalendar(c);
 		int calendarNo = service.maxCalendarNo();
@@ -82,12 +76,14 @@ public class CalendarController {
 	
 	@ResponseBody
 	@RequestMapping("/updateCalendar.do")
-	public String updateCalendar(int calendarNo, String title, Date start, Date end) {
+	public String updateCalendar(int calendarNo, String title, String start, String end) {
 		Calendar c = new Calendar();
 		c.setCalendarNo(calendarNo);
 		c.setCalendarTitle(title);
-		c.setCalendarStartDate(start);
-		c.setCalendarEndDate(end);
+		//시간을 더해줌
+		c.setCalendarStartDate(start+" 00:00:00");
+		//시간을 이렇개 해주지 않으면 하루가 덜 출력됨
+		c.setCalendarEndDate(end+" 23:59:59");
 		
 		int result = service.updateCalendar(c);
 		if(result>0) {

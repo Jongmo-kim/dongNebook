@@ -194,13 +194,8 @@
 		function insertCalendar(){
 			var title = $("#calendarTitle").val();
 			var start = $("#calendarStartDate").val();
-			var endDate = $("#calendarEndDate").val();
-			var end = new Date(endDate);	//var endDate = new Date(end + 'T23:59:59'); // 입력받은 날짜의 시간을 23:59:59로 바꿔줌
-			end.setHours(23);
-			end.setMinutes(59);
-			end.setSeconds(59);
-			console.log("startType:"+jQuery.type(start));
-			console.log("endType:"+jQuery.type(end));
+			var end = $("#calendarEndDate").val();
+
 			$.ajax({
 				url : "/calendar/insertCalendar.do",
 				type : "get",
