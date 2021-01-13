@@ -839,6 +839,14 @@ body {
 .aladin-img img{
 	height:50px;
 }
+.page-link{
+	margin-left:0px;
+	color:none !important;
+	border:0px !important;
+}
+.pagination>li>.selectPage{
+	color:black;
+}
 </style>
 <body>
 <jsp:include page="/views/common/header.jsp" />
