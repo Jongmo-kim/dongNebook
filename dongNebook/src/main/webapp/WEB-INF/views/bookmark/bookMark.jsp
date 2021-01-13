@@ -8,9 +8,57 @@
 <title>Insert title here</title>
    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
 	<style>
-		
-	
-	
+		table{
+		margin : 0 auto;
+		margin-top : 50px;
+		border-top : 3px solid lightgray; 
+        border-bottom : 3px solid lightgray; 
+		text-align : center;
+		}
+        table>tbody>tr>td{
+            border-bottom: 1px solid lightgray;
+        }
+        table>tbody>tr:last-child>td{
+            border-bottom: none;
+        }
+		table>tbody>tr>td:first-child{
+			width:50px;
+		}
+	table>tbody>tr>td:nth-child(2){
+            height: 150px;
+			width:150px;
+		}
+		table>tbody>tr>td:nth-child(3){
+		text-align:left;
+			width:700px;
+		}
+        table>tbody>tr>td:nth-child(3)>a>p{
+			font-size: 18px;
+			color:#333333;
+			font-weight:bold;
+		}
+	table>tbody>tr>td:nth-child(3)>p:last-child{
+			font-size: 15px;
+			color : gray;
+		}
+		.button{
+         	text-align:center;
+         }
+         .rBtn{
+         	margin-top:50px;
+         	margin-bottom : 50px;
+         	width : 100px;
+         	height: 50px;
+         	border: 1px solid #3b8686;
+         	background-color:white;
+         	color : #404040;
+         	font-size : 18px;
+         	border-radius: 5px;
+         }
+         .rBtn:hover{
+         background-color: #3b8686;
+         color : white;
+         }
 	</style>
 
 </head>
@@ -18,58 +66,91 @@
 <body>
 	<jsp:include page="/views/common/header.jsp" />
 	
-	<h1 style="font-size:30px;">북마크</h1>
-	
-	<hr>
-	<form action="#" method="get">
-	<table border=1>
-		<tr>
-			<th>선택</th>
-			<th>이미지</th>
-			<th>책이름</th>
-			<th>저자</th>
-		</tr>
+	<table>
 				<c:forEach items="${bookList }" var ="b">
 			<tr>
-				<td><input type="checkbox" class="chk"  onClick="count_chk(this);">
-				<input type=hidden value="${b.bookNo }">
+				<td><input type="checkbox" class="chk" >
+				<input type=hidden class="bookNo" value="${b.bookNo }">
 				</td>
-				<td><img alt="${b.bookName }Image" src="${b.imageurl }"></td>
-				<td>${b.bookName }</td>
-				<td>${b.bookWriter }</td>
+				<td><a href="#"><img alt="${b.bookName }Image" src="${b.imageurl }"></a></td>
+				<td><a href="#"><p>${b.bookName }</p></a>
+					<p>${b.bookWriter }</p>
+				</td>
+				
 			</tr>
 		</c:forEach>
 	</table>
-	<button id="submit">체크된 값 </button>
-	<input type="submit">
-	<input type="reset" value="reset">
-	</form>
+	<input type="hidden" class="userNo" value="${loginUser.userNo}">
+	<div class="button">
+	<input type="button" class = "rBtn" onclick="rental();" value="대여하기">
+	</div>
 	<script>
     var maxChecked=3;
     var totalChecked = 0;
-    function count_chk(obj){
-     if(obj.checked){
-         totalChecked +=1;
-     }else{
-         totalChecked -=1;
-     }
-      if(totalChecked>maxChecked){
-          alert("최대 3권만 가능");
-          obj.checked = false;
-          totalChecked -=1;
-      }
-    }
-    $(function(){
-        $("#submit").click(function(){
-       var chkArr = new Array();
-       var chk = $("input[name=box]:checked");
-       $(".chk:checked").each(function() { 
-            chkArr.push($(this).next().val());
-           
-             });
-            alert(chkArr);
-   })
-       })
+    
+    
+    function rental(){
+    	var chkCount = $(".chk:checked").length;
+    	var userNo = $(".userNo").val();
+		$.ajax({
+    		url : "rentalCount.do",
+    		type : "post",
+    		data : {userNo : userNo},
+    		success : function(data){
+				if(data == "0"){
+					if(chkCount == 0){
+						alert("책 선택");
+					}else if(chkCount > 3){
+						alert("최대 3권 대여 가능");
+					}else{
+						rent();
+					}
+				}else if(data == "1"){
+					if(chkCount > 2){
+						alert("최대 2권 대여 가능");
+					}else if(chkCount == 0){
+						alert("책 선택");
+					}else{
+						rent();
+					}
+				}else if(data == "2"){
+					console.log(chkCount);
+					if(chkCount > 1){
+						alert("최대 1권 대여 가능");
+					}else if(chkCount == 0){
+						alert("책 선택");
+					}else{
+						rent();
+					}
+				}else if(data == "3"){
+					alert("이미 3권 대여 중");
+				}
+    		},
+    		error : function(data){
+    			alert("실패");
+    		}	
+    	});
+	}
+   	function rent(){
+   		var list = new Array();
+    	$(".chk:checked").each(function(idx,item){
+    		var rental = new Object();
+    		var userNo = $(".userNo").val();
+        	var bookNo = $(item).next().val();
+        	rental.UserNo = userNo;
+        	rental.bookNo = bookNo;
+        	list.push(rental);
+    	});
+    	console.log(list);
+   		$.ajax({
+   			url : "/insertLoc.do",
+   			type: "post",
+   			data : list,
+   			success : function(data){
+   				location.href="/";
+   			}
+   		});
+   	};
     
 	</script>
 </body>

@@ -139,4 +139,17 @@ public class BookController {
 		}
 		return arr;
 	}
+	
+	@RequestMapping("/searchInAladin")
+	public String searchInAladin() {
+		return "book/searchInAladin";
+	}
+	@ResponseBody
+	@RequestMapping(value = "/aladinPage", produces = "application/text; charset=utf8")
+	public String aladinPage(int totalCount, int reqPage) {
+		System.out.println("총페이지수"+totalCount);
+		System.out.println("요청페이지"+reqPage);
+		String pageNavi=service.aladinPage(totalCount,reqPage);
+		return pageNavi.toString();
+	}
 }

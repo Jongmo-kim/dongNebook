@@ -9,6 +9,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
      <style>
      #pageNavi{
@@ -30,9 +34,8 @@
 	color : #79bd9a;
 	}
          table {
-         width : 1000px;
+         	width : 100%;
             margin: 0 auto;
-            margin-top:100px;
             border-top: 3px solid lightgray;
             border-bottom: 3px solid lightgray;
             text-align: center;
@@ -93,55 +96,115 @@
             font-size: 15px;
             color: gray;
         }
-         .button{
+         .botton{
          	text-align:center;
          }
          .pbtn{
+         	width: 100px;
+         	height : 50px;
          	margin-top:50px;
-         	border: 1px solid lightgray;
+         	border: 2px solid #3b8686;
          	background-color:white;
          	font-size : 18px;
+         	color : #404040;
+         	border-radius: 5px;
+         	outline:none;
+         	margin-right : 5px;
+         	margin-left : 5px;
          }
          .pbtn:hover{
-         background-color: lightgray;
+        background-color: #3b8686;
+        color: white;
+         }
+         #hideB{
+         border: 1px solid #3b8686;
+         background-color:#3b8686;
+         color:white;
+         }
+        #con{
+         margin:0;
+         }
+         .bn{
+         	font-size : 19px;
+         	font-weight : bold;
+         }
+         .adminSideMenu li:nth-child(3){
+         	background:#a8dba8;
          }
  </style>
  <jsp:include page="/views/common/linkHead.jsp"/>
 </head>
 <body>
 <jsp:include page="/views/common/header.jsp" />
-    <table>
-    <tr>
-        <th><input type="checkbox" id="allChk"></th>
-        <th>이미지</th>
-        <th>제목</th>
-        <th>카테고리</th>
-        <th>출판사</th>
-        <th>신청자</th>
-    </tr>
-    <c:forEach items="${list }" var="b" varStatus="status">
-    <tr>
-        <td><input type="checkbox" class="chk"></td>
-        <td>${b.imageurl}</td>
-               <td>
-                   <p>${b.bookName }</p>
-                   <p>${b.bookWriter }</p>
-                   <p>${b.ISBN13 }</p>
-               </td>
-               <td>${b.bookKind }</td>
-
-               <td>${b.bookPublisher }</td>
-               <input type="hidden" value="${b.bookIntroduce }">
-        <td>${userList.get(status.index).userName }</td>
-    </tr>
-    </c:forEach>
-        </table>
-        <div class="button">
-        <input type="button" class="insertBtn pbtn" value="승인">
-        <input type="button" class="deleteProposal pbtn" value="반려">
+<jsp:include page="/views/common/adminSide.jsp" />
+	<div class="contents">
+		<h1 style="font-size:30px;">도서신청목록</h1>
+		<hr>
+		<div class="list-contents">
+		    <table>
+		    <tr>
+		        <th><input type="checkbox" id="allChk"></th>
+		        <th>이미지</th>
+		        <th>제목</th>
+		        <th>카테고리</th>
+		        <th>출판사</th>
+		        <th>신청자</th>
+		    </tr>
+		    <c:forEach items="${list }" var="b" varStatus="status">
+		    <tr>
+		        <td><input type="checkbox" class="chk"></td>
+		        <td>${b.imageurl}</td>
+		               <td>
+		                   <p>${b.bookName }</p>
+		                   <p>${b.bookWriter }</p>
+		                   <p>${b.ISBN13 }</p>
+		               </td>
+		               <td>${b.bookKind }</td>
+		
+		               <td>${b.bookPublisher }</td>
+		               <input type="hidden" value="${b.bookIntroduce }">
+		        <td>${userList.get(status.index).userName }</td>
+		    </tr>
+		    </c:forEach>
+		        </table>
+		        <div class="button">
+		        <input type="button" class="insertBtn pbtn" value="승인">
+		        <input type="button" class="deleteProposal pbtn" value="반려">
+		   		</div>
+	   		</div>
+	   		<div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
    		</div>
-   		<div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
     <script>
+    
+    $(function() {
+        $(".success").click(function() {
+          var list = new Array();
+          $(".sb").show();
+          $(".db").hide();
+          
+      	var str = '';
+          $(".chk:checked").each(function(idx, item){
+            	str += "<span class='bn'>"+ $(item).parent().parent().find("td").eq(2).find("p").eq(0).html()+"&nbsp"+"</span>";
+            	str += $(item).parent().parent().find("td").eq(2).find("p").eq(1).html()+"<br>";
+            
+          });
+          $(".modal-title").html("승인하시겠습니까?");
+          $(".result").html(str);
+        });
+    $(".deleteB").click(function() {
+    	$(".db").show();
+    	$(".sb").hide();
+    	var str = '';
+        $(".chk:checked").each(function(idx, item){
+          	str += "<span class='bn'>"+ $(item).parent().parent().find("td").eq(2).find("p").eq(0).html()+"&nbsp"+"</span>";
+          	str += $(item).parent().parent().find("td").eq(2).find("p").eq(1).html()+"<br>";
+          
+        });
+        $(".modal-title").html("반려하시겠습니까?");
+        $(".result").html(str);
+      });
+    });
+    
     $(".insertBtn").click(function() {
         var inputs = $(".chk:checked");
         var allList = new Array();

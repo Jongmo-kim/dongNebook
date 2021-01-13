@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>동네 북</title>
-
 <jsp:include page="/views/common/linkHead.jsp"/>
 <link href="../css/index/index.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="/js/index/index.js"></script>
@@ -33,23 +32,73 @@
             <div class="contents">
                <div class="bookContent">
                 <ul>
-                   <li><a href="#">책1
+                   <li>
+                   <div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목</a></p>
+                	</div>
+                   </div>
+                   </li>
                    
-                   </a></li>
-                   
-                   <li><a href="#">책1</a></li>
-                   <li><a href="#">책1</a></li>
-                   <li><a href="#">책1</a></li>
-                   <li><a href="#">책1</a></li>
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목</a></p>
+                	</div>
+                   </div></li>
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목</a></p>
+                	</div>
+                   </div></li>
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목</a></p>
+                	</div>
+                   </div></li>
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목</a></p>
+                	</div>
+                   </div></li>
                </ul>
                 </div>
                 <div class="bookContent">
                <ul>
-                   <li><a href="#">책2</a></li>
-                   <li><a href="#">책2</a></li>
-                   <li><a href="#">책2</a></li>
-                   <li><a href="#">책2</a></li>
-                   <li><a href="#">책2</a></li>
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목2</a></p>
+                	</div>
+                   </div></li>
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목2</a></p>
+                	</div>
+                   </div></li>
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목2</a></p>
+                	</div>
+                   </div></li>
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목2</a></p>
+                	</div>
+                   </div></li>
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목2</a></p>
+                	</div>
+                   </div></li>
                </ul>
                </div>
             </div>
