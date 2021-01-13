@@ -272,10 +272,10 @@ public  class hangulTrie {
 		boolean isNodeTypeChosung = node.getHangulType() == HangulType.Chosung;
 		
 		for(Object o : keyList) {
-			if(!node.hasChild((char)o)) {
+			if(!node.hasChild((Character)o)) {
 				continue;
 			}
-			trieNode currNode = node.getChild((char)o);
+			trieNode currNode = node.getChild((Character)o);
 			if(index+1 == chosungArray.length && chosungArray.length == node.getCurrString().length() ) {
 				if(currNode.isLeaf()) {
 					if(isEqualChosung(node.getData(), chosungArray[index])) {
