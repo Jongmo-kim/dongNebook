@@ -7,17 +7,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>책 검색</title>
+<title>도서 검색</title>
 <jsp:include page="/views/common/linkHead.jsp"/>
 <link rel="stylesheet" href="/css/book/searchBook.css?v=<%=System.currentTimeMillis()%>">
 <script type="text/javascript" src="/js/book/searchBook.js?v=<%=System.currentTimeMillis()%>"></script>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-
+	<h2>도서검색</h2>
 	<div class="searchBox">
 		<div class="searchFrm">
-			<form action="/book/searchBook.do" method="get" >
+			<form action="/book/searchBook.do" name="searchBook" method="get" >
 				<select name="searchKeyword">
 					<option value="전체">전체</option>
 					<option value="책이름">책이름</option>
@@ -30,13 +30,20 @@
 					<option value="3">3</option>
 					<option value="4">4</option>
 				</select>
-				<input type="text" id="searchFrm" name="inputStr">
-				<button>검색하기</button>
+				<div class="inputField">
+					<input type="text" id="searchFrm" name="inputStr" autocomplete="off">
+					<div class="icon-wrap">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+							<path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+						</svg>
+					</div>
+				</div>
+				
 			</form>
 		</div>
 		<div class="guessedBox">
-			
 		</div>
+	</div>
 		<table>
 			<tr>
 				<th>책 번호</th>
@@ -82,7 +89,6 @@
 			</tr>			
 			</c:forEach>
 		</table>
-	</div>
 	<script>
 		
 		

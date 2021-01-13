@@ -10,14 +10,14 @@ public class ProposalVO {
 	private String bookIntroduce;
 	private String imageurl;
 	private String ISBN13;
-	private int bookCount;
-	private int rCount;
+	private String ISBN10;
+	private int reason;
 	public ProposalVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public ProposalVO(int bookProposalNo, int userNo, String bookName, String bookKind, String bookWriter,
-			String bookPublisher, String bookIntroduce, String imageurl, String iSBN13, int bookCount, int rCount) {
+			String bookPublisher, String bookIntroduce, String imageurl, String iSBN13, String iSBN10, int reason) {
 		super();
 		this.bookProposalNo = bookProposalNo;
 		this.userNo = userNo;
@@ -28,8 +28,8 @@ public class ProposalVO {
 		this.bookIntroduce = bookIntroduce;
 		this.imageurl = imageurl;
 		ISBN13 = iSBN13;
-		this.bookCount = bookCount;
-		this.rCount = rCount;
+		ISBN10 = iSBN10;
+		this.reason = reason;
 	}
 	public int getBookProposalNo() {
 		return bookProposalNo;
@@ -85,17 +85,17 @@ public class ProposalVO {
 	public void setISBN13(String iSBN13) {
 		ISBN13 = iSBN13;
 	}
-	public int getBookCount() {
-		return bookCount;
+	public String getISBN10() {
+		return ISBN10;
 	}
-	public void setBookCount(int bookCount) {
-		this.bookCount = bookCount;
+	public void setISBN10(String iSBN10) {
+		ISBN10 = iSBN10;
 	}
-	public int getrCount() {
-		return rCount;
+	public int getReason() {
+		return reason;
 	}
-	public void setrCount(int rCount) {
-		this.rCount = rCount;
+	public void setReason(int reason) {
+		this.reason = reason;
 	}
-	
+
 }

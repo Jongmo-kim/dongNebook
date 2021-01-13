@@ -128,8 +128,9 @@
          	font-size : 19px;
          	font-weight : bold;
          }
-         .adminSideMenu li:nth-child(3){
+         .adminSideMenu li:nth-child(3) a{
          	background:#a8dba8;
+		color:white;
          }
  </style>
  <jsp:include page="/views/common/linkHead.jsp"/>
@@ -142,38 +143,80 @@
 		<hr>
 		<div class="list-contents">
 		    <table>
-		    <tr>
-		        <th><input type="checkbox" id="allChk"></th>
-		        <th>이미지</th>
-		        <th>제목</th>
-		        <th>카테고리</th>
-		        <th>출판사</th>
-		        <th>신청자</th>
-		    </tr>
-		    <c:forEach items="${list }" var="b" varStatus="status">
-		    <tr>
-		        <td><input type="checkbox" class="chk"></td>
-		        <td>${b.imageurl}</td>
-		               <td>
-		                   <p>${b.bookName }</p>
-		                   <p>${b.bookWriter }</p>
-		                   <p>${b.ISBN13 }</p>
-		               </td>
-		               <td>${b.bookKind }</td>
-		
-		               <td>${b.bookPublisher }</td>
-		               <input type="hidden" value="${b.bookIntroduce }">
-		        <td>${userList.get(status.index).userName }</td>
-		    </tr>
-		    </c:forEach>
-		        </table>
-		        <div class="button">
-		        <input type="button" class="insertBtn pbtn" value="승인">
-		        <input type="button" class="deleteProposal pbtn" value="반려">
-		   		</div>
-	   		</div>
-	   		<div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
+    <tr>
+        <th><input type="checkbox" id="allChk"></th>
+        <th>이미지</th>
+        <th>제목</th>
+        <th>카테고리</th>
+        <th>출판사</th>
+        <th>신청자</th>
+    </tr>
+    <c:forEach items="${list }" var="b" varStatus="status">
+    <tr>
+        <td><input type="checkbox" class="chk"></td>
+        <td>${b.imageurl}</td>
+               <td>
+                   <p>${b.bookName }</p>
+                   <p>${b.bookWriter }</p>
+                   <p>${b.ISBN13 }</p>
+               </td>
+               <td>${b.bookKind }</td>
+
+               <td>${b.bookPublisher }</td>
+               <input type="hidden" value="${b.bookIntroduce }">
+        <td>${userList.get(status.index).userName }</td>
+    </tr>
+    </c:forEach>
+        </table>
+        
+   		
+   		
+<div class="container" id="con">
+  <!-- Button to Open the Modal -->
+  <div class="botton">
+  <button type="button" class="pbtn success" data-toggle="modal" data-target="#myModal">
+    승인
+  </button>
+    <button type="button" class="pbtn deleteB" data-toggle="modal" data-target="#myModal">
+   반려
+  </button>
+  </div>
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body result">
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        <div class="button">
+        <input type="button" id = "hideB" class="btn insertBtn hideB sb" value="승인">
+        <input type="button" id = "hideB" class="btn deleteProposal hideB db" value="반려">
    		</div>
+          <button type="button" class="btn" id = "hideB" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+   		
+   		
+   		<div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
+   		
+   		
+	   		</div>
+
     <script>
     
     $(function() {

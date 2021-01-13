@@ -11,9 +11,15 @@
 			#{bookIntroduce},
 			#{imageurl},
 			#{ISBN13},
+			#{ISBN10},
 			#{bookCount},
+<<<<<<< HEAD
 			default,
 			0
+=======
+			#{rCount},
+			#{imageurl}
+>>>>>>> develop/0.0.0
 		)
 	</insert>
 	<select id="selectTotalCount" resultType="_int">
@@ -113,4 +119,17 @@
 	<select id="selectBooks" parameterType="_int" resultType="book">
 		select * from book where book_no=#{bookNo} or book_no=#{bookNo} or book_no=#{bookNo};
 	</select>
+	<select id="newBook" resultType="book">
+		select book_no as bookNo,
+	        book_name as bookName,
+	        book_kind as bookKind,
+	        book_writer as bookWriter,
+	        book_publisher as bookPublisher,
+	        book_introduce as bookIntroduce,
+	        ISBN13 as ISBN13,
+	        book_count as bookCount,
+	        imageurl as imageurl
+        from (select rownum as bnum, b.* from (select * from book order by book_no desc)b) where bnum between 1 and 5
+	</select>
+	
 </mapper>

@@ -156,4 +156,12 @@ public class BookService {
 		return pageNavi;
 	}
 
+<<<<<<< HEAD
+=======
+	public ArrayList<Book> newBook() {
+		return dao.newBook();
+	}
+
+	
+>>>>>>> develop/0.0.0
 }

@@ -12,3 +12,14 @@
 .searchFrm{
 	text-align:right;
 }
+
+.admin_input {
+    margin-left: 34px !important;
+    width: 400px !important;
+}
+.admin_btn{
+	width: 400px !important;
+}
+.modal-content{
+	height: 400px !important;
+}
