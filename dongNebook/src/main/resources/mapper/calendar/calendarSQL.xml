@@ -6,11 +6,14 @@
 			calendar_no as calendarNo,
 			calendar_title as calendarTitle,
 			calendar_startdate as calendarStartDate,
-			calendar_enddate as calendarEndDate
+			calendar_enddate as calendarEndDate,
+			background_color as backgroundColor,
+			text_color as textColor,
+			border_color as borderColor
 		from calendar
 	</select>
 	<insert id="insertCalendar">
-		insert into calendar values(calendar_seq.nextval, #{calendarTitle}, #{calendarStartDate}, #{calendarEndDate})
+		insert into calendar values(calendar_seq.nextval, #{calendarTitle}, #{calendarStartDate}, #{calendarEndDate}, #{backgroundColor}, #{textColor}, #{borderColor})
 	</insert>
 	<select id="selectOneCalendar" resultType="calendar">
 		select

@@ -48,10 +48,14 @@
 						id : <%=c.getCalendarNo()%>,
 				    	title : '<%=c.getCalendarTitle()%>',
 				    	start : '<%=c.getCalendarStartDate()%>',
-				    	end : '<%=c.getCalendarEndDate()%>',
-				    	/* backgroundColor : '#D25565',
-				    	textColor : '#ffffff',
-				    	borderColor : '#D25565' */
+				    	end : '<%=c.getCalendarEndDate()%>'
+				    	
+				    	/* background가 null이 아니라면 출력(background가 null이면 나머지도 null이므로 나머지는 검사하지 않음) */
+				    	<%if(c.getBackgroundColor()!=null) {%>
+					    	,backgroundColor : <%=c.getBackgroundColor()%>,
+					    	textColor : <%=c.getTextColor()%>,
+					    	borderColor : <%=c.getBorderColor()%>
+				    	<%}%>
 				    }	
 	        	<%} else {%>
 		        	{
@@ -59,6 +63,14 @@
 				    	title : '<%=c.getCalendarTitle()%>',
 				    	start : '<%=c.getCalendarStartDate()%>',
 				    	end : '<%=c.getCalendarEndDate()%>'
+				    	
+				    	/* background가 null이 아니라면 출력(background가 null이면 나머지도 null이므로 나머지는 검사하지 않음) */
+				    	<%if(c.getBackgroundColor()!=null) {%>
+					    	,backgroundColor : <%=c.getBackgroundColor()%>,
+					    	textColor : <%=c.getTextColor()%>,
+					    	borderColor : <%=c.getBorderColor()%>
+				    	<%}%>
+				    	
 				    },	
 	        	<%}%>
 	        <%}%>
@@ -139,6 +151,7 @@
 	-o-transition: all 0.2s linear;
 	transition: all 0.2s linear;
 }
+/* 일정에 날짜 보이지 않게 css */
 .fc-list-event-time{
 	display : none;
 }
@@ -147,7 +160,6 @@
 <body>
 	<jsp:include page="/views/common/header.jsp" />
 
-	<!-- Button to Open the Modal -->
 	<!-- The Modal -->
 	<div class="modal fade" id="myModal">
 		<div class="modal-dialog">
