@@ -152,5 +152,9 @@ public class BookService {
 		return pageNavi;
 	}
 
+	public ArrayList<Book> newBook() {
+		return dao.newBook();
+	}
+
 	
 }

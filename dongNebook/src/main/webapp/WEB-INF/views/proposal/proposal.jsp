@@ -84,7 +84,7 @@
         }
 
         table>tbody>tr>td:nth-child(3)>p:first-child {
-            font-size: 20px;
+            font-size: 18px;
         }
 
         table>tbody>tr>td:nth-child(3)>p:nth-child(2) {
@@ -131,6 +131,11 @@
          .adminSideMenu li:nth-child(3){
          	background:#a8dba8;
          }
+         .list-contents>p{
+         margin-top:25px;
+         color: #404040;
+         font-size:30px;
+         }
  </style>
  <jsp:include page="/views/common/linkHead.jsp"/>
 </head>
@@ -138,9 +143,9 @@
 <jsp:include page="/views/common/header.jsp" />
 <jsp:include page="/views/common/adminSide.jsp" />
 	<div class="contents">
-		<h1 style="font-size:30px;">도서신청목록</h1>
-		<hr>
 		<div class="list-contents">
+		<p>| 도서 신청 목록</p>
+		<br>
 		    <table>
 		    <tr>
 		        <th><input type="checkbox" id="allChk"></th>
@@ -167,10 +172,47 @@
 		    </tr>
 		    </c:forEach>
 		        </table>
-		        <div class="button">
-		        <input type="button" class="insertBtn pbtn" value="승인">
-		        <input type="button" class="deleteProposal pbtn" value="반려">
-		   		</div>
+		          		
+<div class="container" id="con">
+  <!-- Button to Open the Modal -->
+  <div class="botton">
+  <button type="button" class="pbtn success" data-toggle="modal" data-target="#myModal">
+    승인
+  </button>
+    <button type="button" class="pbtn deleteB" data-toggle="modal" data-target="#myModal">
+   반려
+  </button>
+  </div>
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body result">
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        <div class="button">
+        <input type="button" id = "hideB" class="btn insertBtn hideB sb" value="승인">
+        <input type="button" id = "hideB" class="btn deleteProposal hideB db" value="반려">
+   		</div>
+          <button type="button" class="btn" id = "hideB" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+   		
 	   		</div>
 	   		<div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
    		</div>
