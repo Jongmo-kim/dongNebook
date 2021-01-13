@@ -47,7 +47,7 @@
 						<a href="/user/loginFrm.do">로그인</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/user/mypageFrm.do">관리자페이지</a>
+						<a href="/aladin/searchInAladin.do">관리자페이지</a>
 						<a href="/admin/logout.do">로그아웃</a>				
 					</c:otherwise>
 				</c:choose>
