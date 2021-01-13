@@ -1,13 +1,28 @@
 @charset "UTF-8";
 
-
-.guessedBox{
-	overflow:scroll; width:350px; height:200px;
-	overflow-y:scroll;
-	width:100%;
+.searchBox{
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	height: 262px;
+	position: relative;
 }
-.searchFrm{
+.guessedBox{
+	display:none;
+	top: 202px;
+	right: 0;
+	width: 1200px;
+	position: absolute;
+	background: #fff;
+    padding: 40px;
+    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+	border-radius: 10px;
 	
+}
+
+.searchFrm{
+	width:100%;
 	text-align: center;
 }
 .searchFrm > input{
@@ -15,6 +30,44 @@
 }
 .searchFrm > button{
 	width : 100px;
+}
+#searchFrm{
+	height: 100%;
+    border: 0;
+    display: block;
+    width: 100%;
+    padding: 10px 32px 10px 70px;
+    font-size: 18px;
+    height: 70px;
+    color: #fff;
+    background: linear-gradient(to right, #2c6dd5 0%, #2c6dd5 79%, #ff4b5a 91%, #ff4b5a 100%);
+	font-family: 'Lato', sans-serif;
+	
+	box-shadow: 0 8px 20px 0 rgba(0,0,0,.15);
+    overflow: hidden;
+    border-radius: 34px;
+    margin-bottom: 5px;
+}
+.inputField{
+	position:relative;
+}
+.icon-wrap{
+	position: absolute;
+    top: 0;
+    right: 0;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 60px;
+	height: 100%;
+	cursor: pointer;
+}
+
+.icon-wrap > svg{
+	width: 34px;
+    height: 34px;
+    fill: #fff;
 }
 /* width */
 ::-webkit-scrollbar {

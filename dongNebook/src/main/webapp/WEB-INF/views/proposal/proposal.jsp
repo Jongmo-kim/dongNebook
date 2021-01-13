@@ -84,7 +84,7 @@
         }
 
         table>tbody>tr>td:nth-child(3)>p:first-child {
-            font-size: 18px;
+            font-size: 20px;
         }
 
         table>tbody>tr>td:nth-child(3)>p:nth-child(2) {
@@ -128,13 +128,9 @@
          	font-size : 19px;
          	font-weight : bold;
          }
-         .adminSideMenu li:nth-child(3){
+         .adminSideMenu li:nth-child(3) a{
          	background:#a8dba8;
-         }
-         .list-contents>p{
-         margin-top:25px;
-         color: #404040;
-         font-size:30px;
+		color:white;
          }
  </style>
  <jsp:include page="/views/common/linkHead.jsp"/>
@@ -143,36 +139,38 @@
 <jsp:include page="/views/common/header.jsp" />
 <jsp:include page="/views/common/adminSide.jsp" />
 	<div class="contents">
+		<h1 style="font-size:30px;">도서신청목록</h1>
+		<hr>
 		<div class="list-contents">
-		<p>| 도서 신청 목록</p>
-		<br>
 		    <table>
-		    <tr>
-		        <th><input type="checkbox" id="allChk"></th>
-		        <th>이미지</th>
-		        <th>제목</th>
-		        <th>카테고리</th>
-		        <th>출판사</th>
-		        <th>신청자</th>
-		    </tr>
-		    <c:forEach items="${list }" var="b" varStatus="status">
-		    <tr>
-		        <td><input type="checkbox" class="chk"></td>
-		        <td>${b.imageurl}</td>
-		               <td>
-		                   <p>${b.bookName }</p>
-		                   <p>${b.bookWriter }</p>
-		                   <p>${b.ISBN13 }</p>
-		               </td>
-		               <td>${b.bookKind }</td>
-		
-		               <td>${b.bookPublisher }</td>
-		               <input type="hidden" value="${b.bookIntroduce }">
-		        <td>${userList.get(status.index).userName }</td>
-		    </tr>
-		    </c:forEach>
-		        </table>
-		          		
+    <tr>
+        <th><input type="checkbox" id="allChk"></th>
+        <th>이미지</th>
+        <th>제목</th>
+        <th>카테고리</th>
+        <th>출판사</th>
+        <th>신청자</th>
+    </tr>
+    <c:forEach items="${list }" var="b" varStatus="status">
+    <tr>
+        <td><input type="checkbox" class="chk"></td>
+        <td>${b.imageurl}</td>
+               <td>
+                   <p>${b.bookName }</p>
+                   <p>${b.bookWriter }</p>
+                   <p>${b.ISBN13 }</p>
+               </td>
+               <td>${b.bookKind }</td>
+
+               <td>${b.bookPublisher }</td>
+               <input type="hidden" value="${b.bookIntroduce }">
+        <td>${userList.get(status.index).userName }</td>
+    </tr>
+    </c:forEach>
+        </table>
+        
+   		
+   		
 <div class="container" id="con">
   <!-- Button to Open the Modal -->
   <div class="botton">
@@ -213,9 +211,12 @@
   
 </div>
    		
+   		
+   		<div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
+   		
+   		
 	   		</div>
-	   		<div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
-   		</div>
+
     <script>
     
     $(function() {

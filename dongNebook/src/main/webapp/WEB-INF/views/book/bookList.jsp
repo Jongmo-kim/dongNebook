@@ -61,7 +61,7 @@
             width: 150px;
         }
         table>tbody>tr:first-child>th:nth-child(6){
-            width: 80px;
+            width: 60px;
         }
         table>tbody>tr>td {
             font-size: 15px;
@@ -101,72 +101,78 @@
          .pbtn:hover{
          background-color: lightgray;
          }
-         .adminSideMenu li:nth-child(2){
+         .adminSideMenu li:nth-child(2) a{
          	background:#a8dba8;
+		color:white;
          }
          .bookListTable{
          	border-left:none;
          	border-right:none;
          }
+         .main-frame{
+         	margin:0 auto;
+         }
      </style>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
+	<div class="main-frame">
 	<jsp:include page="/views/common/adminSide.jsp" />
-	<div class="contents">
-		<h1 style="font-size:30px;">책 리스트</h1>
-		<hr>
-		<div class="list-contents">
-		<table class="bookListTable" border=1>
-			<tr>
-		        <th>책번호</th>
-		        <th>이미지</th>
-		        <th>제목</th>
-		        <th>카테고리</th>
-		        <th>출판사</th>
-		        <th>수정</th>
-		        
-		    </tr>
-			<c:forEach items="${list }" var ="b">
+		<div class="contents">
+			<h1 style="font-size:30px;">책 리스트</h1>
+			<hr>
+			<div class="list-contents">
+			<table class="bookListTable" border=1>
 				<tr>
-					<td>${b.bookNo }</td><td><img src=${b.imageurl}></td><td><p>${b.bookName }</p><p>${b.bookWriter }</p><p>${b.ISBN13 }</p></td><td>${b.bookKind }</td><td>${b.bookPublisher }</td><td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="updateInform(${b.bookNo },'${b.bookName}','${b.bookKind}','${b.bookWriter}','${b.bookPublisher}','${b.bookIntroduce}')">수정</button><a href="/book/bookDelete.do?bookNo=${b.bookNo}">삭제</td>			
-				</tr>
-				
-				<!-- The Modal -->
-				<div class="modal" id="myModal">
-				  <div class="modal-dialog">
-				    <div class="modal-content">
-				
-				      <!-- Modal Header -->
-				      <div class="modal-header">
-				        <h4 class="modal-title">Modal Heading</h4>
-				        <button type="button" class="close" data-dismiss="modal">&times;</button>
-				      </div>
-				
-				      <!-- Modal body -->
-				      <form action="/book/updateBook.do">
-					      <div class="modal-body">
-					      	<input type ="text" name="bookNo" id="bookNo">
-					      	<input type ="text" name="bookName" id="bookName">
-					      	<input type ="text" name="bookKind" id="bookKind">
-					      	<input type ="text" name="bookWriter" id="bookWriter">
-					      	<input type ="text" name="bookPublisher" id="bookPublisher">
-					      	<input type ="text" name="bookIntroduce" id="bookIntroduce">
+			        <th>책번호</th>
+			        <th>이미지</th>
+			        <th>제목</th>
+			        <th>카테고리</th>
+			        <th>출판사</th>
+			        <th>수정</th>
+			        
+			    </tr>
+				<c:forEach items="${list }" var ="b">
+					<tr>
+						<td>${b.bookNo }</td><td><img src=${b.imageurl}></td><td><p>${b.bookName }</p><p>${b.bookWriter }</p><p>${b.ISBN13 }</p></td><td>${b.bookKind }</td><td>${b.bookPublisher }</td><td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="updateInform(${b.bookNo },'${b.bookName}','${b.bookKind}','${b.bookWriter}','${b.bookPublisher}','${b.bookIntroduce}')">수정</button><a href="/book/bookDelete.do?bookNo=${b.bookNo}">삭제</td>			
+					</tr>
+					
+					<!-- The Modal -->
+					<div class="modal" id="myModal">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					
+					      <!-- Modal Header -->
+					      <div class="modal-header">
+					        <h4 class="modal-title">Modal Heading</h4>
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
 					      </div>
-				      <!-- Modal footer -->
-				      <div class="modal-footer">
-				      	<button type="submit" class="btn btn-primary">Submit</button>
-				        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-				      </div>
-					</form>
-				
-				    </div>
-				  </div>
-				</div>
-			</c:forEach>
-		</table>
+					
+					      <!-- Modal body -->
+					      <form action="/book/updateBook.do">
+						      <div class="modal-body">
+						      	<input type ="text" name="bookNo" id="bookNo">
+						      	<input type ="text" name="bookName" id="bookName">
+						      	<input type ="text" name="bookKind" id="bookKind">
+						      	<input type ="text" name="bookWriter" id="bookWriter">
+						      	<input type ="text" name="bookPublisher" id="bookPublisher">
+						      	<input type ="text" name="bookIntroduce" id="bookIntroduce">
+						      </div>
+					      <!-- Modal footer -->
+					      <div class="modal-footer">
+					      	<button type="submit" class="btn btn-primary">Submit</button>
+					        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					      </div>
+						</form>
+					
+					    </div>
+					  </div>
+					</div>
+				</c:forEach>
+			</table>
+		</div>
+			<p style="text-align:center">${pageNavi }</p>
 	</div>
-		<p style="text-align:center">${pageNavi }</p>
 </div>
 	<script>
 		function updateInform(bookNo,bookName,bookKind,bookWriter,bookPublisher,bookIntroduce){
