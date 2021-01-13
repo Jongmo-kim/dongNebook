@@ -134,9 +134,12 @@ FOREIGN KEY(USER_No) REFERENCES "USER"(USER_No) ON DELETE CASCADE;
 
 CREATE TABLE CALENDAR(
     CALENDAR_NO NUMBER PRIMARY KEY,
-    CALENDAR_TITLE VARCHAR2(100),
-    CALENDAR_STARTDATE DATE,
-    CALENDAR_ENDDATE DATE
+    CALENDAR_TITLE VARCHAR2(100) not null,
+    CALENDAR_STARTDATE CHAR(19) not null,
+    CALENDAR_ENDDATE CHAR(19) not null,
+    background_color varchar2(16),
+    text_color varchar2(16),
+    border_color varchar2(16)
 );
 
 create table "FILE"(
@@ -175,11 +178,11 @@ create sequence file_seq;
 create sequence alram_seq;
 
 ----------------------------------------------
-book ÌÖåÏù¥Î∏î rCount ÏàòÏ†ï
+book ?Öå?ù¥Î∏? rCount ?àò?†ï
 alter table book add rCount number;
 alter table book drop column rCount;
 alter table book add rCount number default 0;
-----------------------------------book_proposalÌÖåÏù¥Î∏î ÏàòÏ†ï
+----------------------------------book_proposal?Öå?ù¥Î∏? ?àò?†ï
 
 alter table book_proposal drop column book_no;
 alter table book_proposal drop column reason;

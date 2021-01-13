@@ -43,12 +43,19 @@
 	    	  //일정 불러오기
 	        <%for (int i = 0; i < list.size(); i++) {
 				Calendar c = list.get(i);
-				if (i == list.size()) {%>
+				if (i == list.size()-1) {%>
 					{
 						id : <%=c.getCalendarNo()%>,
 				    	title : '<%=c.getCalendarTitle()%>',
 				    	start : '<%=c.getCalendarStartDate()%>',
 				    	end : '<%=c.getCalendarEndDate()%>'
+				    	
+				    	/* background가 null이 아니라면 출력(background가 null이면 나머지도 null이므로 나머지는 검사하지 않음) */
+				    	<%if(c.getBackgroundColor()!=null) {%>
+					    	,backgroundColor : <%=c.getBackgroundColor()%>,
+					    	textColor : <%=c.getTextColor()%>,
+					    	borderColor : <%=c.getBorderColor()%>
+				    	<%}%>
 				    }	
 	        	<%} else {%>
 		        	{
@@ -56,10 +63,20 @@
 				    	title : '<%=c.getCalendarTitle()%>',
 				    	start : '<%=c.getCalendarStartDate()%>',
 				    	end : '<%=c.getCalendarEndDate()%>'
+				    	
+				    	/* background가 null이 아니라면 출력(background가 null이면 나머지도 null이므로 나머지는 검사하지 않음) */
+				    	<%if(c.getBackgroundColor()!=null) {%>
+					    	,backgroundColor : <%=c.getBackgroundColor()%>,
+					    	textColor : <%=c.getTextColor()%>,
+					    	borderColor : <%=c.getBorderColor()%>
+				    	<%}%>
+				    	
 				    },	
 	        	<%}%>
 	        <%}%>
 	      ],
+	      //eventTextColor : '#ff00ff',
+	      //eventColor: '#378006',
 			//캘린더 날짜 클릭
 			dateClick: function(info) {
 				//dateStr : 클릭한 td의 날짜를 받아옴
@@ -76,14 +93,14 @@
 			},
  	      //일정 수정
  	      eventClick: function (info) {
- 	    	//start -> Mon Jan 11 2021 00:00:00 GMT+0900 형태
- 	    	//startStr -> 2021-01-11 형태
+ 	    	//info.event.start -> Mon Jan 11 2021 00:00:00 GMT+0900 형태
+ 	    	//info.event.startStr -> 2021-01-11 형태
  	        
  	        
  	        console.log("title : "+info.event.title);
 			console.log("id : "+info.event.id);
 			console.log("start : "+info.event.startStr);
-			console.log("end : "+info.event.endStr);
+			
 			
 			var title = info.event.title;
 			var start = info.event.startStr;
@@ -94,16 +111,21 @@
 			if(end.length < 10){	
 				end = start;
 			}
-			console.log("end : "+end);
 			
+			console.log("end : "+info.event.endStr);
 			$('#myModal').modal(); 
 			$(".modal-title").html('일정 수정');
 			$('#updateCalendar').show();
 			$('#insertCalendar').hide();
 			
 			$("#calendarTitle").val(title);
-			$("#calendarStartDate").val(start);
-			$("#calendarEndDate").val(end);
+			
+			//yyyy-MM-dd hh:mm:ss 형태에서 yyyy-mm-dd만 추출
+			var startDate = start.substr(0, 10);
+			var endDate = end.substr(0, 10);
+			
+			$("#calendarStartDate").val(startDate);
+			$("#calendarEndDate").val(endDate);
 			
 			//updateBtn과 deleteBtn에 해당 event의 id값을 넣어둔다.
 			//두개 같은 id가 들어가는데 외우기 쉽게 각각의 버튼에 넣어둠
@@ -119,7 +141,9 @@
 	max-width: 1100px;
 	margin: 0 auto;
 }
-
+.fc-event-time{
+   display : none;
+}
 .fc-day:hover {
 	background: #EEF7FF;
 	cursor: pointer;
@@ -127,12 +151,15 @@
 	-o-transition: all 0.2s linear;
 	transition: all 0.2s linear;
 }
+/* 일정에 날짜 보이지 않게 css */
+.fc-list-event-time{
+	display : none;
+}
 </style>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
 
-	<!-- Button to Open the Modal -->
 	<!-- The Modal -->
 	<div class="modal fade" id="myModal">
 		<div class="modal-dialog">
@@ -193,37 +220,41 @@
 		function insertCalendar(){
 			var title = $("#calendarTitle").val();
 			var start = $("#calendarStartDate").val();
-			var endDate = $("#calendarEndDate").val();
-			var end = new Date(endDate);	//var endDate = new Date(end + 'T23:59:59'); // 입력받은 날짜의 시간을 23:59:59로 바꿔줌
-			end.setHours(23);
-			end.setMinutes(59);
-			end.setSeconds(59);
+			var end = $("#calendarEndDate").val();
 			
-			$.ajax({
-				url : "/calendar/insertCalendar.do",
-				type : "get",
-				data : {title:title,
-						start:start,
-						end:end},
-				success:function(data){
-					if(data!=null){
-						location.reload();
-					} else {
-						alert("일정 등록 실패");
-					}				
-				},
-				error:function(){
-					alert("ajax error");
-				}
-			});
-			$('#myModal').modal('hide'); 
-		}
-		
-		function editEvent(info) {
-			//console.log(info.event); //x
-			
-			//console.log(info.event.title);
-			//console.log(info.event.id);
+			//날짜를 - 기준으로 나눠서 배열에 넣기
+			var startArr = start.split('-');
+		    var endArr = end.split('-');
+		    
+		    //배열로 date 객체 만들기
+		    var start_date = new Date(startArr[0], startArr[1], startArr[2]);
+	        var end_date = new Date(endArr[0], endArr[1], endArr[2]);
+	        
+	        //date 객체로 시간 비교
+			if(start_date.getTime() > end_date.getTime()){
+				alert("종료 날짜는 시작 날짜와 동일하거나 그 이후여야 합니다.");
+			}
+			else {
+				$.ajax({
+					url : "/calendar/insertCalendar.do",
+					type : "get",
+					data : {title:title,
+							start:start,
+							end:end},
+					success:function(data){
+						if(data!=null){
+							location.reload();
+							alert("일정 등록 성공");
+						} else {
+							alert("일정 등록 실패");
+						}				
+					},
+					error:function(){
+						alert("ajax error");
+					}
+				});
+			$('#myModal').modal('hide'); 	
+			}
 		}
 		
 		function deleteCalendar(){
@@ -248,7 +279,6 @@
 					}
 				});
 			}
-			
 			$('#myModal').modal('hide'); 
 		}
 		
@@ -257,31 +287,39 @@
 			var title = $("#calendarTitle").val();
 			var start = $("#calendarStartDate").val();
 			var end = $("#calendarEndDate").val();
-			console.log("############updateCalendar############");
-			console.log(calendarNo);
-			console.log(title);
-			console.log(start);
-			console.log(end);
-			$.ajax({
-				url : "/calendar/updateCalendar.do",
-				type : "get",
-				data : {calendarNo:calendarNo,
-						title:title,
-						start:start,
-						end:end},
-				success:function(data){
-					if(data>0){
-						alert("일정 수정 성공");
-						location.reload();	
-					} else {
-						alert("일정 삭제 실패");
+			//날짜를 - 기준으로 나눠서 배열에 넣기
+			var startArr = start.split('-');
+		    var endArr = end.split('-');
+		    
+		    //배열로 date 객체 만들기
+		    var start_date = new Date(startArr[0], startArr[1], startArr[2]);
+	        var end_date = new Date(endArr[0], endArr[1], endArr[2]);
+	        
+	        //date 객체로 시간 비교
+			if(start_date.getTime() > end_date.getTime()){
+				alert("종료 날짜는 시작 날짜와 동일하거나 그 이후여야 합니다.");
+			} else{
+				$.ajax({
+					url : "/calendar/updateCalendar.do",
+					type : "get",
+					data : {calendarNo:calendarNo,
+							title:title,
+							start:start,
+							end:end},
+					success:function(data){
+						if(data>0){
+							alert("일정 수정 성공");
+							location.reload();	
+						} else {
+							alert("일정 삭제 실패");
+						}
+					}, 
+					error:function(){
+						alert("ajax error");
 					}
-				}, 
-				error:function(){
-					alert("ajax error");
-				}
-			});
+				});
 			$('#myModal').modal('hide'); 
+			}
 		}
 	</script>
 </body>
