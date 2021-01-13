@@ -803,6 +803,7 @@ body {
 
 .page-header{
 	height:50px;
+	border-bottom:1px solid lightgray;
 }
 #kwd{
 	float:right;
@@ -847,6 +848,9 @@ body {
 .pagination>li>.selectPage{
 	color:black;
 }
+.informSearch{
+	text-align:center;
+}
 </style>
 <body>
 <jsp:include page="/views/common/header.jsp" />
@@ -871,7 +875,9 @@ body {
 		  
 		</div>
     </header>
-
+	<div class="informSearch" id="informSearch">
+		<h4>알라딘 검색 시스템입니다. 책을 검색하여 도서를 신청하세요.</h4>
+	</div>
 
     <!-- Main Section -->
     <div class="page-container">
@@ -915,25 +921,41 @@ const resultFunc = function(success, data){//const = final  상수형변수
 			console.log(cover500);
 			console.log(data);
 			console.log("보낼거"+JSON.stringify(data.item[i]));
-			$("#grid").append("<li class='book-item small-12 medium-6 columns' data-groups='[classic]' data-date-created='1937' data-title='Of Mice and Men' data-color='#fcc278'>"+"<div class='bk-img'>"+"<div class='bk-wrapper'>"+"<div class='bk-book bk-bookdefault'>"+"<div class='bk-front'>"+"<div class='bk-cover' style='background-image: url("+cover500+")'>"+"</div>"+"</div>"+"<div class='bk-back'>"+"</div>"+"<div class='bk-left'></div></div></div></div><div class='item-details'><h3 class='book-item_title'>"+data.item[i].title+"</h3><p class='author'>"+data.item[i].author+"</p><p>"+data.item[i].description+"</p><a href='/insertBookInAladin.do?aladin="+data.item[i]+"' class='button'>신청</a></div></li>");
+			var sendData= JSON.stringify(data.item[i]);
+			$("#grid").append("<li class='book-item small-12 medium-6 columns' data-groups='[classic]' data-date-created='1937' data-title='Of Mice and Men' data-color='#fcc278'>"+"<div class='bk-img'>"+"<div class='bk-wrapper'>"+"<div class='bk-book bk-bookdefault'>"+"<div class='bk-front'>"+"<div class='bk-cover' style='background-image: url("+cover500+")'>"+"</div>"+"</div>"+"<div class='bk-back'>"+"</div>"+"<div class='bk-left'></div></div></div></div><div class='item-details'><h3 class='book-item_title'>"+data.item[i].title+"</h3><p class='author'>"+data.item[i].author+"</p><p>"+data.item[i].description+"</p><a onclick='bookinsert("+sendData+")' class='button'>신청</a></div></li>");
 		}	
-			$.ajax({
-				method: "get",
-				url:"/book/aladinPage.do",
-				data: {totalCount:data.totalResults,reqPage:data.startIndex},
-				success: function(data){
-					document.getElementById("pageNavi").innerHTML="";
-					$("#pageNavi").append(data);
-					console.log(data);
-				}
-			})
+		$.ajax({
+			method: "get",
+			url:"/aladin/aladinPage.do",
+			data: {totalCount:data.totalResults,reqPage:data.startIndex},
+			success: function(data){
+				document.getElementById("pageNavi").innerHTML="";
+				$("#pageNavi").append(data);
+				console.log(data);
+			}
+		});
 		console.log(data.totalResults);
 	}else{
 		console.log("실패");
 	}
-}
-
+};
+function bookinsert(item){
+	console.log("진입성공");
+	$.ajax({
+		method: "get",
+		url:"/book/insertAsJson.do",
+		data: {item:JSON.stringify(item)},
+		complete: function(data){
+			console.log(data);
+		},
+		success: function(data){
+			console.log(data);
+		}
+	});
+};
 function bookSearch(page){
+	var inform=document.getElementById("informSearch");
+	inform.style.display="none";
 	var pageNo=page;
 	console.log(page);
 	$(".book-item").remove();
@@ -951,7 +973,7 @@ function bookSearch(page){
 		jsonpCallback : "resultFunc", //response받을때 동작하는 함수명  resultFunc 위 함수
 		dataType:"jsonp"	//cors우회..	 해킹
 	});
-}
+};
 </script>
 </body>
 </html>

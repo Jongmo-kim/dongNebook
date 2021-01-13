@@ -10,13 +10,14 @@
 </style>
 </head>
 <body>
+<br>
 	<div class="adminSideBar">
 		<div class="adminSideMenu">
 			<div class="adminSideMain">
 				<h2>Admin</h2>
 			</div>
 			<ul>
-				<li><a href="/book/searchInAladin.do">도서등록</a></li>
+				<li><a href="/aladin/searchInAladin.do">도서등록</a></li>
 				<li><a href="/book/bookList.do?reqPage=1">도서수정</a></li>
 				<li><a href="/proposal/proposalList.do?reqPage=1">도서신청목록</a></li>
 				<li><a href="#">회원관리</a></li>
