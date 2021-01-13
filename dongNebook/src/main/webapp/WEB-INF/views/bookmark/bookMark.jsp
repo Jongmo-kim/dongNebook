@@ -152,20 +152,13 @@ $(function() {
     	});
 	}
    	function rent(){
-   		var list = new Array();
     	$(".chk:checked").each(function(idx,item){
-    		var rental = new Object();
-    		var userNo = $(".userNo").val();
         	var bookNo = $(item).next().val();
-        	rental.UserNo = userNo;
-        	rental.bookNo = bookNo;
-        	list.push(rental);
     	});
-    	console.log(list);
    		$.ajax({
-   			url : "/insertLoc.do",
+   			url : "/bookRental.do",
    			type: "post",
-   			data : list,
+   			data : {bookNo : bookNo},
    			success : function(data){
    				location.href="/";
    			}

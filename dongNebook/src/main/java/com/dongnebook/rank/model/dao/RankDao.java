@@ -28,4 +28,9 @@ public class RankDao {
 	public int totalCount() {
 		return sqlSession.selectOne("rank.selectTotalCount");
 	}
+
+	public ArrayList<Book> mainRank() {
+		List<Book> list = sqlSession.selectList("rank.mainRank");
+		return (ArrayList<Book>)list;
+	}
 }
