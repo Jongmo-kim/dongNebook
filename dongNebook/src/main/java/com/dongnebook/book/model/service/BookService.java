@@ -104,12 +104,10 @@ public class BookService {
 		return dao.selectBookMarkList(userNo);
 	}
 
-<<<<<<< HEAD
 	public Book selectOneBook(int bookNo) {
 		return dao.selectOneBook(bookNo);
 	}
 
-=======
 	public String aladinPage(int totalCount, int reqPage) {
 		int numPerPage = 10; 		//한페이지 당 게시물 수
 		//게시물 10개 가져오기 -> start값, end값 계산
@@ -158,6 +156,4 @@ public class BookService {
 		return pageNavi;
 	}
 
-	
->>>>>>> develop/0.0.0
 }

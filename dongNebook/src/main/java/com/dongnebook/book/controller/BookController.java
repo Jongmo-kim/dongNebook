@@ -106,13 +106,12 @@ public class BookController {
 		
 		return "common/msg";
 	}
-<<<<<<< HEAD
 	@RequestMapping("/selectOneBook.do")
 	public String selectOneBook(Model model, int bookNo) {
 		Book book = service.selectOneBook(bookNo);
 		model.addAttribute("b", book);
 		return "book/selectOneBook";
-=======
+	}
 	@RequestMapping("/searchInAladin")
 	public String searchInAladin() {
 		return "book/searchInAladin";
@@ -124,6 +123,5 @@ public class BookController {
 		System.out.println("요청페이지"+reqPage);
 		String pageNavi=service.aladinPage(totalCount,reqPage);
 		return pageNavi.toString();
->>>>>>> develop/0.0.0
 	}
 }
