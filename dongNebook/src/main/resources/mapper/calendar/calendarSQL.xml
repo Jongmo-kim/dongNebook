@@ -20,7 +20,10 @@
 			calendar_no as calendarNo,
 			calendar_title as calendarTitle,
 			calendar_startdate as calendarStartDate,
-			calendar_enddate as calendarEndDate
+			calendar_enddate as calendarEndDate,
+			background_color as backgroundColor,
+			text_color as textColor,
+			border_color as borderColor
 		from calendar
 		where calendar_no = #{_int}
 	</select>
@@ -31,6 +34,14 @@
 		delete from calendar where calendar_no = #{_int}
 	</delete>
 	<update id="updateCalendar" parameterType="calendar">
-		update calendar set calendar_title=#{calendarTitle}, calendar_startdate=#{calendarStartDate}, calendar_enddate=#{calendarEndDate} where calendar_no=#{calendarNo}
+		update calendar 
+		set 
+			calendar_title=#{calendarTitle}, 
+			calendar_startdate=#{calendarStartDate}, 
+			calendar_enddate=#{calendarEndDate},
+			background_color=#{backgroundColor},
+			text_color=#{textColor},
+			border_color=#{borderColor}
+		where calendar_no=#{calendarNo}
 	</update>
 </mapper>
