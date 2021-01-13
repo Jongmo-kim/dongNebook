@@ -67,4 +67,8 @@ public class RankService {
 		BookPageData npd=new BookPageData(list,pageNavi);
 		return npd;
 	}
+
+	public ArrayList<Book> mainRank() {
+		return dao.mainRank();
+	}
 }

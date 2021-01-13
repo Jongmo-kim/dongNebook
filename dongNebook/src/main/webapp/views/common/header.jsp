@@ -41,8 +41,6 @@
 			<c:when test="${loginUser == null }">
 				<a href="/user/signupFrm.do">회원가입</a>
 				<a href="/user/loginFrm.do">로그인</a>
-				<a href="/user/idSearchFrm.do">ID 찾기</a>
-				<a href="/user/pwSearchFrm.do">비밀번호 찾기</a>
 			</c:when>
 			<c:otherwise>
 				<a href="/user/mypageFrm.do">마이페이지</a>
