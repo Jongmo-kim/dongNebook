@@ -13,13 +13,8 @@
 			#{ISBN13},
 			#{ISBN10},
 			#{bookCount},
-<<<<<<< HEAD
-			default,
-			0
-=======
 			#{rCount},
 			#{imageurl}
->>>>>>> develop/0.0.0
 		)
 	</insert>
 	<select id="selectTotalCount" resultType="_int">
