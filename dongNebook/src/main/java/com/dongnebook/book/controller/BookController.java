@@ -17,6 +17,7 @@ import com.dongnebook.book.model.vo.BookPageData;
 import com.dongnebook.common.hangulTrie;
 import com.dongnebook.common.hangulTrie.trieNode;
 import com.dongnebook.user.model.vo.User;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -130,11 +131,12 @@ public class BookController {
 	 
 	@ResponseBody
 	@RequestMapping("/autocomplete.do")
-	public String autocomplete(String inputVal) {
+	public JsonArray autocomplete(String inputVal) {
 		ArrayList<trieNode> nodes = trie.findAllLeafsInclude(inputVal);
+		JsonArray arr = new JsonArray();
 		for(trieNode n : nodes) {
-			System.out.println(n.getCurrString());
+			arr.add(n.getCurrString());
 		}
-		return "1";
+		return arr;
 	}
 }
