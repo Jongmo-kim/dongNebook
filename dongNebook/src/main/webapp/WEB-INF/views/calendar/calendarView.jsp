@@ -85,6 +85,7 @@
 			console.log("start : "+info.event.startStr);
 			console.log("end : "+info.event.endStr);
 			
+			
 			var title = info.event.title;
 			var start = info.event.startStr;
 			var end = info.event.endStr;
@@ -198,7 +199,8 @@
 			end.setHours(23);
 			end.setMinutes(59);
 			end.setSeconds(59);
-			
+			console.log("startType:"+jQuery.type(start));
+			console.log("endType:"+jQuery.type(end));
 			$.ajax({
 				url : "/calendar/insertCalendar.do",
 				type : "get",

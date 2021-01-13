@@ -1,6 +1,8 @@
 package com.dongnebook.calendar.controller;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +37,15 @@ public class CalendarController {
 		System.out.println(title); 
 		System.out.println(start);
 		System.out.println(end);
-		//여기까지 잘 넘어옴
+
+		/*
+		Date s = Date.valueOf(start);
+		Date e = Date.valueOf(end); -> 시간을 더했더니 Mon Jan 11 2021 00:00:00 GMT+0900 형태로 됨
+		
+
+		System.out.println("startClass>"+s.getClass());
+		System.out.println("endClass>"+e.getClass());
+		 */
 		
 		Calendar c = new Calendar();
 		c.setCalendarTitle(title);
