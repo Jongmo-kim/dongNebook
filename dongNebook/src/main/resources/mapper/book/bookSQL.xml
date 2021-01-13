@@ -101,4 +101,17 @@
 	<select id="rentalCount" parameterType="_int" resultType="_int">
 	select count(*) from book_rental where user_no = #{userNo}
 	</select>
+	<select id="newBook" resultType="book">
+		select book_no as bookNo,
+	        book_name as bookName,
+	        book_kind as bookKind,
+	        book_writer as bookWriter,
+	        book_publisher as bookPublisher,
+	        book_introduce as bookIntroduce,
+	        ISBN13 as ISBN13,
+	        book_count as bookCount,
+	        imageurl as imageurl
+        from (select rownum as bnum, b.* from (select * from book order by book_no desc)b) where bnum between 1 and 5
+	</select>
+	
 </mapper>

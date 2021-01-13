@@ -9,6 +9,25 @@
 <jsp:include page="/views/common/linkHead.jsp"/>
 <link href="../css/index/index.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="/js/index/index.js"></script>
+<style>
+	.bookImg>a>img{
+		width:140px;
+		height : 190px;
+	}
+	.bookImg{
+	border:none;
+	text-align:center;
+	}
+	.info{
+	border:none;
+	text-align:center;
+	
+	}
+	.info>p>a{
+	color: #333333;
+	}
+</style>
+
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
@@ -33,75 +52,32 @@
             <div class="contents">
                <div class="bookContent">
                 <ul>
-                   <li>
+                <c:forEach items="${newBook }" var="n">
+				   <li>
                    <div>
-                   <div class="bookImg"><a href = "#">책 사진</a></div>
-                	<div class="info">
-                	<p><a href=#>제목</a></p>
-                	</div>
+                   		<div class="bookImg"><a href = "#"><img alt="${n.bookName }Image" src="${n.imageurl }"></a></div>
+                		<div class="info">
+                		<p><a href=#>${n.bookWriter }</a></p>
+                		</div>
                    </div>
-                   </li>
                    
-                   <li><div>
-                   <div class="bookImg"><a href = "#">책 사진</a></div>
-                	<div class="info">
-                	<p><a href=#>제목</a></p>
-                	</div>
-                   </div></li>
-                   <li><div>
-                   <div class="bookImg"><a href = "#">책 사진</a></div>
-                	<div class="info">
-                	<p><a href=#>제목</a></p>
-                	</div>
-                   </div></li>
-                   <li><div>
-                   <div class="bookImg"><a href = "#">책 사진</a></div>
-                	<div class="info">
-                	<p><a href=#>제목</a></p>
-                	</div>
-                   </div></li>
-                   <li><div>
-                   <div class="bookImg"><a href = "#">책 사진</a></div>
-                	<div class="info">
-                	<p><a href=#>제목</a></p>
-                	</div>
-                   </div></li>
-               </ul>
+                   </li>
+                   </c:forEach>
+                  
                 </div>
                 <div class="bookContent">
                <ul>
-                   <li><div>
-                   <div class="bookImg"><a href = "#">책 사진</a></div>
-                	<div class="info">
-                	<p><a href=#></a></p>
-                	</div>
+               <c:forEach items="${rankList }" var="b">
+                   <li>
+                   <div>
+                   		<div class="bookImg"><a href = "#"><img alt="${b.bookName }Image" src="${b.imageurl }"></a></div>
+                		<div class="info">
+                		<p><a href=#>${b.bookWriter }</a></p>
+                		</div>
                    </div>
                    
                    </li>
-                   <li><div>
-                   <div class="bookImg"><a href = "#">책 사진</a></div>
-                	<div class="info">
-                	<p><a href=#>제목2</a></p>
-                	</div>
-                   </div></li>
-                   <li><div>
-                   <div class="bookImg"><a href = "#">책 사진</a></div>
-                	<div class="info">
-                	<p><a href=#>제목2</a></p>
-                	</div>
-                   </div></li>
-                   <li><div>
-                   <div class="bookImg"><a href = "#">책 사진</a></div>
-                	<div class="info">
-                	<p><a href=#>제목2</a></p>
-                	</div>
-                   </div></li>
-                   <li><div>
-                   <div class="bookImg"><a href = "#">책 사진</a></div>
-                	<div class="info">
-                	<p><a href=#>제목2</a></p>
-                	</div>
-                   </div></li>
+                  </c:forEach>
                </ul>
                </div>
             </div>
