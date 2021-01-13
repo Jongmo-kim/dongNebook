@@ -822,7 +822,7 @@ body {
 .form-inline{
 	height:50px;
 	text-align:right;
-	width:300px;
+	width:260px;
 	float:right;
 }
 .input-group-prepend{
@@ -873,7 +873,6 @@ body {
 	  	
 		  <input type="text" class="form-control" placeholder="검색어를 입력하세요" id="kwd">
 		  <button type="submit" class="btn btn-primary searchBtn" onclick="bookSearch(1)">Submit</button>
-		  
 		</div>
     </header>
 	<div class="informSearch" id="informSearch">

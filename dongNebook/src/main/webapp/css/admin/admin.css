@@ -54,11 +54,12 @@
 	}
 	hr{
 		margin-top:17px;
-		margin-bottom:17px;
+		margin-bottom:0px;
 	}
 	.contents{
 		float:left;
 		width:950px;
+		padding-left: 20px;
 	}
 	.list-contents{
 		padding:20px;
