@@ -49,7 +49,7 @@
          	margin-bottom : 50px;
          	width : 100px;
          	height: 50px;
-         	border: 1px solid #3b8686;
+         	border: 2px solid #3b8686;
          	background-color:white;
          	color : #404040;
          	font-size : 18px;
@@ -71,6 +71,7 @@
 			<tr>
 				<td><input type="checkbox" class="chk" >
 				<input type=hidden class="bookNo" value="${b.bookNo }">
+				<input type="hidden" class="isbn" value="${b.ISBN13 }">
 				</td>
 				<td><a href="#"><img alt="${b.bookName }Image" src="${b.imageurl }"></a></td>
 				<td><a href="#"><p>${b.bookName }</p></a>
@@ -83,11 +84,30 @@
 	<input type="hidden" class="userNo" value="${loginUser.userNo}">
 	<div class="button">
 	<input type="button" class = "rBtn" onclick="rental();" value="대여하기">
+	<input type="button" class="rBtn bmDelete" value="북마크 삭제">
 	</div>
 	<script>
     var maxChecked=3;
     var totalChecked = 0;
     
+$(function() {
+        
+        $(".bmDelete").click(function(){
+             $(".chk:checked").each(function(idx,item){
+        	var isbn = $(item).next().next().val();
+                   console.log(isbn);
+    	
+          $.ajax({
+   			url : "/book/deleteBookmark.do",
+   			type: "post",
+   			data : {isbn:isbn},
+   			success : function(data){
+   				location.href="/book/bookMarkList.do?reqPage=1";
+   			}
+   		});
+        });
+        });
+     });
     
     function rental(){
     	var chkCount = $(".chk:checked").length;
