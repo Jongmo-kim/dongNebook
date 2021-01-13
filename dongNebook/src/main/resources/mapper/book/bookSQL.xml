@@ -99,8 +99,6 @@
 			*
 		from book where isbn13 = #{ISBN13}
 	</select>
-<<<<<<< HEAD
-	
 	<select id="selectOneBook" parameterType="_int" resultType="book">
 		select
 			*
@@ -109,9 +107,7 @@
 	<insert id="insertReserve" parameterType="reserve">
 		insert into book_rental_reserve values(book_rental_reserve_seq.nextval,#{bookNo},#{userNo})
 	</insert>
-=======
 	<select id="rentalCount" parameterType="_int" resultType="_int">
 	select count(*) from book_rental where user_no = #{userNo}
 	</select>
->>>>>>> develop/0.0.0
 </mapper>
