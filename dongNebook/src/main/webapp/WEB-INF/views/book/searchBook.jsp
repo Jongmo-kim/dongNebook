@@ -14,7 +14,7 @@
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	
+
 	<div class="searchBox">
 		<div class="searchFrm">
 			<form action="/book/searchBook.do" method="get" >
@@ -30,7 +30,7 @@
 					<option value="3">3</option>
 					<option value="4">4</option>
 				</select>
-				<input type="text"  name="inputStr">
+				<input type="text" id="searchFrm" name="inputStr">
 				<button>검색하기</button>
 			</form>
 		</div>
