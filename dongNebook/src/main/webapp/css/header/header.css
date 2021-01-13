@@ -3,6 +3,11 @@
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 11pt;
 }
+
+html { 
+	overflow-y:scroll; 
+}
+
  body{
             margin: 0 auto;
             position: relative;
@@ -151,5 +156,5 @@
         }
         .member-sign{
             float: right;
-            line-height: 50px;
+            line-height:50px;
         }

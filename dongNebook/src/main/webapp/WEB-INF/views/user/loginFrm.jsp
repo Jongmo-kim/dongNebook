@@ -11,6 +11,8 @@
 <script type="text/javascript" src="../js/user/inputBox.js"></script>
 <link rel="stylesheet" href="../css/common/button.css">
 </head>
+<style>
+</style>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
 	<div class="content">
@@ -34,7 +36,40 @@
 		<div class="searchFrm">
 			<a href="/user/idSearchFrm.do">ID 찾기</a>
 			<a href="/user/pwSearchFrm.do">비밀번호 찾기</a>
+			<a data-toggle="modal" data-target="#myModal">관리자 로그인</a>
 		</div>
+		<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h2 class="modal-title">관리자 로그인하기</h2>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form action="/admin/adminLogin.do" method="post">
+			    <div class="name inputBox admin_input">
+		            <input type="text" class="form-textbox" name="adminId">
+		            <span class="form-label">아이디</span>
+		            <span class="additional-info" id="idInfo"></span>
+		        </div>
+				
+			    <div class="name inputBox admin_input">
+		            <input type="password" class="form-textbox" name="adminPw">
+		            <span class="form-label">비밀번호</span>
+		            <span class="additional-info" id="pwInfo"></span>
+		        </div>
+		        <div class="submitBtn">
+					<button class="btn btn-outline-primary admin_btn">로그인하기</button>
+				</div>
+		</form>
+      </div>
+    </div>
+  </div>
+</div>
 	</div>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<jsp:include page="/views/common/footer.jsp" />

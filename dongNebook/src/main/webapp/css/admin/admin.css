@@ -58,3 +58,7 @@
 	.list-contents{
 		padding:20px;
 	}
+	.main-frame{
+		width:1200px;
+		margin:0 auto;
+	}

@@ -15,5 +15,6 @@
 		<typeAlias type="com.dongnebook.proposal.model.vo.ProposalVO" alias="pro"/>
 		<typeAlias type="com.dongnebook.common.FileVO" alias="fileVO"/>
 		<typeAlias type="com.dongnebook.calendar.model.vo.Calendar" alias="calendar"/>
+		<typeAlias type="com.dongnebook.admin.model.vo.Admin" alias="admin"/>
 	</typeAliases>
 </configuration>
