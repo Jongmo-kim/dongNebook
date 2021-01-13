@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dongnebook.book.model.service.BookService;
 import com.dongnebook.book.model.vo.Book;
@@ -105,10 +106,24 @@ public class BookController {
 		
 		return "common/msg";
 	}
+<<<<<<< HEAD
 	@RequestMapping("/selectOneBook.do")
 	public String selectOneBook(Model model, int bookNo) {
 		Book book = service.selectOneBook(bookNo);
 		model.addAttribute("b", book);
 		return "book/selectOneBook";
+=======
+	@RequestMapping("/searchInAladin")
+	public String searchInAladin() {
+		return "book/searchInAladin";
+	}
+	@ResponseBody
+	@RequestMapping(value = "/aladinPage", produces = "application/text; charset=utf8")
+	public String aladinPage(int totalCount, int reqPage) {
+		System.out.println("총페이지수"+totalCount);
+		System.out.println("요청페이지"+reqPage);
+		String pageNavi=service.aladinPage(totalCount,reqPage);
+		return pageNavi.toString();
+>>>>>>> develop/0.0.0
 	}
 }
