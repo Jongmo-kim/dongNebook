@@ -25,12 +25,10 @@
 	color : #79bd9a;
 	}
 	table{
-		
-		margin : 0 auto;
 		border-top : 3px solid lightgray;
 		border-bottom : 3px solid lightgray;
 		width : 1000px;
-		margin-top:100px;
+		margin-top:30px;
 	}
 	table>tbody>tr>td:first-child{
 		width:20px;
@@ -67,17 +65,27 @@
 		font-weight: 100;
 		color:#262626;
 	}
+	.con{
+	margin : 0 auto;
+	width : 1000px;
+	margin-top:80px;
+	}
+	.con>h1{
+		color:#404040;
+		font-size : 33px;
+	}
 </style>
 <jsp:include page="/views/common/linkHead.jsp"/>
 </head>
 <body>
 		<jsp:include page="/views/common/header.jsp" />
-	
+		<div class="con">
+	<h1>| 대출 순위</h1>
 	<table>
 		<c:forEach items="${list }" var ="b">
 			<tr>
 				<td>${b.rankNum }</td>
-				<td><img alt="${b.bookName }Image" src="${b.imageurl }"></td>
+				<td><a href="#"><img alt="${b.bookName }Image" src="${b.imageurl }"></a></td>
 				<td class="td3"><p><a href = '#'>${b.bookName }</a></p>
 				<p>${b.bookWriter }</p>
 				<p>${b.bookIntroduce }</p>
@@ -85,6 +93,7 @@
 				</tr>
 		</c:forEach>
 	</table>
+	</div>
 		<div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
 		
 			
