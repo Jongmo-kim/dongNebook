@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>동네 북</title>
-
 <jsp:include page="/views/common/linkHead.jsp"/>
 <link href="../css/index/index.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="/js/index/index.js"></script>

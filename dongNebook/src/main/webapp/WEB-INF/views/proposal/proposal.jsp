@@ -34,9 +34,8 @@
 	color : #79bd9a;
 	}
          table {
-         width : 1000px;
+         	width : 100%;
             margin: 0 auto;
-            margin-top:100px;
             border-top: 3px solid lightgray;
             border-bottom: 3px solid lightgray;
             text-align: center;
@@ -129,6 +128,9 @@
          	font-size : 19px;
          	font-weight : bold;
          }
+         .adminSideMenu li:nth-child(3){
+         	background:#a8dba8;
+         }
  </style>
  <jsp:include page="/views/common/linkHead.jsp"/>
 </head>
@@ -207,6 +209,45 @@
    		<div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
    		
    		
+
+<jsp:include page="/views/common/adminSide.jsp" />
+	<div class="contents">
+		<h1 style="font-size:30px;">도서신청목록</h1>
+		<hr>
+		<div class="list-contents">
+		    <table>
+		    <tr>
+		        <th><input type="checkbox" id="allChk"></th>
+		        <th>이미지</th>
+		        <th>제목</th>
+		        <th>카테고리</th>
+		        <th>출판사</th>
+		        <th>신청자</th>
+		    </tr>
+		    <c:forEach items="${list }" var="b" varStatus="status">
+		    <tr>
+		        <td><input type="checkbox" class="chk"></td>
+		        <td>${b.imageurl}</td>
+		               <td>
+		                   <p>${b.bookName }</p>
+		                   <p>${b.bookWriter }</p>
+		                   <p>${b.ISBN13 }</p>
+		               </td>
+		               <td>${b.bookKind }</td>
+		
+		               <td>${b.bookPublisher }</td>
+		               <input type="hidden" value="${b.bookIntroduce }">
+		        <td>${userList.get(status.index).userName }</td>
+		    </tr>
+		    </c:forEach>
+		        </table>
+		        <div class="button">
+		        <input type="button" class="insertBtn pbtn" value="승인">
+		        <input type="button" class="deleteProposal pbtn" value="반려">
+		   		</div>
+	   		</div>
+	   		<div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
+   		</div>
     <script>
     
     $(function() {
