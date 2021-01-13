@@ -3,17 +3,17 @@
 <mapper namespace="pro">
 	<select id="proposalList" parameterType="hashMap" resultType="pro">
 		select 
-			book_proposal_no as bookProposalNo,
+			book_proposal_seq.nextval,
 			user_no as userNo,
-			book_writer as bookWriter,
-			book_publisher as bookPublisher,
 			book_name as bookName,
 			book_kind as bookKind,
+			book_writer as bookWriter,
+			book_publisher as bookPublisher,
 			book_introduce as bookIntroduce,
 			isbn13 as ISBN13,
-			book_count as bookCount,
-			imageurl as imageurl,
-			rCount as rCount
+			isbn10 as ISBN10,
+			imageurl,
+			reason
 		from (select rownum as pNum, p.* from (select * from book_proposal order by 1 desc)p) where pNum between ${start} and ${end}
 	</select>
 	<select id="totalCount" resultType="_int">
@@ -21,19 +21,19 @@
 	</select>
 	
 	<insert id="inserBook" parameterType="book">
-		insert into book values(
-		
-		book_seq.nextval,
-		#{bookName},
-		#{bookKind},
-		#{bookWriter},
-		#{bookPublisher},
-		#{bookIntroduce},
-		#{ISBN13},
-		default,
-		#{imageurl},
-		default)
-	
+		insert into Book values(
+			book_seq.nextval,
+			#{bookName},
+			#{bookKind},
+			#{bookWriter},
+			#{bookPublisher},
+			#{bookIntroduce},
+			#{ISBN13},
+			#{ISBN10},
+			#{bookCount},
+			#{rCount},
+			#{imageurl}
+		)
 	</insert>
 	<delete id="deleteBook" parameterType="book">
 		delete from book_proposal where isbn13 = #{ISBN13}

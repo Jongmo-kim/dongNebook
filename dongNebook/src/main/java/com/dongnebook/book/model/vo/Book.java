@@ -9,11 +9,12 @@ public class Book {
 	private String bookIntroduce;
 	private String imageurl;
 	private String ISBN13;
+	private String ISBN10;
 	private int bookCount;
 	private int rCount;
 	private int rankNum;
 	public Book(int bookNo, String bookName, String bookKind, String bookWriter, String bookPublisher,
-			String bookIntroduce, String imageurl, String ISBN13, int bookCount, int rCount, int rankNum) {
+			String bookIntroduce, String imageurl, String ISBN13, String ISBN10, int bookCount, int rCount, int rankNum) {
 		super();
 		this.bookNo = bookNo;
 		this.bookName = bookName;
@@ -23,9 +24,16 @@ public class Book {
 		this.bookIntroduce = bookIntroduce;
 		this.imageurl = imageurl;
 		this.ISBN13 = ISBN13;
+		this.ISBN10 = ISBN10;
 		this.bookCount = bookCount;
 		this.rCount = rCount;
 		this.rankNum = rankNum;
+	}
+	public String getISBN10() {
+		return ISBN10;
+	}
+	public void setISBN10(String iSBN10) {
+		ISBN10 = iSBN10;
 	}
 	public Book() {
 		super();

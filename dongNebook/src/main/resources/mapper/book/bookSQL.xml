@@ -10,9 +10,10 @@
 			#{bookPublisher},
 			#{bookIntroduce},
 			#{ISBN13},
+			#{ISBN10},
 			#{bookCount},
-			#{imageurl},
-			#{rCount}
+			#{rCount},
+			#{imageurl}
 		)
 	</insert>
 	<select id="selectTotalCount" resultType="_int">
