@@ -32,7 +32,7 @@
 		headerToolbar: {
         	left: 'prevYear,prev,next,nextYear today myCustomButton',
     	    center: 'title',
-			right: 'dayGridMonth,dayGridWeek,dayGridDay,listYear'
+			right: 'dayGridMonth,dayGridWeek,listYear'
     	},
 	    locale : "ko",
 	    // initialDate: '2020-09-12',
