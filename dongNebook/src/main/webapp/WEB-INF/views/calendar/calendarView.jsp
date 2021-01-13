@@ -70,7 +70,6 @@
 					    	textColor : <%=c.getTextColor()%>,
 					    	borderColor : <%=c.getBorderColor()%>
 				    	<%}%>
-				    	
 				    },	
 	        	<%}%>
 	        <%}%>
