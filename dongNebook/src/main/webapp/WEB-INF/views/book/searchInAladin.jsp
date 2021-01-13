@@ -831,8 +831,9 @@ body {
 .indicator{
 	background-image: url("/image/common/loading.svg");
 }
-.adminSideMenu li:nth-child(1){
-         	background:#a8dba8;
+.adminSideMenu li:nth-child(1) a{
+         background:#a8dba8;
+		color:white;
          }
 .aladin-img{
 	height:50px;

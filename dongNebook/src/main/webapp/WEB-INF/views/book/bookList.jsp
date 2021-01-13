@@ -101,8 +101,9 @@
          .pbtn:hover{
          background-color: lightgray;
          }
-         .adminSideMenu li:nth-child(2){
+         .adminSideMenu li:nth-child(2) a{
          	background:#a8dba8;
+		color:white;
          }
          .bookListTable{
          	border-left:none;
