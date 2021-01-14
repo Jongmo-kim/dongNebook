@@ -159,4 +159,13 @@ public class BookService {
 	public ArrayList<Book> newBook() {
 		return dao.newBook();
 	}
+
+	public Book selectOneBook(String isbn) {
+		
+		return dao.selectOneBook(isbn);
+	}
+
+	public int updateCntBook(Book book) {
+		return dao.updateCntBook(book);
+	}
 }

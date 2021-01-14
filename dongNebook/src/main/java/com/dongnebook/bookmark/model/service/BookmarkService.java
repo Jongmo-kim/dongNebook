@@ -18,6 +18,7 @@ public class BookmarkService {
 	private BookmarkDao dao;
 	
 	public int insertBookmark(String isbn, int userNo) {
+		System.out.println("serviceisbn"+isbn);
 		return dao.insertBookmark(isbn,userNo);
 	}
 

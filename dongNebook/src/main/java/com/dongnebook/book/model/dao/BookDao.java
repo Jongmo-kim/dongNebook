@@ -72,4 +72,12 @@ public class BookDao {
 		return (ArrayList<Book>)list;
 	}
 
+	public Book selectOneBook(String isbn) {
+		return session.selectOne("book.selectOneBookISBN",isbn);
+	}
+
+	public int updateCntBook(Book book) {
+		return session.update("book.updateCntBook", book.getISBN());
+	}
+
 }
