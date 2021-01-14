@@ -1,13 +1,13 @@
+
  var isDebugMode = false;
     $(function () {
 		$('#nameInput').on('blur',nameInputRegFunc);
-		$('#dateInput').on('blur',dateInputRegFunc);
-		$('#phoneInput').on('blur',phoneInputRegFunc);
 		$('#idInput').on('blur',idInputRegFunc);
 		$('#pwInput').on('blur',pwInputRegFunc);
 		$('#pwreInput').on('blur',pwreInputRegFunc);
 		$('#emailInput').on('blur',emailInputRegFunc);
-		$('#submitBtn').on('click',submitBtnFunc);
+		$("form").submit(submitBtnFunc);
+
     });
 	function nameInputRegFunc(){
 		var Regexp = /^[가-힣]{2,4}$/i;
@@ -23,47 +23,6 @@
 		}
 		
 	};
-	function dateInputRegFunc(){
-		var inputVal = $('#dateInput').val();
-		var Regexp = /^\d{4}년\s\d{2}월\s\d{2}일$/g;
-		if(Regexp.test(inputVal)){
-			if(isModernDate(inputVal)){
-				$('#dateInput').removeClass('form-textbox-wrong');
-				$('#dateInfo').html('');
-				return true;
-			} else {
-				$('#dateInput').addClass('form-textbox-wrong');
-				$('#dateInfo').html('🚫 1850년 01월 01일 ~ 2020년 12월 02일 사이의 값을 입력해주세요.')
-				return false;				
-			}
-		} else{
-			$('#dateInput').addClass('form-textbox-wrong');
-			$('#dateInfo').html('🚫 입력하지 않은 값이 있습니다.')
-			return false;
-		}
-	}
-	function isModernDate(inputVal){
-		var maxDate = "2020년 12월 31일";
-		var minDate = "1850년 01월 01일";
-		var maxInt = moment(maxDate, 'YYYY년 MM월 DD일').toDate().getTime();
-		var minInt = moment(minDate, 'YYYY년 MM월 DD일').toDate().getTime();
-		var inputInt = moment(inputVal, 'YYYY년 MM월 DD일').toDate().getTime();
-		// minInt<inputInt <maxInt
-		return (minInt < inputInt && inputInt < maxInt);
-	}
-	function phoneInputRegFunc(){
-		var inputVal = $('#phoneInput').val();
-		var regexp = /^\d{3}-\d{4}-\d{4}$/g;
-		if(regexp.test(inputVal)){
-			$('#phoneInput').removeClass('form-textbox-wrong');
-			$('#phoneInfo').html('');
-			return true;
-		} else {
-			$('#phoneInput').addClass('form-textbox-wrong');
-			$('#phoneInfo').html('🚫 입력하지 않은 값이 있습니다.');
-			return false;
-		}
-	}
 	function idInputRegFunc(){
 		var regexp = /^[a-z]+[a-z0-9]{5,19}$/g;
 		var inputVal = $('#idInput').val();
@@ -88,14 +47,15 @@
 		var inputId = $('#idInput').val();
 		var isNested = true;
 		$.ajax({
-			url:"/idNestedCheck",
+			url:"/user/idNestedCheck.do",
 			data:{inputId:inputId},
 			async: false,
 			success : function(data){
+				console.log(data);
 				isNested = Boolean(data.isNested);
 			},
 			error : function(data){
-				$('#idInput').val('서버와 통신이 원할하지않습니다.');				
+				$('#idInfo').val('서버와 통신이 원할하지않습니다.');				
 			}
 		});
 		return isNested;
@@ -151,18 +111,6 @@
 				return false;				
 			}	
 	}
-	function genderInputFunc(){
-		var input = $('input[name="customerGen"]');
-		var isChecked = $(input).is(':checked');
-		
-		if(isChecked){
-			$('#genInfo').html('');
-			return true;
-		} else {
-			$('#genInfo').html('🚫 성별을 입력해주세요.');
-			return false;
-		}
-	}
 	function isEmpty(str){
        
       if(typeof str == "undefined" || str == null || str == "")
@@ -171,8 +119,10 @@
           return false ;
   	}
 	function submitBtnFunc(e){
+		
 		if(isAllPassed()){
-			
+			document.signFrm.action="/user/signup.do";
+			document.signFrm.submit();
 		} else {
 			window.scrollTo(0, 0);
 			return false;
@@ -181,16 +131,12 @@
 	function isAllPassed(){
 				console.log(emailInputRegFunc(),
 				pwreInputRegFunc(), 
-				dateInputRegFunc(),
-				phoneInputRegFunc(), 
 				idInputRegFunc(), 
 				pwInputRegFunc(),
 				pwreInputRegFunc(), 
-				addrInputFunc(),
-				genderInputFunc())
-		return (emailInputRegFunc() && pwreInputRegFunc() && 
-				dateInputRegFunc() && phoneInputRegFunc() && 
+				addrInputFunc());
+		return (emailInputRegFunc() && 
 				idInputRegFunc() && pwInputRegFunc() && 
-				pwreInputRegFunc() && addrInputFunc() && genderInputFunc());
+				pwreInputRegFunc() && addrInputFunc() );
 	}
 	

@@ -143,15 +143,15 @@ create table "FILE"(
 
 create table bookmark(
     user_no number,
-    isbn13 varchar2(20),
-    primary key(user_no,isbn13)
+    isbn varchar2(20),
+    primary key(user_no,isbn)
 );
 
 ALTER TABLE bookmark ADD CONSTRAINT bookmark_user_no_Fk
 FOREIGN KEY(USER_NO) REFERENCES "USER"(USER_NO) ON DELETE CASCADE;
 
 ALTER TABLE bookmark ADD CONSTRAINT bookmark_isbn_Fk
-FOREIGN KEY(isbn13) REFERENCES book(isbn13) ON DELETE CASCADE;
+FOREIGN KEY(isbn) REFERENCES book(isbn) ON DELETE CASCADE;
 
 create sequence notice_seq;
 create sequence admin_seq;
