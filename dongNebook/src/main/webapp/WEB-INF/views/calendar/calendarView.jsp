@@ -74,62 +74,64 @@
 	        	<%}%>
 	        <%}%>
 	      ],
-	      //eventTextColor : '#ff00ff',
-	      //eventColor: '#378006',
 			//캘린더 날짜 클릭
 			dateClick: function(info) {
-				//dateStr : 클릭한 td의 날짜를 받아옴
-				var date = info.dateStr;
-				$('#myModal').modal(); 
-				
-				$('#insertCalendar').show();
-				$('#updateCalendar').hide();
-				
-				$("#calendarStartDate").val(date);
-				$("#calendarEndDate").val(date);				
+				 if(sessionScope.loginAdmin!=null){
+					//dateStr : 클릭한 td의 날짜를 받아옴
+						var date = info.dateStr;
+						$('#myModal').modal(); 
+						
+						$('#insertCalendar').show();
+						$('#updateCalendar').hide();
+						
+						$("#calendarStartDate").val(date);
+						$("#calendarEndDate").val(date);				
 
-				$(".modal-title").html('새로운 일정');
+						$(".modal-title").html('새로운 일정');
+				 }
 			},
  	      //일정 수정
  	      eventClick: function (info) {
  	    	//info.event.start -> Mon Jan 11 2021 00:00:00 GMT+0900 형태
  	    	//info.event.startStr -> 2021-01-11 형태
  	        
+ 	        if(sessionScope.loginAdmin!=null){
+ 	        	console.log("title : "+info.event.title);
+ 				console.log("id : "+info.event.id);
+ 				console.log("start : "+info.event.startStr);
+ 				
+ 				
+ 				var title = info.event.title;
+ 				var start = info.event.startStr;
+ 				var end = info.event.endStr;
+ 				
+ 				//info.event.end : 만약 end가 null -> 하루짜리 일정이라면 끝나는 날짜와 시작 날짜를 같게 함
+ 				//info.event.endStr : 만약 길이가 10 미만이라면(형태가 yyyy-mm-dd 형태가 아니라면)
+ 				if(end.length < 10){	
+ 					end = start;
+ 				}
+ 				
+ 				console.log("end : "+info.event.endStr);
+ 				$('#myModal').modal(); 
+ 				$(".modal-title").html('일정 수정');
+ 				$('#updateCalendar').show();
+ 				$('#insertCalendar').hide();
+ 				
+ 				$("#calendarTitle").val(title);
+ 				
+ 				//yyyy-MM-dd hh:mm:ss 형태에서 yyyy-mm-dd만 추출
+ 				var startDate = start.substr(0, 10);
+ 				var endDate = end.substr(0, 10);
+ 				
+ 				$("#calendarStartDate").val(startDate);
+ 				$("#calendarEndDate").val(endDate);
+ 				
+ 				//updateBtn과 deleteBtn에 해당 event의 id값을 넣어둔다.
+ 				//두개 같은 id가 들어가는데 외우기 쉽게 각각의 버튼에 넣어둠
+ 				$("#deleteBtn").val(info.event.id);
+ 				$("#updateBtn").val(info.event.id);
+ 	        }
  	        
- 	        console.log("title : "+info.event.title);
-			console.log("id : "+info.event.id);
-			console.log("start : "+info.event.startStr);
-			
-			
-			var title = info.event.title;
-			var start = info.event.startStr;
-			var end = info.event.endStr;
-			
-			//info.event.end : 만약 end가 null -> 하루짜리 일정이라면 끝나는 날짜와 시작 날짜를 같게 함
-			//info.event.endStr : 만약 길이가 10 미만이라면(형태가 yyyy-mm-dd 형태가 아니라면)
-			if(end.length < 10){	
-				end = start;
-			}
-			
-			console.log("end : "+info.event.endStr);
-			$('#myModal').modal(); 
-			$(".modal-title").html('일정 수정');
-			$('#updateCalendar').show();
-			$('#insertCalendar').hide();
-			
-			$("#calendarTitle").val(title);
-			
-			//yyyy-MM-dd hh:mm:ss 형태에서 yyyy-mm-dd만 추출
-			var startDate = start.substr(0, 10);
-			var endDate = end.substr(0, 10);
-			
-			$("#calendarStartDate").val(startDate);
-			$("#calendarEndDate").val(endDate);
-			
-			//updateBtn과 deleteBtn에 해당 event의 id값을 넣어둔다.
-			//두개 같은 id가 들어가는데 외우기 쉽게 각각의 버튼에 넣어둠
-			$("#deleteBtn").val(info.event.id);
-			$("#updateBtn").val(info.event.id);
 	      }
 	    });
 	    calendar.render();
@@ -218,42 +220,49 @@
 	<script>
 		function insertCalendar(){
 			var title = $("#calendarTitle").val();
-			var start = $("#calendarStartDate").val();
-			var end = $("#calendarEndDate").val();
-			
-			//날짜를 - 기준으로 나눠서 배열에 넣기
-			var startArr = start.split('-');
-		    var endArr = end.split('-');
-		    
-		    //배열로 date 객체 만들기
-		    var start_date = new Date(startArr[0], startArr[1], startArr[2]);
-	        var end_date = new Date(endArr[0], endArr[1], endArr[2]);
-	        
-	        //date 객체로 시간 비교
-			if(start_date.getTime() > end_date.getTime()){
-				alert("종료 날짜는 시작 날짜와 동일하거나 그 이후여야 합니다.");
+			if(title==""){
+				alert("일정명은 필수 항목입니다.");
 			}
 			else {
-				$.ajax({
-					url : "/calendar/insertCalendar.do",
-					type : "get",
-					data : {title:title,
-							start:start,
-							end:end},
-					success:function(data){
-						if(data!=null){
-							location.reload();
-							alert("일정 등록 성공");
-						} else {
-							alert("일정 등록 실패");
-						}				
-					},
-					error:function(){
-						alert("ajax error");
-					}
-				});
-			$('#myModal').modal('hide'); 	
+				var start = $("#calendarStartDate").val();
+				var end = $("#calendarEndDate").val();
+				
+				//날짜를 - 기준으로 나눠서 배열에 넣기
+				var startArr = start.split('-');
+			    var endArr = end.split('-');
+			    
+			    //배열로 date 객체 만들기
+			    var start_date = new Date(startArr[0], startArr[1], startArr[2]);
+		        var end_date = new Date(endArr[0], endArr[1], endArr[2]);
+		        
+		        //date 객체로 시간 비교
+				if(start_date.getTime() > end_date.getTime()){
+					alert("종료 날짜는 시작 날짜와 동일하거나 그 이후여야 합니다.");
+				}
+				else {
+					$.ajax({
+						url : "/calendar/insertCalendar.do",
+						type : "get",
+						data : {title:title,
+								start:start,
+								end:end},
+						success:function(data){
+							if(data!=null){
+								location.reload();
+								alert("일정 등록 성공");
+							} else {
+								alert("일정 등록 실패");
+							}				
+						},
+						error:function(){
+							alert("ajax error");
+						}
+					});
+				$('#myModal').modal('hide'); 	
+				}
 			}
+			
+			
 		}
 		
 		function deleteCalendar(){
