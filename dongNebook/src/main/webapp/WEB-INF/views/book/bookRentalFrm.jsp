@@ -44,13 +44,18 @@
 						<input type="button" class="goRentalLoc" value="검색">
 					</td>
 				</tr>
+				<tr>
+					<input type="text" name="placeName" value="${rentalLoc.placeName }">
+					<input type="hidden" name="addr" value="${rentalLoc.addr }">
+					<input type="hidden" name="phone" value="${rentalLoc.phone }">
+				</tr>
 			<tr>
 				<td colspan="7"><input type="submit" value="대출하기"><input type="reset" value="취소하기"></td> 
 			</tr>
 		</table>
 	</form>
-
-	<form action="/rentalLoc.do"  method="get">
+	
+	<form action="/rentalLoc.do"  method="post">
 		<input type="submit" id="goRentalLoc" value="검색" style="display:none">
 	</form>
 </body>

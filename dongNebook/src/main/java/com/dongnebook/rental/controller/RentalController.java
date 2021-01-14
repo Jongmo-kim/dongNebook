@@ -1,18 +1,28 @@
 package com.dongnebook.rental.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.rental.model.service.RentalService;
 import com.dongnebook.rental.model.vo.BookRentalReserve;
+import com.dongnebook.rental.model.vo.RentalList;
 import com.dongnebook.rental.model.vo.RentalLoc;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
 
 @Controller
 public class RentalController {
@@ -54,7 +64,6 @@ public class RentalController {
 			}			
 			list = service.selectBooks(bookNo);
 			session.setAttribute("rentalList", list);
-			model.addAttribute("list", list);
 		}		
 		return "book/bookRentalFrm";
 //		return "rental/rental_loc";
@@ -74,7 +83,12 @@ public class RentalController {
 		return "common/msg";
 	}
 	@RequestMapping("/rentalLoc.do")
-	public String rentalLoc(Model model) {
+	public String rentalLoc() {
 		return "rental/rental_loc";
+	}
+	@RequestMapping("/mergeLoc.do")
+	public String mergeLoc(Model model,RentalLoc loc) {
+		model.addAttribute("rentalLoc", loc);
+		return "book/bookRentalFrm";
 	}
 }

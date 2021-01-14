@@ -43,7 +43,7 @@
             <div class="admin-explain">
             	<input type="text" value="${rentalList }">
             </div>
-            <form action="/insertLoc.do">
+            <form action="/mergeLoc.do">
             
 	            <input type="text" class="loc-inform" name="placeName" id="loc-inform" readonly>
 				<input type="hidden" id="loc-addr" name="addr">
