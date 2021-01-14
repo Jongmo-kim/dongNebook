@@ -18,6 +18,7 @@
 	<div class="searchBox">
 		<div class="searchFrm">
 			<form action="/book/searchBook.do" name="searchBook" method="get" >
+				<input type="hidden" name="reqPage" value="1">
 				<div class="inputField">
 					<div class="searchFieldFrm">
 						<select name="searchKeyword">
