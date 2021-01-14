@@ -15,19 +15,25 @@
 	<hr>
 	<table border=1>
 		<tr>
-			<th><input type="checkbox" class="allCheck"></th><th>공지사항 번호</th><th>제목</th><th>작성자</th><th>작성일</th>
+			<c:if test="${sessionScope.loginAdmin!=null}">
+				<th><input type="checkbox" class="allCheck"></th>
+			</c:if>
+			<th>공지사항 번호</th><th>제목</th><th>작성자</th><th>작성일</th>
 		</tr>
 		<c:forEach items="${list }" var ="n">
 			<tr>
-				<td><input type="checkbox" name="noticeCheck" value=${n.noticeNo }></td><td>${n.rNum }</td><td><a href="/notice/noticeView.do?noticeNo=${n.noticeNo}">${n.noticeTitle }</a></td><td>${n.noticeWriter }</td><td>${n.enrollDate }</td>			
+				<c:if test="${sessionScope.loginAdmin!=null}">
+					<td><input type="checkbox" name="noticeCheck" value=${n.noticeNo }></td>
+				</c:if>
+				<td>${n.rNum }</td><td><a href="/notice/noticeView.do?noticeNo=${n.noticeNo}">${n.noticeTitle }</a></td><td>${n.noticeWriter }</td><td>${n.enrollDate }</td>			
 			</tr>
 		</c:forEach>
 	</table>
 	<p style="text-align:center">${pageNavi }</p>
 	<c:if test="${sessionScope.loginAdmin!=null}">
 		<button onclick="insertNotice();" class="btn btn-primary">추가</button>
+		<button onclick="deleteNotice();" class="btn btn-danger">삭제</button>
 	</c:if>
-	<button onclick="deleteNotice();" class="btn btn-danger">삭제</button>
 	
 	<script>
 		$(function(){

@@ -72,7 +72,11 @@ public class NoticeDao {
 		return sqlSession.delete("notice.deleteFile", noticeNo);
 	}
 
-	public int deleteFilepath(FileVO fv) {
-		return sqlSession.delete("notice.deleteFilepath", fv);
+	public int deleteFilepath(HashMap<String, Object> map) {
+		return sqlSession.delete("notice.deleteFilepath", map);
+	}
+
+	public int selectFileNum(int noticeNo) {
+		return sqlSession.selectOne("notice.selectFileNum", noticeNo);
 	}
 }
