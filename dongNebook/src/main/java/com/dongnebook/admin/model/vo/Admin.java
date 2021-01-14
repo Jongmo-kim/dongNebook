@@ -43,7 +43,7 @@ public class Admin {
 	
 	@Override
 	public String toString() {
-		return "Admin [adminNo = "+adminNo+", adminId = "+adminId+", adminPw = "+adminPw+", adminNickName = "+adminNickName+"]";
+		return "Admin [adminNo = "+adminNo+", adminId = "+adminId+", adminPw = "+adminPw+", adminNickName = "+nickName+"]";
 	}
 	
 }
