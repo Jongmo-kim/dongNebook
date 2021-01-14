@@ -14,7 +14,7 @@
     border: 0;
     display: block;
     width: 100%;
-    padding: 10px 32px 10px 70px;
+    padding: 10px 32px 10px 107px;
     font-size: 18px;
     height: 70px;
     color: #fff;
@@ -81,6 +81,11 @@
   position: relative;
   width: 100%;
   height: 0px;
+}
+.searchFieldFrm > select {
+  position: absolute;
+  left: 27px;
+  top: 22.5px;
 }
 /* width */
 ::-webkit-scrollbar {

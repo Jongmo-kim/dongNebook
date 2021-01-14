@@ -18,19 +18,15 @@
 	<div class="searchBox">
 		<div class="searchFrm">
 			<form action="/book/searchBook.do" name="searchBook" method="get" >
-				<select name="searchKeyword">
-					<option value="전체">전체</option>
-					<option value="책이름">책이름</option>
-					<option value="저자">저자</option>
-					<option value="출판사">출판사</option>
-				</select>
-				<select name="reqPage">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-				</select>
 				<div class="inputField">
+					<div class="searchFieldFrm">
+						<select name="searchKeyword">
+							<option value="전체">전체</option>
+							<option value="책이름">책이름</option>
+							<option value="저자">저자</option>
+							<option value="출판사">출판사</option>
+						</select>
+					</div>
 					<input type="text" id="searchFrm" name="inputStr" autocomplete="off">
 					<div class="icon-wrap">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

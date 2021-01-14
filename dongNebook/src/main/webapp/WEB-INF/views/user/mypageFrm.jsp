@@ -16,7 +16,6 @@
     new daum.Postcode({
         oncomplete: function(data) {
         	$('input[name="addr"]').val(data.address);
-        	$('input[name="addrPostcode"]').val(data.zonecode);
         }
     }).open();
 	}
@@ -27,7 +26,9 @@
 	<form action="/user/update.do" method="post">
 		<h1>수정하기</h1><hr>
 		<input type="hidden" name="userNo" value="${loginUser.userNo }">
+		<br>
 		<div class="name inputBox">
+				
 	            <input type="text" name="userId" value="${loginUser.userId }" class="form-textbox">
 	            <span class="form-label label-focused">아이디</span>
 	            <span class="additional-info" id="idInfo"></span>
@@ -50,12 +51,7 @@
 		<div class="name inputBox">
 	            <input type="text" name="addr" value="${loginUser.addr }" class="form-textbox">
 	            <span class="form-label label-focused">주소</span>
-	            <span class="additional-info" id="addrInfo"></span>
-        </div>
-        <div class="name inputBox">
-            <input type="text" class="form-textbox readonly" value=" "readonly name="addrPostcode">
-            <span class="form-label label-focused">Zipcode</span>
-            <button class="btn btn-outline-primary" id="searchBtn" type="button" onclick="addrSearch()">주소검색</button>
+	            <button class="btn btn-outline-primary" id="searchBtn" type="button" onclick="addrSearch()">주소검색</button>
         </div>
         <div class="submitBtn">
 			<button class="btn btn-outline-primary">수정하기</button>
