@@ -39,19 +39,25 @@
 			<th>첨부파일</th>
 			<td>
 				<c:forEach items="${n.fileList }" var="f">
-					<script>
-						console.log('${f.filepath}');
-					</script>
 					<a href="javascript:fileDownload('${f.filename }','${f.filepath }')">${f.filename }</a>
 				</c:forEach>
 			</td>
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td>
+			<td class="contentTd">
 				${n.noticeContentBr }<br>
 				<c:forEach items="${n.fileList }" var="f">
-					<img src='/resources/upload/notice/${f.filepath }' width="500px"><br>
+					<script>
+						var ext = '${f.filepath}'.split('.').pop().toLowerCase();
+						console.log('${f.filepath}');
+						console.log("확장자>>"+ext)
+						if($.inArray(ext, ['gif','png','jpg','jpeg']) != -1){
+							var imgTag = "<img src='/resources/upload/notice/${f.filepath }' width='500px'><br>";
+							$(".contentTd").append(imgTag);
+						}
+					</script>
+					<%-- <img src='/resources/upload/notice/${f.filepath }' width="500px"><br> --%>
 				</c:forEach>
 			</td>
 		</tr>

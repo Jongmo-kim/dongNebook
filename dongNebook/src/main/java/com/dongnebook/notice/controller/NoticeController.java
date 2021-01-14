@@ -68,7 +68,7 @@ public class NoticeController {
 	public String insertNotice(Notice n, MultipartFile[] files, HttpServletRequest request, Model model) {
 		String root = request.getSession().getServletContext().getRealPath("/");
 		String path = root + "resources/upload/notice/";
-
+		System.out.println("첨부파일 개수 > "+files.length);
 		ArrayList<FileVO> fileList = new ArrayList<FileVO>();
 		for(MultipartFile file : files) {
 			if(!file.isEmpty()) {
