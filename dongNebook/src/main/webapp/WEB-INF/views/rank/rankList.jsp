@@ -50,10 +50,10 @@
 	}
 	table>tbody>tr>td:nth-child(3)>p:first-child{
 	font-weight: bold;
-	font-size:19px;
 	}
 	table>tbody>tr>td:nth-child(3)>p:first-child>a{
 	color:#333333;
+	font-size:18px;
 	}
 	table>tbody>tr>td:nth-child(3)>p:nth-child(2){
 		color:gray;
