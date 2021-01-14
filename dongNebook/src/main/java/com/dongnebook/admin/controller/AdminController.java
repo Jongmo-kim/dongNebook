@@ -24,6 +24,7 @@ public class AdminController {
 		Admin loginAdmin = service.adminLogin(admin);
 		if(loginAdmin!=null) {
 			session.setAttribute("loginAdmin", loginAdmin);
+			System.out.println(loginAdmin.toString());
 			model.addAttribute("msg", "로그인 성공");
 			model.addAttribute("result", "true");
 		}else {

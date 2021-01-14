@@ -41,6 +41,10 @@ public class Admin {
 		this.adminNickName = adminNickName;
 	}
 	
+	@Override
+	public String toString() {
+		return "Admin [adminNo = "+adminNo+", adminId = "+adminId+", adminPw = "+adminPw+", adminNickName = "+adminNickName+"]";
+	}
 	
 	
 }
