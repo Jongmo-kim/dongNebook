@@ -76,7 +76,7 @@
 		update book set book_name=#{bookName},book_kind=#{bookKind} where book_no=#{bookNo}
 	</update>
 	<select id="selectBookMark" parameterType="_int" resultType="string">
-		select isbn13 from bookmark where user_no=#{userNo}
+		select isbn from bookmark where user_no=#{userNo}
 	</select>
 	<insert id="insertBookMark" parameterType="bookmark">
 		insert into bookmark values(#{userNo},#{ISBN})
