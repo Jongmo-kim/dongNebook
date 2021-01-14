@@ -2,6 +2,8 @@ package com.dongnebook.rental.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,13 +46,14 @@ public class RentalController {
 		return "common/msg";
 	}
 	@RequestMapping("/bookRental.do")
-	public String bookRental( Model model, int[] bookNo) {
+	public String bookRental( Model model, int[] bookNo,HttpSession session) {
 		ArrayList<Book> list = new ArrayList<Book>();
 		if(bookNo.length>0) {
 			for(int i : bookNo) {
 				System.out.println(i);
 			}			
 			list = service.selectBooks(bookNo);
+			session.setAttribute("rentalList", list);
 			model.addAttribute("list", list);
 		}		
 		return "book/bookRentalFrm";
@@ -70,5 +73,8 @@ public class RentalController {
 		model.addAttribute("loc","/");
 		return "common/msg";
 	}
-	
+	@RequestMapping("/rentalLoc.do")
+	public String rentalLoc(Model model) {
+		return "rental/rental_loc";
+	}
 }

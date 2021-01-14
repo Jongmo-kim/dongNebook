@@ -1,3 +1,4 @@
+<%@page import="com.dongnebook.book.model.vo.Book"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -36,13 +37,26 @@
 				<td>${b.bookNo}</td><td><img src=${b.imageurl}></td><td>${b.bookName }</td><td>${b.bookWriter }</td><td>${b.bookCount}</td><td><%= sf.format(nowTime) %>시</td><td><%= sf.format(cal.getTime())%></td>	
 			</tr>
 			</c:forEach>
-			<tr>
-				<td colspan="6">상호대차 장소 검색</td><td><input type="button" value="검색"></td>
-			</tr>
+			
+				<tr>
+					<td colspan="6">상호대차 장소 검색</td>
+					<td>
+						<input type="button" class="goRentalLoc" value="검색">
+					</td>
+				</tr>
 			<tr>
 				<td colspan="7"><input type="submit" value="대출하기"><input type="reset" value="취소하기"></td> 
 			</tr>
 		</table>
 	</form>
+
+	<form action="/rentalLoc.do"  method="get">
+		<input type="submit" id="goRentalLoc" value="검색" style="display:none">
+	</form>
 </body>
+<script>
+$('.goRentalLoc').on('click', function() {
+	  $('#goRentalLoc').trigger('click');
+	});
+</script>
 </html>
