@@ -66,15 +66,15 @@
 				<c:if test="${loginUser!=null }">
 					<c:set var="chk" value="false"/>
 					<c:forEach var="m" items="${bookMarkList }">
-						<c:if test="${b.ISBN13 eq m }">
+						<c:if test="${b.ISBN eq m }">
 							<c:set var="chk" value="true"/>
 						</c:if>
 					</c:forEach>
 					<c:if test= "${chk == false}">
-						<td><label for="bookmark-chk${b.bookNo }" id="label-chk${b.bookNo }"><img src="/image/bookmark/bookmark-false.png"></label><input type="checkbox" id="bookmark-chk${b.bookNo }" style="display:none" onclick="bookmarkChkBox(checked,'label-chk${b.bookNo }','${b.ISBN13 }')"></td>
+						<td><label for="bookmark-chk${b.bookNo }" id="label-chk${b.bookNo }"><img src="/image/bookmark/bookmark-false.png"></label><input type="checkbox" id="bookmark-chk${b.bookNo }" style="display:none" onclick="bookmarkChkBox(checked,'label-chk${b.bookNo }','${b.ISBN }')"></td>
 					</c:if>
 					<c:if test= "${chk == true}">
-						<td><label for="bookmark-chk${b.bookNo }" id="label-chk${b.bookNo }"><img src="/image/bookmark/bookmark-true.png"></label><input type="checkbox" id="bookmark-chk${b.bookNo }" style="display:none" checked=true onclick="bookmarkChkBox(checked,'label-chk${b.bookNo }','${b.ISBN13 }')"></td>
+						<td><label for="bookmark-chk${b.bookNo }" id="label-chk${b.bookNo }"><img src="/image/bookmark/bookmark-true.png"></label><input type="checkbox" id="bookmark-chk${b.bookNo }" style="display:none" checked=true onclick="bookmarkChkBox(checked,'label-chk${b.bookNo }','${b.ISBN }')"></td>
 					</c:if>
 					<!-- 
 					<td><label for="bookmark-chk${b.bookNo }"><img id="bookmark-false${b.bookNo }" src="/image/bookmark/bookmark-false.png"></label><input type="checkbox" id="bookmark-chk${b.bookNo }" onclick="bookmarkChkBox(checked,${b.bookNo })"><label for="bookmark-chk${b.bookNo }"><img id="bookmark-true${b.bookNo }" src="/image/bookmark/bookmark-true.png"></label></td>

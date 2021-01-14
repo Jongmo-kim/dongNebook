@@ -78,13 +78,13 @@ public class ProposalController {
 			b.setBookPublisher(bookList.getString("bookPublisher"));
 			b.setBookIntroduce(bookList.getString("bookIntroduce"));
 			b.setImageurl(bookList.getString("imageurl"));
-			b.setISBN13(bookList.getString("ISBN13"));
+			b.setISBN(bookList.getString("ISBN"));
 			b.setBookWriter(bookList.getString("bookWriter"));
 			System.out.println(b.getBookName());
 			System.out.println(b.getBookKind());
 			int result = service.insertBook(b);
 			int result2 = service.deleteBook(b);
-			System.out.println("isbn = "+b.getISBN13());
+			System.out.println("isbn = "+b.getISBN());
 		}
 		
 		//int result = service.proposalInsert();
@@ -101,7 +101,7 @@ public class ProposalController {
 			String bookStr = arr.get(i).toString();
 			JSONObject bookList = new JSONObject(bookStr);
 			Book b = new Book();
-			b.setISBN13(bookList.getString("ISBN13"));
+			b.setISBN(bookList.getString("ISBN13"));
 			int result = service.deleteBook(b);
 		}
 		

@@ -54,6 +54,7 @@ public class RentalController {
 			model.addAttribute("list", list);
 		}		
 		return "book/bookRentalFrm";
+//		return "rental/rental_loc";
 	}
 	@RequestMapping("/insertReserve.do")
 	public String insertReserve(Model model, int bookNo, int userNo) {
