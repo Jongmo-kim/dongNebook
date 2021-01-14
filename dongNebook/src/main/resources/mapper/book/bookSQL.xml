@@ -10,8 +10,7 @@
 			#{bookPublisher},
 			#{bookIntroduce},
 			#{imageurl},
-			#{ISBN13},
-			#{ISBN10},
+			#{ISBN},
 			#{bookCount},
 			#{rCount},
 			#{imageurl}
@@ -41,7 +40,7 @@
 	        book_writer,
 	        book_publisher,
 	        book_introduce,
-	        ISBN13,
+	        ISBN,
 	        book_count,
 	        imageurl
 	    FROM 

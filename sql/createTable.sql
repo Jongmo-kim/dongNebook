@@ -48,8 +48,7 @@ CREATE TABLE BOOK(
     BOOK_WRITER VARCHAR2(300),
     BOOK_PUBLISHER VARCHAR2(500),
     BOOK_INTRODUCE VARCHAR2(4000),
-    ISBN13 varchar2(20) unique,
-    ISBN10 varchar2(20) unique,
+    ISBN varchar2(20) unique,
     book_count number default 0,
     rCount number default 0,
     IMAGEURL VARCHAR2(4000)
@@ -98,8 +97,7 @@ CREATE TABLE BOOK_PROPOSAL(
     BOOK_WRITER VARCHAR2(300),
     BOOK_PUBLISHER VARCHAR2(500),
     BOOK_INTRODUCE VARCHAR2(4000),
-    ISBN13 varchar2(20) unique,
-    ISBN10 varchar2(20) unique,
+    ISBN varchar2(20) unique,
     IMAGEURL VARCHAR2(4000),
     reason varchar2(4000)
 );

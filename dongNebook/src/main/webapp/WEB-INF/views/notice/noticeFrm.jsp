@@ -29,8 +29,7 @@
 						</tr>
 						<tr>
 							<th>작성자</th>
-							<td><input type="text" name="noticeWriter"
-								value="${sessionScope.loginUser.userName }" readonly></td>
+							<td><input type="text" name="noticeWriter" value="${sessionScope.loginAdmin.adminNickName }" readonly></td>
 						</tr>
 						<tr>
 							<th>내용</th>
@@ -51,7 +50,6 @@
 	        var files = fileInput.files;
 	        var file;
 	        for (var i = 0; i < files.length; i++) {
-
 	            alert(files[i].name);
 	        }
 	    });
