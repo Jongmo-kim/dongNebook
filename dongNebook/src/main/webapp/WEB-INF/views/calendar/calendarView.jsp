@@ -21,16 +21,16 @@
 
 	var calendar = new FullCalendar.Calendar(calendarEl, {
 		//커스텀 버튼
-		customButtons: {
+		/* customButtons: {
 		    myCustomButton: {
 		      text: 'eventObj',
 		      click: function() {
 		        window.open("https://fullcalendar.io/docs/event-object");
 				}
 			}
-		},
+		}, */
 		headerToolbar: {
-        	left: 'prevYear,prev,next,nextYear today myCustomButton',
+        	left: 'prevYear,prev,next,nextYear today',
     	    center: 'title',
 			right: 'dayGridMonth,dayGridWeek,listYear'
     	},

@@ -21,7 +21,7 @@
 						</tr>
 						<tr>
 							<th>제목</th>
-							<td><input type="text" name="noticeTitle"></td>
+							<td><input type="text" name="noticeTitle" id="noticeTitle"></td>
 						</tr>
 						<tr>
 							<th>첨부파일</th>
@@ -33,7 +33,7 @@
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td><textarea name="noticeContent" row="3" col="40"></textarea></td>
+							<td><textarea name="noticeContent" id="noticeContent" row="3" col="40"></textarea></td>
 						</tr>
 						<tr>
 							<th colspan="2">
@@ -46,13 +46,38 @@
 	</section>
 	<script>
 		$("input[type=file]").change(function () {
-			var fileInput = document.getElementById("input-file");
+/* 			var fileInput = document.getElementById("input-file");
 	        var files = fileInput.files;
 	        var file;
 	        for (var i = 0; i < files.length; i++) {
 	            alert(files[i].name);
-	        }
+	        } */
+	        
+	        
+	        //FileBuffer에 fileList 복사
+/* 	        fileBuffer = [];
+	        const target = document.getElementsByName('files');
+	        
+	        Array.prototype.push.apply(fileBuffer, target[0].files);
+
+	        $.each(fileBuffer, function(idx, item){
+	        	
+	        }); */
 	    });
+		
+		$("button[type=submit]").click(function(event){
+			event.preventDefault();
+			var title = $("#noticeTitle").val();
+			var content = $("#noticeContent").val();
+			if(title==""){
+				alert("제목을 입력하세요");
+				event.preventDefault();
+			}
+			if(content==""){
+				alert("내용을 입력하세요");
+				event.preventDefault();
+			}
+		})
 	</script>
 </body>
 </html>
