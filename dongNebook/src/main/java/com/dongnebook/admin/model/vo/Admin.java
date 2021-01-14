@@ -4,17 +4,17 @@ public class Admin {
 	private int adminNo;
 	private String adminId;
 	private String adminPw;
-	private String adminNickName;
+	private String nickName;
 	public Admin() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Admin(int adminNo, String adminId, String adminPw, String adminNickName) {
+	public Admin(int adminNo, String adminId, String adminPw, String nickName) {
 		super();
 		this.adminNo = adminNo;
 		this.adminId = adminId;
 		this.adminPw = adminPw;
-		this.adminNickName = adminNickName;
+		this.nickName = nickName;
 	}
 	public int getAdminNo() {
 		return adminNo;
@@ -34,17 +34,16 @@ public class Admin {
 	public void setAdminPw(String adminPw) {
 		this.adminPw = adminPw;
 	}
-	public String getAdminNickName() {
-		return adminNickName;
+	public String getNickName() {
+		return nickName;
 	}
-	public void setAdminNickName(String adminNickName) {
-		this.adminNickName = adminNickName;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 	
 	@Override
 	public String toString() {
 		return "Admin [adminNo = "+adminNo+", adminId = "+adminId+", adminPw = "+adminPw+", adminNickName = "+adminNickName+"]";
 	}
-	
 	
 }
