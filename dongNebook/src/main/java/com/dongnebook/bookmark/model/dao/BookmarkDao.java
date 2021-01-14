@@ -18,9 +18,11 @@ public class BookmarkDao {
 	private SqlSessionTemplate session;
 	
 	public int insertBookmark(String isbn, int userNo) {
+		System.out.println("dao"+isbn);
 		Bookmark bookMark = new Bookmark();
 		bookMark.setUserNo(userNo);
 		bookMark.setISBN(isbn);
+		System.out.println("daoisbn"+bookMark.getISBN());
 		return session.insert("book.insertBookMark", bookMark);
 	}
 

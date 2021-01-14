@@ -29,8 +29,9 @@ public class BookmarkController {
 	@RequestMapping("/insertBookmark.do")
 	@ResponseBody
 	public int insertBookmark(String isbn,HttpSession session) {
+		System.out.println("이건"+isbn);
 		User loginUser = (User)session.getAttribute("loginUser");
-		
+		System.out.println(loginUser.getUserNo());
 		int result= service.insertBookmark(isbn,loginUser.getUserNo());
 		
 		return result;
@@ -38,7 +39,7 @@ public class BookmarkController {
 	@RequestMapping("/deleteBookmark.do")
 	@ResponseBody
 	public int deleteBookmark(String isbn,HttpSession session) {
-		System.out.println("1");
+		System.out.println(isbn);
 		User loginUser = (User)session.getAttribute("loginUser");
 		
 		int result= service.deleteBookmark(isbn,loginUser.getUserNo());

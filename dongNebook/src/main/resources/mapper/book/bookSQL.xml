@@ -130,5 +130,10 @@
 	        imageurl as imageurl
         from (select rownum as bnum, b.* from (select * from book order by book_no desc)b) where bnum between 1 and 5
 	</select>
-	
+	<select id="selectOneBookISBN" parameterType="string" resultType="book">
+		select * from book where isbn=#{_parameter}
+	</select>
+	<update id="updateCntBook" parameterType="string">
+		update book SET book_count= book_count + 1 WHERE isbn=#{ISBN}
+	</update>
 </mapper>

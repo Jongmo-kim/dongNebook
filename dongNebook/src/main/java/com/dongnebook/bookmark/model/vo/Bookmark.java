@@ -7,10 +7,10 @@ public class Bookmark {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Bookmark(int userNo, String ISBN) {
+	public Bookmark(int userNo, String iSBN) {
 		super();
 		this.userNo = userNo;
-		ISBN = ISBN;
+		ISBN = iSBN;
 	}
 	public int getUserNo() {
 		return userNo;
@@ -21,9 +21,10 @@ public class Bookmark {
 	public String getISBN() {
 		return ISBN;
 	}
-	public void setISBN(String ISBN) {
-		ISBN = ISBN;
+	public void setISBN(String iSBN) {
+		ISBN = iSBN;
 	}
+	
 	
 	
 }
