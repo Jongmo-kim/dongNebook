@@ -71,7 +71,7 @@
 			<tr>
 				<td><input type="checkbox" class="chk" >
 				<input type=hidden class="bookNo" value="${b.bookNo }">
-				<input type="hidden" class="isbn" value="${b.ISBN13 }">
+				<input type="hidden" class="isbn" value="${b.ISBN }">
 				</td>
 				<td><a href="/book/selectOneBook.do?bookNo=${b.bookNo }"><img alt="${b.bookName }Image" src="${b.imageurl }"></a></td>
 				<td><p><a href = "/book/selectOneBook.do?bookNo=${b.bookNo }">${b.bookName }</a></p>

@@ -58,7 +58,7 @@ public class BookController {
 		b.setBookPublisher(o.getAsJsonObject().get("publisher").getAsString());
 		b.setBookWriter(o.getAsJsonObject().get("author").getAsString());
 		b.setImageurl(o.getAsJsonObject().get("cover").getAsString());
-		b.setISBN13(o.getAsJsonObject().get("isbn13").getAsString());
+		b.setISBN(o.getAsJsonObject().get("isbn").getAsString());
 		b.setBookCount(1);
 		System.out.println(b);
 		int result = service.insertBook(b);
