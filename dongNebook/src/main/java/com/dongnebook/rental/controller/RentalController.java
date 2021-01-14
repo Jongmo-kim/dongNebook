@@ -45,14 +45,15 @@ public class RentalController {
 	}
 	@RequestMapping("/bookRental.do")
 	public String bookRental( Model model, int[] bookNo) {
-		ArrayList<Book> list = null;
+		ArrayList<Book> list = new ArrayList<Book>();
 		if(bookNo.length>0) {
 			for(int i : bookNo) {
 				System.out.println(i);
 			}			
+			
 			list = service.selectBooks(bookNo);
 		}
-		return "book/bookRental";
+		return null;
 	}
 	@RequestMapping("/insertReserve.do")
 	public String insertReserve(Model model, int bookNo, int userNo) {
