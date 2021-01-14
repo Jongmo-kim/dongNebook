@@ -8,13 +8,15 @@ public class Book {
 	private String bookPublisher;
 	private String bookIntroduce;
 	private String imageurl;
-	private String ISBN13;
-	private String ISBN10;
+	private String ISBN;
 	private int bookCount;
 	private int rCount;
 	private int rankNum;
+	public Book() {
+		super();
+	}
 	public Book(int bookNo, String bookName, String bookKind, String bookWriter, String bookPublisher,
-			String bookIntroduce, String imageurl, String ISBN13, String ISBN10, int bookCount, int rCount, int rankNum) {
+			String bookIntroduce, String imageurl, String iSBN, int bookCount, int rCount, int rankNum) {
 		super();
 		this.bookNo = bookNo;
 		this.bookName = bookName;
@@ -23,20 +25,10 @@ public class Book {
 		this.bookPublisher = bookPublisher;
 		this.bookIntroduce = bookIntroduce;
 		this.imageurl = imageurl;
-		this.ISBN13 = ISBN13;
-		this.ISBN10 = ISBN10;
+		ISBN = iSBN;
 		this.bookCount = bookCount;
 		this.rCount = rCount;
 		this.rankNum = rankNum;
-	}
-	public String getISBN10() {
-		return ISBN10;
-	}
-	public void setISBN10(String iSBN10) {
-		ISBN10 = iSBN10;
-	}
-	public Book() {
-		super();
 	}
 	public int getBookNo() {
 		return bookNo;
@@ -80,11 +72,11 @@ public class Book {
 	public void setImageurl(String imageurl) {
 		this.imageurl = imageurl;
 	}
-	public String getISBN13() {
-		return ISBN13;
+	public String getISBN() {
+		return ISBN;
 	}
-	public void setISBN13(String iSBN13) {
-		ISBN13 = iSBN13;
+	public void setISBN(String iSBN) {
+		ISBN = iSBN;
 	}
 	public int getBookCount() {
 		return bookCount;
@@ -92,7 +84,6 @@ public class Book {
 	public void setBookCount(int bookCount) {
 		this.bookCount = bookCount;
 	}
-	
 	public int getrCount() {
 		return rCount;
 	}
@@ -109,7 +100,8 @@ public class Book {
 	public String toString() {
 		return "Book [bookNo=" + bookNo + ", bookName=" + bookName + ", bookKind=" + bookKind + ", bookWriter="
 				+ bookWriter + ", bookPublisher=" + bookPublisher + ", bookIntroduce=" + bookIntroduce + ", imageurl="
-				+ imageurl + ", ISBN13=" + ISBN13 + ", bookCount=" + bookCount + "]";
+				+ imageurl + ", ISBN=" + ISBN + ", bookCount=" + bookCount + ", rCount=" + rCount + ", rankNum="
+				+ rankNum + "]";
 	}
 	
 	
