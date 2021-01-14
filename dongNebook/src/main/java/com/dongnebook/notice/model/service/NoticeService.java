@@ -125,27 +125,18 @@ public class NoticeService {
 
 	@Transactional
 	public int deleteFilepath(Notice n, String[] delFileList) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("tableNo", n.getNoticeNo());
-		map.put("delFileList", delFileList);
-		int result = dao.deleteFilepath(map);
-		
-//		for(int i=0; i<delFileList.length; i++) {
-//			FileVO fv = new FileVO();
-//			
-//			fv.setTableNo(n.getNoticeNo());
-//			fv.setFilepath(delFileList[i]);
-//			
-//			int result1 = dao.deleteFilepath(fv);
-//			if(result1>0) {
-//				result++;
-//			}
-//		}
-		if(delFileList.length==result) {
-			return result;
-		} else {
-			return 0;
+		if(delFileList.length!=0) {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("tableNo", n.getNoticeNo());
+			map.put("delFileList", delFileList);
+			int result = dao.deleteFilepath(map);
+			if(delFileList.length==result) {
+				return result;
+			} else {
+				return 0;
+			}
 		}
+		return 0;
 	}
 
 	public int selectFileNum(int noticeNo) {
