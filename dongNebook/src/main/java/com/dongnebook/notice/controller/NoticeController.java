@@ -66,9 +66,6 @@ public class NoticeController {
 	@RequestMapping("/insertNotice.do")
 	//MultipartFile이 form에 있는 file을 받아옴. 이래야 파일에 대한 값을 처리할 수 있음
 	public String insertNotice(Notice n, MultipartFile[] files, HttpServletRequest request, Model model) {
-		System.out.println(n.toString());
-
-
 		String root = request.getSession().getServletContext().getRealPath("/");
 		String path = root + "resources/upload/notice/";
 
@@ -135,14 +132,19 @@ public class NoticeController {
 				
 				if(delResult) {
 					System.out.println("프로젝트 파일 삭제 성공");
-					int result1 = service.deleteFile(n.getNoticeNo());
-					System.out.println("result1값 >> "+result1);
-					if(result1>0) {
-						delResult = true;
-						System.out.println("파일DB 삭제 성공");
-					} else {
-						delResult = false;
-						System.out.println("파일DB 삭제 실패");
+					//파일이 있는지 조회
+					int fileNum = service.selectFileNum(n.getNoticeNo());
+					//첨부파일이 있을 시,
+					if(fileNum!=0) {
+						int result1 = service.deleteFile(n.getNoticeNo());
+						System.out.println("result1값 >> "+result1);
+						if(result1>0) {
+							delResult = true;
+							System.out.println("파일DB 삭제 성공");
+						} else {
+							delResult = false;
+							System.out.println("파일DB 삭제 실패");
+						}
 					}
 				} else {
 					System.out.println("파일 삭제 실패");
