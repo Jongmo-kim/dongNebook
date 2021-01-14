@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ page import="java.util.Date" %>
+    <%@ page import="java.util.*" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
 	Date nowTime = new Date();
 	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh");
+	
+	Calendar cal = Calendar.getInstance();
+	
+	Date date = new Date();
+	cal.setTime(date);
+	cal.add(Calendar.DATE, +3);
+	   
 %>
 <!DOCTYPE html>
 <html>
@@ -26,7 +33,7 @@
 			</tr>
 			<c:forEach items="${list }" var ="b"> 
 			<tr>
-				<td>${b.bookNo}</td><td><img src=${b.imageurl}></td><td>${b.bookName }</td><td>${b.bookWriter }</td><td>${b.bookCount}</td><td><%= sf.format(nowTime) %>시</td><td>반납날짜(yyyy-mm-dd)</td>	
+				<td>${b.bookNo}</td><td><img src=${b.imageurl}></td><td>${b.bookName }</td><td>${b.bookWriter }</td><td>${b.bookCount}</td><td><%= sf.format(nowTime) %>시</td><td><%= sf.format(cal.getTime())%></td>	
 			</tr>
 			</c:forEach>
 			<tr>
