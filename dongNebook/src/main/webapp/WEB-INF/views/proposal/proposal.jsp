@@ -154,9 +154,9 @@
     <c:forEach items="${list }" var="b" varStatus="status">
     <tr>
         <td><input type="checkbox" class="chk"></td>
-        <td>${b.imageurl}</td>
+        <td><a href="book/selectOneBook.do?bookNo=${b.bookNo }"><img alt="${b.bookName }Image" src="${b.imageurl }"></a></td>
                <td>
-                   <p>${b.bookName }</p>
+                   <p><a href="book/selectOneBook.do?bookNo=${b.bookNo }">${b.bookName }</a></p>
                    <p>${b.bookWriter }</p>
                    <p>${b.ISBN13 }</p>
                </td>
