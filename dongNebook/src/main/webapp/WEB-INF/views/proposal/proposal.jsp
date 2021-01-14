@@ -154,11 +154,11 @@
     <c:forEach items="${list }" var="b" varStatus="status">
     <tr>
         <td><input type="checkbox" class="chk"></td>
-        <td>${b.imageurl}</td>
+        <td><a href="book/selectOneBook.do?bookNo=${b.bookNo }"><img alt="${b.bookName }Image" src="${b.imageurl }"></a></td>
                <td>
-                   <p>${b.bookName }</p>
+                   <p><a href="book/selectOneBook.do?bookNo=${b.bookNo }">${b.bookName }</a></p>
                    <p>${b.bookWriter }</p>
-                   <p>${b.ISBN13 }</p>
+                   <p>${b.ISBN }</p>
                </td>
                <td>${b.bookKind }</td>
 
@@ -257,7 +257,7 @@
             var imageurl = $(item).parent().next().html();
             var bookName = $(item).parent().parent().find("td").eq(2).find("p").eq(0).html();
             var bookWriter = $(item).parent().parent().find("td").eq(2).find("p").eq(1).html();
-            var ISBN13 = $(item).parent().parent().find("td").eq(2).find("p").eq(2).html();
+            var ISBN = $(item).parent().parent().find("td").eq(2).find("p").eq(2).html();
             var bookKind = $(item).parent().next().next().next().html();
             var bookPublisher = $(item).parent().parent().find("td").eq(4).html();
             var bookIntroduce = $(item).parent().next().next().next().next().next().val();
@@ -267,7 +267,7 @@
         	book.bookPublisher = bookPublisher;
         	book.bookIntroduce = bookIntroduce;
         	book.imageurl = imageurl;
-        	book.ISBN13 = ISBN13;
+        	book.ISBN = ISBN;
         	book.bookWriter = bookWriter;
         	
         	allList.push(book);
@@ -296,7 +296,7 @@
     		var imageurl = $(item).parent().next().html();
             var bookName = $(item).parent().parent().find("td").eq(2).find("p").eq(0).html();
             var bookWriter = $(item).parent().parent().find("td").eq(2).find("p").eq(1).html();
-            var ISBN13 = $(item).parent().parent().find("td").eq(2).find("p").eq(2).html();
+            var ISBN = $(item).parent().parent().find("td").eq(2).find("p").eq(2).html();
             var bookKind = $(item).parent().next().next().next().html();
             var bookPublisher = $(item).parent().parent().find("td").eq(4).html();
             var bookIntroduce = $(item).parent().next().next().next().next().next().val();
@@ -306,7 +306,7 @@
         	book.bookPublisher = bookPublisher;
         	book.bookIntroduce = bookIntroduce;
         	book.imageurl = imageurl;
-        	book.ISBN13 = ISBN13;
+        	book.ISBN = ISBN;
         	book.bookWriter = bookWriter;
         	list.push(book);
     	});

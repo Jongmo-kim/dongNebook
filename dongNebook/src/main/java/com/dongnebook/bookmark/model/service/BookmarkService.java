@@ -29,8 +29,8 @@ public class BookmarkService {
 		return dao.searchBookMark(userNo);
 	}
 
-	public Book searchBookMarkList(String isbn13) {
-		return dao.searchBookmarkList(isbn13);
+	public Book searchBookMarkList(String isbn) {
+		return dao.searchBookmarkList(isbn);
 	}
 
 	public int rentalCount(int userNo) {

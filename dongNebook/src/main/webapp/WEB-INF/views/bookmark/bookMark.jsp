@@ -32,7 +32,7 @@
 		text-align:left;
 			width:700px;
 		}
-        table>tbody>tr>td:nth-child(3)>a>p{
+        table>tbody>tr>td:nth-child(3)>p>a{
 			font-size: 18px;
 			color:#333333;
 			font-weight:bold;
@@ -71,10 +71,10 @@
 			<tr>
 				<td><input type="checkbox" class="chk" >
 				<input type=hidden class="bookNo" value="${b.bookNo }">
-				<input type="hidden" class="isbn" value="${b.ISBN13 }">
+				<input type="hidden" class="isbn" value="${b.ISBN }">
 				</td>
-				<td><a href="#"><img alt="${b.bookName }Image" src="${b.imageurl }"></a></td>
-				<td><a href="#"><p>${b.bookName }</p></a>
+				<td><a href="/book/selectOneBook.do?bookNo=${b.bookNo }"><img alt="${b.bookName }Image" src="${b.imageurl }"></a></td>
+				<td><p><a href = "/book/selectOneBook.do?bookNo=${b.bookNo }">${b.bookName }</a></p>
 					<p>${b.bookWriter }</p>
 				</td>
 				
@@ -90,8 +90,7 @@
     var maxChecked=3;
     var totalChecked = 0;
     
-$(function() {
-        
+	$(function() {
         $(".bmDelete").click(function(){
              $(".chk:checked").each(function(idx,item){
         	var isbn = $(item).next().next().val();
@@ -113,7 +112,7 @@ $(function() {
     	var chkCount = $(".chk:checked").length;
     	var userNo = $(".userNo").val();
 		$.ajax({
-    		url : "rentalCount.do",
+    		url : "/book/rentalCount.do",
     		type : "post",
     		data : {userNo : userNo},
     		success : function(data){

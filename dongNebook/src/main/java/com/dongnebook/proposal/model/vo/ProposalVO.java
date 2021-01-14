@@ -9,15 +9,14 @@ public class ProposalVO {
 	private String bookPublisher;
 	private String bookIntroduce;
 	private String imageurl;
-	private String ISBN13;
-	private String ISBN10;
+	private String ISBN;
 	private int reason;
 	public ProposalVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public ProposalVO(int bookProposalNo, int userNo, String bookName, String bookKind, String bookWriter,
-			String bookPublisher, String bookIntroduce, String imageurl, String iSBN13, String iSBN10, int reason) {
+			String bookPublisher, String bookIntroduce, String imageurl, String ISBN, int reason) {
 		super();
 		this.bookProposalNo = bookProposalNo;
 		this.userNo = userNo;
@@ -27,8 +26,7 @@ public class ProposalVO {
 		this.bookPublisher = bookPublisher;
 		this.bookIntroduce = bookIntroduce;
 		this.imageurl = imageurl;
-		ISBN13 = iSBN13;
-		ISBN10 = iSBN10;
+		this.ISBN =ISBN;
 		this.reason = reason;
 	}
 	public int getBookProposalNo() {
@@ -79,17 +77,11 @@ public class ProposalVO {
 	public void setImageurl(String imageurl) {
 		this.imageurl = imageurl;
 	}
-	public String getISBN13() {
-		return ISBN13;
+	public String getISBN() {
+		return ISBN;
 	}
-	public void setISBN13(String iSBN13) {
-		ISBN13 = iSBN13;
-	}
-	public String getISBN10() {
-		return ISBN10;
-	}
-	public void setISBN10(String iSBN10) {
-		ISBN10 = iSBN10;
+	public void setISBN(String iSBN) {
+		ISBN = iSBN;
 	}
 	public int getReason() {
 		return reason;

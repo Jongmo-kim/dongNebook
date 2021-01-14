@@ -3,15 +3,13 @@
 <mapper namespace="pro">
 	<select id="proposalList" parameterType="hashMap" resultType="pro">
 		select 
-			book_proposal_seq.nextval,
 			user_no as userNo,
 			book_name as bookName,
 			book_kind as bookKind,
 			book_writer as bookWriter,
 			book_publisher as bookPublisher,
 			book_introduce as bookIntroduce,
-			isbn13 as ISBN13,
-			isbn10 as ISBN10,
+			isbn,
 			imageurl,
 			reason
 		from (select rownum as pNum, p.* from (select * from book_proposal order by 1 desc)p) where pNum between ${start} and ${end}
@@ -28,14 +26,13 @@
 			#{bookWriter},
 			#{bookPublisher},
 			#{bookIntroduce},
-			#{ISBN13},
-			#{ISBN10},
+			#{ISBN},
 			#{bookCount},
 			#{rCount},
 			#{imageurl}
 		)
 	</insert>
 	<delete id="deleteBook" parameterType="book">
-		delete from book_proposal where isbn13 = #{ISBN13}
+		delete from book_proposal where isbn = #{ISBN}
 	</delete>
 </mapper>
