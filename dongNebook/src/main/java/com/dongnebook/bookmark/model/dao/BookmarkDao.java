@@ -20,14 +20,14 @@ public class BookmarkDao {
 	public int insertBookmark(String isbn, int userNo) {
 		Bookmark bookMark = new Bookmark();
 		bookMark.setUserNo(userNo);
-		bookMark.setISBN13(isbn);
+		bookMark.setISBN(isbn);
 		return session.insert("book.insertBookMark", bookMark);
 	}
 
 	public int deleteBookmark(String isbn, int userNo) {
 		Bookmark bookMark = new Bookmark();
 		bookMark.setUserNo(userNo);
-		bookMark.setISBN13(isbn);
+		bookMark.setISBN(isbn);
 		return session.delete("book.deleteBookMark", bookMark);
 	}
 
@@ -36,9 +36,9 @@ public class BookmarkDao {
 		return (ArrayList<Bookmark>)list;
 	}
 
-	public Book searchBookmarkList(String isbn13) {
+	public Book searchBookmarkList(String isbn) {
 		
-		return session.selectOne("book.searchBookList", isbn13);
+		return session.selectOne("book.searchBookList", isbn);
 	}
 
 	public int rentalCount(int userNo) {

@@ -42,7 +42,14 @@
 	<delete id="deleteFile">
 		delete from "FILE" where table_name='notice' and table_no=#{_int}
 	</delete>
-	<delete id="deleteFilepath">
-		delete from "FILE" where table_name='notice' and table_no=#{tableNo} and filepath=#{filepath}
+	<delete id="deleteFilepath" parameterType="map">
+		delete from "FILE" where table_name='notice' and table_no=#{tableNo}
+		and filepath in
+		<foreach collection="delFileList" open="(" separator="," close=")" item="filepath">
+		#{filepath}
+		</foreach>
 	</delete>
+	<select id="selectFileNum" parameterType="_int" resultType="_int">
+		select count(*) from "FILE" where table_no=#{_parameter}
+	</select>
 </mapper>

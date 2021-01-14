@@ -52,10 +52,10 @@ public class BookmarkController {
 		System.out.println(loginUser.getUserNo());
 		int userNo = loginUser.getUserNo();
 		ArrayList<Bookmark> bookmark = service.searchBookMark(userNo);
-		System.out.println(bookmark.get(0).getISBN13());
+		System.out.println(bookmark.get(0).getISBN());
 		ArrayList<Book> list=new ArrayList<Book>();
 		for(int i=0;i<bookmark.size();i++) {
-			Book book=service.searchBookMarkList(bookmark.get(i).getISBN13());
+			Book book=service.searchBookMarkList(bookmark.get(i).getISBN());
 			list.add(book);			
 		}
 		System.out.println(list.get(0).getBookName());

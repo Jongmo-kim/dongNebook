@@ -50,10 +50,10 @@
 	}
 	table>tbody>tr>td:nth-child(3)>p:first-child{
 	font-weight: bold;
-	font-size:19px;
 	}
 	table>tbody>tr>td:nth-child(3)>p:first-child>a{
 	color:#333333;
+	font-size:18px;
 	}
 	table>tbody>tr>td:nth-child(3)>p:nth-child(2){
 		color:gray;
@@ -85,8 +85,8 @@
 		<c:forEach items="${list }" var ="b">
 			<tr>
 				<td>${b.rankNum }</td>
-				<td><a href="#"><img alt="${b.bookName }Image" src="${b.imageurl }"></a></td>
-				<td class="td3"><p><a href = '#'>${b.bookName }</a></p>
+				<td><a href="/book/selectOneBook.do?bookNo=${b.bookNo }"><img alt="${b.bookName }Image" src="${b.imageurl }"></a></td>
+				<td class="td3"><p><a href = "/book/selectOneBook.do?bookNo=${b.bookNo }">${b.bookName }</a></p>
 				<p>${b.bookWriter }</p>
 				<p>${b.bookIntroduce }</p>
 				</td>

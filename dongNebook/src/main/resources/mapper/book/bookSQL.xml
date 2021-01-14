@@ -9,7 +9,6 @@
 			#{bookWriter},
 			#{bookPublisher},
 			#{bookIntroduce},
-			#{imageurl},
 			#{ISBN},
 			#{bookCount},
 			#{rCount},
