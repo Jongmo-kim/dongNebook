@@ -110,9 +110,15 @@
 	<select id="rentalCount" parameterType="_int" resultType="_int">
 		select count(*) from book_rental where user_no = #{userNo}
 	</select>
-	<select id="selectBooks" parameterType="_int" resultType="book">
-		select * from book where book_no=#{bookNo} or book_no=#{bookNo} or book_no=#{bookNo};
+	<select id="selectBooks" parameterType="java.util.ArrayList" resultType="book">
+	    SELECT * FROM book
+	    WHERE book_no IN (
+	        <foreach collection="array" item="bookNo" index="index" separator=",">
+	            #{bookNo}
+	        </foreach>
+	    )
 	</select>
+
 	<select id="newBook" resultType="book">
 		select book_no as bookNo,
 	        book_name as bookName,

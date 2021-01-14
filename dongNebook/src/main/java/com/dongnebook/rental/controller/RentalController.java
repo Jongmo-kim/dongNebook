@@ -50,10 +50,10 @@ public class RentalController {
 			for(int i : bookNo) {
 				System.out.println(i);
 			}			
-			
 			list = service.selectBooks(bookNo);
-		}
-		return null;
+			model.addAttribute("list", list);
+		}		
+		return "book/bookRentalFrm";
 	}
 	@RequestMapping("/insertReserve.do")
 	public String insertReserve(Model model, int bookNo, int userNo) {
