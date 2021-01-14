@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.dongnebook.admin.model.service.AdminService;
 import com.dongnebook.admin.model.vo.Admin;
 import com.dongnebook.user.model.vo.User;
+import com.dongnebook.user.model.vo.UserPageData;
 
 @Controller
 @RequestMapping("/admin")
@@ -46,5 +47,11 @@ public class AdminController {
 		model.addAttribute("loc", "/");
 		return "common/msg";
 	}
-
+	@RequestMapping("/manageUser")
+	public String manageUser(Model model,int reqPage) {
+		UserPageData upd = service.userManageList(reqPage);
+		model.addAttribute("list", upd.getList());
+		model.addAttribute("pageNavi", upd.getPageNavi());
+		return "admin/manageUser";
+	}
 }

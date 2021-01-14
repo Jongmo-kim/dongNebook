@@ -4,4 +4,12 @@
   <select id="adminLogin" parameterType="admin" resultType="admin">
 		select * from admin where admin_id=#{adminId} and admin_pw=#{adminPw}  
   </select>
+  <select id="selectUserList" parameterType="hashMap" resultType="user">
+  		select * from 
+		(select rownum as rnum, n.* from(select * from "USER" order by 1 desc)n) 
+		where rnum between #{start} and #{end}
+  </select>
+  <select id="selectTotalCount" resultType="_int">
+		select count(*) from "USER"
+	</select>
 </mapper>
