@@ -20,7 +20,7 @@
 				<li><a href="/aladin/searchInAladin.do">도서등록</a></li>
 				<li><a href="/book/bookList.do?reqPage=1">도서수정</a></li>
 				<li><a href="/proposal/proposalList.do?reqPage=1">도서신청목록</a></li>
-				<li><a href="#">회원관리</a></li>
+				<li><a href="/admin/manageUser.do?reqPage=1">회원관리</a></li>
 			</ul>
 		</div>
 	</div>
