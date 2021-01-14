@@ -18,10 +18,10 @@
 			<th>책이름</th><th>이미지</th><th>카테고리</th><th>저자</th><th>출판사</th><th>소개</th><th>대출</th>
 		</tr>
 		<tr>
-			<td>${b.bookName }</td><td>${b.imageurl}</td><td>${b.bookKind }</td><td>${b.bookWriter }</td><td>${b.bookPublisher}</td><td>${b.bookIntroduce }</td>
+			<td>${b.bookName }</td><td><img alt="${b.bookName }Image" src="${b.imageurl }"></td><td>${b.bookKind }</td><td>${b.bookWriter }</td><td>${b.bookPublisher}</td><td>${b.bookIntroduce }</td>
 			<td>
 				<c:if test="${loginUser!=null }">
-					<a href="/book/bookRental.do?bookNo=${b.bookNo}">대출신청</a>
+					<a href="/bookRental.do?bookNo=${b.bookNo}">대출신청</a>
 	 			</c:if>
 	 			<c:if test="${loginUser==null }">
 				<a>대출신청</a>

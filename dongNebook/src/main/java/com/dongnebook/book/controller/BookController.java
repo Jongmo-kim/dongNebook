@@ -48,8 +48,10 @@ public class BookController {
 		}
 	}
 	
+	@ResponseBody
 	@RequestMapping("/insertAsJson")
 	public String insert(Book b, Model model,String item) {
+		System.out.println("화긴");
 		JsonParser parser = new JsonParser();
 		JsonElement o = parser.parse(item);
 		b.setBookIntroduce(o.getAsJsonObject().get("description").getAsString());
@@ -58,10 +60,17 @@ public class BookController {
 		b.setBookPublisher(o.getAsJsonObject().get("publisher").getAsString());
 		b.setBookWriter(o.getAsJsonObject().get("author").getAsString());
 		b.setImageurl(o.getAsJsonObject().get("cover").getAsString());
-		b.setISBN13(o.getAsJsonObject().get("isbn13").getAsString());
+		b.setISBN(o.getAsJsonObject().get("isbn").getAsString());
 		b.setBookCount(1);
-		System.out.println(b);
-		int result = service.insertBook(b);
+		
+		Book book = service.selectOneBook(b.getISBN());
+		
+		int result=0;
+		if(book==null) {			
+			result = service.insertBook(b);
+		}else {
+			result = service.updateCntBook(book);
+		}
 		if(result > 0) {
 			return b.getBookName()+" 입력 성공";
 		}else {

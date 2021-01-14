@@ -9,8 +9,7 @@
     	BOOK_WRITER as bookWriter,
     	BOOK_PUBLISHER as bookPublisher,
     	BOOK_INTRODUCE as bookIntroduce,
-    	ISBN13,
-    	ISBN10,
+    	ISBN,
     	book_count as bookCount,
     	IMAGEURL as imageurl,
         rCount
@@ -28,8 +27,7 @@
     	BOOK_WRITER as bookWriter,
     	BOOK_PUBLISHER as bookPublisher,
     	BOOK_INTRODUCE as bookIntroduce,
-    	ISBN13,
-    	ISBN10,
+    	ISBN,
     	book_count as bookCount,
     	IMAGEURL as imageurl,
         rCount

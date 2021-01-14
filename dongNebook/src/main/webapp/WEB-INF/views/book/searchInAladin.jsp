@@ -950,6 +950,7 @@ function bookinsert(item){
 		},
 		success: function(data){
 			console.log(data);
+			alert("등록완료");
 		}
 	});
 };
