@@ -101,11 +101,8 @@ public class ProposalController {
 			String bookStr = arr.get(i).toString();
 			JSONObject bookList = new JSONObject(bookStr);
 			Book b = new Book();
-<<<<<<< HEAD
 			b.setISBN(bookList.getString("ISBN13"));
-=======
 			b.setISBN(bookList.getString("ISBN"));
->>>>>>> develop/0.0.0
 			int result = service.deleteBook(b);
 		}
 		
