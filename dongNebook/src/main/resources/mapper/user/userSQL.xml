@@ -60,4 +60,21 @@
 			<if test="userId != null">AND user_Id = #{userId}</if>
 		</trim>
 	</delete>
+	<select id="returnAlert" resultType="rental">
+		select * from book_rental where user_no =#{userNo}
+	</select>
+	<select id="selectBookList" parameterType="map" resultType="book">
+		select 
+			book.* 
+		from 
+			book_rental join book 
+		on 
+			book_rental.book_no=book.book_no 
+		where 
+			user_no=#{userNo} 
+			and book_rental.book_rental_no in
+		<foreach collection="list" open="(" separator="," close=")" item="rentalNo">
+			#{rentalNo}
+		</foreach>
+	</select>
 </mapper>

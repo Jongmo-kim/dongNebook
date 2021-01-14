@@ -46,5 +46,4 @@ public class AdminController {
 		model.addAttribute("loc", "/");
 		return "common/msg";
 	}
-
 }
