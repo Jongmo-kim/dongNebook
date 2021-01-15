@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="alert">
+	<select id="returnAlert" parameterType="_int" resultType="alert">
+		select 
+			book.book_name as bookName,
+			book_rental.book_rental_no as bookRentalNo
+		from 
+			book_rental join book
+		on 
+			book.book_no = book_rental.book_no
+		where 
+			return_date=to_char(sysdate+1,'yyyy/MM/dd') and user_no=#{_int}
+	</select>
+	<insert id="insertAlert" parameterType="alert">
+		insert into alert values(#{bookRentalNo}, #{bookName}, default)
+	</insert>
+</mapper>
