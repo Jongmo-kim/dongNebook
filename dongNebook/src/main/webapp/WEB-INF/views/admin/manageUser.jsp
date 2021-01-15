@@ -163,11 +163,82 @@
 		      <h5>${u.userId }</h5>
 		      <h6>${u.userName }</h6>
 		      
-		      <button class="btn-fllw" onclick="grow()">대출 관리</button>
+		      <button class="btn-fllw" onclick="grow(${u.userNo})" data-toggle="modal" data-target="#myModal" >대출 관리</button>
 	   		</li>
+	   		
+	   		<!-- The Modal -->
+               <div class="modal" id="myModal">
+                 <div class="modal-dialog">
+                   <div class="modal-content">
+               
+                     <!-- Modal Header -->
+                     <div class="modal-header">
+                       <h4 class="modal-title">Modal Heading</h4>
+                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     </div>
+               
+                     <!-- Modal body -->
+                     <form action="/book/updateBook.do">
+                        <div class="modal-body" id="modal-body">
+                           <input type ="text" name="bookName" id="bookName0" style="display:none">
+                           <input type ="text" name="bookName" id="bookName1"style="display:none">
+                           <input type ="text" name="bookName" id="bookName2" style="display:none">
+                        </div>
+                     <!-- Modal footer -->
+                     <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                     </div>
+                  </form>
+               
+                   </div>
+                 </div>
+               </div>
 	    </c:forEach>
 	  </ul>
 		  <div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
   </div>
+  <script>
+  	function grow(userNo){
+  		console.log("유저넘버"+userNo);
+  		$.ajax({
+  			method:"get",
+  			url:"/rentalBookName.do",
+  			data:{userNo:userNo},
+  			complete: function(data){
+  				console.log(data);
+  			},
+  			success:function(data){
+  				for(var i=0;i<data.length;i++){
+  					var modal=document.getElementById('bookName'+i);
+  					console.log(data);
+  					console.log(data[i].bookName);
+  					modal.value=data[i].bookName;
+  					modal.style.display='block';  					
+  				}
+  				
+  			}
+  		});
+  		/*$.ajax({
+  			method: "get",
+  			url:"/rentalInfo.do",
+  			data: {userNo:userNo},
+  			complete: function(data){
+  				console.log(data);
+  			},
+  			success: function(data){
+  				console.log(data);
+  				
+  				 document.getElementById("bookNo").value=bookNo;
+  		         document.getElementById("bookName").value=bookName;
+  		         document.getElementById("bookKind").value=bookKind;
+  		         document.getElementById("bookWriter").value=bookWriter;
+  		         document.getElementById("bookPublisher").value=bookPublisher;
+  		         document.getElementById("bookIntroduce").value=bookIntroduce;
+				 
+  			}
+  		});*/
+  	}
+  </script>
 </body>
 </html>

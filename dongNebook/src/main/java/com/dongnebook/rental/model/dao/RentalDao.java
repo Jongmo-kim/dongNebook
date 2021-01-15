@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dongnebook.book.model.vo.Book;
+import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.rental.model.vo.BookRentalReserve;
 import com.dongnebook.rental.model.vo.RentalLoc;
 
@@ -38,6 +39,15 @@ public class RentalDao {
 	public ArrayList<Book> selectBooks(int[] bookNo) {
 		List<Book> list = session.selectList("book.selectBooks", bookNo);
 		return (ArrayList<Book>)list;
+	}
+
+	public ArrayList<BookRental> rentalInfo(int userNo) {
+		List<BookRental> list = session.selectList("book.rentalInfo",userNo);
+		return (ArrayList<BookRental>)list;
+	}
+
+	public Book rBookList(int bookNo) {
+		return session.selectOne("book.rBookList",bookNo);
 	}
 	
 }
