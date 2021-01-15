@@ -18,7 +18,7 @@
 	                    </ul>
 	                    <ul class="sub">
 	                        <li><a href="/common/mailSendFrm.do">메일보내기 </a></li>
-							<li><a href="/views/common/test.jsp">테스트페이지</a></li>
+							<li><a href="/proposal/bookProposal.do">도서 신청</a></li>
 							<li><a href="/book/searchBookFrm.do">책 검색하기</a></li>
 	                    </ul>
 	                    <ul class="sub">

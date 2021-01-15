@@ -36,6 +36,11 @@ public class ProposalController {
 	private BookService bookService;
 	//new로하면 의존성 주입 안됨
 	
+	@RequestMapping("/bookProposal.do")
+	public String bookProposal() {
+		return "proposal/bookProposal";
+	}
+	
 	@RequestMapping("/proposalList.do")
 	public String proposalList(Model model, int reqPage) {
 		ProposalPageData ppd = service.selectList(reqPage);
