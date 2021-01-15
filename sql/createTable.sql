@@ -149,10 +149,13 @@ create table bookmark(
 
 
 create table alert(
-    alert_no number primary key,
+    book_rental_no number primary key,
     book_name varchar2(500),
     read number default 0
 );
+
+ALTER TABLE alert ADD CONSTRAINT ALERT_BOOK_RENTAL_NO_FK
+FOREIGN KEY(BOOK_RENTAL_NO) REFERENCES BOOK_RENTAL(BOOK_RENTAL_NO) ON DELETE CASCADE;
 
 ALTER TABLE bookmark ADD CONSTRAINT bookmark_user_no_Fk
 FOREIGN KEY(USER_NO) REFERENCES "USER"(USER_NO) ON DELETE CASCADE;

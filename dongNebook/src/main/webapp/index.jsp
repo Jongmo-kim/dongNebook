@@ -16,7 +16,7 @@
 </style>
 </head>
 <body>
-	<c:if test="${sessionScope.returnList !=null}">
+	<%-- <c:if test="${sessionScope.returnList !=null}">
 		<c:forEach items="${sessionScope.returnList }" var="b">
 			<div class="alert alert-primary alert-dismissible fade show alert-div" role="alert">
 			  	<strong>${b.bookName }</strong> 의 반납일이 1일 남았습니다.
@@ -25,6 +25,9 @@
 			 	 </button>
 			</div>
 		</c:forEach>
+	</c:if> --%>
+	<c:if test="${sessionScope.loginUser !=null}">
+		<input type="hidden" id="userNo" value=${sessionScope.loginUser.userNo }>
 	</c:if>
 	<jsp:include page="/views/common/header.jsp" />
 	
@@ -125,13 +128,18 @@
     
 	<script>
 		$(function(){
-			//alert('ready');
-			  $.ajax({
-			    url: 'https://jsonplaceholder.typicode.com/posts/1',
-			    method: 'GET',
-			  }).then(function(data){
-			    console.log(data);
-			  }); 
+			var userNo = $("#userNo").val();
+			if(!(typeof userNo == "undefined")){
+				console.log(userNo);
+				$.ajax({
+				    url: '/alert/alertList.do',
+				    method: 'get',
+				    data : {userNo:userNo},
+				  	success:function(data){
+				  		console.log("성공");
+				  	}
+				}); 
+			}
 		});
 	</script>
 </body>
