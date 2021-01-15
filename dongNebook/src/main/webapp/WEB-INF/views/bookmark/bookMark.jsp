@@ -133,7 +133,6 @@
 						rent();
 					}
 				}else if(data == "2"){
-					console.log(chkCount);
 					if(chkCount > 1){
 						alert("최대 1권 대여 가능");
 					}else if(chkCount == 0){
@@ -159,7 +158,7 @@
    			type: "post",
    			data : {bookNo : bookNo},
    			success : function(data){
-   				location.href="/";
+   				location.href="/bookRental.do?bookNo="+bookNo;
    			}
    		});
    	};
