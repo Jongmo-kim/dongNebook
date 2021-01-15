@@ -86,19 +86,20 @@ public class UserController {
 	@ResponseBody
 	public ArrayList<BookAlert> returnAlert(User loginUser) {
 		//User loginUser = (User)session.getAttribute("loginUser");
-		//사용자가 빌린 책 중 반납일이 하루 남은 책 조회
-		//list가 비어있으면 반납 예정 도서 없는 것
+		
+		//사용자가 빌린 책 중 반납일이 하루 남은 책 조회 / list가 비어있으면 반납 예정 도서 없는 것
 		ArrayList<BookAlert> list = service.returnAlert(loginUser);
 		
 		for(BookAlert ba : list) {
 			ba.setRead(true);
-			System.out.println(ba.getBookName());
+			String bookName = ba.getBookName();
+			String shortName = bookName.substring(0, 15);
+			System.out.println("shortName>"+shortName+" ...");
+			System.out.println(ba.isRead()+" / "+ba.getBookName());
 		}
 
 		return list;
 	}
-	
-	
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session, Model model) {
 		User loginUser = (User)session.getAttribute("loginUser");

@@ -1,6 +1,11 @@
 package com.dongnebook.rental.model.vo;
 
+/**
+ * @author 진수경
+ *
+ */
 public class BookAlert {
+	//true : 안읽음 , false : 읽음
 	private boolean read;
 	private String bookName;
 	public BookAlert() {

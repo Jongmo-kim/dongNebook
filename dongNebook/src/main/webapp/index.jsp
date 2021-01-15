@@ -125,11 +125,14 @@
     
 	<script>
 		$(function(){
-			$(".alert-div").slideDown();
+			//alert('ready');
+			  $.ajax({
+			    url: 'https://jsonplaceholder.typicode.com/posts/1',
+			    method: 'GET',
+			  }).then(function(data){
+			    console.log(data);
+			  }); 
 		});
-		$(".close-btn").click(function(){
-			
-		})
 	</script>
 </body>
 </html>
