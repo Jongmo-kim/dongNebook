@@ -9,6 +9,11 @@
 <jsp:include page="/views/common/linkHead.jsp"/>
 <link href="../css/index/index.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="/js/index/index.js"></script>
+<style>
+	.alert{
+		margin-bottom: 2px;
+	}
+</style>
 </head>
 <body>
 	<c:if test="${sessionScope.returnList !=null}">
@@ -16,7 +21,7 @@
 			<div class="alert alert-primary alert-dismissible fade show alert-div" role="alert">
 			  	<strong>${b.bookName }</strong> 의 반납일이 1일 남았습니다.
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
+					<span aria-hidden="true" class="close-btn">&times;</span>
 			 	 </button>
 			</div>
 		</c:forEach>
@@ -122,6 +127,9 @@
 		$(function(){
 			$(".alert-div").slideDown();
 		});
+		$(".close-btn").click(function(){
+			
+		})
 	</script>
 </body>
 </html>
