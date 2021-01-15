@@ -35,4 +35,18 @@
 	<delete id="deleteBook" parameterType="book">
 		delete from book_proposal where isbn = #{ISBN}
 	</delete>
+	<insert id="insertProposal" parameterType="pro">
+		insert into Book values(
+			book_proposal_seq.nextval,
+			#{UserNo},
+			#{bookName},
+			#{bookKind},
+			#{bookWriter},
+			#{bookPublisher},
+			#{bookIntroduce},
+			#{ISBN},
+			#{imageurl},
+			#{보고싶어서}
+		)
+	</insert>
 </mapper>

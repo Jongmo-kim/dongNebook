@@ -39,4 +39,8 @@ public class ProposalDao {
 		return session.delete("pro.deleteBook",b);
 	}
 
+	public int insertProposal(ProposalVO p) {
+		return session.insert("pro.insertProposal", p);
+	}
+
 }

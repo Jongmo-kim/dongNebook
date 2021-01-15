@@ -71,4 +71,8 @@ public class ProposalService {
 		return dao.deleteBook(b);
 	}
 
+	public int insertProposal(ProposalVO p) {
+		return dao.insertProposal(p);
+	}
+
 }
