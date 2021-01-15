@@ -385,8 +385,7 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 											book.ISBN = ISBN;
 											list.push(book);
 										});
-								$
-										.ajax({
+								$.ajax({
 											contentType : "application/json; charset=utf-8",
 											type : "post",
 											url : "/proposal/proposalDelete.do",

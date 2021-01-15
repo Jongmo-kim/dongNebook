@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.rental.model.service.RentalService;
@@ -55,8 +56,10 @@ public class RentalController {
 		
 		return "common/msg";
 	}
+	//@ResponseBody
 	@RequestMapping("/bookRental.do")
 	public String bookRental( Model model, int[] bookNo,HttpSession session) {
+		 System.out.println("book : "+bookNo.length);
 		ArrayList<Book> list = new ArrayList<Book>();
 		if(bookNo.length>0) {
 			for(int i : bookNo) {
