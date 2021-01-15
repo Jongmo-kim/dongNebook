@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dongnebook.book.model.vo.Book;
+import com.dongnebook.rental.model.vo.BookAlert;
 import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.user.model.dao.UserDao;
 import com.dongnebook.user.model.vo.User;
@@ -40,7 +41,7 @@ public class UserService {
 		return dao.deleteUser(u);
 	}
 
-	public ArrayList<BookRental> returnAlert(User u) {
+	public ArrayList<BookAlert> returnAlert(User u) {
 		return dao.returnAlert(u);
 	}
 

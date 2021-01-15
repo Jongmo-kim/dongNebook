@@ -60,8 +60,11 @@
 			<if test="userId != null">AND user_Id = #{userId}</if>
 		</trim>
 	</delete>
-	<select id="returnAlert" resultType="rental">
-		select * from book_rental where user_no =#{userNo}
+	<select id="returnAlert" parameterType="user" resultType="alert">
+		select book.book_name as bookName
+		from book_rental join book
+		on book.book_no = book_rental.book_no
+		where return_date=to_char(sysdate+1,'yyyy/MM/dd') and user_no=#{userNo}
 	</select>
 	<select id="selectBookList" parameterType="map" resultType="book">
 		select 

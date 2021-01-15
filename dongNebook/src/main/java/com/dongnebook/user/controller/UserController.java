@@ -26,6 +26,7 @@ import com.dongnebook.mail.Mail;
 import com.dongnebook.mail.MailController;
 import com.dongnebook.mail.MailException;
 import com.dongnebook.mail.MailService;
+import com.dongnebook.rental.model.vo.BookAlert;
 import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.user.model.service.UserService;
 import com.dongnebook.user.model.vo.UpdateException;
@@ -71,18 +72,7 @@ public class UserController {
 	public String login(Model model, User u, HttpSession session) {
 		User loginUser = service.loginUser(u);
 		if(loginUser != null) {
-			int[] arr = returnAlert(loginUser);
-			
-			//null값 넘어오면 반납 예정 도서가 없는 것
-			ArrayList<Book> bookList = new ArrayList<Book>();
-			
-			if(arr.length!=0) {
-				bookList = service.selectBookList(loginUser, arr);
-			}
-			if(!bookList.isEmpty()) {
-				session.setAttribute("returnList", bookList);
-			}
-			
+			returnAlert(loginUser);
 			model.addAttribute("msg", "로그인 성공");
 			session.setAttribute("loginUser", loginUser);
 			model.addAttribute("result", "true");
@@ -94,47 +84,18 @@ public class UserController {
 	}
 	
 	@ResponseBody
-	public int[] returnAlert(User u) {
-		ArrayList<BookRental> list = service.returnAlert(u);
-		SimpleDateFormat format = new SimpleDateFormat ("yyyy/MM/dd");
-		Date date = new Date();
-		String today = format.format(date);
+	public ArrayList<BookAlert> returnAlert(User loginUser) {
+		//User loginUser = (User)session.getAttribute("loginUser");
+		//사용자가 빌린 책 중 반납일이 하루 남은 책 조회
+		//list가 비어있으면 반납 예정 도서 없는 것
+		ArrayList<BookAlert> list = service.returnAlert(loginUser);
 		
-		// 4. 기준이 되는 날짜(format에 맞춘)
-		Date setDate = null;
-		try {
-			setDate = format.parse(today);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		for(BookAlert ba : list) {
+			ba.setRead(true);
+			System.out.println(ba.getBookName());
 		}
 
-		//한국 날짜 기준 Calendar 클래스 선언
-		Calendar cal = Calendar.getInstance();
-
-		//선언된 Calendar 클래스에 기준 날짜 설정
-		cal.setTime(setDate);
-
-		// 다음날로 날짜 설정
-		cal.add(Calendar.DATE, +1);
-
-		//다음날로 설정된 날짜를 설정된 format으로 String 타입 변경
-		String nextDate = format.format(cal.getTime());
-		
-		//반납일이 하루 뒤인 책의 번호를 저장하는 list
-		//1인당 책 3권 빌릴 수 있어서 int[3]
-		int[] returnList = new int[3];
-		int cnt = 0;
-		for(BookRental br : list) {
-			Date tmp = br.getReturnDate();
-			String returnDate = format.format(tmp);
-			//만약 반납일이 다음날이라면,
-			if(nextDate.equals(returnDate)) {
-				returnList[cnt] = br.getBookRentalNo();
-				cnt++;
-			}
-		}
-		return returnList;
+		return list;
 	}
 	
 	

@@ -21,7 +21,7 @@
 			<div class="alert alert-primary alert-dismissible fade show alert-div" role="alert">
 			  	<strong>${b.bookName }</strong> 의 반납일이 1일 남았습니다.
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
+					<span aria-hidden="true" class="close-btn">&times;</span>
 			 	 </button>
 			</div>
 		</c:forEach>
@@ -127,6 +127,9 @@
 		$(function(){
 			$(".alert-div").slideDown();
 		});
+		$(".close-btn").click(function(){
+			
+		})
 	</script>
 </body>
 </html>
