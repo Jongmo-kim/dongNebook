@@ -13,6 +13,7 @@ drop table "CATEGORY";
 drop table rental_location;
 drop table "FILE";
 drop table bookmark;
+drop table alert;
 
 drop sequence notice_seq;
 drop sequence book_seq;
@@ -28,3 +29,4 @@ drop sequence user_seq;
 drop sequence category_seq;
 drop sequence file_seq;
 drop sequence alram_seq;
+drop sequence alert_seq;

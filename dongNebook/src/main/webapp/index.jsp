@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +9,23 @@
 <jsp:include page="/views/common/linkHead.jsp"/>
 <link href="../css/index/index.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="/js/index/index.js"></script>
+<style>
+	.alert{
+		margin-bottom: 2px;
+	}
+</style>
 </head>
 <body>
+	<c:if test="${sessionScope.returnList !=null}">
+		<c:forEach items="${sessionScope.returnList }" var="b">
+			<div class="alert alert-primary alert-dismissible fade show alert-div" role="alert">
+			  	<strong>${b.bookName }</strong> 의 반납일이 1일 남았습니다.
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true" class="close-btn">&times;</span>
+			 	 </button>
+			</div>
+		</c:forEach>
+	</c:if>
 	<jsp:include page="/views/common/header.jsp" />
 	
 	 <div class="content">
@@ -107,6 +123,16 @@
     <br>
     <jsp:include page="/views/common/footer.jsp" />
     
-	
+	<script>
+		$(function(){
+			//alert('ready');
+			  $.ajax({
+			    url: 'https://jsonplaceholder.typicode.com/posts/1',
+			    method: 'GET',
+			  }).then(function(data){
+			    console.log(data);
+			  }); 
+		});
+	</script>
 </body>
 </html>
