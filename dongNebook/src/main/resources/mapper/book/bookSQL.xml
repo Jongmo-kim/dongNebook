@@ -23,6 +23,20 @@
 		(select rownum as rnum, n.* from(select * from book order by 1 desc)n) 
 		where rnum between #{start} and #{end}
 	</select>
+	<select id="selectAllBook" resultType="book">
+		select 
+	     	book_no,
+	        book_name,
+	        book_kind,
+	        book_writer,
+	        book_publisher,
+	        book_introduce,
+	        ISBN,
+	        book_count,
+	        imageurl
+	    from
+	    	book
+	</select>
 	<delete id="bookDelete" parameterType="_int">
 		delete from book where book_no=#{bookNo}
 	</delete>
