@@ -10,6 +10,16 @@ const exitDiv =
 `
 
 $(function(){
+	/* Selectbox Choices*/
+    const defaultSelect = () => {
+        const element = document.querySelector('.default');
+        const choices = new Choices(element, {
+            searchEnabled: false,
+            itemSelectText: ''
+        });
+    };
+    defaultSelect();
+	/* event Listener */
 	const inputTag = $("#searchFrm");
 	const searchBtn = $(".icon-wrap");
 
@@ -106,3 +116,6 @@ function bookmarkChkBox(chk,id,isbn){
 				});
 			}
 		}
+
+
+		

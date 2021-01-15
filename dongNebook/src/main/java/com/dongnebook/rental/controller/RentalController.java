@@ -57,8 +57,10 @@ public class RentalController {
 		
 		return "common/msg";
 	}
+	//@ResponseBody
 	@RequestMapping("/bookRental.do")
 	public String bookRental( Model model, int[] bookNo,HttpSession session) {
+		 System.out.println("book : "+bookNo.length);
 		ArrayList<Book> list = new ArrayList<Book>();
 		if(bookNo.length>0) {
 			for(int i : bookNo) {

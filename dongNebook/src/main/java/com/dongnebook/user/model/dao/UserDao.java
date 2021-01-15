@@ -1,16 +1,9 @@
 package com.dongnebook.user.model.dao;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.dongnebook.book.model.vo.Book;
-import com.dongnebook.rental.model.vo.BookAlert;
-import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.user.model.vo.User;
 
 /**
@@ -37,13 +30,5 @@ public class UserDao {
 	}
 	public int deleteUser(User u) {
 		return session.delete("user.deleteUser", u);
-	}
-	public ArrayList<BookAlert> returnAlert(User u) {
-		List<BookAlert> list = session.selectList("user.returnAlert", u);
-		return (ArrayList<BookAlert>) list;
-	}
-	public ArrayList<Book> selectBookList(HashMap<String, Object> map) {
-		List<Book> list = session.selectList("user.selectBookList", map);
-		return (ArrayList<Book>) list;
 	}
 }

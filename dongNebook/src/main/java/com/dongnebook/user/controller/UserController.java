@@ -26,7 +26,6 @@ import com.dongnebook.mail.Mail;
 import com.dongnebook.mail.MailController;
 import com.dongnebook.mail.MailException;
 import com.dongnebook.mail.MailService;
-import com.dongnebook.rental.model.vo.BookAlert;
 import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.user.model.service.UserService;
 import com.dongnebook.user.model.vo.UpdateException;
@@ -72,7 +71,6 @@ public class UserController {
 	public String login(Model model, User u, HttpSession session) {
 		User loginUser = service.loginUser(u);
 		if(loginUser != null) {
-			returnAlert(loginUser);
 			model.addAttribute("msg", "로그인 성공");
 			session.setAttribute("loginUser", loginUser);
 			model.addAttribute("result", "true");
@@ -82,22 +80,6 @@ public class UserController {
 		model.addAttribute("loc", "/");
 		return "common/msg";
 	}
-	
-	@ResponseBody
-	public ArrayList<BookAlert> returnAlert(User loginUser) {
-		//User loginUser = (User)session.getAttribute("loginUser");
-		//사용자가 빌린 책 중 반납일이 하루 남은 책 조회
-		//list가 비어있으면 반납 예정 도서 없는 것
-		ArrayList<BookAlert> list = service.returnAlert(loginUser);
-		
-		for(BookAlert ba : list) {
-			ba.setRead(true);
-			System.out.println(ba.getBookName());
-		}
-
-		return list;
-	}
-	
 	
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session, Model model) {

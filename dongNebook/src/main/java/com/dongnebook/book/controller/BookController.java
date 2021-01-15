@@ -42,7 +42,7 @@ public class BookController {
 	 */
 	@PostConstruct
 	public void booklistInit() {
-		ArrayList<Book> bookList = service.selectBookByKeyword("1", "전체", 1);
+		ArrayList<Book> bookList = service.selectAllBook();
 		for(Book b  : bookList) {
 			trie.insert(b.getBookName());
 		}
