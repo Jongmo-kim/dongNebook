@@ -79,9 +79,10 @@ public class UserController {
 			if(arr.length!=0) {
 				bookList = service.selectBookList(loginUser, arr);
 			}
-			for(Book b : bookList) {
-				System.out.println("반납할 책 이름 >"+b.getBookName());
+			if(!bookList.isEmpty()) {
+				session.setAttribute("returnList", bookList);
 			}
+			
 			model.addAttribute("msg", "로그인 성공");
 			session.setAttribute("loginUser", loginUser);
 			model.addAttribute("result", "true");
@@ -108,27 +109,17 @@ public class UserController {
 			e.printStackTrace();
 		}
 
-		// 5. 한국 날짜 기준 Calendar 클래스 선언
+		//한국 날짜 기준 Calendar 클래스 선언
 		Calendar cal = Calendar.getInstance();
 
-		// 6. 선언된 Calendar 클래스에 기준 날짜 설정
+		//선언된 Calendar 클래스에 기준 날짜 설정
 		cal.setTime(setDate);
 
-		// 7. 하루 후로 날짜 설정
+		// 다음날로 날짜 설정
 		cal.add(Calendar.DATE, +1);
 
-		// 8. 하루후으로 설정된 날짜를 설정된 format으로 String 타입 변경
+		//다음날로 설정된 날짜를 설정된 format으로 String 타입 변경
 		String nextDate = format.format(cal.getTime());
-		
-//		//반납일이 하루 뒤인 책의 번호를 저장하는 list
-//		ArrayList<BookRental> returnList = new ArrayList<BookRental>();
-//		for(BookRental br : list) {
-//			Date tmp = br.getReturnDate();
-//			String returnDate = format.format(tmp);
-//			if(nextDate.equals(returnDate)) {
-//				returnList.add(br);
-//			}
-//		}
 		
 		//반납일이 하루 뒤인 책의 번호를 저장하는 list
 		//1인당 책 3권 빌릴 수 있어서 int[3]
@@ -137,6 +128,7 @@ public class UserController {
 		for(BookRental br : list) {
 			Date tmp = br.getReturnDate();
 			String returnDate = format.format(tmp);
+			//만약 반납일이 다음날이라면,
 			if(nextDate.equals(returnDate)) {
 				returnList[cnt] = br.getBookRentalNo();
 				cnt++;
@@ -147,7 +139,7 @@ public class UserController {
 	
 	
 	@RequestMapping("/logout.do")
-	public String logout(HttpSession session,Model model) {
+	public String logout(HttpSession session, Model model) {
 		User loginUser = (User)session.getAttribute("loginUser");
 		if(loginUser != null) {
 			model.addAttribute("msg", "로그아웃 성공");

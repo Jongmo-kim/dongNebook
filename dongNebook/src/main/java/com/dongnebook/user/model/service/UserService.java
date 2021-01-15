@@ -48,7 +48,6 @@ public class UserService {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("userNo", u.getUserNo());
 		map.put("list", arr);
-		
 
 		if(arr.length!=0) {
 			return dao.selectBookList(map);

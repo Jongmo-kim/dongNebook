@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,16 @@
 <script type="text/javascript" src="/js/index/index.js"></script>
 </head>
 <body>
+	<c:if test="${sessionScope.returnList !=null}">
+		<c:forEach items="${sessionScope.returnList }" var="b">
+			<div class="alert alert-primary alert-dismissible fade show alert-div" role="alert">
+			  	<strong>${b.bookName }</strong> 의 반납일이 1일 남았습니다.
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+			 	 </button>
+			</div>
+		</c:forEach>
+	</c:if>
 	<jsp:include page="/views/common/header.jsp" />
 	
 	 <div class="content">
@@ -107,6 +118,10 @@
     <br>
     <jsp:include page="/views/common/footer.jsp" />
     
-	
+	<script>
+		$(function(){
+			$(".alert-div").slideDown();
+		});
+	</script>
 </body>
 </html>
