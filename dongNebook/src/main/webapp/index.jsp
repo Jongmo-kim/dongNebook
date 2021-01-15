@@ -9,6 +9,11 @@
 <jsp:include page="/views/common/linkHead.jsp"/>
 <link href="../css/index/index.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="/js/index/index.js"></script>
+<style>
+	.alert{
+		margin-bottom: 2px;
+	}
+</style>
 </head>
 <body>
 	<c:if test="${sessionScope.returnList !=null}">
