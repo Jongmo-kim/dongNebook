@@ -1,4 +1,4 @@
-package com.dongnebook.report.vo;
+package com.dongnebook.report.model.vo;
 
 public class Report {
 
