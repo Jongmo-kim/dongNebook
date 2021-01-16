@@ -9,7 +9,6 @@ pom.properties
 .project
 .classpath
 Servers/
-<<<<<<< HEAD
 config.js
 package-lock.json
 .eslintcache
@@ -29,9 +28,7 @@ psd
 thumb
 sketch
 
-=======
 debug.log
->>>>>>> f56ce770a5393cd648e49b79a5032fd4adef9aa0
 ### Eclipse ###
 .metadata
 bin/

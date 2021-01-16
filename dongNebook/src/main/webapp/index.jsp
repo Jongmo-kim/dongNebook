@@ -52,16 +52,6 @@
             <div class="contents">
                <div class="bookContent">
                 <ul>
-<<<<<<< HEAD
-                   <li><a href="#">
-                   		책1
-                   </a></li>
-                   
-                   <li><a href="#">책1</a></li>
-                   <li><a href="#">책1</a></li>
-                   <li><a href="#">책1</a></li>
-                   <li><a href="#">책1</a></li>
-=======
                    <li>
                    <div>
                    <div class="bookImg"><a href = "#">책 사진</a></div>
@@ -95,7 +85,6 @@
                 	<p><a href=#>제목</a></p>
                 	</div>
                    </div></li>
->>>>>>> f56ce770a5393cd648e49b79a5032fd4adef9aa0
                </ul>
                 </div>
                 <div class="bookContent">
