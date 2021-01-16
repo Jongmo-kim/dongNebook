@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="calendar">
+	<select id="selectCalendarList" resultType="calendar">
+		select
+			calendar_no as calendarNo,
+			calendar_title as calendarTitle,
+			calendar_startdate as calendarStartDate,
+			calendar_enddate as calendarEndDate,
+			background_color as backgroundColor,
+			text_color as textColor,
+			border_color as borderColor
+		from calendar
+	</select>
+	<insert id="insertCalendar">
+		insert into calendar values(calendar_seq.nextval, #{calendarTitle}, #{calendarStartDate}, #{calendarEndDate}, #{backgroundColor}, #{textColor}, #{borderColor})
+	</insert>
+	<select id="selectOneCalendar" resultType="calendar">
+		select
+			calendar_no as calendarNo,
+			calendar_title as calendarTitle,
+			calendar_startdate as calendarStartDate,
+			calendar_enddate as calendarEndDate,
+			background_color as backgroundColor,
+			text_color as textColor,
+			border_color as borderColor
+		from calendar
+		where calendar_no = #{_int}
+	</select>
+	<select id="maxCalendarNo" resultType="_int">
+		select max(calendar_no) from calendar
+	</select>
+	<delete id="deleteCalendar">
+		delete from calendar where calendar_no = #{_int}
+	</delete>
+	<update id="updateCalendar" parameterType="calendar">
+		update calendar 
+		set 
+			calendar_title=#{calendarTitle}, 
+			calendar_startdate=#{calendarStartDate}, 
+			calendar_enddate=#{calendarEndDate},
+			background_color=#{backgroundColor},
+			text_color=#{textColor},
+			border_color=#{borderColor}
+		where calendar_no=#{calendarNo}
+	</update>
+</mapper>

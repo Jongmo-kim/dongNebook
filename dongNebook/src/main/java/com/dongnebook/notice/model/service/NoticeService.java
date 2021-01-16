@@ -1,6 +1,8 @@
 package com.dongnebook.notice.model.service;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +83,8 @@ public class NoticeService {
 		return npd;
 	}
 
-	public int deleteNotice(int[] noticeNo) {
+	@Transactional
+	public int deleteNotice(int noticeNo) {
 		return dao.deleteNotice(noticeNo);
 	}
 
@@ -93,15 +96,50 @@ public class NoticeService {
 			for(FileVO fv : n.getFileList()) {	
 				fv.setTableNo(noticeNo);
 				result = dao.insertFile(fv);
+				if(result<0) {
+					return -1;
+				}
 			}
 		}
 		return result;
 	}
 
+	public int insertFile(FileVO fv) {
+		return dao.insertFile(fv);
+	}
+	
 	public Notice selectNotice(int noticeNo) {
 		Notice n = dao.selectNotice(noticeNo);
 		ArrayList<FileVO> list = dao.selectFile(noticeNo);
 		n.setFileList(list);
 		return n;
+	}
+	
+	public int updateNotice(Notice n) {
+		return dao.updateNotice(n);
+	}
+
+	public int deleteFile(int noticeNo) {
+		return dao.deleteFile(noticeNo);
+	}
+
+	@Transactional
+	public int deleteFilepath(Notice n, String[] delFileList) {
+		if(delFileList.length!=0) {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("tableNo", n.getNoticeNo());
+			map.put("delFileList", delFileList);
+			int result = dao.deleteFilepath(map);
+			if(delFileList.length==result) {
+				return result;
+			} else {
+				return 0;
+			}
+		}
+		return 0;
+	}
+
+	public int selectFileNum(int noticeNo) {
+		return dao.selectFileNum(noticeNo);
 	}
 }

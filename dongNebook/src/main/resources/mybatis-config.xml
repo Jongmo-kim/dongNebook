@@ -12,7 +12,12 @@
 		<typeAlias type="com.dongnebook.book.model.vo.Book" alias="book"/>
 		<typeAlias type="com.dongnebook.bookmark.model.vo.Bookmark" alias="bookmark"/>
 		<typeAlias type="com.dongnebook.rental.model.vo.RentalLoc" alias="loc"/>
+		<typeAlias type="com.dongnebook.rental.model.vo.BookRental" alias="rental"/>
+		<typeAlias type="com.dongnebook.rental.model.vo.BookRentalReserve" alias="reserve"/>
+		<typeAlias type="com.dongnebook.proposal.model.vo.ProposalVO" alias="pro"/>
 		<typeAlias type="com.dongnebook.common.FileVO" alias="fileVO"/>
-
+		<typeAlias type="com.dongnebook.calendar.model.vo.Calendar" alias="calendar"/>
+		<typeAlias type="com.dongnebook.admin.model.vo.Admin" alias="admin"/>
+		<typeAlias type="com.dongnebook.alert.model.vo.Alert" alias="alert"/>
 	</typeAliases>
 </configuration>

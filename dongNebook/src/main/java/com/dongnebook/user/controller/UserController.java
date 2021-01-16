@@ -1,5 +1,13 @@
 package com.dongnebook.user.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -7,18 +15,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.category.model.vo.Category;
 import com.dongnebook.mail.Mail;
 import com.dongnebook.mail.MailController;
 import com.dongnebook.mail.MailException;
 import com.dongnebook.mail.MailService;
+import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.user.model.service.UserService;
 import com.dongnebook.user.model.vo.UpdateException;
 import com.dongnebook.user.model.vo.User;
 import com.dongnebook.user.model.vo.UserException;
+import com.google.gson.JsonObject;
 
 /**
  * @author 김종모
@@ -67,6 +80,7 @@ public class UserController {
 		model.addAttribute("loc", "/");
 		return "common/msg";
 	}
+	
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session,Model model) {
 		//세션 등록 시 member로 등록했으므로, member로 등록된 세션이 있는지 검사
@@ -177,7 +191,22 @@ public class UserController {
 		}
 		return "common/msg";
 	}
-
+	@ResponseBody
+	@RequestMapping("/idNestedCheck.do")
+	public JsonObject idNestedCheck(String inputId) {
+		User u = new User();
+		u.setUserId(inputId);
+		User result = service.selectOneUser(u);
+		
+		JsonObject o = new JsonObject();
+		if(result == null) {
+			o.addProperty("isNested", false);
+		} else {
+			o.addProperty("isNested", true);
+		}
+		
+		return o;
+	}
 	private void sendMail(String email, String title, String content) throws MailException {
 		if(!mailController.mailSend(email, title, content)) {
 			throw new MailException("메일을 보내지 못했습니다.");

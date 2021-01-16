@@ -9,8 +9,9 @@
 			#{bookWriter},
 			#{bookPublisher},
 			#{bookIntroduce},
-			#{ISBN13},
+			#{ISBN},
 			#{bookCount},
+			#{rCount},
 			#{imageurl}
 		)
 	</insert>
@@ -21,6 +22,20 @@
 		select * from 
 		(select rownum as rnum, n.* from(select * from book order by 1 desc)n) 
 		where rnum between #{start} and #{end}
+	</select>
+	<select id="selectAllBook" resultType="book">
+		select 
+	     	book_no,
+	        book_name,
+	        book_kind,
+	        book_writer,
+	        book_publisher,
+	        book_introduce,
+	        ISBN,
+	        book_count,
+	        imageurl
+	    from
+	    	book
 	</select>
 	<delete id="bookDelete" parameterType="_int">
 		delete from book where book_no=#{bookNo}
@@ -38,7 +53,7 @@
 	        book_writer,
 	        book_publisher,
 	        book_introduce,
-	        ISBN13,
+	        ISBN,
 	        book_count,
 	        imageurl
 	    FROM 
@@ -75,13 +90,13 @@
 		update book set book_name=#{bookName},book_kind=#{bookKind} where book_no=#{bookNo}
 	</update>
 	<select id="selectBookMark" parameterType="_int" resultType="string">
-		select isbn13 from bookmark where user_no=#{userNo}
+		select isbn from bookmark where user_no=#{userNo}
 	</select>
 	<insert id="insertBookMark" parameterType="bookmark">
-		insert into bookmark values(#{userNo},#{ISBN13})
+		insert into bookmark values(#{userNo},#{ISBN})
 	</insert>
 	<delete id="deleteBookMark" parameterType="bookmark">
-		delete from bookmark where user_no=#{userNo} and isbn13=#{ISBN13}
+		delete from bookmark where user_no=#{userNo} and isbn=#{ISBN}
 	</delete>
 	<select id="searchUser" parameterType="user" resultType="user">
 		select user_no as userNo from bookmark
@@ -89,12 +104,50 @@
 	<select id="searchBookMark" parameterType="_int" resultType="bookmark">
 		select 
 			user_no as userNo,
-			ISBN13 as ISBN13
+			ISBN as ISBN
 		from bookmark where user_no = #{userNo}
 	</select>
 	<select id="searchBookList" parameterType="string" resultType="book">
 		select
 			*
-		from book where isbn13 = #{ISBN13}
+		from book where isbn = #{ISBN}
 	</select>
+	<select id="selectOneBook" parameterType="_int" resultType="book">
+		select
+			*
+		from book where book_no = #{bookNo}
+	</select>	
+	<insert id="insertReserve" parameterType="reserve">
+		insert into book_rental_reserve values(book_rental_reserve_seq.nextval,#{bookNo},#{userNo})
+	</insert>
+	<select id="rentalCount" parameterType="_int" resultType="_int">
+		select count(*) from book_rental where user_no = #{userNo}
+	</select>
+	<select id="selectBooks" parameterType="java.util.ArrayList" resultType="book">
+	    SELECT * FROM book
+	    WHERE book_no IN (
+	        <foreach collection="array" item="bookNo" index="index" separator=",">
+	            #{bookNo}
+	        </foreach>
+	    )
+	</select>
+
+	<select id="newBook" resultType="book">
+		select book_no as bookNo,
+	        book_name as bookName,
+	        book_kind as bookKind,
+	        book_writer as bookWriter,
+	        book_publisher as bookPublisher,
+	        book_introduce as bookIntroduce,
+	        ISBN as ISBN,
+	        book_count as bookCount,
+	        imageurl as imageurl
+        from (select rownum as bnum, b.* from (select * from book order by book_no desc)b) where bnum between 1 and 5
+	</select>
+	<select id="selectOneBookISBN" parameterType="string" resultType="book">
+		select * from book where isbn=#{_parameter}
+	</select>
+	<update id="updateCntBook" parameterType="string">
+		update book SET book_count= book_count + 1 WHERE isbn=#{ISBN}
+	</update>
 </mapper>

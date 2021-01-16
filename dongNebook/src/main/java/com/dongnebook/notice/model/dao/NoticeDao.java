@@ -39,16 +39,8 @@ public class NoticeDao {
 		return sqlSession.selectOne("notice.selectTotalCount", int.class);
 	}
 
-	@Transactional
-	public int deleteNotice(int[] noticeNo) {
-		int result = 0;
-		for(int i=0; i<noticeNo.length; i++) {
-			result = sqlSession.delete("notice.deleteNotice", noticeNo[i]);
-			if(result<0) {
-				return 0;
-			}
-		}
-		return result;
+	public int deleteNotice(int noticeNo) {
+		return sqlSession.delete("notice.deleteNotice", noticeNo);
 	}
 
 	public Notice selectNotice(int noticeNo) {
@@ -70,5 +62,21 @@ public class NoticeDao {
 	public ArrayList<FileVO> selectFile(int noticeNo) {
 		List<FileVO> list = sqlSession.selectList("notice.selectFile", noticeNo);
 		return (ArrayList<FileVO>) list;
+	}
+
+	public int updateNotice(Notice n) {
+		return sqlSession.update("notice.updateNotice", n);
+	}
+
+	public int deleteFile(int noticeNo) {
+		return sqlSession.delete("notice.deleteFile", noticeNo);
+	}
+
+	public int deleteFilepath(HashMap<String, Object> map) {
+		return sqlSession.delete("notice.deleteFilepath", map);
+	}
+
+	public int selectFileNum(int noticeNo) {
+		return sqlSession.selectOne("notice.selectFileNum", noticeNo);
 	}
 }

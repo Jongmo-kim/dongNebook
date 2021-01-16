@@ -63,5 +63,26 @@ public class BookDao {
 		List<String> list = session.selectList("book.selectBookMark", userNo);
 		return (ArrayList<String>)list;
 	}
+	
+	public Book selectOneBook(int bookNo) {
+		return session.selectOne("book.selectOneBook", bookNo);
+	}	
+	public ArrayList<Book> newBook() {
+		List<Book> list = session.selectList("book.newBook");
+		return (ArrayList<Book>)list;
+	}
+
+	public Book selectOneBook(String isbn) {
+		return session.selectOne("book.selectOneBookISBN",isbn);
+	}
+
+	public int updateCntBook(Book book) {
+		return session.update("book.updateCntBook", book.getISBN());
+	}
+
+	public ArrayList<Book> selectAllBook() {
+		List<Book> list =  session.selectList("book.selectAllBook");
+		return (ArrayList<Book>)list;
+	}
 
 }

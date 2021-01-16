@@ -1,17 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>동네 북</title>
-
 <jsp:include page="/views/common/linkHead.jsp"/>
 <jsp:include page="/views/common/linkModal.jsp"/>
 <link href="../css/index/index.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="/js/index/index.js"></script>
+<style>
+	.alert{
+		margin-bottom: 2px;
+	}
+</style>
 </head>
 <body>
+	<%-- <c:if test="${sessionScope.returnList !=null}">
+		<c:forEach items="${sessionScope.returnList }" var="b">
+			<div class="alert alert-primary alert-dismissible fade show alert-div" role="alert">
+			  	<strong>${b.bookName }</strong> 의 반납일이 1일 남았습니다.
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true" class="close-btn">&times;</span>
+			 	 </button>
+			</div>
+		</c:forEach>
+	</c:if> --%>
+	<c:if test="${sessionScope.loginUser !=null}">
+		<input type="hidden" id="userNo" value=${sessionScope.loginUser.userNo }>
+	</c:if>
 	<jsp:include page="/views/common/header.jsp" />
 	<jsp:include page="/views/common/testModal.jsp" />
 	 <div class="content">
@@ -34,6 +52,7 @@
             <div class="contents">
                <div class="bookContent">
                 <ul>
+<<<<<<< HEAD
                    <li><a href="#">
                    		책1
                    </a></li>
@@ -42,23 +61,98 @@
                    <li><a href="#">책1</a></li>
                    <li><a href="#">책1</a></li>
                    <li><a href="#">책1</a></li>
+=======
+                   <li>
+                   <div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목</a></p>
+                	</div>
+                   </div>
+                   </li>
+                   
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목</a></p>
+                	</div>
+                   </div></li>
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목</a></p>
+                	</div>
+                   </div></li>
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목</a></p>
+                	</div>
+                   </div></li>
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목</a></p>
+                	</div>
+                   </div></li>
+>>>>>>> f56ce770a5393cd648e49b79a5032fd4adef9aa0
                </ul>
                 </div>
                 <div class="bookContent">
                <ul>
-                   <li><a href="#">책2</a></li>
-                   <li><a href="#">책2</a></li>
-                   <li><a href="#">책2</a></li>
-                   <li><a href="#">책2</a></li>
-                   <li><a href="#">책2</a></li>
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목2</a></p>
+                	</div>
+                   </div></li>
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목2</a></p>
+                	</div>
+                   </div></li>
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목2</a></p>
+                	</div>
+                   </div></li>
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목2</a></p>
+                	</div>
+                   </div></li>
+                   <li><div>
+                   <div class="bookImg"><a href = "#">책 사진</a></div>
+                	<div class="info">
+                	<p><a href=#>제목2</a></p>
+                	</div>
+                   </div></li>
                </ul>
                </div>
             </div>
          </div>
     </div>
     <br>
-    <footer>footer
-    </footer> 
-	
+    <jsp:include page="/views/common/footer.jsp" />
+    
+	<script>
+		$(function(){
+			var userNo = $("#userNo").val();
+			if(!(typeof userNo == "undefined")){
+				console.log(userNo);
+				$.ajax({
+				    url: '/alert/alertList.do',
+				    method: 'get',
+				    data : {userNo:userNo},
+				  	success:function(data){
+				  		console.log("성공");
+				  	}
+				}); 
+			}
+		});
+	</script>
 </body>
 </html>

@@ -9,11 +9,28 @@
     	BOOK_WRITER as bookWriter,
     	BOOK_PUBLISHER as bookPublisher,
     	BOOK_INTRODUCE as bookIntroduce,
+    	ISBN,
+    	book_count as bookCount,
     	IMAGEURL as imageurl,
         rCount
         from (select * from book order by rcount desc nulls last)n)r where rNum between ${start} and ${end}
 	</select>
 	<select id="selectTotalCount" resultType="_int">
 		select count(*) from book 
+	</select>
+	
+	<select id="mainRank" resultType="book">
+		select r.* from (select rowNum as rNum, rank() over(order by rCount desc nulls last) as rankNum, n.
+        BOOK_NO as bookNo,
+  		BOOK_NAME as bookName,
+    	BOOK_KIND as bookKind,
+    	BOOK_WRITER as bookWriter,
+    	BOOK_PUBLISHER as bookPublisher,
+    	BOOK_INTRODUCE as bookIntroduce,
+    	ISBN,
+    	book_count as bookCount,
+    	IMAGEURL as imageurl,
+        rCount
+        from (select * from book order by rcount desc nulls last)n)r where rNum between 1 and 5
 	</select>
 </mapper>

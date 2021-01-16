@@ -36,4 +36,20 @@
 	<select id="selectFile" resultType="fileVO">
 		select * from "FILE" where table_name='notice' and table_no=#{_int}
 	</select>
+	<update id="updateNotice">
+		update notice set notice_title=#{noticeTitle}, notice_content=#{noticeContent} where notice_no=#{noticeNo}
+	</update>
+	<delete id="deleteFile">
+		delete from "FILE" where table_name='notice' and table_no=#{_int}
+	</delete>
+	<delete id="deleteFilepath" parameterType="map">
+		delete from "FILE" where table_name='notice' and table_no=#{tableNo}
+		and filepath in
+		<foreach collection="delFileList" open="(" separator="," close=")" item="filepath">
+		#{filepath}
+		</foreach>
+	</delete>
+	<select id="selectFileNum" parameterType="_int" resultType="_int">
+		select count(*) from "FILE" where table_no=#{_parameter}
+	</select>
 </mapper>

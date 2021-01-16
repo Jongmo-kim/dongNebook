@@ -34,6 +34,4 @@ public class UserService {
 	public int deleteUser(User u) {
 		return dao.deleteUser(u);
 	}
-	
-	
 }
