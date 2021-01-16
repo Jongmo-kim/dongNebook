@@ -20,6 +20,7 @@
 	<h2>리뷰페이지</h2>
 	<hr>
 	<div class="content">
+	<a href="/review/writeFrm.do">글쓰기</a>
 	<c:choose>
 		<c:when test="${bookList == null }">
 			<!-- 첫 페이지 -->
@@ -31,6 +32,7 @@
 			<table class="bookListTable" border=1>
 				<tr class="table-header">
 					<th>게시글번호</th>
+					<th>글쓰니</th>
 					<th>제목</th>
 					<th>컨텐츠</th>
 					<th>좋아요</th>
@@ -39,6 +41,7 @@
 			<c:forEach var="b" items="${bookList }">
 				<tr>
 					<td>${b.reviewNo }</td>
+					<td>${b.user.userName }</td>
 					<td>${b.title }</td>
 					<td>${b.content }</td>
 					<td>${b.like}</td>

@@ -22,8 +22,20 @@ public class ReviewController {
 	
 	@RequestMapping("/main")
 	public String sendToMain(Model model) {
-		
 		model.addAttribute("bookList", service.selectAllReview());
+		return "/review/main";
+	}
+	
+	@RequestMapping("/writeFrm")
+	public String writeFrm(User u) {
+		return "/review/writeFrm";
+	}
+	
+	@RequestMapping("/write.do")
+	public String write(String content, String choices,String userNo) {
+		System.out.println(content);
+		System.out.println(choices);
+		System.out.println(userNo);
 		return "/review/main";
 	}
 }

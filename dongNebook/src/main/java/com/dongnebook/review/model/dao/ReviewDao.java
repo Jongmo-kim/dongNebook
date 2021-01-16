@@ -36,12 +36,10 @@ public class ReviewDao {
 	private ArrayList<Review> combineList(List<Review> list, List<HashMap<String, Object>> FKList) {
 		int idx = 0 ;
 		for(Review r : list) {
-			System.out.println(r);
 			int userNo = ((BigDecimal)FKList.get(idx++).get("USER_NO")).intValue();
 			User u = new User();
 			u.setUserNo(userNo);
 			r.setUser(userService.selectOneUser(u));
-			System.out.println(r);
 		}
 		return (ArrayList<Review>)list;
 	}
