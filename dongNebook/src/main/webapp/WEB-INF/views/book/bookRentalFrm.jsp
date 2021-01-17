@@ -27,7 +27,7 @@
 	
 	<h1 style="font-size:30px;">책 대출</h1>
 	<hr>
-	<form action="/insertBookRental.do">
+	<form action="/insertBookRental.do" method="get">
 		<table border=1>
 			<tr>
 				<th>책 번호</th><th>이미지</th><th>책이름</th><th>저자</th><th>수량</th><th>대출일자</th><th>반납일자</th>

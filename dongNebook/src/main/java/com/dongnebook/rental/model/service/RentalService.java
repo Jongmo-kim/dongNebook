@@ -33,5 +33,4 @@ public class RentalService {
 		return dao.selectBooks(bookNo);
 	}
 	
-	
 }

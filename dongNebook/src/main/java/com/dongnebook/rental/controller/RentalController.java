@@ -1,24 +1,22 @@
 package com.dongnebook.rental.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.rental.model.service.RentalService;
 import com.dongnebook.rental.model.vo.BookRentalReserve;
-import com.dongnebook.rental.model.vo.RentalList;
 import com.dongnebook.rental.model.vo.RentalLoc;
-
+import com.dongnebook.user.model.vo.User;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -55,24 +53,42 @@ public class RentalController {
 		
 		return "common/msg";
 	}
+	
 	@RequestMapping("/bookRental.do")
 	public String bookRental( Model model, int[] bookNo,HttpSession session) {
-		ArrayList<Book> list = new ArrayList<Book>();
-		if(bookNo.length>0) {
-			for(int i : bookNo) {
-				System.out.println(i);
-			}			
-			list = service.selectBooks(bookNo);
-			session.setAttribute("rentalList", list);
-		}		
-		return "book/bookRentalFrm";
-//		return "rental/rental_loc";
+	   System.out.println("book : "+bookNo.length);
+	   ArrayList<Book> list = new ArrayList<Book>();
+	   if(bookNo.length>0) {
+	      for(int i : bookNo) {
+	         System.out.println(i);
+	      }         
+	      list = service.selectBooks(bookNo);
+	      session.setAttribute("rentalList", list);
+	   }      
+	   return "book/bookRentalFrm";
+	//	      return "rental/rental_loc";
 	}
+	
+//	@RequestMapping("/bookRental.do")
+//	public String bookRental( Model model, int[] bookNo,HttpSession session) {
+//		ArrayList<Book> list = new ArrayList<Book>();
+//		if(bookNo.length>0) {
+//			for(int i : bookNo) {
+//				System.out.println(i);
+//			}			
+//			list = service.selectBooks(bookNo);
+//			session.setAttribute("rentalList", list);
+//		}		
+//		return "book/bookRentalFrm";
+////		return "rental/rental_loc";
+//	}
+	
 	@RequestMapping("/insertReserve.do")
-	public String insertReserve(Model model, int bookNo, int userNo) {
+	public String insertReserve(Model model, int bookNo, HttpSession session) {
 		BookRentalReserve reserve = new BookRentalReserve();
+		User loginUser = (User)session.getAttribute("loginUser");
 		reserve.setBookNo(bookNo);
-		reserve.setUserNo(userNo);
+		reserve.setUserNo(loginUser.getUserNo());
 		int result = service.insertReserve(reserve);
 		if(result>0) {
 			model.addAttribute("msg","예약 성공");
