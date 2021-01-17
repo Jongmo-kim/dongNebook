@@ -30,7 +30,7 @@ public class AlertService {
 	}
 	
 	//매일 정각에 book_rental 테이블을 조회해서 반납 1일 전 대여 목록을 alert 테이블에 넣어줌 
-	@Scheduled(cron = "0/30 * * * * *")
+	@Scheduled(cron = "0 0/1 * * * *")
 	//@Scheduled(cron ="0 0 0 * * *")
 	public void insertAlert() {
 		dao.deleteAlert();
