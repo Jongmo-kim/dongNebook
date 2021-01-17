@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,21 +30,9 @@ public class AlertService {
 		}
 		return list;
 	}
-
-	@Transactional
-	public int insertAlert(ArrayList<Alert> list) {
-		int chk = 0;
-		int result = 0;
-		for(Alert a : list) {
-			result = dao.insertAlert(a);
-			if(result>0) {
-				chk++;
-			}
-		}
-		if(chk==list.size()) {
-			return 1;
-		} else {
-			return 0;
-		}
+	
+	@Scheduled(cron = "")
+	public void insertAlert() {
+		
 	}
 }
