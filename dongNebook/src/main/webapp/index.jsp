@@ -26,6 +26,8 @@
 			</div>
 		</c:forEach>
 	</c:if> --%>
+	<div class="alert-wrap">
+	</div>
 	<c:if test="${sessionScope.loginUser !=null}">
 		<input type="hidden" id="userNo" value=${sessionScope.loginUser.userNo }>
 	</c:if>
@@ -130,16 +132,38 @@
 		$(function(){
 			var userNo = $("#userNo").val();
 			if(!(typeof userNo == "undefined")){
-				console.log(userNo);
 				$.ajax({
 				    url: '/alert/alertList.do',
 				    method: 'get',
 				    data : {userNo:userNo},
 				  	success:function(data){
-				  		console.log("성공");
+				  		//console.log(data.length);
+				  		//console.log(data[0].bookName);
+				  		
+				  		$(data).each(function(index, item){ 
+							//순서 -> div-div속에strong-div속에button-button속에span
+							var alertt = "<div class='alert alert-primary alert-dismissible fade show alert-div' role='alert'></div>";
+							var strongg = "<strong>"+data[index].bookName+"...</strong> 의 반납일이 1일 남았습니다.";
+							var buttonn = "<button type='button' class='close' data-dismiss='alert' aria-label='close'></button>";
+							var spann = "<span aria-hidden='true' class='close-btn'>&times;</span>";
+							
+							$(".alert-wrap").append(alertt);
+							$(".alert-div").eq(index).append(strongg);
+							$(".alert-div").eq(index).append(buttonn);
+							$(".close").eq(index).append(spann);
+							
+				  		});
+
 				  	}
 				}); 
 			}
+		});
+		
+		$(".close-btn").click(function(){
+			//close-btn을 클릭하면 ajax로 해당 bookRentalNo를 넘겨서 alert에서 검색 후 read를 1로 변경함. 알림은 read가 0일때만 띄워줌
+			var idx = $(this).index();
+			console.log(idx);
+			alert("!");
 		});
 	</script>
 </body>

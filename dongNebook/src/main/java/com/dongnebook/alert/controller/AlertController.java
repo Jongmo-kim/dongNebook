@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dongnebook.alert.model.service.AlertService;
 import com.dongnebook.alert.model.vo.Alert;
-import com.dongnebook.user.model.vo.User;
 
 @Controller
 @RequestMapping("/alert")
@@ -22,12 +21,8 @@ public class AlertController {
 	@RequestMapping("/alertList.do")
 	public ArrayList<Alert> alertList(int userNo) {
 		//User loginUser = (User)session.getAttribute("loginUser");
-		System.out.println("alertList.do 실행 / userNo >"+userNo);
-		//사용자가 빌린 책 중 반납일이 하루 남은 책 조회 / list가 비어있으면 반납 예정 도서 없는 것
-		ArrayList<Alert> list = service.returnAlert(userNo);
+		ArrayList<Alert> list = service.selectUserAlert(userNo);
 		
 		return list;
 	}
-	
-	@Scheduled
 }
