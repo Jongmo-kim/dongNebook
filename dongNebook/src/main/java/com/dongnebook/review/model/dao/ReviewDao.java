@@ -10,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dongnebook.review.model.vo.Review;
-import com.dongnebook.review_co_comment.model.vo.ReviewCoComment;
-import com.dongnebook.review_comment.model.vo.ReviewComment;
+import com.dongnebook.review.model.vo.ReviewException;
 import com.dongnebook.user.model.service.UserService;
 import com.dongnebook.user.model.vo.User;
 
@@ -42,6 +41,14 @@ public class ReviewDao {
 			r.setUser(userService.selectOneUser(u));
 		}
 		return (ArrayList<Review>)list;
+	}
+
+	public int insertReview(Review review) throws ReviewException{
+		int reviewNo = session.insert("review.insertReview",review);
+		if(reviewNo == 0 )
+			throw new ReviewException("게시물 등록이 제대로 되지 않았습니다.");
+		
+		return review.getReviewNo();
 	}
 	
 }

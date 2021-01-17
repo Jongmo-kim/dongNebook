@@ -18,4 +18,18 @@
 		from 
 			review
 	</select>
+	<insert id="insertReview" parameterType="review">
+		insert into review values(
+		review_seq.nextval,
+		#{userNo},
+		#{title},
+		#{content},
+		#{score},
+		#{like},
+		#{dislike}
+		)
+		<selectKey resultType="int" keyProperty="reviewNo" order="AFTER">
+	        SELECT review_seq.currval AS reviewNo FROM DUAL
+	   	</selectKey>
+	</insert>
 </mapper>

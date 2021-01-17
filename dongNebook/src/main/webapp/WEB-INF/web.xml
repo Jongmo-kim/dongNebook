@@ -13,11 +13,11 @@
 			<param-name>forceEncdoing</param-name>
 			<param-value>true</param-value>
 		</init-param>
+	</filter>
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	</filter>
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>

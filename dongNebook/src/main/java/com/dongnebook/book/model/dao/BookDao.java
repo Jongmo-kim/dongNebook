@@ -85,4 +85,9 @@ public class BookDao {
 		return (ArrayList<Book>)list;
 	}
 
+	public ArrayList<Book> selectBook(Book b) {
+		List<Book> list =  session.selectList("book.selectBook",b);
+		return (ArrayList<Book>)list;
+	}
+
 }

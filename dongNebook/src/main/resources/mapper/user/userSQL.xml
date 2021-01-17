@@ -24,21 +24,26 @@
 			addr
 		from "USER"
 		<trim prefix="where" prefixOverrides="AND">
-			<if test="userNo != 0">
-				 user_No = #{userNo}
-			</if>
-			<if test="userId != null">
-				 AND user_id = #{userId}
-			</if>
-			<if test="userPw != null">
-				AND user_pw = #{userPw}
-			</if>
-			<if test="userName != null">
-				AND user_name = #{userName}
-			</if>
-			<if test="email != null">
-				AND email = #{email}
-			</if>
+			<choose>
+				<when test="userNo != 0">
+					 user_No = #{userNo}
+				</when>
+				<when test="userId != null">
+					 AND user_id = #{userId}
+				</when>
+				<when test="userPw != null">
+					AND user_pw = #{userPw}
+				</when>
+				<when test="userName != null">
+					AND user_name = #{userName}
+				</when>
+				<when test="email != null">
+					AND email = #{email}
+				</when>
+				<otherwise>
+					where 1=0
+				</otherwise>
+			</choose>
 		</trim>
 	</select>
 	<update id="updateUser" parameterType="user">

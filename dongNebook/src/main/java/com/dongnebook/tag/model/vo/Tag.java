@@ -1,5 +1,44 @@
 package com.dongnebook.tag.model.vo;
 
-public class Tag {
+import com.dongnebook.book.model.vo.Book;
+import com.dongnebook.review.model.vo.Review;
 
+public class Tag {
+	private int tagNo;
+	private Review review;
+	private Book book;
+	public Tag(int tagNo, Review review, Book book) {
+		super();
+		this.tagNo = tagNo;
+		this.review = review;
+		this.book = book;
+	}
+	public Tag() {
+		super();
+	}
+	public int getTagNo() {
+		return tagNo;
+	}
+	public void setTagNo(int tagNo) {
+		this.tagNo = tagNo;
+	}
+	public Review getReview() {
+		return review;
+	}
+	public int getReviewNo() {
+		return this.review.getReviewNo();
+	}
+	public void setReview(Review review) {
+		this.review = review;
+	}
+	public Book getBook() {
+		return book;
+	}
+	public int getBookNo() {
+		return this.book.getBookNo();
+	}
+	public void setBook(Book book) {
+		this.book = book;
+	}
+	
 }

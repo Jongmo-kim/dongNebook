@@ -43,6 +43,9 @@ public class Review {
 	public User getUser() {
 		return user;
 	}
+	public int getUserNo() {
+		return this.user.getUserNo();
+	}
 	public void setUser(User user) {
 		this.user = user;
 	}
