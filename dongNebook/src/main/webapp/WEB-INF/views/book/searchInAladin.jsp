@@ -979,7 +979,7 @@ function bookSearch(page){
 		complete: function(){
 			$('.searchBtn').html('Submit');
 		},
-		data : {ttbkey:'ttboptta922158008',Query:searchKeyword,maxresult:'10',Start:page,Output:'js',SearchTarget:'Book'}, 
+		data : {ttbkey:'ttboptta922158008',Query:searchKeyword,maxresult:'10',Start:page,Output:'js',SearchTarget:'Book',Sort:'SalesPoint'}, 
 		jsonpCallback : "resultFunc", //response받을때 동작하는 함수명  resultFunc 위 함수
 		dataType:"jsonp"	//cors우회..	 해킹
 	});

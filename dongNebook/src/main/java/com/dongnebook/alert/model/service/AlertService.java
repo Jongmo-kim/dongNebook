@@ -1,49 +1,44 @@
 package com.dongnebook.alert.model.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.dongnebook.alert.model.dao.AlertDao;
 import com.dongnebook.alert.model.vo.Alert;
-import com.dongnebook.user.model.vo.User;
 
 @Service
 public class AlertService {
 	@Autowired
 	private AlertDao dao;
 	
-	public ArrayList<Alert> returnAlert(int userNo) {
-		ArrayList<Alert> list = dao.returnAlert(userNo);
+	public ArrayList<Alert> selectUserAlert(int userNo) {
+		ArrayList<Alert> list = dao.selectUserAlert(userNo);
 		
 		for(Alert ba : list) {
-			ba.setRead(0);
 			String bookName = ba.getBookName();
-			//책 이름을 15글자로 제한
-			String shortName = bookName.substring(0, 15);
-			ba.setBookName(shortName);
+			//책 이름 길이 제한
+			if(bookName.length()>40) {
+				String shortName = bookName.substring(0, 40);
+				ba.setBookName(shortName+" ...");
+			}
 			System.out.println(ba.toString());
 		}
 		return list;
 	}
+	
+	//매일 정각에 book_rental 테이블을 조회해서 반납 1일 전 대여 목록을 alert 테이블에 넣어줌 
+	@Scheduled(cron = "0 0/1 * * * *")
+	//@Scheduled(cron ="0 0 0 * * *")
+	public void insertAlert() {
+		dao.deleteAlert();
+		dao.insertAlert();
+		System.out.println("insertAlert 실행완료");
+	}
 
-	@Transactional
-	public int insertAlert(ArrayList<Alert> list) {
-		int chk = 0;
-		int result = 0;
-		for(Alert a : list) {
-			result = dao.insertAlert(a);
-			if(result>0) {
-				chk++;
-			}
-		}
-		if(chk==list.size()) {
-			return 1;
-		} else {
-			return 0;
-		}
+	public int countChk(int bookRentalNo) {
+		return dao.countChk(bookRentalNo);
 	}
 }

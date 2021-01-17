@@ -195,4 +195,10 @@
 	<update id="updateCntBook" parameterType="string">
 		update book SET book_count= book_count + 1 WHERE isbn=#{ISBN}
 	</update>
+	<select id="rentalInfo" parameterType="_int" resultType="bookrental">
+		select * from book_rental where user_no=#{_parameter}
+	</select>
+	<select id="rBookList" parameterType="_int" resultType="book">
+		select * from book where book_no=#{_parameter}
+	</select>
 </mapper>

@@ -16,13 +16,23 @@ public class AlertDao {
 	private SqlSessionTemplate sqlSession;
 	
 
-	public ArrayList<Alert> returnAlert(int userNo) {
-		List<Alert> list = sqlSession.selectList("alert.returnAlert", userNo);
+	public ArrayList<Alert> selectUserAlert(int userNo) {
+		List<Alert> list = sqlSession.selectList("alert.selectUserAlert", userNo);
 		return (ArrayList<Alert>) list;
 	}
 
 
-	public int insertAlert(Alert a) {
-		return sqlSession.insert("alert.insertAlert", a);
+	public int insertAlert() {
+		return sqlSession.insert("alert.insertAlert");
+	}
+
+
+	public int deleteAlert() {
+		return sqlSession.delete("alert.deleteAlert");
+	}
+
+
+	public int countChk(int bookRentalNo) {
+		return sqlSession.update("alert.countChk", bookRentalNo);
 	}
 }
