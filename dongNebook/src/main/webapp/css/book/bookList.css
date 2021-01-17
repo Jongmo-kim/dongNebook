@@ -1,0 +1,114 @@
+@charset "UTF-8";
+#pageNavi{
+    text-align:center;
+}
+.pagination{
+   margin-top : 50px;
+   margin-bottom : 50px;
+}
+.pagination>li>a{
+   color: #79bd9a;
+   border:none;
+}
+.pagination>li>.selectPage{
+   color: black; 
+   border:none;
+}
+.pagination>li>a:hover{
+   color : #79bd9a;
+}
+.bookListTable {
+   width : 100%;
+   margin: 0 auto;
+   border-top: 3px solid lightgray;
+   border-bottom: 3px solid lightgray;
+   text-align: center;
+}
+.bookListTable>tbody>tr:first-child>th{
+   border-bottom: 2px solid lightgray;
+   border-right: 1px dashed lightgray;
+}
+.bookListTable>tbody>tr:first-child>th:last-child{
+   border-right: none;
+}
+.bookListTable>tbody>tr:first-child>th{
+   height: 50px;
+   border-right: 1px solid #f8f9fa;
+}
+.bookListTable>tbody>tr:first-child>th:first-child{
+   width: 50px;
+}
+.bookListTable>tbody>tr:first-child>th:nth-child(2){
+   width: 100px;
+}
+ .bookListTable>tbody>tr:first-child>th:nth-child(3){
+   width: 500px;
+}
+.bookListTable>tbody>tr:first-child>th:nth-child(4){
+   width: 150px;
+}
+.bookListTable>tbody>tr:first-child>th:nth-child(5){
+   width: 150px;
+}
+.bookListTable>tbody>tr:first-child>th:nth-child(6){
+   width: 60px;
+}
+.bookListTable>tbody>tr>td {
+   font-size: 15px;
+   border-top: 1px solid lightgray;
+   height: 150px;
+   border-right: 1px dashed lightgray;
+}
+.bookListTable>tbody>tr>td:last-child{
+       border-right: none;
+       padding-left: 5px;
+}
+.bookListTable>tbody>tr>td:nth-child(3){
+   text-align: left;
+   padding-left: 10px;
+}
+
+.bookListTable>tbody>tr>td:nth-child(3)>p:first-child {
+   font-size: 20px;
+}
+
+.bookListTable>tbody>tr>td:nth-child(3)>p:nth-child(2) {
+   font-size: 15px;
+   color:gray;
+}
+
+.bookListTable>tbody>tr>td:nth-child(3)>p:last-child {
+   font-size: 15px;
+   color: gray;
+}
+.button{
+   text-align:center;
+}
+.pbtn{
+   border: 2px solid #3b8686;
+   background-color:white;
+   font-size : 18px;
+   border-radius: 5px;
+   width: 50px;
+   margin-bottom: 10px;
+   margin-top: 10px;
+}
+.pbtn:hover{
+   background-color: #3b8686;
+   color:white;
+}
+.adminSideMenu li:nth-child(2) a{
+   background:#a8dba8;
+   color:white;
+}
+.bookListTable{
+   border-left:none;
+   border-right:none;
+}
+.main-frame{
+   margin:0 auto;
+}
+.table-header{
+   background: #a8dba8;
+   color: #024e13;
+}

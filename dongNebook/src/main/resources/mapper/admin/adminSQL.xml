@@ -12,4 +12,13 @@
   <select id="selectTotalCount" resultType="_int">
 		select count(*) from "USER"
 	</select>
+	<select id="selectBook" parameterType="string" resultType="_int">
+		select book_no from book where book_name=#{_parameter}
+	</select>
+	<delete id="deleteBooks" parameterType="java.util.List">
+		delete from book_rental where 
+		<foreach collection="list" item="bookNo" separator="or">
+	            book_no=#{bookNo}
+	    </foreach>
+	</delete>
 </mapper>

@@ -10,14 +10,15 @@
   width : 100px;
 }
 #searchFrm{
+  outline: 0;
   height: 100%;
     border: 0;
     display: block;
     width: 100%;
-    padding: 10px 32px 10px 107px;
+    padding: 10px 32px 10px 250px;
     font-size: 18px;
     height: 70px;
-    color: #fff;
+    color: #333;
     background: linear-gradient(to right, #a8dba8 0%, #a8dba8 87%, #3b8686 96%, #3b8686 100%);
   font-family: 'Lato', sans-serif;
   
@@ -58,13 +59,13 @@
 }
 .guessedBox{
 	display:none;
-	top: 202px;
+  top: 172px;
 	right: 0;
 	width: 1200px;
 	position: absolute;
 	background: #fff;
-    padding: 40px;
-    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  padding: 40px;
+  box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
 	border-radius: 10px;
 	
 }
@@ -82,10 +83,57 @@
   width: 100%;
   height: 0px;
 }
+/* 전체,저자,출판사 등 select box css*/
+.searchFieldFrm {
+    position: absolute;
+    width: 200px;
+    height: 50px; 
+    top: 11px;
+    left: 26px;
+    background-color: #a8dba8;
+
+   
+}
 .searchFieldFrm > select {
   position: absolute;
   left: 27px;
   top: 22.5px;
+}
+.choices__inner{
+  border:none;
+  appearance: none;
+  -moz-appearance: none; /* Firefox */ 
+  -webkit-appearance: none; /* Safari and Chrome */
+  outline: 0;
+  border-radius: 0;
+  background: #a8dba8 ;
+}
+.choices__list{
+  border:none;
+  appearance: none;
+  -moz-appearance: none; /* Firefox */ 
+  -webkit-appearance: none; /* Safari and Chrome */
+  outline: 0;
+  border-radius: 0;
+  
+}
+.choices__list--dropdown {
+  width: 116%;
+  right: -10px;
+  top: 150%;
+  box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+	border-radius: 10px;
+}
+.is_active{
+  width: 116%;
+  right: -10px;
+}
+
+.choices__list--dropdown .choices__item--selectable {
+    padding-right: 10px;
+}
+.choices__placeholder {
+  opacity: 1;
 }
 /* width */
 ::-webkit-scrollbar {
@@ -104,6 +152,120 @@
   border-radius: 0px;
 }
 
+/* 검색 결과 CSS */
+#pageNavi{
+  text-align:center;
+}
+.pagination{
+ margin-top : 50px;
+ margin-bottom : 50px;
+}
+.pagination>li>a{
+ color: #79bd9a;
+ border:none;
+}
+.pagination>li>.selectPage{
+ color: black; 
+ border:none;
+}
+.pagination>li>a:hover{
+ color : #79bd9a;
+}
+.bookListTable {
+ width : 100%;
+ margin: 0 auto;
+ border-top: 3px solid lightgray;
+ border-bottom: 3px solid lightgray;
+ text-align: center;
+}
+.bookListTable>tbody>tr:first-child>th{
+ border-bottom: 2px solid lightgray;
+ border-right: 1px dashed lightgray;
+}
+.bookListTable>tbody>tr:first-child>th:last-child{
+ border-right: none;
+}
+.bookListTable>tbody>tr:first-child>th{
+ height: 50px;
+ border-right: 1px solid #f8f9fa;
+}
+.bookListTable>tbody>tr:first-child>th:first-child{
+ width: 50px;
+}
+.bookListTable>tbody>tr:first-child>th:nth-child(2){
+ width: 100px;
+}
+.bookListTable>tbody>tr:first-child>th:nth-child(3){
+ width: 500px;
+}
+.bookListTable>tbody>tr:first-child>th:nth-child(4){
+ width: 150px;
+}
+.bookListTable>tbody>tr:first-child>th:nth-child(5){
+ width: 150px;
+}
+.bookListTable>tbody>tr:first-child>th:nth-child(6){
+ width: 60px;
+}
+.bookListTable>tbody>tr>td {
+ font-size: 15px;
+ border-top: 1px solid lightgray;
+ height: 150px;
+ border-right: 1px dashed lightgray;
+}
+.bookListTable>tbody>tr>td:last-child{
+     border-right: none;
+     padding-left: 5px;
+}
+.bookListTable>tbody>tr>td:nth-child(3){
+ text-align: left;
+ padding-left: 10px;
+}
+
+.bookListTable>tbody>tr>td:nth-child(3)>p:first-child {
+ font-size: 20px;
+}
+
+.bookListTable>tbody>tr>td:nth-child(3)>p:nth-child(2) {
+ font-size: 15px;
+ color:gray;
+}
+
+.bookListTable>tbody>tr>td:nth-child(3)>p:last-child {
+ font-size: 15px;
+ color: gray;
+}
+.button{
+ text-align:center;
+}
+.pbtn{
+ border: 2px solid #3b8686;
+ background-color:white;
+ font-size : 18px;
+ border-radius: 5px;
+ width: 50px;
+ margin-bottom: 10px;
+ margin-top: 10px;
+}
+.pbtn:hover{
+ background-color: #3b8686;
+ color:white;
+}
+.adminSideMenu li:nth-child(2) a{
+ background:#a8dba8;
+ color:white;
+}
+.bookListTable{
+ border-left:none;
+ border-right:none;
+}
+.main-frame{
+ margin:0 auto;
+}
+.table-header{
+ background: #a8dba8;
+ color: #024e13;
+}
 /* bookmark */
 .bookMarkFalse{
 	background-image: url("/image/bookmark/bookmark-false.png");

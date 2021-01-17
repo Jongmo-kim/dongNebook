@@ -80,4 +80,9 @@ public class BookDao {
 		return session.update("book.updateCntBook", book.getISBN());
 	}
 
+	public ArrayList<Book> selectAllBook() {
+		List<Book> list =  session.selectList("book.selectAllBook");
+		return (ArrayList<Book>)list;
+	}
+
 }

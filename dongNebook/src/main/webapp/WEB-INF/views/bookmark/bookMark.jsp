@@ -69,7 +69,7 @@
 	<table>
 				<c:forEach items="${bookList }" var ="b">
 			<tr>
-				<td><input type="checkbox" class="chk" >
+				<td><input type="checkbox" name="${b.bookNo }" class="chk" >
 				<input type=hidden class="bookNo" value="${b.bookNo }">
 				<input type="hidden" class="isbn" value="${b.ISBN }">
 				</td>
@@ -133,7 +133,6 @@
 						rent();
 					}
 				}else if(data == "2"){
-					console.log(chkCount);
 					if(chkCount > 1){
 						alert("최대 1권 대여 가능");
 					}else if(chkCount == 0){
@@ -151,19 +150,29 @@
     	});
 	}
    	function rent(){
-    	$(".chk:checked").each(function(idx,item){
-        	var bookNo = $(item).next().val();
-    	});
-   		$.ajax({
-   			url : "/bookRental.do",
-   			type: "post",
-   			data : {bookNo : bookNo},
-   			success : function(data){
-   				location.href="/";
-   			}
-   		});
+   		var arr = new Array();
+        $(".chk:checked").each(function(idx,item){
+  
+            var bookNo = $(item).next().val();
+           
+            arr.push(bookNo);
+        });
+        console.log(arr.length);
+    	 $.ajax({
+    	      type : "get",
+    	      url : "/bookRental.do",
+    	      traditional:true,
+    	      data : {bookNo:arr},
+    	      success : function(result) {
+    	    	 alert("성공");
+    	    	  location.href="/bookRental.do?bookNo="+arr;
+    	      },
+    	      error : function(result) {
+    	    	  alert("실패")
+    	      }
+    	   });
    	};
-    
+
 	</script>
 </body>
 </html>

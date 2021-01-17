@@ -1,7 +1,7 @@
 package com.dongnebook.proposal.model.vo;
 
 public class ProposalVO {
-	private int bookProposalNo;
+	private int bookNo;
 	private int userNo;
 	private String bookName;
 	private String bookKind;
@@ -10,15 +10,15 @@ public class ProposalVO {
 	private String bookIntroduce;
 	private String imageurl;
 	private String ISBN;
-	private int reason;
+	private String reason;
 	public ProposalVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ProposalVO(int bookProposalNo, int userNo, String bookName, String bookKind, String bookWriter,
-			String bookPublisher, String bookIntroduce, String imageurl, String ISBN, int reason) {
+	public ProposalVO(int bookNo, int userNo, String bookName, String bookKind, String bookWriter,
+			String bookPublisher, String bookIntroduce, String imageurl, String ISBN, String reason) {
 		super();
-		this.bookProposalNo = bookProposalNo;
+		this.bookNo = bookNo;
 		this.userNo = userNo;
 		this.bookName = bookName;
 		this.bookKind = bookKind;
@@ -29,11 +29,12 @@ public class ProposalVO {
 		this.ISBN =ISBN;
 		this.reason = reason;
 	}
-	public int getBookProposalNo() {
-		return bookProposalNo;
+	
+	public int getBookNo() {
+		return bookNo;
 	}
-	public void setBookProposalNo(int bookProposalNo) {
-		this.bookProposalNo = bookProposalNo;
+	public void setBookNo(int bookNo) {
+		this.bookNo = bookNo;
 	}
 	public int getUserNo() {
 		return userNo;
@@ -83,11 +84,10 @@ public class ProposalVO {
 	public void setISBN(String iSBN) {
 		ISBN = iSBN;
 	}
-	public int getReason() {
+	public String getReason() {
 		return reason;
 	}
-	public void setReason(int reason) {
+	public void setReason(String reason) {
 		this.reason = reason;
 	}
-
 }

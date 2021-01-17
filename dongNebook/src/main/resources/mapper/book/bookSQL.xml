@@ -23,6 +23,20 @@
 		(select rownum as rnum, n.* from(select * from book order by 1 desc)n) 
 		where rnum between #{start} and #{end}
 	</select>
+	<select id="selectAllBook" resultType="book">
+		select 
+	     	book_no,
+	        book_name,
+	        book_kind,
+	        book_writer,
+	        book_publisher,
+	        book_introduce,
+	        ISBN,
+	        book_count,
+	        imageurl
+	    from
+	    	book
+	</select>
 	<delete id="bookDelete" parameterType="_int">
 		delete from book where book_no=#{bookNo}
 	</delete>
@@ -136,4 +150,10 @@
 	<update id="updateCntBook" parameterType="string">
 		update book SET book_count= book_count + 1 WHERE isbn=#{ISBN}
 	</update>
+	<select id="rentalInfo" parameterType="_int" resultType="bookrental">
+		select * from book_rental where user_no=#{_parameter}
+	</select>
+	<select id="rBookList" parameterType="_int" resultType="book">
+		select * from book where book_no=#{_parameter}
+	</select>
 </mapper>
