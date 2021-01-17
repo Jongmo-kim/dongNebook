@@ -159,11 +159,157 @@
 }
 .bookName{
 	border:1px solid black;
+	    height: 70px;
 }
 .book-sub{
 	margin:0px;
 	width:50px;
 	float:left;
+}
+.user_chk{
+	width: 10%;
+    float: left;
+    line-height:70px;
+    height: 100%;
+    
+}
+.user_input{
+	float: left;
+    width: 90%;
+}
+.pbtn{
+	height:30px;
+	width:70px;
+    font-size: 0.875em;
+    font-weight: bold;
+    padding: 0 1em;
+    color: black;
+    background-color: white;
+    border: 2px solid #3b8686;
+    border-radius: 5px;
+    transition: all .1s linear;
+}
+.pbtn:hover{
+	color: #fff;
+    background-color: #3b8686;
+    border: 2px solid #3b8686;
+    text-decoration: none;
+}
+body {margin: 10px;}
+.where {
+  display: block;
+  margin: 25px 15px;
+  font-size: 11px;
+  color: #000;
+  text-decoration: none;
+  font-family: verdana;
+  font-style: italic;
+}
+
+.checks {position: relative;
+	text-align: center;
+}
+
+.checks input[type="checkbox"] { 
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0
+}
+.checks input[type="checkbox"] + label {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.checks input[type="checkbox"] + label:before { 
+  content: ' ';
+  display: inline-block;
+  width: 21px; 
+  height: 21px;
+  line-height: 21px; 
+  margin: -2px 8px 0 0;
+  text-align: center; 
+  vertical-align: middle;
+  background: #fafafa;
+  border: 1px solid #cacece;
+  border-radius : 3px;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+}
+.checks input[type="checkbox"] + label:active:before,
+.checks input[type="checkbox"]:checked + label:active:before {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+.checks input[type="checkbox"]:checked + label:before {  
+  content: '\2714';  
+  color: #99a1a7;
+  text-shadow: 1px 1px #fff;
+  background: #e9ecee;
+  border-color: #adb8c0;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+}
+
+.checks.small input[type="checkbox"] + label {
+  font-size: 12px;
+}
+
+.checks.small input[type="checkbox"] + label:before {
+  width: 17px;
+  height: 17px;
+  line-height: 17px;
+  font-size: 11px;
+}
+
+.checks.etrans input[type="checkbox"] + label {
+  padding-left: 30px;
+  height:10px;
+}
+.checks.etrans input[type="checkbox"] + label:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-top: 0;
+  opacity: .6;
+  box-shadow: none;
+  border-color: #3b8686;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+.checks.etrans input[type="checkbox"]:checked + label:before {
+  position: absolute;
+  content: "";
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity:1; 
+  background: transparent;
+  border-color:transparent #3b8686 #3b8686 transparent;
+  border-top-color:transparent;
+  border-left-color:transparent;
+  -ms-transform:rotate(45deg);
+  -webkit-transform:rotate(45deg);
+  transform:rotate(45deg);
+}
+
+.no-csstransforms .checks.etrans input[type="checkbox"]:checked + label:before {
+ 
+  content: "\2714";
+  top: 0;
+  left: 0;
+  width: 21px;
+  line-height: 21px;
+  color: #3b8686;
+  text-align: center;
+  border: 1px solid #3b8686;
 }
 </style>
 <body>
@@ -171,7 +317,7 @@
    
    <jsp:include page="/views/common/adminSide.jsp" />
 	<div class="contents">
-	<h1 style="font-size:30px;">회원관리</h1>
+	<h1 style="font-size:30px;">대출관리</h1>
          <hr>
 	  <ul class="user-list">
 	    
@@ -190,7 +336,7 @@
                
                      <!-- Modal Header -->
                      <div class="modal-header">
-                       <h4 class="modal-title">Modal Heading</h4>
+                       <h4 class="modal-title">대출 관리</h4>
                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                      </div>
                
@@ -198,29 +344,43 @@
                      <form action="/book/updateBook.do">
                         <div class="modal-body" id="modal-body">
 	                        <div class="bookName" style="display:none">
-	                        	<input type="checkbox" id="book0">   
-	                           	<p class="book-sub">책이름:</p><input type="text" class="bookInput" name="book0" id="bookName0" >
-	                           	<p class="book-sub">대출일:</p><input type="text" class="bookInput" id="bookEnroll0"><br>
-	                          	 <p class="book-sub">반납일:</p><input type="text" class="bookInput" id="bookReturn0">
+	                        	<div class="user_chk">
+	                        		   
+	                        		<div class="checks etrans">
+									  <input type="checkbox" id="ex_chk3"> 
+									  <label for="ex_chk3"></label> 
+								</div>
+	                           	</div>
+	                           	<div class="user_input">
+		                           	<p class="book-sub">책이름:</p><input type="text" class="bookInput" name="book0" id="bookName0" >
+		                           	<p class="book-sub">대출일:</p><input type="text" class="bookInput" id="bookEnroll0"><br>
+		                          	 <p class="book-sub">반납일:</p><input type="text" class="bookInput" id="bookReturn0">
+	                        	</div>
 	                        </div>
 	                        <div class="bookName" style="display:none">
-	                        	<input type="checkbox" id="book1">
-	                           	<p class="book-sub">책이름:</p><input type ="text" class="bookInput" name="book1" id="bookName1" >
-	                           	<p class="book-sub">대출일:</p><input type="text" class="bookInput" id="bookEnroll1"><br>
-								<p class="book-sub">반납일:</p><input type="text" class="bookInput" id="bookReturn1">
+		                        <div class="user_chk">
+		                        	<input type="checkbox" id="book1">
+		                        </div>
+		                        	<div class="user_input">
+			                           	<p class="book-sub">책이름:</p><input type ="text" class="bookInput" name="book1" id="bookName1" >
+			                           	<p class="book-sub">대출일:</p><input type="text" class="bookInput" id="bookEnroll1"><br>
+										<p class="book-sub">반납일:</p><input type="text" class="bookInput" id="bookReturn1">
+		                        	</div>
 	                        </div>
 	                        <div class="bookName" style="display:none">
-	                        	<input type="checkbox" id="book2">
-	                           	<p class="book-sub">책이름:</p><input type ="text" class="bookInput" name="book2" id="bookName2" >
-	                           	<p class="book-sub">대출일:</p><input type="text" class="bookInput" id="bookEnroll2"><br>
-	                            <p class="book-sub">반납일:</p><input type="text" class="bookInput" id="bookReturn2">
+	                       	 	<div class="user_chk">
+	                        		<input type="checkbox" id="book2">
+	                        	</div>
+	                        	<div class="user_input">
+		                           	<p class="book-sub">책이름:</p><input type ="text" class="bookInput" name="book2" id="bookName2" >
+		                           	<p class="book-sub">대출일:</p><input type="text" class="bookInput" id="bookEnroll2"><br>
+		                            <p class="book-sub">반납일:</p><input type="text" class="bookInput" id="bookReturn2">
+	                        	</div>
 	                        </div>
                         </div>
                      <!-- Modal footer -->
                      <div class="modal-footer">
-                        <input type="button" class="deleteBooks" id="deleteBooks" onclick="deleteBooks()" value="삭제">
-                        
-                       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <input type="button" class="pbtn success" id="deleteBooks" onclick="deleteBooks()" value="삭제">
                      </div>
                   </form>
                
