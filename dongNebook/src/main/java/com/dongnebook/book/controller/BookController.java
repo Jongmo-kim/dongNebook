@@ -165,4 +165,9 @@ public class BookController {
 		String pageNavi=service.aladinPage(totalCount,reqPage);
 		return pageNavi.toString();
 	}
+	@RequestMapping("/deleteBooks")
+	public String deleteBooks(Model model, String[] books) {
+		System.out.println("책명"+books[0]);
+		return null;
+	}
 }

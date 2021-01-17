@@ -1,5 +1,7 @@
 package com.dongnebook.admin.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +55,18 @@ public class AdminController {
 		model.addAttribute("list", upd.getList());
 		model.addAttribute("pageNavi", upd.getPageNavi());
 		return "admin/manageUser";
+	}
+	@RequestMapping("/deleteBooks")
+	public String deleteBooks(Model model, String[] books) {
+		System.out.println("책명"+books[0]);
+		ArrayList<Integer> list =new ArrayList<Integer>() ;
+		for(int i=0 ; i<books.length;i++) {
+			int no=service.selectBook(books[i]);
+			list.add(no);
+		}
+		System.out.println("다시뽑은책명"+list.get(0));
+		int result = service.deleteBooks(list);
+		System.out.println(result);
+		return null;
 	}
 }

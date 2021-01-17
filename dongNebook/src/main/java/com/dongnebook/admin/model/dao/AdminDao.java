@@ -34,6 +34,17 @@ public class AdminDao {
 	public int totalCount() {
 		return sqlsession.selectOne("admin.selectTotalCount",int.class);
 	}
+
+
+	public int deleteBooks(ArrayList<Integer> list) {
+		return sqlsession.delete("admin.deleteBooks",list);
+	}
+
+
+	public int selectBook(String string) {
+		System.out.println(string);
+		return sqlsession.selectOne("admin.selectBook",string);
+	}
 	
 	//Start
 }

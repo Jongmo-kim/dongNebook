@@ -1,5 +1,6 @@
 package com.dongnebook.rental.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.rental.model.service.RentalService;
 import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.rental.model.vo.BookRentalReserve;
+import com.dongnebook.rental.model.vo.RentalDate;
 import com.dongnebook.rental.model.vo.RentalList;
 import com.dongnebook.rental.model.vo.RentalLoc;
 
@@ -97,17 +99,17 @@ public class RentalController {
 	}
 	@ResponseBody
 	@RequestMapping("/rentalInfo.do")
-	public ArrayList<Book> rentalInfo(Model model,int userNo) {
+	public ArrayList<RentalDate> rentalInfo(Model model,int userNo) {
 		System.out.println(userNo);
 		ArrayList<BookRental> rental= service.rentalInfo(userNo);
-		ArrayList<Book> book=new ArrayList<Book>();
-		System.out.println("사이즈"+rental.size());
+		ArrayList<RentalDate> rDate= new ArrayList<RentalDate>();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 		for(int i=0;i<rental.size();i++) {
-			Book b = service.rBookList(rental.get(i).getBookNo());
-			book.add(b);
+			rDate.add(new RentalDate());
+			rDate.get(i).setEnrollDate(simpleDateFormat.format(rental.get(i).getEnrollDate()));
+			rDate.get(i).setReturnDate(simpleDateFormat.format(rental.get(i).getReturnDate()));
 		}
-		System.out.println("북 사이즈:"+book.size());
-		return book;
+		return rDate;
 	}
 	@ResponseBody
 	@RequestMapping("/rentalBookName.do")

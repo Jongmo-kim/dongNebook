@@ -148,6 +148,23 @@
          	background:#a8dba8;
 		color:white;
          }
+.modal-dialog{
+	max-width:800px !important; 
+}
+.bookName input{
+	width:80%;
+}
+.bookInput{
+	border:0px;
+}
+.bookName{
+	border:1px solid black;
+}
+.book-sub{
+	margin:0px;
+	width:50px;
+	float:left;
+}
 </style>
 <body>
 <jsp:include page="/views/common/header.jsp" />
@@ -180,13 +197,29 @@
                      <!-- Modal body -->
                      <form action="/book/updateBook.do">
                         <div class="modal-body" id="modal-body">
-                           <input type ="text" name="bookName" id="bookName0" style="display:none">
-                           <input type ="text" name="bookName" id="bookName1"style="display:none">
-                           <input type ="text" name="bookName" id="bookName2" style="display:none">
+	                        <div class="bookName" style="display:none">
+	                        	<input type="checkbox" id="book0">   
+	                           	<p class="book-sub">책이름:</p><input type="text" class="bookInput" name="book0" id="bookName0" >
+	                           	<p class="book-sub">대출일:</p><input type="text" class="bookInput" id="bookEnroll0"><br>
+	                          	 <p class="book-sub">반납일:</p><input type="text" class="bookInput" id="bookReturn0">
+	                        </div>
+	                        <div class="bookName" style="display:none">
+	                        	<input type="checkbox" id="book1">
+	                           	<p class="book-sub">책이름:</p><input type ="text" class="bookInput" name="book1" id="bookName1" >
+	                           	<p class="book-sub">대출일:</p><input type="text" class="bookInput" id="bookEnroll1"><br>
+								<p class="book-sub">반납일:</p><input type="text" class="bookInput" id="bookReturn1">
+	                        </div>
+	                        <div class="bookName" style="display:none">
+	                        	<input type="checkbox" id="book2">
+	                           	<p class="book-sub">책이름:</p><input type ="text" class="bookInput" name="book2" id="bookName2" >
+	                           	<p class="book-sub">대출일:</p><input type="text" class="bookInput" id="bookEnroll2"><br>
+	                            <p class="book-sub">반납일:</p><input type="text" class="bookInput" id="bookReturn2">
+	                        </div>
                         </div>
                      <!-- Modal footer -->
                      <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <input type="button" class="deleteBooks" id="deleteBooks" onclick="deleteBooks()" value="삭제">
+                        
                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                      </div>
                   </form>
@@ -199,8 +232,46 @@
 		  <div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
   </div>
   <script>
+ // var arr = new Array();
+  	window.onload = function(){
+  		var chk0 = document.getElementById("book0");
+  		var chk1 = document.getElementById("book1");
+  		var chk2 = document.getElementById("book2");
+  		var name0=document.getElementById("bookName0");
+  		var name1=document.getElementById("bookName1");
+  		var name2=document.getElementById("bookName2");
+  		var arr = new Array();
+  		var deleteBooks=document.getElementById("deleteBooks");
+  		
+  		chk0.onclick=function(){
+  			console.log(0);
+  			arr[0]= name0.value;
+  			console.log(arr[0]);
+  			
+  		};
+  		chk1.onclick=function(){
+  			console.log(1);
+  			arr[1]=name1.value;
+  			console.log(arr[1]);
+  		};
+  		chk2.onclick=function(){
+  			console.log(2);
+  			arr[2]=name2.value;
+  			console.log(arr[1]);
+  			console.log(arr[2]);
+  		};
+  		deleteBooks.onclick=function(){
+  			location.href='/admin/deleteBooks.do?books='+arr;
+  		};
+  		
+  	};
+
   	function grow(userNo){
   		console.log("유저넘버"+userNo);
+	  	var book=document.getElementsByClassName('bookName');
+  		for(var i=0;i<3;i++){
+			book[i].style.display="none";  			
+  		}
   		$.ajax({
   			method:"get",
   			url:"/rentalBookName.do",
@@ -214,12 +285,13 @@
   					console.log(data);
   					console.log(data[i].bookName);
   					modal.value=data[i].bookName;
-  					modal.style.display='block';  					
+  					modal.style.display='block';  	
+  					book[i].style.display="block";
   				}
   				
   			}
   		});
-  		/*$.ajax({
+  		$.ajax({
   			method: "get",
   			url:"/rentalInfo.do",
   			data: {userNo:userNo},
@@ -228,17 +300,16 @@
   			},
   			success: function(data){
   				console.log(data);
-  				
-  				 document.getElementById("bookNo").value=bookNo;
-  		         document.getElementById("bookName").value=bookName;
-  		         document.getElementById("bookKind").value=bookKind;
-  		         document.getElementById("bookWriter").value=bookWriter;
-  		         document.getElementById("bookPublisher").value=bookPublisher;
-  		         document.getElementById("bookIntroduce").value=bookIntroduce;
-				 
+  				for(var i=0;i<data.length;i++){
+  					var enroll = document.getElementById("bookEnroll"+i);
+  					var rDate = document.getElementById("bookReturn"+i);
+  					enroll.value=data[i].enrollDate;
+  					rDate.value=data[i].returnDate;
+  				}
   			}
-  		});*/
+  		});
   	}
+  	
   </script>
 </body>
 </html>
