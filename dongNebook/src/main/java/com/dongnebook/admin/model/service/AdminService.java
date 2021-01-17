@@ -77,6 +77,14 @@ public class AdminService {
 		UserPageData upd=new UserPageData(list,pageNavi);
 		return upd;
 	}
+
+	public int deleteBooks(ArrayList<Integer> list) {
+		return dao.deleteBooks(list);
+	}
+
+	public int selectBook(String string) {
+		return dao.selectBook(string);
+	}
 	
 	//Start
 }

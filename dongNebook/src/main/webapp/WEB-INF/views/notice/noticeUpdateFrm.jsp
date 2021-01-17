@@ -34,7 +34,7 @@
 									<input type="hidden" class="status" name="status" value="stay"> 
 									<img src="/common/file.png" width="16px" class="delFile">
 									<span class="delFile">${f.filename }</span>
-									<button type="button"class="btn btn-primary btn-sm delFile fileDelBtn">삭제</button>
+									<button type="button" class="btn btn-primary btn-sm delFile fileDelBtn">삭제</button>
 									
 									<!-- 기존 파일 -->
 									<input type="hidden" name="oldFilename" class="oldFilename" value=${f.filename }>

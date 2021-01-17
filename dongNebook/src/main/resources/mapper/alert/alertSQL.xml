@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="alert">
+	<select id="selectUserAlert" parameterType="_int" resultType="alert">
+		select * from alert where user_no=#{_int}
+	</select>
+	<insert id="insertAlert" parameterType="alert">
+		<!-- 반납 1일 전 도서를 select한 결과값을 바탕으로 alert 테이블에 insert -->
+		INSERT INTO alert (book_rental_no, user_no, book_name, chk)
+		SELECT 
+			book_rental.book_rental_no, book_rental.user_no, book.book_name, 0
+		FROM 
+			book_rental join book
+		on 
+			book_rental.book_no = book.book_no
+		where 
+			return_date=to_char(sysdate+1,'yyyy/MM/dd')
+	</insert>
+	<delete id="deleteAlert">
+		delete from alert
+	</delete>
+	<update id="countChk" parameterType="_int">
+		update alert set chk=1 where book_rental_no=#{_int}
+	</update>
+</mapper>

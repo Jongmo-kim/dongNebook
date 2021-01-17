@@ -147,6 +147,20 @@ create table bookmark(
     primary key(user_no,isbn)
 );
 
+
+create table alert(
+    book_rental_no number primary key,
+    user_no number,
+    book_name varchar2(500),
+    chk number default 0
+);
+
+ALTER TABLE alert ADD CONSTRAINT ALERT_BOOK_RENTAL_NO_FK
+FOREIGN KEY(BOOK_RENTAL_NO) REFERENCES BOOK_RENTAL(BOOK_RENTAL_NO) ON DELETE CASCADE;
+
+ALTER TABLE alert ADD CONSTRAINT ALERT_USER_NO_FK
+FOREIGN KEY(USER_NO) REFERENCES "USER"(USER_NO) ON DELETE CASCADE;
+
 ALTER TABLE bookmark ADD CONSTRAINT bookmark_user_no_Fk
 FOREIGN KEY(USER_NO) REFERENCES "USER"(USER_NO) ON DELETE CASCADE;
 
@@ -167,6 +181,6 @@ create sequence user_seq;
 create sequence category_seq;
 create sequence file_seq;
 create sequence alram_seq;
-
+create sequence alert_seq;
 
 

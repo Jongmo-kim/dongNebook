@@ -8,6 +8,7 @@ pom.properties
 .project
 .classpath
 Servers/
+debug.log
 ### Eclipse ###
 .metadata
 bin/

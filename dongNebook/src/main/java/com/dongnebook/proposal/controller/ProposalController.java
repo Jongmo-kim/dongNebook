@@ -105,7 +105,6 @@ public class ProposalController {
 			String bookStr = arr.get(i).toString();
 			JSONObject bookList = new JSONObject(bookStr);
 			Book b = new Book();
-			b.setISBN(bookList.getString("ISBN13"));
 			b.setISBN(bookList.getString("ISBN"));
 			int result = service.deleteBook(b);
 		}

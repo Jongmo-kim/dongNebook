@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.rental.model.dao.RentalDao;
+import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.rental.model.vo.BookRentalReserve;
 import com.dongnebook.rental.model.vo.RentalLoc;
 
@@ -31,6 +32,14 @@ public class RentalService {
 
 	public ArrayList<Book> selectBooks(int[] bookNo) {
 		return dao.selectBooks(bookNo);
+	}
+
+	public Book rBookList(int bookNo) {
+		return dao.rBookList(bookNo);
+	}
+
+	public ArrayList<BookRental> rentalInfo(int userNo) {
+		return dao.rentalInfo(userNo);
 	}
 	
 }

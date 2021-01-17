@@ -43,7 +43,7 @@ public class BookController {
 	 */
 	@PostConstruct
 	public void booklistInit() {
-		ArrayList<Book> bookList = service.selectBookByKeyword("1", "전체", 1);
+		ArrayList<Book> bookList = service.selectAllBook();
 		for(Book b  : bookList) {
 			trie.insert(b.getBookName());
 		}
@@ -167,5 +167,10 @@ public class BookController {
 		System.out.println("요청페이지"+reqPage);
 		String pageNavi=service.aladinPage(totalCount,reqPage);
 		return pageNavi.toString();
+	}
+	@RequestMapping("/deleteBooks")
+	public String deleteBooks(Model model, String[] books) {
+		System.out.println("책명"+books[0]);
+		return null;
 	}
 }

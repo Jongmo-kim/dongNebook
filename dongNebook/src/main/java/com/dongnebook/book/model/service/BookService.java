@@ -169,4 +169,8 @@ public class BookService {
 	public int updateCntBook(Book book) {
 		return dao.updateCntBook(book);
 	}
+
+	public ArrayList<Book> selectAllBook() {
+		return dao.selectAllBook();
+	}
 }
