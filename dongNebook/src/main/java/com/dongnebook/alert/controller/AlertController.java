@@ -25,4 +25,16 @@ public class AlertController {
 		
 		return list;
 	}
+	
+	@ResponseBody
+	@RequestMapping("/countChk.do")
+	public int countChk(int bookRentalNo) {
+		System.out.println("컨트롤러"+bookRentalNo);
+		int result = service.countChk(bookRentalNo);
+		if(result>0) {
+			return 1;
+		}else {
+			return -1;
+		}
+	}
 }

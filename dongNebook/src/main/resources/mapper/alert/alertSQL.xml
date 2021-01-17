@@ -19,4 +19,7 @@
 	<delete id="deleteAlert">
 		delete from alert
 	</delete>
+	<update id="countChk" parameterType="_int">
+		update alert set chk=1 where book_rental_no=#{_int}
+	</update>
 </mapper>

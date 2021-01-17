@@ -28,11 +28,15 @@ public class AlertService {
 	}
 	
 	//매일 정각에 book_rental 테이블을 조회해서 반납 1일 전 대여 목록을 alert 테이블에 넣어줌 
-	@Scheduled(cron = "0/5 0 0 * * *")
-	//@Scheduled(cron ="0/10 * * * * *")
+	//@Scheduled(cron = "0/5 * * * * *")
+	@Scheduled(cron ="0 0 0 * * *")
 	public void insertAlert() {
-		System.out.println("insertAlert 실행완료");
 		dao.deleteAlert();
 		dao.insertAlert();
+		System.out.println("insertAlert 실행완료");
+	}
+
+	public int countChk(int bookRentalNo) {
+		return dao.countChk(bookRentalNo);
 	}
 }

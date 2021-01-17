@@ -30,4 +30,9 @@ public class AlertDao {
 	public int deleteAlert() {
 		return sqlSession.delete("alert.deleteAlert");
 	}
+
+
+	public int countChk(int bookRentalNo) {
+		return sqlSession.update("alert.countChk", bookRentalNo);
+	}
 }
