@@ -142,7 +142,7 @@
 				  		var num = 0;
 				  		$(data).each(function(index, item){
 							var alertt = "<div class='alert alert-primary alert-dismissible fade show alert-div' role='alert'></div>";
-							var strongg = "<strong>"+data[index].bookName+"...</strong> 의 반납일이 1일 남았습니다.";
+							var strongg = "'<strong>"+data[index].bookName+"</strong>' 의 반납일이 1일 남았습니다.";
 							var buttonn = "<button type='button' class='close' data-dismiss='alert' aria-label='close' value='"+data[index].bookRentalNo+"'></button>";
 							var spann = "<span aria-hidden='true' class='close-btn'>&times;</span>";
 							

@@ -19,17 +19,19 @@ public class AlertService {
 		
 		for(Alert ba : list) {
 			String bookName = ba.getBookName();
-			//책 이름을 15글자로 제한
-			String shortName = bookName.substring(0, 15);
-			ba.setBookName(shortName);
+			//책 이름 길이 제한
+			if(bookName.length()>40) {
+				String shortName = bookName.substring(0, 40);
+				ba.setBookName(shortName+" ...");
+			}
 			System.out.println(ba.toString());
 		}
 		return list;
 	}
 	
 	//매일 정각에 book_rental 테이블을 조회해서 반납 1일 전 대여 목록을 alert 테이블에 넣어줌 
-	//@Scheduled(cron = "0/5 * * * * *")
-	@Scheduled(cron ="0 0 0 * * *")
+	@Scheduled(cron = "0/30 * * * * *")
+	//@Scheduled(cron ="0 0 0 * * *")
 	public void insertAlert() {
 		dao.deleteAlert();
 		dao.insertAlert();
