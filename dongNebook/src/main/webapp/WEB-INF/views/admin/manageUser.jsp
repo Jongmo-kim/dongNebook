@@ -345,10 +345,9 @@ body {margin: 10px;}
                         <div class="modal-body" id="modal-body">
 	                        <div class="bookName" style="display:none">
 	                        	<div class="user_chk">
-	                        		   
 	                        		<div class="checks etrans">
-									  <input type="checkbox" id="ex_chk3"> 
-									  <label for="ex_chk3"></label> 
+									  <input type="checkbox" id="book0"> 
+									  <label for="book0"></label> 
 								</div>
 	                           	</div>
 	                           	<div class="user_input">
@@ -359,8 +358,11 @@ body {margin: 10px;}
 	                        </div>
 	                        <div class="bookName" style="display:none">
 		                        <div class="user_chk">
-		                        	<input type="checkbox" id="book1">
-		                        </div>
+	                        		<div class="checks etrans">
+									  <input type="checkbox" id="book1"> 
+									  <label for="book1"></label> 
+								</div>
+	                           	</div>
 		                        	<div class="user_input">
 			                           	<p class="book-sub">책이름:</p><input type ="text" class="bookInput" name="book1" id="bookName1" >
 			                           	<p class="book-sub">대출일:</p><input type="text" class="bookInput" id="bookEnroll1"><br>
@@ -369,8 +371,11 @@ body {margin: 10px;}
 	                        </div>
 	                        <div class="bookName" style="display:none">
 	                       	 	<div class="user_chk">
-	                        		<input type="checkbox" id="book2">
-	                        	</div>
+	                        		<div class="checks etrans">
+									  <input type="checkbox" id="book2"> 
+									  <label for="book2"></label> 
+								</div>
+	                           	</div>
 	                        	<div class="user_input">
 		                           	<p class="book-sub">책이름:</p><input type ="text" class="bookInput" name="book2" id="bookName2" >
 		                           	<p class="book-sub">대출일:</p><input type="text" class="bookInput" id="bookEnroll2"><br>
@@ -404,21 +409,32 @@ body {margin: 10px;}
   		var deleteBooks=document.getElementById("deleteBooks");
   		
   		chk0.onclick=function(){
-  			console.log(0);
-  			arr[0]= name0.value;
-  			console.log(arr[0]);
+  			if(chk0.checked){  				
+	  			console.log(0);
+	  			arr[0]= name0.value;
+	  			console.log(arr[0]);
+  			}else{
+  				arr[0]==null;
+  			}
   			
   		};
   		chk1.onclick=function(){
-  			console.log(1);
-  			arr[1]=name1.value;
-  			console.log(arr[1]);
+  			if(chk0.checked){  				
+	  			console.log(1);
+	  			arr[1]= name1.value;
+	  			console.log(arr[1]);
+  			}else{
+  				arr[1]==null;
+  			}
   		};
   		chk2.onclick=function(){
-  			console.log(2);
-  			arr[2]=name2.value;
-  			console.log(arr[1]);
-  			console.log(arr[2]);
+  			if(chk0.checked){  				
+	  			console.log(2);
+	  			arr[2]= name2.value;
+	  			console.log(arr[2]);
+  			}else{
+  				arr[2]==null;
+  			}
   		};
   		deleteBooks.onclick=function(){
   			location.href='/admin/deleteBooks.do?books='+arr;
