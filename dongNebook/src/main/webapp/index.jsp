@@ -16,16 +16,6 @@
 </style>
 </head>
 <body>
-	<%-- <c:if test="${sessionScope.returnList !=null}">
-		<c:forEach items="${sessionScope.returnList }" var="b">
-			<div class="alert alert-primary alert-dismissible fade show alert-div" role="alert">
-			  	<strong>${b.bookName }</strong> 의 반납일이 1일 남았습니다.
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true" class="close-btn">&times;</span>
-			 	 </button>
-			</div>
-		</c:forEach>
-	</c:if> --%>
 	<div class="alert-wrap">
 	</div>
 	<c:if test="${sessionScope.loginUser !=null}">

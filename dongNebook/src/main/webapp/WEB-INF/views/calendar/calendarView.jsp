@@ -11,6 +11,8 @@
 <head>
 <title>Insert title here</title>
 <jsp:include page="/views/common/linkHead.jsp" />
+<link type="text/css" rel="stylesheet" href="/css/calendar/calendar.css?v=<%=System.currentTimeMillis()%>">
+
 <meta charset='utf-8' />
 <link href='/lib/calendar/main.css' rel='stylesheet' />
 <script src='/lib/calendar/main.js'></script>
@@ -76,8 +78,12 @@
 						$('#updateCalendar').hide();
 						
 						$("#calendarStartDate").val(date);
-						$("#calendarEndDate").val(date);				
+						$("#calendarEndDate").val(date);
+						//체크되어있던 색깔 초기화
+						$("input[name='backgroundColor']").prop("checked", false)
+						//색깔 체크 표시 초기화
 						$('.fa-check').remove();
+						
 						$(".modal-title").html('새로운 일정');
 				 }
 			},
@@ -95,6 +101,7 @@
  				var title = info.event.title;
  				var start = info.event.startStr;
  				var end = info.event.endStr;
+ 				var backgroundColor = info.event.backgroundColor;
  				
  				//info.event.end : 만약 end가 null -> 하루짜리 일정이라면 끝나는 날짜와 시작 날짜를 같게 함
  				//info.event.endStr : 만약 길이가 10 미만이라면(형태가 yyyy-mm-dd 형태가 아니라면)
@@ -114,8 +121,21 @@
  				var startDate = start.substr(0, 10);
  				var endDate = end.substr(0, 10);
  				
+ 				//input type date에 시작, 끝 날짜 넣어주기
  				$("#calendarStartDate").val(startDate);
  				$("#calendarEndDate").val(endDate);
+ 				
+ 				
+ 				var bc = $("input[name='backgroundColor']");
+ 				bc.each(function(index, item){
+ 					//색상 radio의 value와 현재 이벤트에 적용된 배경색이 같을 경우
+ 					if($(item).val()==backgroundColor){
+ 						//라디오버튼 체크
+ 						$(item).prop('checked',true);
+ 						//라벨에 체크 기호 삽입
+ 						$("input[name='backgroundColor']+label").eq(index).append("<i class='fas fa-check'></i>");
+ 					}
+ 				})
  				
  				//updateBtn과 deleteBtn에 해당 event의 id값을 넣어둔다.
  				//두개 같은 id가 들어가는데 외우기 쉽게 각각의 버튼에 넣어둠
@@ -128,52 +148,6 @@
 	    calendar.render();
   });
 </script>
-<style>
-#calendar {
-	max-width: 1100px;
-	margin: 0 auto;
-}
-.fc-event-time{
-   display : none;
-}
-.fc-day:hover {
-	background: #EEF7FF;
-	cursor: pointer;
-	-webkit-transition: all 0.2s linear;
-	-o-transition: all 0.2s linear;
-	transition: all 0.2s linear;
-}
-/* 일정에 날짜 보이지 않게 css */
-.fc-list-event-time{
-	display : none;
-}
-
-input[type=radio] {
-	display: none;
-}
-
-.radio-label {
-	width: 35px;
-	height: 35px;
-	outline: none;
-	line-height: 30px;
-	border-radius : 50px;
-	text-align:center;
-	color : white;
-	font-weight: bold;
-	border : 2px solid white;
-	box-shadow:1px 1px 1px rgba(0, 0, 0, .2);
-	margin: 0;
-}
-
-.row {
-	border: 1px solid black;
-}
-
-/* .fc-event-title{
-	color:black;
-} */
-</style>
 </head>
 
 
@@ -193,41 +167,41 @@ input[type=radio] {
 
 				<!-- Modal body -->
 				<div class="modal-body">
+				 <div class="container">
 					<div class="row">
-						<div class="col-xs-12">
-							<label class="col-xs-4" for="calendarTitle">일정명</label> <input
-								class="inputModal" type="text" name="calendarTitle"
-								id="calendarTitle" required="required" />
+						<div class="col-12">
+							<label class="col-4" for="calendarTitle">일정명</label>
+							<input class="inputModal col-8" type="text" name="calendarTitle" id="calendarTitle" required="required" />
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-xs-12">
-							<label class="col-xs-4" for="calendarStartDate">시작</label> <input
-								class="inputModal" type="date" name="calendarStartDate"
-								id="calendarStartDate" />
+						<div class="col-12">
+							<label class="col-4" for="calendarStartDate">일정 시작일</label>
+							<input class="inputModal col-8" type="date" name="calendarStartDate" id="calendarStartDate" />
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-xs-12">
-							<label class="col-xs-4" for="calendarEndDate">끝</label> <input
-								class="inputModal" type="date" name="calendarEndDate"
-								id="calendarEndDate" />
+						<div class="col-12">
+							<label class="col-4" for="calendarEndDate">일정 종료일</label>
+							<input class="inputModal col-8" type="date" name="calendarEndDate" id="calendarEndDate" />
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-xs-12">
-							<label class="col-xs-4">일정 색상</label> 
+						<div class="col-12">
+							<label class="col-4">일정 색상</label> 
 							<!-- 기본색 : #3788d8 -->
 							<input type="radio" name="backgroundColor" value="#FF5151" id="red"><label for="red" class="radio-label"></label>
 							<input type="radio" name="backgroundColor" value="#F6CD01" id="yellow"><label for="yellow" class="radio-label"></label>
+							<input type="radio" name="backgroundColor" value="#8ACB19" id="yellowgreen"><label for="yellowgreen" class="radio-label"></label>
 							<input type="radio" name="backgroundColor" value="#79bd9a" id="green"><label for="green" class="radio-label"></label>
-							<input type="radio" name="backgroundColor" value="#4ACDFA" id="blue"><label for="blue" class="radio-label"></label>
+							<input type="radio" name="backgroundColor" value=#32C0FD id="blue"><label for="blue" class="radio-label"></label>
 							<input type="radio" name="backgroundColor" value="#2A2A93" id="navy"><label for="navy" class="radio-label"></label>
 							<input type="radio" name="backgroundColor" value="#CA85F6" id="purple"><label for="purple" class="radio-label"></label>
+							<input type="radio" name="backgroundColor" value="#FA5E95" id="pink"><label for="pink" class="radio-label"></label>
 						</div>
 					</div>
 				</div>
-
+ 
 				<!-- Modal footer -->
 				<div class="modal-footer" id="insertCalendar">
 					<button type="button" class="btn btn-default" data-dismiss="modal" style="border: 1px solid #cecece">취소</button>
@@ -238,7 +212,7 @@ input[type=radio] {
 					<button type="button" class="btn btn-danger" id="deleteBtn" onclick="deleteCalendar();">삭제</button>
 					<button type="button" class="btn btn-primary" id="updateBtn" onclick="updateCalendar();">수정</button>
 				</div>
-
+			</div>
 			</div>
 		</div>
 	</div>
@@ -319,8 +293,6 @@ input[type=radio] {
 				$('#myModal').modal('hide'); 	
 				}
 			}
-			
-			
 		}
 		
 		function deleteCalendar(){
@@ -335,7 +307,6 @@ input[type=radio] {
 					success: function(data){
 						if(data>0){
 							location.reload();	
-							alert("일정 삭제 성공");
 						} else {
 							alert("일정 삭제 실패");
 						}
@@ -353,6 +324,7 @@ input[type=radio] {
 			var title = $("#calendarTitle").val();
 			var start = $("#calendarStartDate").val();
 			var end = $("#calendarEndDate").val();
+			var bc = $('input[name="backgroundColor"]:checked').val();
 			//날짜를 - 기준으로 나눠서 배열에 넣기
 			var startArr = start.split('-');
 		    var endArr = end.split('-');
@@ -371,7 +343,10 @@ input[type=radio] {
 					data : {calendarNo:calendarNo,
 							title:title,
 							start:start,
-							end:end},
+							end:end,
+							backgroundColor:bc,
+							textColor:'white',
+							borderColor:bc},
 					success:function(data){
 						if(data>0){
 							alert("일정 수정 성공");

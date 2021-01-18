@@ -45,6 +45,7 @@ public class CalendarController {
 		
 		int result = service.insertCalendar(c);
 		int calendarNo = service.maxCalendarNo();
+		
 		//추가한 캘린더 객체 가져오기
 		Calendar cal = service.selectOneCalendar(calendarNo);
 		
@@ -76,10 +77,16 @@ public class CalendarController {
 	
 	@ResponseBody
 	@RequestMapping("/updateCalendar.do")
-	public String updateCalendar(int calendarNo, String title, String start, String end) {
+	public String updateCalendar(int calendarNo, String title, String start, String end, String backgroundColor, String borderColor, String textColor) {
 		Calendar c = new Calendar();
 		c.setCalendarNo(calendarNo);
 		c.setCalendarTitle(title);
+		
+		if(backgroundColor!=null) {
+			c.setBackgroundColor(backgroundColor);
+			c.setBorderColor(borderColor);
+			c.setTextColor(textColor);
+		}
 		
 		//시간을 더해줌
 		c.setCalendarStartDate(start+" 00:00:00");
