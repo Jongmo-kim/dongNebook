@@ -69,4 +69,5 @@ public class AdminController {
 		System.out.println(result);
 		return null;
 	}
+	
 }
