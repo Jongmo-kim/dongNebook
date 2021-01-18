@@ -20,15 +20,6 @@
     var calendarEl = document.getElementById('calendar');
 
 	var calendar = new FullCalendar.Calendar(calendarEl, {
-		//커스텀 버튼
-		/* customButtons: {
-		    myCustomButton: {
-		      text: 'eventObj',
-		      click: function() {
-		        window.open("https://fullcalendar.io/docs/event-object");
-				}
-			}
-		}, */
 		headerToolbar: {
         	left: 'prevYear,prev,next,nextYear today',
     	    center: 'title',
@@ -76,7 +67,7 @@
 	      ],
 			//캘린더 날짜 클릭
 			dateClick: function(info) {
-				 if(sessionScope.loginAdmin!=null){
+				 if('${sessionScope.loginAdmin}'!=null){
 					//dateStr : 클릭한 td의 날짜를 받아옴
 						var date = info.dateStr;
 						$('#myModal').modal(); 
@@ -94,8 +85,8 @@
  	      eventClick: function (info) {
  	    	//info.event.start -> Mon Jan 11 2021 00:00:00 GMT+0900 형태
  	    	//info.event.startStr -> 2021-01-11 형태
- 	        
- 	        if(sessionScope.loginAdmin!=null){
+ 	       	//if(sessionScope.loginAdmin!=null){
+ 	       	if('${sessionScope.loginAdmin}'!=null){
  	        	console.log("title : "+info.event.title);
  				console.log("id : "+info.event.id);
  				console.log("start : "+info.event.startStr);
@@ -158,9 +149,10 @@
 }
 </style>
 </head>
+
+
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-
 	<!-- The Modal -->
 	<div class="modal fade" id="myModal">
 		<div class="modal-dialog">
