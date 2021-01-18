@@ -32,7 +32,7 @@
 								<div class="card text-secondary bg-light mb-3 upfile">
 									<div class="card-header text-primary">FILE ZONE</div>
 									<!-- <form id="upFileFrm" action="/file/upFile.do" method="post" enctype="multipart/form-data"> -->
-										<input type="hidden" name="path" value="${path }">
+										<input type="hidden" name="path" value="/">
 										<input type="file" name="files" id="upFile" multiple style="display:none;">					
 										<div class="card-body filezone">						
 											<div class="card-text">
@@ -55,7 +55,7 @@
 						</tr>
 						<tr>
 							<th colspan="2">
-								<button type="submit" class="btn btn-primary">등록하기</button>
+								<button type="button" class="btn btn-primary">등록하기</button>
 							</th>
 						</tr>
 					</table>
@@ -86,12 +86,11 @@
 		    $(this).css('border', '3px dashed #593196');
 		    $(".defaultMsg").hide();
 		    
-		    //드래그 드롭한 항목
+		    //드롭한 항목
 			var files = e.originalEvent.dataTransfer.files;
 		    
-		    //파일의 길이만큼
+		    //파일만큼 반복
 		    for(var i=0;i<files.length;i++){
-		    	//var div = "<div class='upFileList'><span>"+files[i].name+"</span> <i class='fas fa-times cancelBtn'></i></div>";        
 				var div = "<div class='upFileList'><span>"+files[i].name+"</span> <button type='button' class='btn btn-primary btn-sm cancelBtn'>삭제</button></div>" 
 			    $(".card-text").append(div);
 			    console.log(files[i]);
@@ -108,37 +107,43 @@
 	  		var idx = $(".cancelBtn").index(this);
 	  		$(".upFileList").eq(idx).remove();
 	  		upFiles.pop(idx);
-	  		console.log(upFiles);
 	  	});
-	
-/* 		$("input[type=file]").change(function () {
- 			var fileInput = document.getElementById("input-file");
-	        var files = fileInput.files;
-	        var file;
-	        for (var i = 0; i < files.length; i++) {
-	            alert(files[i].name);
-	        }
-	    }); */
+
 		
-		$("button[type=submit]").click(function(event){
+		$("button[type=button]").click(function(event){
 			var form = $("#upFileFrm")[0];    	
 		  	var frmData = new FormData(form);
 			for(var i=0;i<upFiles.length;i++){  		
-				frmData.append("files",upFiles[i]);
+				frmData.append("files", upFiles[i]);
 		  	}  		
 			console.log(frmData);
-			
-			
-			/* var title = $("#noticeTitle").val();
+			var title = $("#noticeTitle").val();
 			var content = $("#noticeContent").val();
+			
+			var chk = true;
 			if(title==""){
 				alert("제목을 입력하세요");
-				event.preventDefault();
+				chk = false;
 			}
 			if(content==""){
 				alert("내용을 입력하세요");
-				event.preventDefault();
-			} */
+				chk = false;
+			}
+			
+			if(chk){
+				$.ajax({
+					url : "/notice/insertNotice.do",
+					type : "POST",
+					data : frmData,
+					enctype : "multipart/form-data",
+					processData : false,
+					contentType : false,
+					cache:false,
+					success:function(data){
+						location.href="/notice/noticeList.do?reqPage=1";
+					}
+				})
+			}
 		})
 	</script>
 </body>
