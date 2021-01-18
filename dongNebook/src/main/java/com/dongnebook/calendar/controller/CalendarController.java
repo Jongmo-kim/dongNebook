@@ -28,13 +28,20 @@ public class CalendarController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/insertCalendar.do", produces = "application/json;charset=utf-8")
-	public String insertCalendar(String title, String start, String end) {
+	public String insertCalendar(String title, String start, String end, String backgroundColor, String borderColor, String textColor) {
 		Calendar c = new Calendar();
 		c.setCalendarTitle(title);
 		//시간을 더해줌
 		c.setCalendarStartDate(start+" 00:00:00");
 		//시간을 이렇게 해주지 않으면 하루가 덜 출력됨
 		c.setCalendarEndDate(end+" 23:59:59");
+		
+		System.out.println(c.toString());
+		if(backgroundColor!=null) {
+			c.setBackgroundColor(backgroundColor);
+			c.setBorderColor(borderColor);
+			c.setTextColor(textColor);
+		}
 		
 		int result = service.insertCalendar(c);
 		int calendarNo = service.maxCalendarNo();
@@ -47,6 +54,9 @@ public class CalendarController {
 			obj.addProperty("title", cal.getCalendarTitle());
 			obj.addProperty("start", String.valueOf(cal.getCalendarStartDate()));
 			obj.addProperty("end", String.valueOf(cal.getCalendarEndDate()));
+			obj.addProperty("backgroundColor", cal.getBackgroundColor());
+			obj.addProperty("borderColor", cal.getBorderColor());
+			obj.addProperty("textColor", cal.getTextColor());
 			return new Gson().toJson(obj);
 		} else {
 			return null;

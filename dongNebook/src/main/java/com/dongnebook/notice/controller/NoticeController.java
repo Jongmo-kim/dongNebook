@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dongnebook.common.FileOverlap;
@@ -62,13 +63,16 @@ public class NoticeController {
 	public String noticeFrm() {
 		return "notice/noticeFrm";
 	}
-
+	
+	@ResponseBody
 	@RequestMapping("/insertNotice.do")
-	//MultipartFile이 form에 있는 file을 받아옴. 이래야 파일에 대한 값을 처리할 수 있음
-	public String insertNotice(Notice n, MultipartFile[] files, HttpServletRequest request, Model model) {
+	public String insertNotice(Notice n, MultipartFile[] files, HttpServletRequest request, Model model,String path1) {
+		System.out.println(path1);
 		String root = request.getSession().getServletContext().getRealPath("/");
 		String path = root + "resources/upload/notice/";
+		System.out.println(files);
 		System.out.println("첨부파일 개수 > "+files.length);
+		
 		ArrayList<FileVO> fileList = new ArrayList<FileVO>();
 		for(MultipartFile file : files) {
 			if(!file.isEmpty()) {
