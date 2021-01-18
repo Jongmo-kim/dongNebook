@@ -1,4 +1,4 @@
-package com.dongnebook.chat.dao;
+package com.dongnebook.chat.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.dongnebook.chat.vo.ChatUser;
+import com.dongnebook.chat.model.vo.ChatUser;
 
 @Repository
 public class ChatDao {

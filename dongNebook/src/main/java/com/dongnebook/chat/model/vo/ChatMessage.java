@@ -1,4 +1,4 @@
-package com.dongnebook.chat.vo;
+package com.dongnebook.chat.model.vo;
 
 public class ChatMessage {
 	private int cmNo;

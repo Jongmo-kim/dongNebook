@@ -1,13 +1,13 @@
-package com.dongnebook.chat.service;
+package com.dongnebook.chat.model.service;
 
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dongnebook.chat.dao.ChatDao;
-import com.dongnebook.chat.vo.ChatUser;
-import com.dongnebook.chat.vo.ChatUserPageData;
+import com.dongnebook.chat.model.dao.ChatDao;
+import com.dongnebook.chat.model.vo.ChatUser;
+import com.dongnebook.chat.model.vo.ChatUserPageData;
 
 
 @Service
