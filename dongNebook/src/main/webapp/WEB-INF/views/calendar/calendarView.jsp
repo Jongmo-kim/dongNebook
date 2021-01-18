@@ -43,9 +43,9 @@
 				    	
 				    	/* background가 null이 아니라면 출력(background가 null이면 나머지도 null이므로 나머지는 검사하지 않음) */
 				    	<%if(c.getBackgroundColor()!=null) {%>
-					    	,backgroundColor : <%=c.getBackgroundColor()%>,
-					    	textColor : <%=c.getTextColor()%>,
-					    	borderColor : <%=c.getBorderColor()%>
+					    	,backgroundColor : '<%=c.getBackgroundColor()%>',
+					    	textColor : '<%=c.getTextColor()%>',
+					    	borderColor : '<%=c.getBorderColor()%>'
 				    	<%}%>
 				    }	
 	        	<%} else {%>
@@ -57,9 +57,9 @@
 				    	
 				    	/* background가 null이 아니라면 출력(background가 null이면 나머지도 null이므로 나머지는 검사하지 않음) */
 				    	<%if(c.getBackgroundColor()!=null) {%>
-					    	,backgroundColor : <%=c.getBackgroundColor()%>,
-					    	textColor : <%=c.getTextColor()%>,
-					    	borderColor : <%=c.getBorderColor()%>
+					    	,backgroundColor : '<%=c.getBackgroundColor()%>',
+					    	textColor : '<%=c.getTextColor()%>',
+					    	borderColor : '<%=c.getBorderColor()%>'
 				    	<%}%>
 				    },	
 	        	<%}%>
@@ -67,7 +67,7 @@
 	      ],
 			//캘린더 날짜 클릭
 			dateClick: function(info) {
-				 if('${sessionScope.loginAdmin}'!=null){
+				 if('${sessionScope.loginAdmin}'!=""){
 					//dateStr : 클릭한 td의 날짜를 받아옴
 						var date = info.dateStr;
 						$('#myModal').modal(); 
@@ -77,7 +77,7 @@
 						
 						$("#calendarStartDate").val(date);
 						$("#calendarEndDate").val(date);				
-
+						$('.fa-check').remove();
 						$(".modal-title").html('새로운 일정');
 				 }
 			},
@@ -85,12 +85,12 @@
  	      eventClick: function (info) {
  	    	//info.event.start -> Mon Jan 11 2021 00:00:00 GMT+0900 형태
  	    	//info.event.startStr -> 2021-01-11 형태
- 	       	//if(sessionScope.loginAdmin!=null){
- 	       	if('${sessionScope.loginAdmin}'!=null){
+ 	       	 if('${sessionScope.loginAdmin}'!=""){
  	        	console.log("title : "+info.event.title);
  				console.log("id : "+info.event.id);
  				console.log("start : "+info.event.startStr);
- 				
+ 				console.log("backgroundColor : "+info.event.backgroundColor)
+ 				console.log("textColor : "+info.event.textColor)
  				
  				var title = info.event.title;
  				var start = info.event.startStr;
@@ -147,6 +147,32 @@
 .fc-list-event-time{
 	display : none;
 }
+
+input[type=radio] {
+	display: none;
+}
+
+.radio-label {
+	width: 35px;
+	height: 35px;
+	outline: none;
+	line-height: 30px;
+	border-radius : 50px;
+	text-align:center;
+	color : white;
+	font-weight: bold;
+	border : 2px solid white;
+	box-shadow:1px 1px 1px rgba(0, 0, 0, .2);
+	margin: 0;
+}
+
+.row {
+	border: 1px solid black;
+}
+
+/* .fc-event-title{
+	color:black;
+} */
 </style>
 </head>
 
@@ -188,6 +214,18 @@
 								id="calendarEndDate" />
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<label class="col-xs-4">일정 색상</label> 
+							<!-- 기본색 : #3788d8 -->
+							<input type="radio" name="backgroundColor" value="#FF5151" id="red"><label for="red" class="radio-label"></label>
+							<input type="radio" name="backgroundColor" value="#F6CD01" id="yellow"><label for="yellow" class="radio-label"></label>
+							<input type="radio" name="backgroundColor" value="#79bd9a" id="green"><label for="green" class="radio-label"></label>
+							<input type="radio" name="backgroundColor" value="#4ACDFA" id="blue"><label for="blue" class="radio-label"></label>
+							<input type="radio" name="backgroundColor" value="#2A2A93" id="navy"><label for="navy" class="radio-label"></label>
+							<input type="radio" name="backgroundColor" value="#CA85F6" id="purple"><label for="purple" class="radio-label"></label>
+						</div>
+					</div>
 				</div>
 
 				<!-- Modal footer -->
@@ -210,15 +248,40 @@
 	<br>
 	<br>
 	<script>
+		var radio = document.getElementsByName("backgroundColor");
+		var label = $("input[name='backgroundColor']+label");
+		$(function(){
+			label.each(function(idx, item){
+				label.eq(idx).css('background-color', radio[idx].value);
+			});
+		});		
+		
+		label.click(function(){
+			var idx = label.index(this);
+			var chk = "<i class='fas fa-check'></i>";
+			
+			label.each(function(index, item){
+				if(index==idx){
+					label.eq(idx).append(chk);
+				} else {
+					$('.fa-check').eq(index).remove();
+				}
+			})
+		});			
+	
+				
 		function insertCalendar(){
 			var title = $("#calendarTitle").val();
+			var bc = $('input[name="backgroundColor"]:checked').val();
 			if(title==""){
 				alert("일정명은 필수 항목입니다.");
+			} else if((typeof bc == "undefined")){
+				alert("일정 색상을 선택하세요.");
 			}
 			else {
 				var start = $("#calendarStartDate").val();
 				var end = $("#calendarEndDate").val();
-				
+
 				//날짜를 - 기준으로 나눠서 배열에 넣기
 				var startArr = start.split('-');
 			    var endArr = end.split('-');
@@ -237,7 +300,10 @@
 						type : "get",
 						data : {title:title,
 								start:start,
-								end:end},
+								end:end,
+								backgroundColor:bc,
+								textColor:'white',
+								borderColor:bc},
 						success:function(data){
 							if(data!=null){
 								location.reload();
