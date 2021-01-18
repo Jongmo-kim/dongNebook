@@ -18,7 +18,6 @@ public class RentalService {
 	private RentalDao dao;
 
 	public int insertLoc(RentalLoc loc) {
-		
 		return dao.insertLoc(loc);
 	}
 
@@ -41,5 +40,14 @@ public class RentalService {
 	public ArrayList<BookRental> rentalInfo(int userNo) {
 		return dao.rentalInfo(userNo);
 	}
+
+	public int insertBookRental(ArrayList<BookRental> bRList) {
+		return dao.insertBookRental(bRList);
+	}
+
+	public int updateCount(int[] bookNo) {
+		return dao.updateCount(bookNo);
+	}
+	
 	
 }

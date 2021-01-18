@@ -18,7 +18,6 @@ public class RentalDao {
 	@Autowired SqlSessionTemplate session;
 
 	public int insertLoc(RentalLoc loc) {
-		
 		return session.insert("location.insertLoc",loc);
 	}
 
@@ -49,5 +48,13 @@ public class RentalDao {
 	public Book rBookList(int bookNo) {
 		return session.selectOne("book.rBookList",bookNo);
 	}
+
+	public int insertBookRental(ArrayList<BookRental> bRList) {
+		return session.insert("rental.insertBookRental", bRList);
+	}
+	public int updateCount(int[] bookNo) {
+		return session.update("book.updateCount", bookNo);
+	}
+
 	
 }

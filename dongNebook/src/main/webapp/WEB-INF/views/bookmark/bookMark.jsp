@@ -149,7 +149,7 @@
     		}	
     	});
 	}
-<<<<<<< HEAD
+    
     function rent(){
         var arr = new Array();
        $(".chk:checked").each(function(idx,item){
@@ -173,33 +173,7 @@
          });
        */
      };
-    
-=======
-   	function rent(){
-   		var arr = new Array();
-        $(".chk:checked").each(function(idx,item){
-  
-            var bookNo = $(item).next().val();
-           
-            arr.push(bookNo);
-        });
-        console.log(arr.length);
-    	 $.ajax({
-    	      type : "get",
-    	      url : "/bookRental.do",
-    	      traditional:true,
-    	      data : {bookNo:arr},
-    	      success : function(result) {
-    	    	 alert("성공");
-    	    	  location.href="/bookRental.do?bookNo="+arr;
-    	      },
-    	      error : function(result) {
-    	    	  alert("실패")
-    	      }
-    	   });
-   	};
 
->>>>>>> develop/0.0.0
 	</script>
 </body>
 </html>

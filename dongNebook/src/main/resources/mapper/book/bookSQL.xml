@@ -156,4 +156,11 @@
 	<select id="rBookList" parameterType="_int" resultType="book">
 		select * from book where book_no=#{_parameter}
 	</select>
+	<update id="updateCount" parameterType="_int">
+		update book SET book_count = book_count - 1 , rcount = rcount + 1 
+		WHERE book_no IN 
+	        <foreach collection="array" item="bookNo" index="index" separator="," open="(" close=")">
+	        	#{bookNo}
+        	</foreach>
+	</update>
 </mapper>
