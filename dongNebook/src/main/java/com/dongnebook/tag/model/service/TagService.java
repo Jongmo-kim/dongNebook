@@ -42,5 +42,14 @@ public class TagService {
 		return result;
 	}
 
+	public ArrayList<Tag> selectTags(Review review) {
+		return dao.selectTags(review);
+	}
+
+	public int deleteTagByReview(Review review) throws TagException {
+		int result = dao.deleteTagByReview(review);
+		return result;
+	}
+
 	
 }

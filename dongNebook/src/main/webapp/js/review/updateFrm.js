@@ -1,7 +1,17 @@
-$(function(){
+
+  $(function(){
     const inputTag = $(".choices__input");
     $(inputTag).on('keyup', keyupFunc);
+    
 })
+var multipleDefault = new Choices(
+    document.getElementById('choices'),
+    {
+         removeItemButton: true,
+         duplicateItemsAllowed: false
+    }
+    
+  );
 function keyupFunc(e){
     const inputVal = $(this).val();
     getAutocompleteBooks(inputVal);
@@ -19,21 +29,3 @@ function setAutocompleteBooks(data ){
     multipleDefault.clearChoices();
     multipleDefault.setChoices(data);
 }
-var multipleDefault = new Choices(
-    document.getElementById('choices'),
-    {
-         removeItemButton: true
-    }
-    
-  );
-
-multipleDefault.clearStore();
-            
-multipleDefault.setChoices(async () => {
-  try {
-         const items = await fetch('/review/item.do');
-      return items.json();
-  } catch (err) {
-    console.error(err);
-  }
-});

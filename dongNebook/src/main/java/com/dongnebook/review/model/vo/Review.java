@@ -49,6 +49,10 @@ public class Review {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	public void setUserNo(int userNo) {
+		this.user = new User();
+		this.user.setUserNo(userNo);
+	}
 	public ArrayList<ReviewComment> getReviewCommentList() {
 		return reviewCommentList;
 	}

@@ -49,4 +49,25 @@ public class ReviewService {
 		return result;
 	}
 
+	public Review selectOneReview(Review review) {
+		return dao.selectOneReview(review);
+	}
+	@Transactional
+	public int updateReview(Review review, String[] tags) {
+		int result = 1;
+		try {
+			int reviewNo = dao.updateReview(review);
+			review.setReviewNo(reviewNo);
+			tagService.deleteTagByReview(review);
+			tagService.insertTagByStr(review,tags);
+		} catch(ReviewException e) {
+			System.out.println(e.getMessage());
+			result = 0;
+		} catch(TagException e) {
+			System.out.println(e.getMessage());
+			result = 0;
+		}
+		return result;
+	}
+
 }

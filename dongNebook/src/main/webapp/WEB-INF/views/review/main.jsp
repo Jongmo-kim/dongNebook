@@ -22,13 +22,13 @@
 	<div class="content">
 	<a href="/review/writeFrm.do">글쓰기</a>
 	<c:choose>
-		<c:when test="${bookList == null }">
+		<c:when test="${reviewList == null }">
 			<!-- 첫 페이지 -->
 			<div class="notice" style="text-align:center;">
 				<h2>게시글이 없습니다.</h2>
 			</div>
 		</c:when>
-		<c:when test="${bookList!=null && bookList.size() > 0  }">
+		<c:when test="${reviewList!=null && reviewList.size() > 0  }">
 			<table class="bookListTable" border=1>
 				<tr class="table-header">
 					<th>게시글번호</th>
@@ -38,11 +38,11 @@
 					<th>좋아요</th>
 					<th>싫어용</th>
 				</tr>
-			<c:forEach var="b" items="${bookList }">
+			<c:forEach var="b" items="${reviewList }">
 				<tr>
 					<td>${b.reviewNo }</td>
 					<td>${b.user.userName }</td>
-					<td>${b.title }</td>
+					<td><a href="/review/view.do?reviewNo=${b.reviewNo }">${b.title }</a></td>
 					<td>${b.content }</td>
 					<td>${b.like}</td>
 					<td>${b.dislike}</td>

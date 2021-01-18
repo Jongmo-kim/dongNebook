@@ -50,5 +50,19 @@ public class ReviewDao {
 		
 		return review.getReviewNo();
 	}
-	
+
+	public Review selectOneReview(Review review) {
+		 Review r = session.selectOne("review.selectOneReview", review);
+		 User user = userService.selectOneUser(r.getUser());
+		 r.setUser(user);
+		 return r;
+	}
+
+	public int updateReview(Review review) throws ReviewException{
+		int result = session.update("review.updateReview", review);
+		if(result == 0 )
+			throw new ReviewException("게시물 수정이 제대로 되지 않았습니다.");
+		
+		return result;
+	}
 }

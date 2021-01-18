@@ -11,4 +11,19 @@
 	        SELECT tag_seq.currval AS tagNo FROM DUAL
 	   	</selectKey>
 	</insert>
+	<select id="selectTags" parameterType="review" resultType="tag">
+		select 
+			tag_no,
+			review_no,
+			book_no
+		from
+			"TAG"
+		where
+			review_no = #{reviewNo}
+	</select> 
+	<delete id="deleteTagByReview" parameterType="review">
+		delete from "TAG"
+			where
+				review_no = #{reviewNo}
+	</delete>
 </mapper>

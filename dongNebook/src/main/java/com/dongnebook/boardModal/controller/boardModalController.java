@@ -1,5 +1,6 @@
 package com.dongnebook.boardModal.controller;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import org.apache.tomcat.jni.Thread;
@@ -24,7 +25,9 @@ public class boardModalController {
 	@RequestMapping("/boardModal.do")
 	public JsonObject boardModal() {
 		JsonObject obj = new JsonObject();
-		Book b = service.selectBookByKeyword("1", "전체",1).get(rand.nextInt(10));
+		ArrayList<Book> list = service.selectAllBook();
+		Book b = list.get(rand.nextInt(list.size()-1));
+		
 		String addBody = " <div class=\"boardBody\">\r\n"
 				+ "            <div class=\"boardHeader\">\r\n"
 				+ "                <p>김종모님</p>\r\n"

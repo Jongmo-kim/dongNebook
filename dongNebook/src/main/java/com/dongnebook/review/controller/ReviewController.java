@@ -16,6 +16,8 @@ import com.dongnebook.common.hangulTrie;
 import com.dongnebook.common.hangulTrie.trieNode;
 import com.dongnebook.review.model.service.ReviewService;
 import com.dongnebook.review.model.vo.Review;
+import com.dongnebook.tag.model.service.TagService;
+import com.dongnebook.tag.model.vo.Tag;
 import com.dongnebook.user.model.service.UserService;
 import com.dongnebook.user.model.vo.User;
 import com.google.gson.JsonArray;
@@ -37,6 +39,9 @@ public class ReviewController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private TagService tagService;
+	
 	private hangulTrie trie;
 	
 	
@@ -57,7 +62,7 @@ public class ReviewController {
 	
 	@RequestMapping("/main")
 	public String sendToMain(Model model) {
-		model.addAttribute("bookList", service.selectAllReview());
+		model.addAttribute("reviewList", service.selectAllReview());
 		return "/review/main";
 	}
 	
@@ -101,10 +106,49 @@ public class ReviewController {
 		for(trieNode n : nodes) {
 			JsonObject o = new JsonObject();
 			o.addProperty("value", n.getCurrString());
-			o.addProperty("label", n.getCurrString() + " Label");
+			o.addProperty("label", n.getCurrString());
 			arr.add(o);
 		}
 		return arr;
 	}
 	
+	@RequestMapping("/view.do")
+	public String view(Review review,Model model ) {
+		Review searchReview = service.selectOneReview(review);
+		ArrayList<Tag> tags = tagService.selectTags(review);
+		for(Tag t : tags) {
+			Book b = bookService.selectBook(t.getBook()).get(0);
+			t.setBook(b);
+		}
+		model.addAttribute("view", searchReview);
+		model.addAttribute("tags", tags);
+		return "/review/reviewView";
+	}
+	
+	@RequestMapping("/updateFrm.do")
+	public String updateFrm(Review review,Tag tag,Model model) {
+		Review searchReview = service.selectOneReview(review);
+		ArrayList<Tag> tags = tagService.selectTags(review);
+		for(Tag t : tags) {
+			Book b = bookService.selectBook(t.getBook()).get(0);
+			t.setBook(b);
+		}
+		model.addAttribute("view", searchReview);
+		model.addAttribute("tags", tags);
+		
+		return "/review/updateFrm";
+	}
+	@RequestMapping("/update.do")
+	public String update(Review review,String[] tags,User user,Model model) {
+		review.setUser(userService.selectOneUser(user));
+		int reviewResult = service.updateReview(review,tags);
+		if(reviewResult > 0) {
+				model.addAttribute("msg","수정 성공");
+				model.addAttribute("result", "true");
+		} else {
+				model.addAttribute("msg","수정 실패");
+		}
+		model.addAttribute("loc", "/");
+		return "/common/msg";
+	}
 }

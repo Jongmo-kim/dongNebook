@@ -25,6 +25,10 @@ public class Tag {
 	public Review getReview() {
 		return review;
 	}
+	public void setReviewNo(int reviewNo) {
+		this.review = new Review();
+		review.setReviewNo(reviewNo);
+	}
 	public int getReviewNo() {
 		return this.review.getReviewNo();
 	}
@@ -40,5 +44,9 @@ public class Tag {
 	public void setBook(Book book) {
 		this.book = book;
 	}
-	
+	public void setBookNo(int bookNo) {
+		this.book = new Book();
+		this.book.setBookNo(bookNo);
+		
+	}
 }

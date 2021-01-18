@@ -18,6 +18,47 @@
 		from 
 			review
 	</select>
+	<select id="selectOneReview" resultType="review" parameterType="review">
+		select 
+			review_no,
+			user_no,
+			title,
+			content,
+			score,
+			"LIKE",
+			dislike
+		from 
+			review
+		<trim prefix="where" prefixOverrides="AND">
+			<choose>
+				<when test="reviewNo != 0">
+					 review_no = #{reviewNo}
+				</when>
+				<when test="userNo != 0">
+					 AND user_no = #{userNo}
+				</when>
+				<when test="title != null">
+					AND title = #{title}
+				</when>
+				<when test="content != null">
+					AND content = #{content}
+				</when>
+				
+				<when test="score != null">
+					AND score = #{score}
+				</when>
+				<when test="LIKE != null">
+					AND <![CDATA["LIKE"]]> = #{LIKE}
+				</when>
+				<when test="DISLIKE != null">
+					AND DISLIKE = #{DISLIKE}
+				</when>
+				<otherwise>
+					where 1=0
+				</otherwise>
+			</choose>
+		</trim>
+	</select>
 	<insert id="insertReview" parameterType="review">
 		insert into review values(
 		review_seq.nextval,
@@ -32,4 +73,13 @@
 	        SELECT review_seq.currval AS reviewNo FROM DUAL
 	   	</selectKey>
 	</insert>
+	<update id="updateReview" parameterType="review">
+		update review
+		<trim prefix="set" suffixOverrides="," prefixOverrides=",">
+			<if test="content != null">content= #{content}</if>
+			<if test="title != null">,title = #{title}</if>
+		</trim>
+		where 
+			review_no = #{reviewNo}
+	</update>
 </mapper>
