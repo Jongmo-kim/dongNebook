@@ -58,3 +58,25 @@
         box-sizing: border-box;
         float: left;
     }
+    .book-img {
+
+        border: 1px solid;
+        width: 80%;
+        height: 80%;
+        margin: 0 auto;
+
+    }
+    
+
+    .book-info {
+        width: 80%;
+        height: 15%;
+        margin: 0 auto;
+        border: 1px solid;
+    }
+
+    .book-rank {
+        width: 100%;
+        border: 1px solid;
+        height: 5%;
+    }
