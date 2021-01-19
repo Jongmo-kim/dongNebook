@@ -33,4 +33,9 @@ public class RankDao {
 		List<Book> list = sqlSession.selectList("rank.mainRank");
 		return (ArrayList<Book>)list;
 	}
+
+	public ArrayList<Book> rankFive() {
+		List<Book> list = sqlSession.selectList("rank.mainRank");
+		return (ArrayList<Book>)list;
+	}
 }

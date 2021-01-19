@@ -16,6 +16,7 @@ import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.book.model.vo.BookPageData;
 import com.dongnebook.common.hangulTrie;
 import com.dongnebook.common.hangulTrie.trieNode;
+import com.dongnebook.proposal.model.vo.ProposalVO;
 import com.dongnebook.user.model.vo.User;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -70,6 +71,7 @@ public class BookController {
 			result = service.insertBook(b);
 		}else {
 			result = service.updateCntBook(book);
+
 		}
 		if(result > 0) {
 			return b.getBookName()+" 입력 성공";
@@ -77,6 +79,7 @@ public class BookController {
 			return b.getBookName()+" 입력 실패";
 		}
 	}
+	
 	
 	@RequestMapping("/bookList")
 	public String bookList(Model model,int reqPage) {

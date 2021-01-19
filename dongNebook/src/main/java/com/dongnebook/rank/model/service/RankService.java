@@ -71,4 +71,8 @@ public class RankService {
 	public ArrayList<Book> mainRank() {
 		return dao.mainRank();
 	}
+
+	public ArrayList<Book> rankFive() {
+		return dao.rankFive();
+	}
 }

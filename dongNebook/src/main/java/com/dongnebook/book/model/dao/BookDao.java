@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dongnebook.book.model.vo.Book;
+import com.dongnebook.proposal.model.vo.ProposalVO;
 
 
 
@@ -84,7 +85,6 @@ public class BookDao {
 		List<Book> list =  session.selectList("book.selectAllBook");
 		return (ArrayList<Book>)list;
 	}
-
 	public ArrayList<Book> selectBook(Book b) {
 		List<Book> list =  session.selectList("book.selectBook",b);
 		return (ArrayList<Book>)list;

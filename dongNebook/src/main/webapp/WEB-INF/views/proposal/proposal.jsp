@@ -184,8 +184,30 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 					<th>신청자</th>
 				</tr>
 				<c:forEach items="${list }" var="b" varStatus="status">
-					<tr>
-						<td><input type="checkbox" class="chk"></td>
+					<c:choose>
+					
+						<c:when test = "${b.isproposal eq null}">
+							<tr>
+								<td><input type="checkbox" class="chk"></td>
+								<td><img alt="${b.bookName }Image" src="${b.imageurl }"></td>
+								<td>
+									<p>${b.bookName }</p>
+									<p>${b.bookWriter }</p>
+									<p>${b.ISBN }</p>
+									<p>${b.reason }</p>
+								</td>
+								<td>${b.bookKind }</td>
+
+								<td>${b.bookPublisher }</td>
+								<input type="hidden" value="${b.bookIntroduce }">
+								<input type="hidden" value="${b.reason }">
+								<td>${userList.get(status.index).userName }</td>
+							</tr>
+						</c:when>
+						
+						<c:when test="${b.isproposal eq 'y' }">
+						<tr>
+						<td>승인 됨</td>
 						<td><img alt="${b.bookName }Image"
 							src="${b.imageurl }"></td>
 						<td>
@@ -202,6 +224,32 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 						<td>${userList.get(status.index).userName }
 						</td>
 					</tr>
+						</c:when>
+						
+						<c:when test="${b.isproposal eq 'n' }">
+						<tr>
+						<td>반려 됨</td>
+						<td><img alt="${b.bookName }Image"
+							src="${b.imageurl }"></td>
+						<td>
+							<p>${b.bookName }</p>
+							<p>${b.bookWriter }</p>
+							<p>${b.ISBN }</p>
+							<p>${b.reason }</p>
+						</td>
+						<td>${b.bookKind }</td>
+
+						<td>${b.bookPublisher }</td>
+						<input type="hidden" value="${b.bookIntroduce }">
+						<input type="hidden" value="${b.reason }">
+						<td>${userList.get(status.index).userName }
+						</td>
+					</tr>
+						</c:when>
+						
+					</c:choose>
+				
+					
 				</c:forEach>
 			</table>
 

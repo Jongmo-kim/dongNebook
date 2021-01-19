@@ -149,29 +149,30 @@
     		}	
     	});
 	}
-   	function rent(){
-   		var arr = new Array();
-        $(".chk:checked").each(function(idx,item){
-  
-            var bookNo = $(item).next().val();
-           
-            arr.push(bookNo);
-        });
-        console.log(arr.length);
-    	 $.ajax({
-    	      type : "get",
-    	      url : "/bookRental.do",
-    	      traditional:true,
-    	      data : {bookNo:arr},
-    	      success : function(result) {
-    	    	 alert("성공");
-    	    	  location.href="/bookRental.do?bookNo="+arr;
-    	      },
-    	      error : function(result) {
-    	    	  alert("실패")
-    	      }
-    	   });
-   	};
+    
+    function rent(){
+        var arr = new Array();
+       $(".chk:checked").each(function(idx,item){
+           var bookNo = $(item).next().val();
+           arr.push(bookNo);
+           location.href="/bookRental.do?bookNo="+arr;
+       });
+       /*
+       console.log(arr.length);
+       $.ajax({
+            type : "get",
+            url : "/bookRental.do",
+            traditional:true,
+            data : {bookNo:arr},
+            success : function(result) {
+               location.href="/bookRental.do?bookNo="+arr;
+            },
+            error : function() {
+            	console.log("ajax오류");
+            }
+         });
+       */
+     };
 
 	</script>
 </body>

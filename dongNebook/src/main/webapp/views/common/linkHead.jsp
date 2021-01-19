@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <!-- CSS FILES -->
-<link href="/css/header/header.css" type="text/css" rel="stylesheet">
+<link href="/css/header/header2.css" type="text/css" rel="stylesheet">
 <link href="/css/footer/footer.css" type="text/css" rel="stylesheet">
 <link href="/css/admin/admin.css" type="text/css" rel="stylesheet">
 

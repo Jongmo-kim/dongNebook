@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="rental">
+	<insert id="insertBookRental" parameterType="java.util.ArrayList">
+			insert into book_rental (
+				book_rental_no,
+				user_no,
+				book_no,
+				rental_location_no,
+				enroll_date,
+				return_date
+			) select book_rental_seq.nextval, A.* from(
+		<foreach collection="list" item="item" separator="UNION ALL">
+				select #{item.userNo} as user_no,	
+	            #{item.bookNo} as book_no,
+	            #{item.rentalLocationNo} as rental_location_no,
+	            to_char(sysdate,'yyyy-mm-dd') as enroll_date,
+	            SYSDATE + (INTERVAL '3' DAY) as return_date
+	            from dual
+	    </foreach>) A
+	</insert>
+</mapper>

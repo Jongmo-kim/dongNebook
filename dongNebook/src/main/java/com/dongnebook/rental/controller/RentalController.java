@@ -2,30 +2,23 @@ package com.dongnebook.rental.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dongnebook.book.model.service.BookService;
 import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.rental.model.service.RentalService;
 import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.rental.model.vo.BookRentalReserve;
 import com.dongnebook.rental.model.vo.RentalDate;
-import com.dongnebook.rental.model.vo.RentalList;
 import com.dongnebook.rental.model.vo.RentalLoc;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
+import com.dongnebook.user.model.vo.User;
 
 
 @Controller
@@ -59,26 +52,41 @@ public class RentalController {
 		
 		return "common/msg";
 	}
-	//@ResponseBody
 	@RequestMapping("/bookRental.do")
 	public String bookRental( Model model, int[] bookNo,HttpSession session) {
-		 System.out.println("book : "+bookNo.length);
-		ArrayList<Book> list = new ArrayList<Book>();
-		if(bookNo.length>0) {
-			for(int i : bookNo) {
-				System.out.println(i);
-			}			
-			list = service.selectBooks(bookNo);
-			session.setAttribute("rentalList", list);
-		}		
-		return "book/bookRentalFrm";
-//		return "rental/rental_loc";
+	   System.out.println("book : "+bookNo.length);
+	   ArrayList<Book> list = new ArrayList<Book>();
+	   if(bookNo.length>0) {
+	      for(int i : bookNo) {
+	         System.out.println(i);
+	      }         
+	      list = service.selectBooks(bookNo);
+	      session.setAttribute("rentalList", list);
+	   }      
+	   return "book/bookRentalFrm";
+	//	      return "rental/rental_loc";
 	}
+	
+//	@RequestMapping("/bookRental.do")
+//	public String bookRental( Model model, int[] bookNo,HttpSession session) {
+//		ArrayList<Book> list = new ArrayList<Book>();
+//		if(bookNo.length>0) {
+//			for(int i : bookNo) {
+//				System.out.println(i);
+//			}			
+//			list = service.selectBooks(bookNo);
+//			session.setAttribute("rentalList", list);
+//		}		
+//		return "book/bookRentalFrm";
+////		return "rental/rental_loc";
+//	}
+	
 	@RequestMapping("/insertReserve.do")
-	public String insertReserve(Model model, int bookNo, int userNo) {
+	public String insertReserve(Model model, int bookNo, HttpSession session) {
 		BookRentalReserve reserve = new BookRentalReserve();
+		User loginUser = (User)session.getAttribute("loginUser");
 		reserve.setBookNo(bookNo);
-		reserve.setUserNo(userNo);
+		reserve.setUserNo(loginUser.getUserNo());
 		int result = service.insertReserve(reserve);
 		if(result>0) {
 			model.addAttribute("msg","예약 성공");
@@ -123,5 +131,43 @@ public class RentalController {
 		}
 		System.out.println("북 사이즈:"+book.size());
 		return book;
+	}
+	@RequestMapping("/insertBookRental.do")
+	public String insertBookRental(Model model, String placeName, String addr, String phone, HttpSession session, int[] bookNo) {
+		RentalLoc rLoc = new RentalLoc();
+		BookRental bRental = null;
+		ArrayList<BookRental> bRList = new ArrayList<BookRental>();
+		rLoc.setPlaceName(placeName);
+		rLoc.setAddr(addr);
+		rLoc.setPhone(phone);
+		User loginUser = (User)session.getAttribute("loginUser");
+		int userNo = loginUser.getUserNo();
+		int resultLoc = service.insertLoc(rLoc); 
+		if(resultLoc>0) {
+			model.addAttribute("msg","대출장소 등록 성공");
+		}else {
+			model.addAttribute("msg","대출장소 등록 실패");
+		}
+		RentalLoc lastLoc = service.lastLoc();
+		for(int i : bookNo) {
+			//이 부분은 대출했을때 책 수를 차감하기 위함!
+			bRental = new BookRental();
+			bRental.setUserNo(userNo);
+			bRental.setBookNo(i);
+			bRental.setRentalLocationNo(lastLoc.getRentalLocationNo());
+			bRList.add(bRental);
+		}
+		int BookRental = service.insertBookRental(bRList);
+		if(BookRental>0) {
+			//book테이블에 bookCount와 rCount 가감작업
+			int bookUpdateCount = service.updateCount(bookNo);
+			if(bookUpdateCount>0) {
+				model.addAttribute("msg","대출 성공");				
+			}
+		}else {
+			model.addAttribute("msg","대출 실패");
+		}
+		model.addAttribute("loc","/");
+		return "common/msg";
 	}
 }

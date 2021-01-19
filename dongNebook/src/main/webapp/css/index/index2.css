@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+ .img-main {
+        width: 100%;
+        height: 600px;
+        text-align: center;
+        /* position: absolute;*/
+        top: 190px;
+        min-width: 1800px;
+    }
+
+    .img-main img {
+        width: 100%;
+        max-width: 2000px;
+        height: 600px;
+        margin: 0 auto;
+    }
+    .img-main div {
+        margin: 0 auto;
+        width: 80%;
+    }
+    .sub-description {
+        /* position: absolute;*/
+        top: 775px;
+        width: 100%;
+        height: 100px;
+        line-height: 100px;
+    }
+
+    .sub-description p {
+
+        font-size: 32px;
+        font-weight: 500;
+        color: #333;
+        padding: 10px;
+        margin: 0px;
+        min-width: 1800px;
+        text-align: center;
+    }
+    .sub-item {
+        width: 100%;
+        height: 500px;
+        min-width: 1800px;
+        /* position: absolute;*/
+        top: 887px;
+
+    }
+    .sub-item>div {
+        width: 80%;
+        /* float: left; */
+        margin: 0 auto;
+        height: 400px;
+    }
+    .book-rank-frame {
+        width: 20%;
+        height: 100%;
+        border: 1px solid #afafaf;
+        box-sizing: border-box;
+        float: left;
+    }
+    .book-img {
+
+        border: 1px solid;
+        width: 80%;
+        height: 80%;
+        margin: 0 auto;
+
+    }
+    
+
+    .book-info {
+        width: 80%;
+        height: 15%;
+        margin: 0 auto;
+        border: 1px solid;
+    }
+
+    .book-rank {
+        width: 100%;
+        border: 1px solid;
+        height: 5%;
+    }

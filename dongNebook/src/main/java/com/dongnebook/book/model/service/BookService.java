@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.dongnebook.book.model.dao.BookDao;
 import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.book.model.vo.BookPageData;
+import com.dongnebook.proposal.model.vo.ProposalVO;
 
 
 /**

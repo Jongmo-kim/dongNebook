@@ -1,9 +1,9 @@
 package com.dongnebook.proposal.controller;
 
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
-import org.json.JSONArray;
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,10 +22,7 @@ import com.dongnebook.user.model.service.UserService;
 import com.dongnebook.user.model.vo.User;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
-import jdk.nashorn.internal.parser.JSONParser;
 
 @Controller
 @RequestMapping("/proposal")
@@ -35,7 +32,14 @@ public class ProposalController {
 	private ProposalService service;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private BookService bookService;
 	//new로하면 의존성 주입 안됨
+	
+	@RequestMapping("/bookProposal.do")
+	public String bookProposal() {
+		return "proposal/bookProposal";
+	}
 	
 	@RequestMapping("/proposalList.do")
 	public String proposalList(Model model, int reqPage) {
@@ -61,7 +65,8 @@ public class ProposalController {
 	@RequestMapping(value = "/proposalSuccess.do", method=RequestMethod.POST)
 	@ResponseBody
 	public String proposalInsert(@RequestBody String json){
-		
+		//승인일때 북테이블에 신청테이블에 있던 책 정보 입력하고 
+		//proposal테이블에 isproposal에 y입력
 		System.out.println(json);
 		System.out.println("json의 길이 = " +json.length());
 		JsonParser list = new JsonParser();
@@ -83,7 +88,7 @@ public class ProposalController {
 			System.out.println(b.getBookName());
 			System.out.println(b.getBookKind());
 			int result = service.insertBook(b);
-			int result2 = service.deleteBook(b);
+			int result2 = service.updateProposal(b);
 			System.out.println("isbn = "+b.getISBN());
 		}
 		
@@ -95,6 +100,8 @@ public class ProposalController {
 	@RequestMapping(value = "/proposalDelete.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String deleteBook(@RequestBody String json) {
+		//반려일때 
+		//proposal테이블에 isproposal에 n입력
 		JsonParser list = new JsonParser();
 		JsonArray arr = (JsonArray)list.parse(json);
 		for(int i=0;i<arr.size();i++) {
@@ -102,9 +109,41 @@ public class ProposalController {
 			JSONObject bookList = new JSONObject(bookStr);
 			Book b = new Book();
 			b.setISBN(bookList.getString("ISBN"));
-			int result = service.deleteBook(b);
+			int result = service.nProposalBook(b);
 		}
 		
 		return "proposal/proposal";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/insertBookProposal")
+	public String insertBookProposal(HttpSession session, ProposalVO p, Model model,String item) {
+		System.out.println("사용자 도서 신청");
+		User loginUser = (User)session.getAttribute("loginUser");
+		JsonParser parser = new JsonParser();
+		JsonElement o = parser.parse(item);
+		p.setUserNo(loginUser.getUserNo());
+		p.setBookIntroduce(o.getAsJsonObject().get("description").getAsString());
+		p.setBookKind(o.getAsJsonObject().get("categoryName").getAsString());
+		p.setBookName(o.getAsJsonObject().get("title").getAsString());
+		p.setBookPublisher(o.getAsJsonObject().get("publisher").getAsString());
+		p.setBookWriter(o.getAsJsonObject().get("author").getAsString());
+		p.setImageurl(o.getAsJsonObject().get("cover").getAsString());
+		p.setISBN(o.getAsJsonObject().get("isbn").getAsString());
+		
+		Book book = bookService.selectOneBook(p.getISBN());
+		
+		int result=0;
+		if(book==null) {			
+			result = service.insertProposal(p);
+		}else {
+//			result = bookService.updateCntBook(book);
+//			관리자에게 bookCount +1 하라고 알려줘야함
+		}
+		if(result > 0) {
+			return p.getBookName()+" 신청 완료";
+		}else {
+			return p.getBookName()+" 신청 불가";
+		}
 	}
 }
