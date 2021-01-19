@@ -40,6 +40,7 @@ textarea{
 	width:100%;
 	height: 200px;
 	border : 1px solid #cccccc;
+	outline : none;
 }
 .btn-div{
 	text-align:right;
@@ -55,8 +56,7 @@ textarea{
 	<jsp:include page="/views/common/adminSide.jsp" />
 		<!-- 파일 업로드를 하려면 method는 post, enctype는 multipart/form-data를 써야지만 업로드가 가능함! 파일을 업로드 할 폼이라고 미리 명시하는 것 -->
 		<div class="contents">
-         <h1 style="font-size:30px;">공지사항 작성</h1>
-         <hr>
+         <h1 style="font-size:30px;">| 공지사항 작성</h1>
          <br>
 				<form id="upFileFrm" action="/notice/insertNotice.do" method="post" enctype="multipart/form-data">
 					<table class="table">
@@ -75,7 +75,7 @@ textarea{
 											<div class="card-text">
 												<div class="defaultMsg">
 													<i class="fas fa-upload"></i><br>
-													파일을 올려주세요
+													Drag & Drop
 												</div>
 											</div>
 										</div>										
@@ -108,28 +108,23 @@ textarea{
 		filezone.on("dragenter",function(e){        
 		    e.stopPropagation();
 		    e.preventDefault();
-		    $(this).css('border', '3px dashed #593196');
-	
-		});
-		
-		filezone.on("dragleave",function(e){
+		    $(this).css('border', '3px dashed #3b8686');
+
+		  });
+		  filezone.on("dragleave",function(e){
 		    e.stopPropagation();
 		    e.preventDefault();
-		    $(this).css('border', '3px dashed #a991d4');
-		    $(this).css('background-color','pink');
-		});
-		
-		filezone.on("dragover",function(e){
-		  	e.stopPropagation();
-		  	e.preventDefault();
-			//$(this).css('border', '3px solid #593196');
-			$(this).css('background-color','black');
-		});
+		    $(this).css('border', '3px dashed #a8dba8');
+		  });
+		  filezone.on("dragover",function(e){
+		    e.stopPropagation();
+		    e.preventDefault();
+		    $(this).css('border', '3px solid #3b8686');
+		  });
 		
 	  	filezone.on("drop",function(e){
 	    	e.preventDefault();
-		    //$(this).css('border', '3px dashed #593196');
-		    $(this).css('background-color','#cccccc');
+		    $(this).css('border', 'none');
 		    $(".defaultMsg").hide();
 		    
 		    //드롭한 항목
@@ -144,7 +139,6 @@ textarea{
 		    }
 	    	if(upFiles.lengh == 0){
 				$(".defaultMsg").show();
-	      		$(this).css('border', '3px dashed #a991d4');
 	    	}        
 	  	});
 		
@@ -154,7 +148,8 @@ textarea{
 	  		$(".upFileList").eq(idx).remove();
 	  		upFiles.pop(idx);
 	  		
-	  		if(!$(this).hasClass("upFileList")){
+	  		//upFileList(첨부파일 div)가 없으면 defaultMsg를 보여줌
+	  		if($('.upFileList').length==0){
 	  			$(".defaultMsg").show();
 	  		}
 	  	});
