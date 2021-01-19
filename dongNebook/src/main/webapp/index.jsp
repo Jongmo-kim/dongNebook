@@ -204,6 +204,15 @@
 			});
 		});
 	</script>
+	<script>
+	function openWindow(){
+		if(${loginUser!=null}){
+			var ret = window.open("/chat/chatRoom.do?chatUser=admin", "PopupWin", "width=500,height=600,left=12000");			
+		}else{
+			alert("놉");
+		}
+	}
+</script>
 </body>
 
 </html>

@@ -47,5 +47,17 @@ public class ChatDao {
 		System.out.println("확인용:"+cm.getCmSender());
 		return session.insert("chat.insertCM",cm);
 	}
+
+	public int insertCmSender(ChatMessage cm) {
+		return session.insert("chat.insertCmSender",cm);
+	}
+
+	public ChatMessage selectLastCm(String loginUser) {
+		return session.selectOne("chat.selectLastCm", loginUser);
+	}
+
+	public int readChat(String loginUser) {
+		return session.update("chat.readChat",loginUser);
+	}
 	
 }

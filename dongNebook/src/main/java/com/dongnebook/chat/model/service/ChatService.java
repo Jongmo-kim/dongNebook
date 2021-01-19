@@ -96,4 +96,20 @@ public class ChatService {
 	public int insertCM(ChatMessage cm) {
 		return dao.insertCM(cm);
 	}
+
+
+	public int insertCmSender(ChatMessage cm) {
+		return dao.insertCmSender(cm);
+	}
+
+
+	public ChatMessage selectLastCm(String loginUser) {
+		return dao.selectLastCm(loginUser);
+	}
+
+
+	public int readChat(String loginUser) {
+		return dao.readChat(loginUser);
+		
+	}
 }

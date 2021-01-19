@@ -342,20 +342,20 @@ ul {
         <a target="_blank" href="https://www.facebook.com/mfreak">${chatUser }</a>
       </div>     
     </div>
-    
+    <c:if test='${!chatUser.equals("admin") }'>
     <div class="chat-messages" id="chat-messages">
       <c:forEach items="${cmList }" var="cm">
-      	<c:if test="${cm.cmSender.equals(sessionScope.loginAdmin.adminId) }">
+      	<c:if test='${cm.cmSender.equals("admin") }'>
       		<div class="message-box-holder">
 		        <div class="message-box">
 		          ${cm.message }
 		        </div>
       		</div>
       	</c:if>
-      	<c:if test="${cm.cmReceiver.equals(sessionScope.loginAdmin.adminId)}">
+      	<c:if test='${cm.cmReceiver.equals("admin")}'>
       		<div class="message-box-holder">
 		        <div class="message-sender">
-		           ${cm.dmSender }
+		           ${cm.cmSender }
 		         </div>
 		        <div class="message-box message-partner">
 		         	${cm.message }
@@ -377,10 +377,51 @@ ul {
 	    <div class="chat-input-holder">
 	    	<input type="text" display="hidden" name="cmReceiver" value=${chatUser }>
 	      <textarea class="chat-input" name="message"></textarea>
-	      <button onclick="insertAdminCm('${sessionScope.loginAdmin.adminId }')">Send</button>
+	      <button onclick="insertAdminCm('admin')">Send</button>
 	    </div>
     
+    </c:if>
     
+    <!-- 어드민 한테 보낼때 -->
+     <c:if test='${chatUser.equals("admin") }'>
+     	<div class="chat-messages" id="chat-messages">
+      <c:forEach items="${cmList }" var="cm">
+      	<c:if test='${cm.cmSender.equals(sessionScope.loginUser.userId) }'>
+      		<div class="message-box-holder">
+		        <div class="message-box">
+		          ${cm.message }
+		        </div>
+      		</div>
+      	</c:if>
+      	<c:if test='${cm.cmReceiver.equals(sessionScope.loginUser.userId)}'>
+      		<div class="message-box-holder">
+		        <div class="message-sender">
+		           ${cm.cmSender }
+		         </div>
+		        <div class="message-box message-partner">
+		         	${cm.message }
+		        </div>
+     		</div>
+      	</c:if>
+      </c:forEach> 
+    </div>
+    
+    <!-- 
+    <c:if test="${chatUser.equals(sessionScope.m.memberId)}">
+	    <div class="chat-input-holder">
+	    	<input type="text" display="hidden" name="cmReceiver" value="admin">
+	      <textarea class="chat-input" name="message"></textarea>
+	      <button onclick="insertDm('${sessionScope.m.memberId}')">Send</button>
+	    </div>
+    </c:if>
+     -->
+	    <div class="chat-input-holder">
+	    	<input type="text" display="hidden" name="cmReceiver" value=${chatUser }>
+	      <textarea class="chat-input" name="message"></textarea>
+	      <button onclick="insertCm('${sessionScope.loginUser.userId}')">Send</button>
+	    </div>
+    
+     </c:if>
   </div>
   
  
@@ -398,6 +439,7 @@ ul {
 	function insertAdminCm(cmSender){
 		var cmReceiver = $("[name=cmReceiver]").val();
 		console.log(cmSender);
+		console.log(cmReceiver);
 		var message = $("[name = message]").val();
 		console.log(message);
 		$.ajax({
@@ -409,7 +451,7 @@ ul {
 					console.log(1);
 					//alert("쪽지보내기 성공");
 					//sendMsg(cmReceiver);
-					//saveReceiver(cmReceiver);
+					saveReceiver(cmReceiver);
 					//샌드메세지에 받은 사람아이디를 줘서 주회함
 					location.reload();
 				}else if(data==2){
@@ -422,19 +464,21 @@ ul {
 			}
 		});
 	}
-	function insertDm(cmSender){
+	function insertCm(cmSender){
 		var cmReceiver = $("[name=cmReceiver]").val();
 		console.log(cmSender);
+		console.log(cmReceiver);
 		var message = $("[name = message]").val();
 		console.log(message);
 		$.ajax({
-			url : "/chat/cmInsert.do",
+			url : "/chat/cmAdminInsert.do",
 			data : {cmReceiver:cmReceiver, cmSender:cmSender, message:message},
 			type : "post",
 			success : function(data){
 				if(data == 1){
+					console.log(1);
 					//alert("쪽지보내기 성공");
-					sendMsg(cmReceiver);
+					//sendMsg(cmReceiver);
 					saveReceiver(cmReceiver);
 					//샌드메세지에 받은 사람아이디를 줘서 주회함
 					location.reload();
@@ -452,8 +496,99 @@ ul {
 			//스크롤 맨 아래로
 			$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
 			
+			
 		};
 </script>
-
+<script>
+    	
+		var ws;
+		var memberId = '${sessionScope.loginUser.userId}';
+		var adminId='${sessionScope.loginAdmin.adminId}';
+		function connect(){
+			ws = new WebSocket("ws://localhost/chat.do");
+			ws.onopen = onOpen;
+			ws.onmessage = onMessage;
+			ws.onclose = onClose;
+		}
+		function onOpen(){
+			console.log("접속 성공");
+			if(memberId!=""){
+				console.log("유저");
+				var msg = {
+						type : "register",
+						data : memberId
+				}
+			}
+			else{
+				console.log("관리자");
+				var msg = {
+						type : "register",
+						data : adminId
+				}
+			}
+			ws.send(JSON.stringify(msg));
+			//위의 onOpen을  DmCount의 handleTextMessage 로 보냄
+			//sendMsg(memberId);//로그인한 아이디 보냄
+		}
+		function onMessage(e) {
+			//리시버를 데이터에 넣는다
+			var receiver=e.data;
+			
+			if(receiver=="${sessionScope.loginUser.userId}"){ //로그인 유저랑 리시버랑 비교
+				$.ajax({
+					url : "/chat/chatReload.do",
+					data : {loginUser:"${sessionScope.loginUser.userId}"},
+					type : "post",
+					success : function(data){
+						console.log(data);
+						//채팅 css 추가하는것  (리시버일때만)
+						$(".chat-messages").append("<div class='message-box-holder'><div class='message-sender'>"+data.cmSender+"</div><div class='message-box message-partner'>"+data.message+"</div></div>");
+						$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
+					}
+				});
+				
+			}else if(receiver=="admin"){
+				$.ajax({
+					url : "/chat/chatReload.do",
+					data : {loginUser:"admin"},
+					type : "post",
+					success : function(data){
+						console.log(data);
+						//채팅 css 추가하는것  (리시버일때만)
+						$(".chat-messages").append("<div class='message-box-holder'><div class='message-sender'>"+data.cmSender+"</div><div class='message-box message-partner'>"+data.message+"</div></div>");
+						$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
+					}
+				});
+			}
+			else{				
+				var count = e.data;
+				$("#dmCount").html(count);
+			}
+		}
+		function onClose() {
+			console.log("접속 종료");
+		}
+		function sendMsg(receiver) {
+			var msg = {
+					type : "count",
+					data : receiver
+			}
+			ws.send(JSON.stringify(msg));
+			//receiver=memberId
+			// DmCount의 handleTextMessage 로 보냄
+		}
+		function saveReceiver(receiver){
+			//이거는 리시버를 save타입으로 보내서 로그인 유저와 리시버를 체크하는 용도
+			var msg = {
+					type : "save",
+					data : receiver
+			}
+			ws.send(JSON.stringify(msg));
+		}
+		$(function() {
+			connect();
+		});
+			
+	</script>
 </body>
 </html>

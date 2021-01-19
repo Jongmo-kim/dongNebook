@@ -3,7 +3,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <header>
-    <div class="nav-bar"></div>
+    <div class="nav-bar">
+    	<div class="nav-board">
+    		<i class="fas fa-clipboard"></i>
+    	</div>
+    	<div class="nav-chat">
+    		
+    		<a onclick="openWindow()">
+    			<i class="fas fa-bell"></i>
+    		</a>
+    	</div>
+    </div>
             <div class="header">
                 <div class="menu-frame">
                     <div>
