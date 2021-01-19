@@ -52,14 +52,14 @@ public class ChatController {
 			service.readChat(loginUser.getUserId());
 			model.addAttribute("chatUser", "admin");
 			model.addAttribute("cmList", list);
-			System.out.println(list.get(0).getMessage());
+			
 		}else {
 			System.out.println("이걸 거친다"+chatUser);
 			ArrayList<ChatMessage> list = service.selectOneCmList(chatUser);
 			service.readChat(chatUser);
 			model.addAttribute("chatUser",chatUser);
 			model.addAttribute("cmList",list);			
-			System.out.println(list.get(0).getMessage());
+			
 		}
 		return "chat/chatting";
 	}
