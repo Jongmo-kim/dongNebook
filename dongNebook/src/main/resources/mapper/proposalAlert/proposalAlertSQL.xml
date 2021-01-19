@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pa">
+
+	<select id="selectPAlert" parameterType="_int" resultType="pa">
+		select 
+			proposal_alert_no as alertNo,
+			user_no as userNo,
+    		user_name as userName,
+    		book_name as bookName,
+    		chk,
+    		isproposal
+    	from proposal_alert 
+    	join "USER"
+    	using (user_no)
+    	where user_no = #{userNo}
+	</select>
+	<update id="deleteP" parameterType="_int">
+		update proposal_alert set chk = 1 where proposal_alert_no = #{alertNo}
+	</update>
+	
+</mapper>

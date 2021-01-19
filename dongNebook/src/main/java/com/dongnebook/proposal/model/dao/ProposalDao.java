@@ -35,12 +35,16 @@ public class ProposalDao {
 		return session.insert("pro.inserBook", b);
 	}
 
-	public int deleteBook(Book b) {
-		return session.delete("pro.deleteBook",b);
+	public int updateProposal(Book b) {
+		return session.update("pro.updateProposal",b);
 	}
 
 	public int insertProposal(ProposalVO p) {
 		return session.insert("pro.insertProposal", p);
+	}
+
+	public int nProposalBook(Book b) {
+		return session.update("pro.nProposalBook",b);
 	}
 
 }

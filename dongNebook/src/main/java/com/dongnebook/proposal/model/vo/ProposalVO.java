@@ -11,12 +11,13 @@ public class ProposalVO {
 	private String imageurl;
 	private String ISBN;
 	private String reason;
+	private String isproposal;
 	public ProposalVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public ProposalVO(int bookNo, int userNo, String bookName, String bookKind, String bookWriter,
-			String bookPublisher, String bookIntroduce, String imageurl, String ISBN, String reason) {
+			String bookPublisher, String bookIntroduce, String imageurl, String ISBN, String reason,String isproposal) {
 		super();
 		this.bookNo = bookNo;
 		this.userNo = userNo;
@@ -28,6 +29,7 @@ public class ProposalVO {
 		this.imageurl = imageurl;
 		this.ISBN =ISBN;
 		this.reason = reason;
+		this.isproposal = isproposal;
 	}
 	
 	public int getBookNo() {
@@ -90,4 +92,11 @@ public class ProposalVO {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
+	public String getIsproposal() {
+		return isproposal;
+	}
+	public void setIsproposal(String isproposal) {
+		this.isproposal = isproposal;
+	}
+	
 }

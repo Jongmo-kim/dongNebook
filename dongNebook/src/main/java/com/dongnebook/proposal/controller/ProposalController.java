@@ -65,7 +65,8 @@ public class ProposalController {
 	@RequestMapping(value = "/proposalSuccess.do", method=RequestMethod.POST)
 	@ResponseBody
 	public String proposalInsert(@RequestBody String json){
-		
+		//승인일때 북테이블에 신청테이블에 있던 책 정보 입력하고 
+		//proposal테이블에 isproposal에 y입력
 		System.out.println(json);
 		System.out.println("json의 길이 = " +json.length());
 		JsonParser list = new JsonParser();
@@ -87,7 +88,7 @@ public class ProposalController {
 			System.out.println(b.getBookName());
 			System.out.println(b.getBookKind());
 			int result = service.insertBook(b);
-			int result2 = service.deleteBook(b);
+			int result2 = service.updateProposal(b);
 			System.out.println("isbn = "+b.getISBN());
 		}
 		
@@ -99,6 +100,8 @@ public class ProposalController {
 	@RequestMapping(value = "/proposalDelete.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String deleteBook(@RequestBody String json) {
+		//반려일때 
+		//proposal테이블에 isproposal에 n입력
 		JsonParser list = new JsonParser();
 		JsonArray arr = (JsonArray)list.parse(json);
 		for(int i=0;i<arr.size();i++) {
@@ -106,7 +109,7 @@ public class ProposalController {
 			JSONObject bookList = new JSONObject(bookStr);
 			Book b = new Book();
 			b.setISBN(bookList.getString("ISBN"));
-			int result = service.deleteBook(b);
+			int result = service.nProposalBook(b);
 		}
 		
 		return "proposal/proposal";

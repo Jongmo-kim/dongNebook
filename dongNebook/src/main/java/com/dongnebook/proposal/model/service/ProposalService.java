@@ -67,12 +67,16 @@ public class ProposalService {
 		return dao.insertBook(b);
 	}
 
-	public int deleteBook(Book b) {
-		return dao.deleteBook(b);
+	public int updateProposal(Book b) {
+		return dao.updateProposal(b);
 	}
 
 	public int insertProposal(ProposalVO p) {
 		return dao.insertProposal(p);
+	}
+
+	public int nProposalBook(Book b) {
+		return dao.nProposalBook(b);
 	}
 
 }
