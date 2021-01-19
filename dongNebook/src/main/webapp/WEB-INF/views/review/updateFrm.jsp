@@ -10,7 +10,7 @@
 <jsp:include page="/views/common/linkHead.jsp"/>
 <link rel="stylesheet" href="/lib/choices/choices.min.css" type="text/css">
 <script src="/lib/choices/choices.min.js" type="text/javascript"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </head>
 <body>
@@ -30,6 +30,10 @@
 			</c:forEach>
 		</select>
 		<button>수정하기</button>
+	</form>
+	<form name="delete" method="post">
+		<input type="hidden" name="reviewNo" value="${view.reviewNo }">
+		<button class="deleteBtn">삭제하기</button>
 	</form>
 	</div>
 	<script src="/js/review/updateFrm.js" type="text/javascript"></script>

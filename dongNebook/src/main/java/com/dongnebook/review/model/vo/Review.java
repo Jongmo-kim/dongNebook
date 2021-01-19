@@ -34,6 +34,9 @@ public class Review {
 	public Review() {
 		super();
 	}
+	public Review(int currReview) {
+		this.reviewNo = currReview;
+	}
 	public int getReviewNo() {
 		return reviewNo;
 	}

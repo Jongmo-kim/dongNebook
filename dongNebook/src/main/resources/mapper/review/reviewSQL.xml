@@ -18,6 +18,47 @@
 		from 
 			review
 	</select>
+	<select id="selectReviewByReqpage" parameterType="int" resultType="review">
+	SELECT *
+	FROM
+	  (
+	    SELECT 
+	        ROWNUM as rnum,
+			review_no,
+			user_no,
+			title,
+			content,
+			score,
+			"LIKE",
+			dislike
+	    FROM
+	    	review 
+	    where rownum <![CDATA[ <= ]]>	 (#{reqPage}-1)*10+10
+	    ORDER BY review_no DESC
+	  )r
+	WHERE r.rnum >= (#{reqPage}-1)*10+1
+	</select>
+	<select id="selectReviewForModal" parameterType="int" resultType="review">
+		SELECT *
+			FROM
+			  (
+			    SELECT 
+			        ROWNUM as rnum,
+					review_no,
+					user_no,
+					title,
+					content,
+					score,
+					"LIKE",
+					dislike
+			    FROM
+			    	review 
+			  )r
+				where rnum = #{currReview}	  
+	</select>
+	<select id="selectReviewCount" resultType="_int">
+		select count(*) from review
+	</select>
 	<select id="selectOneReview" resultType="review" parameterType="review">
 		select 
 			review_no,
@@ -82,4 +123,9 @@
 		where 
 			review_no = #{reviewNo}
 	</update>
+	<delete id="deleteReview" parameterType="review">
+		delete from review
+		where
+			review_no = #{reviewNo}
+	</delete>
 </mapper>

@@ -10,6 +10,7 @@
 <jsp:include page="/views/common/linkHead.jsp"/>
 <link rel="stylesheet" href="/lib/choices/choices.min.css" type="text/css">
 <script src="/lib/choices/choices.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
 </head>
@@ -27,10 +28,20 @@
 		<c:forEach var="t" items="${tags }">
 			<a href="/book/searchBook.do?reqPage=1&searchKeyword=전체&inputStr=${t.book.bookName }">${t.book.bookName }</a>
 		</c:forEach>
-		<c:if test="${sessionScope.loginUser.userNo == view.user.userNo }">
-			<button>수정하기</button>
-		</c:if>
-	</form>
+		
+		<c:choose>
+			<c:when test="${sessionScope.loginUser.userNo == view.user.userNo }" >
+				<button>수정하기</button>
+				</form>
+				<form name="delete" method="post">
+					<input type="hidden" name="reviewNo" value="${view.reviewNo }">
+					<button class="deleteBtn">삭제하기</button>
+				</form>
+			</c:when>
+			<c:otherwise>
+				</form>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<script src="/js/review/reviewView.js" type="text/javascript"></script>
 </body>

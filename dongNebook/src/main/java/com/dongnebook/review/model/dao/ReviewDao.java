@@ -65,4 +65,24 @@ public class ReviewDao {
 		
 		return result;
 	}
+
+	public int deleteReview(Review review) throws ReviewException{
+		int result = session.update("review.deleteReview", review);
+		if(result == 0 )
+			throw new ReviewException("게시물 삭제가 제대로 되지 않았습니다.");
+		
+		return result;
+	}
+
+	public Object selectReviewByReqpage(int reqPage) {
+		return session.selectList("review.selectReviewByReqpage", reqPage);
+	}
+
+	public Review selectReviewForModal(int currReview) {
+		return session.selectOne("review.selectReviewForModal", currReview);
+	}
+
+	public int selectReviewCount() {
+		return session.selectOne("review.selectReviewCount");
+	}
 }

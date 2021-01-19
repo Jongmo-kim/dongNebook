@@ -56,8 +56,7 @@ public class ReviewService {
 	public int updateReview(Review review, String[] tags) {
 		int result = 1;
 		try {
-			int reviewNo = dao.updateReview(review);
-			review.setReviewNo(reviewNo);
+			dao.updateReview(review);
 			tagService.deleteTagByReview(review);
 			tagService.insertTagByStr(review,tags);
 		} catch(ReviewException e) {
@@ -69,5 +68,32 @@ public class ReviewService {
 		}
 		return result;
 	}
+	
+	@Transactional
+	public int deleteReview(Review review) {
+		int result = 1;
+		try {
+			dao.deleteReview(review);
+			tagService.deleteTagByReview(review);
+		} catch(ReviewException e) {
+			System.out.println(e.getMessage());
+			result = 0;
+		} catch(TagException e) {
+			System.out.println(e.getMessage());
+			result = 0;
+		}
+		return result;
+	}
 
+	public Object selectReviewByReqpage(int reqPage) {
+		return dao.selectReviewByReqpage(reqPage);
+	}
+
+	public Review selectReviewForModal(int currReview) {
+		return dao.selectReviewForModal(currReview);
+	}
+
+	public int selectReviewCount() {
+		return dao.selectReviewCount();
+	}
 }

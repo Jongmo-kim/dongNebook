@@ -15,7 +15,7 @@
 	                    </ul>
 	                    <ul class="sub">
 	                        <li><a href="/notice/noticeList.do?reqPage=1">공지사항 리스트</a></li>
-	                        <li><a href="/review/main.do">추천게시판 메인 페이지</a></li>
+	                        <li><a href="/review/main.do?reqPage=1">추천게시판 메인 페이지</a></li>
 	                    </ul>
 	                    <ul class="sub">
 	                        <li><a href="/common/mailSendFrm.do">메일보내기 </a></li>

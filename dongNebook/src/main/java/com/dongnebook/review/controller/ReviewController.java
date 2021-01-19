@@ -61,8 +61,8 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/main")
-	public String sendToMain(Model model) {
-		model.addAttribute("reviewList", service.selectAllReview());
+	public String sendToMain(Model model,int reqPage) {
+		model.addAttribute("reviewList", service.selectReviewByReqpage(reqPage));
 		return "/review/main";
 	}
 	
@@ -148,6 +148,22 @@ public class ReviewController {
 		} else {
 				model.addAttribute("msg","수정 실패");
 		}
+		model.addAttribute("loc", "/");
+		return "/common/msg";
+	}
+	
+	@RequestMapping("/delete.do")
+	public String delete(Review review, Model model) {
+		int reviewResult = service.deleteReview(review);
+		if(reviewResult > 0) {
+			model.addAttribute("msg","삭제 성공");
+			model.addAttribute("subMsg","성공적으로 처리되었습니다.");
+			model.addAttribute("result", "true");
+		} else {
+			model.addAttribute("msg","삭제 실패");			
+			model.addAttribute("subMsg","관리자에게 문의해주세요.");
+		}
+		
 		model.addAttribute("loc", "/");
 		return "/common/msg";
 	}
