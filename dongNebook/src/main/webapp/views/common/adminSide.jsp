@@ -24,6 +24,7 @@
 				<li><a href="/chat/oneByOneChat.do?reqPage=1">1:1상담</a></li>
 				<li><a href="/notice/noticeList.do?reqPage=1">공지사항 목록</a></li>
 				<li><a href="/notice/noticeFrm.do">공지사항 작성</a></li>
+				<li><a href="/calendar/calendarView.do">일정 관리</a></li>
 			</ul>
 		</div>
 	</div>
