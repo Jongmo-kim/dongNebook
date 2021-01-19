@@ -41,22 +41,27 @@
         <div class="sub-item">
             <div>
                 <div class="book-rank-frame">
+                	<div class="book-rank"></div>
                     <div class="book-img"></div>
                     <div class="book-info"></div>
                 </div>
                 <div class="book-rank-frame">
+                <div class="book-rank"></div>
                     <div class="book-img"></div>
                     <div class="book-info"></div>
                 </div>
                 <div class="book-rank-frame">
+                <div class="book-rank"></div>
                     <div class="book-img"></div>
                     <div class="book-info"></div>
                 </div>
                 <div class="book-rank-frame">
+                <div class="book-rank"></div>
                     <div class="book-img"></div>
                     <div class="book-info"></div>
                 </div>
                 <div class="book-rank-frame">
+                <div class="book-rank"></div>
                     <div class="book-img"></div>
                     <div class="book-info"></div>
                 </div>
@@ -70,6 +75,7 @@
     
 	<script>
 		$(function(){
+			
 			var userNo = $("#userNo").val();
 			if(!(typeof userNo == "undefined")){
 				$.ajax({
@@ -97,6 +103,24 @@
 				  	}
 				}); 
 			}
+			$.ajax({
+				url : "/rank/rankFive.do",
+				type : "get",
+				data : {},
+				success:function(data){
+					
+						/*var rank= document.getElementsByClassName("book-img");
+						console.log(data);
+					for(var i=0;i<5;i++){
+						let cover500 = data.item[i].cover.replace(/coversum/g,'cover500');
+						console.log(i);
+						console.log(rank[i]);
+						rank[i].innerHTML='<img src="' +cover500+ '" />';
+						
+						
+					}*/
+				}
+			});
 		});
 		
 		//$(".clost-btn").click(function(){}); 를 사용하면 동적으로 생성된 태그들은 이벤트 적용이 되지 않음.

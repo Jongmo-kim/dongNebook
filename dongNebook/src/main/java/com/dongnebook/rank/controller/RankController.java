@@ -1,9 +1,12 @@
 package com.dongnebook.rank.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.book.model.vo.BookPageData;
@@ -27,4 +30,11 @@ public class RankController {
 			return "/rank/rankList";
 		
 	}
+		@ResponseBody
+		@RequestMapping("/rankFive.do")
+		public ArrayList<Book> RankFive() {
+			ArrayList<Book> list = service.rankFive();
+			System.out.println("들옴");
+			return list;
+		}
 }
