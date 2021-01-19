@@ -9,8 +9,9 @@
                     <div>
                         <div class="main-img">
 
-
-                            <img src="../image/header/DongNeBook2nd.png">
+							<a href="/">
+                            	<img src="../image/header/DongNeBook2nd.png">
+                        	</a>
                         </div>
                         <div class="main-menu">
                             <ul class="menu-list">
