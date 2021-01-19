@@ -148,6 +148,12 @@
 	    calendar.render();
   });
 </script>
+<style>
+	/* bootstrap이 modal-open에 padding-right를 줘서 !important로 style을 줌 */
+	.modal-open{
+		padding-right: 0px !important;
+	}
+</style>
 </head>
 
 
