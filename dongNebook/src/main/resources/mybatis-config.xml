@@ -21,5 +21,6 @@
 		<typeAlias type="com.dongnebook.rental.model.vo.BookRental" alias="bookrental"/>
 		<typeAlias type="com.dongnebook.alert.model.vo.Alert" alias="alert"/>
 		<typeAlias type="com.dongnebook.chat.model.vo.ChatUser" alias="cUser"/>
+		<typeAlias type="com.dongnebook.proposalAlert.model.vo.ProposalAlert" alias="pa"/>
 	</typeAliases>
 </configuration>

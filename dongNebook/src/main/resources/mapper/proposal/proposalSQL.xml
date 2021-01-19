@@ -11,8 +11,9 @@
 			book_introduce as bookIntroduce,
 			isbn,
 			imageurl,
-			reason
-		from (select rownum as pNum, p.* from (select * from book_proposal order by 1 desc)p) where pNum between ${start} and ${end}
+			reason,
+			isproposal
+		from (select rownum as pNum, p.* from (select * from book_proposal order by isproposal nulls first )p) where pNum between ${start} and ${end}
 	</select>
 	<select id="totalCount" resultType="_int">
 		select count(*) from book_proposal
@@ -32,9 +33,13 @@
 			#{imageurl}
 		)
 	</insert>
-	<delete id="deleteBook" parameterType="book">
-		delete from book_proposal where isbn = #{ISBN}
-	</delete>
+	<update id="updateProposal" parameterType="book">
+		update book_proposal set isproposal = 'y' where isbn = #{ISBN}
+	</update>
+	<update id="nProposalBook" parameterType="book">
+		update book_proposal set isproposal = 'n' where isbn = #{ISBN}
+	</update>
+	
 	<insert id="insertProposal" parameterType="pro">
 		insert into Book values(
 			book_proposal_seq.nextval,
