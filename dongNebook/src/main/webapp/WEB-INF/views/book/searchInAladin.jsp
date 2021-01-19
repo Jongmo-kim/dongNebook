@@ -836,7 +836,9 @@ body {
 		color:white;
          }
 .aladin-img{
-	height:50px;
+	height: 50px;
+    width: 14%;
+    float: left;
 }
 .aladin-img img{
 	height:50px;
@@ -866,7 +868,7 @@ body {
   <div class="main clearfix">
 
     <!-- Header Content -->
-    <header id="header" class="page-header">
+    <header id="headerContent" class="page-header">
       
       <div class="aladin-img"><img src="/image/book/aladin.png"></div>
       <div align="right" class="form-inline">
@@ -979,7 +981,7 @@ function bookSearch(page){
 		complete: function(){
 			$('.searchBtn').html('Submit');
 		},
-		data : {ttbkey:'ttboptta922158008',Query:searchKeyword,maxresult:'10',Start:page,Output:'js',SearchTarget:'Book',Sort:'SalesPoint'}, 
+		data : {ttbkey:'ttboptta922158008',Query:searchKeyword,maxresult:'10',Start:page,Output:'js',SearchTarget:'Book',Sort:'SalesPoint',Cover:'Big'}, 
 		jsonpCallback : "resultFunc", //response받을때 동작하는 함수명  resultFunc 위 함수
 		dataType:"jsonp"	//cors우회..	 해킹
 	});

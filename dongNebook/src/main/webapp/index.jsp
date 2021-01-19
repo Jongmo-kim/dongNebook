@@ -42,7 +42,7 @@
             <div>
                 <div class="book-rank-frame">
                 	<div class="book-rank"></div>
-                    <div class="book-img"></div>
+                    <div class="book-img"><img src="https://image.aladin.co.kr/product/24788/21/cover/k342631735_1.jpg"></div>
                     <div class="book-info"></div>
                 </div>
                 <div class="book-rank-frame">

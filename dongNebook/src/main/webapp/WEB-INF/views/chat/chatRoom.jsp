@@ -22,7 +22,7 @@
          <hr>
         
      <c:forEach items="${list}" var="room">
-		<form action="/chatRoom.kh?chatUser=${room }" method="post">
+		<form action="/chat/chatRoom.do?chatUser=${room.getCmSender()}" method="post">
 			<button class="chatRoom" type="submit">${room.getCmSender()}의 방</button>
 		</form>
 	</c:forEach>

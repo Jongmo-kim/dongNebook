@@ -9,4 +9,19 @@
 	<select id="selectChatUserCount" resultType="_int">
 		select count(*) from CHAT_USER
 	</select>
+	<select id="selectOneCmList" parameterType="string" resultType="com.dongnebook.chat.model.vo.ChatMessage">
+	 	select * from chat_message where (cm_receiver='admin' and cm_sender=#{_parameter}) or (cm_receiver=#{_parameter} and cm_sender='admin')
+	 </select>
+	 <select id="selectCmSenser" parameterType="com.dongnebook.chat.model.vo.ChatMessage" resultType="string">
+	 	select cm_sender from chat_user where cm_sender=#{cmSender}
+	 </select>
+	 <select id="selectOneServerUser" parameterType="string" resultType="user">
+	 	select * from "USER" where user_id=#{_parameter}
+	 </select>
+	 <select id="selectChatList" resultType="string">
+	 	select * from chat_user
+	 </select>
+	 <insert id="insertCM" parameterType="com.dongnebook.chat.model.vo.ChatMessage">
+	 	insert into chat_message values(cm_seq.nextval, #{cmSender},#{cmReceiver},#{message},'읽지않음',to_char(sysdate,'yyyy-mm-dd'))
+	 </insert>
 </mapper>
