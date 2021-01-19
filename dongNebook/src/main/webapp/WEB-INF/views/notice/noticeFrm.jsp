@@ -19,6 +19,9 @@ table>tbody>tr>th{
 	text-indent: 10px;
 	width:150px;
 }
+table>tbody>tr>td{
+	vertical-align: middle;
+}
 .adminSideMenu li:nth-child(7) a{
    	background:#a8dba8;
 	color:white;
@@ -37,6 +40,12 @@ textarea{
 	width:100%;
 	height: 200px;
 	border : 1px solid #cccccc;
+}
+.btn-div{
+	text-align:right;
+}
+.defaultMsg{
+	text-align: center;
 }
 </style>
 </head>
@@ -59,13 +68,15 @@ textarea{
 							<th>첨부파일</th>
 							<td>
 								<div class="card text-secondary bg-light mb-3 upfile">
-									<div class="card-header text-primary">FILE ZONE</div>
 									<!-- <form id="upFileFrm" action="/file/upFile.do" method="post" enctype="multipart/form-data"> -->
 										<input type="hidden" name="path" value="/">
 										<input type="file" name="files" id="upFile" multiple style="display:none;">					
 										<div class="card-body filezone">						
 											<div class="card-text">
-												<div class="defaultMsg">파일을 여기에 올려주세요</div>
+												<div class="defaultMsg">
+													<i class="fas fa-upload"></i><br>
+													파일을 올려주세요
+												</div>
 											</div>
 										</div>										
 									<!-- </form> -->
@@ -83,8 +94,10 @@ textarea{
 							<td><textarea name="noticeContent" id="noticeContent" row="3" col="40" style="resize: none;"></textarea></td>
 						</tr>
 					</table>
+					<div class="btn-div">
 					<button type="button" id="insert" class="btn btn-primary">등록하기</button>
 					<button type="button" id="back" class="btn btn-outline-secondary">취소</button>
+					</div>
 				</form>
 			</div>
 	</div>
@@ -98,19 +111,25 @@ textarea{
 		    $(this).css('border', '3px dashed #593196');
 	
 		});
+		
 		filezone.on("dragleave",function(e){
 		    e.stopPropagation();
 		    e.preventDefault();
 		    $(this).css('border', '3px dashed #a991d4');
+		    $(this).css('background-color','pink');
 		});
+		
 		filezone.on("dragover",function(e){
 		  	e.stopPropagation();
 		  	e.preventDefault();
-			$(this).css('border', '3px solid #593196');
+			//$(this).css('border', '3px solid #593196');
+			$(this).css('background-color','black');
 		});
+		
 	  	filezone.on("drop",function(e){
 	    	e.preventDefault();
-		    $(this).css('border', '3px dashed #593196');
+		    //$(this).css('border', '3px dashed #593196');
+		    $(this).css('background-color','#cccccc');
 		    $(".defaultMsg").hide();
 		    
 		    //드롭한 항목
@@ -134,6 +153,10 @@ textarea{
 	  		var idx = $(".cancelBtn").index(this);
 	  		$(".upFileList").eq(idx).remove();
 	  		upFiles.pop(idx);
+	  		
+	  		if(!$(this).hasClass("upFileList")){
+	  			$(".defaultMsg").show();
+	  		}
 	  	});
 		
 	  	
