@@ -50,10 +50,16 @@ public class AdminController {
 		return "common/msg";
 	}
 	@RequestMapping("/manageUser")
-	public String manageUser(Model model,int reqPage) {
-		UserPageData upd = service.userManageList(reqPage);
-		model.addAttribute("list", upd.getList());
-		model.addAttribute("pageNavi", upd.getPageNavi());
+	public String manageUser(Model model,int reqPage,String inputStr,String searchKeyword) {
+		if(searchKeyword == null) {
+			UserPageData upd = service.userManageList(reqPage);
+			model.addAttribute("list", upd.getList());
+			model.addAttribute("pageNavi", upd.getPageNavi());
+		} else {
+			UserPageData upd = service.userManageList(reqPage,inputStr,searchKeyword);
+			model.addAttribute("list", upd.getList());
+			model.addAttribute("pageNavi", upd.getPageNavi());
+		}
 		return "admin/manageUser";
 	}
 	@RequestMapping("/deleteBooks")

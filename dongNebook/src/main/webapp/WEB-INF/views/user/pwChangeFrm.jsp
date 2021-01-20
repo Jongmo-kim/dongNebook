@@ -24,7 +24,6 @@
 	            <span class="additional-info" id="pwInfo"></span>
         	</div>
 	        <hr>
-	        <br>
 			<div class="name inputBox">
 				<input type="password" name="userPw" class="form-textbox">
 	            <span class="form-label">변경할 비밀번호</span>
