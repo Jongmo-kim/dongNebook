@@ -6,6 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>동네 북</title>
+<style>
+	.alert-red{
+      background-color : rgba(255, 0, 0, 0.5);
+      color : #404040;
+      }
+      .alert-blue{
+      background-color : rgba(102, 255, 179, 0.5);
+      color : #004085;
+      }
+</style>
 <jsp:include page="/views/common/linkHead.jsp"/>
 <link href="../css/index/index2.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="/js/index/index.js"></script>
@@ -87,7 +97,7 @@
 						$(data).each(function(index,item){
 							
 							if(data[index].isproposal=='n'){
-								var alertt = "<div class='alert alert-primary alert-dismissible fade show alert-div' role='alert'></div>";
+								var alertt = "<div class='alert alert-red alert-dismissible fade show alert-div' role='alert'></div>";
 								var strongg = "신청하신 책 '<strong>"+data[index].bookName+"</strong>' 이 반려되었습니다.";
 								var buttonn = "<button type='button' class='close pdelete' data-dismiss='alert' aria-label='close' value='"+data[index].alertNo+"'></button>";
 								var spann = "<span aria-hidden='true' class='close-btn'>&times;</span>";
@@ -100,7 +110,7 @@
 									num++;
 								}
 							}else{
-								var alertt = "<div class='alert alert-primary alert-dismissible fade show alert-div' role='alert'></div>";
+								var alertt = "<div class='alert alert-blue alert-dismissible fade show alert-div' role='alert'></div>";
 								var strongg = "신청하신 책 '<strong>"+data[index].bookName+"</strong>' 승인되었습니다.";
 								var buttonn = "<button type='button' class='close pdelete' data-dismiss='alert' aria-label='close' value='"+data[index].alertNo+"'></button>";
 								var spann = "<span aria-hidden='true' class='close-btn'>&times;</span>";

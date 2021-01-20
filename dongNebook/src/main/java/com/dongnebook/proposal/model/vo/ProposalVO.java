@@ -3,6 +3,7 @@ package com.dongnebook.proposal.model.vo;
 public class ProposalVO {
 	private int bookNo;
 	private int userNo;
+	private String userName;
 	private String bookName;
 	private String bookKind;
 	private String bookWriter;
@@ -16,11 +17,12 @@ public class ProposalVO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ProposalVO(int bookNo, int userNo, String bookName, String bookKind, String bookWriter,
+	public ProposalVO(int bookNo, int userNo, String userName, String bookName, String bookKind, String bookWriter,
 			String bookPublisher, String bookIntroduce, String imageurl, String ISBN, String reason,String isproposal) {
 		super();
 		this.bookNo = bookNo;
 		this.userNo = userNo;
+		this.userName = userName;
 		this.bookName = bookName;
 		this.bookKind = bookKind;
 		this.bookWriter = bookWriter;
@@ -32,6 +34,12 @@ public class ProposalVO {
 		this.isproposal = isproposal;
 	}
 	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public int getBookNo() {
 		return bookNo;
 	}
