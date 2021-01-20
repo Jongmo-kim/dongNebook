@@ -183,6 +183,7 @@ html {
     	text-align: center;
     	line-height: 46px;
     	float:left;
+    	position:relative;
     }
     .nav-board path{
     	
@@ -198,4 +199,23 @@ html {
     .nav-chat a{
     	text-decoration:none;
     	color: black;
+    }
+    .nav-chat div{
+    	position: absolute;
+    top: 22px;
+    left: 17px;
+    border: radiu;
+    border-radius: 50%;
+    border: 7px solid red;
+    }
+    .nav-chat p{
+    position: absolute;
+    top: -23px;
+    left: -6px;
+    width: 12px;
+    text-align: center;
+    
+    font-size: 2px;
+    z-index:999;
+    color: white;
     }

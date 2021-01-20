@@ -26,10 +26,9 @@ public class ChatController {
 	
 	@ResponseBody
 	@RequestMapping("/chatReload.do")
-	public ChatMessage chatReload(String loginUser,Model model) {
-		System.out.println("이거닷"+loginUser);
+	public ChatMessage chatReload(String loginUser,Model model,HttpSession session) {
+		System.out.println(session.getAttribute("loginUser")+"이거닷"+loginUser);
 		//리시버가 로그인 유저인걸로
-		
 		ChatMessage lastDm = service.selectLastCm(loginUser);
 		System.out.println(lastDm.getMessage());
 		return lastDm;
@@ -49,6 +48,7 @@ public class ChatController {
 			System.out.println("이걸 거친다"+chatUser);
 			User loginUser =  (User)session.getAttribute("loginUser");
 			ArrayList<ChatMessage> list = service.selectOneCmList(loginUser.getUserId());
+			System.out.println("읽음에 들어가는 값"+loginUser.getUserId());
 			service.readChat(loginUser.getUserId());
 			model.addAttribute("chatUser", "admin");
 			model.addAttribute("cmList", list);
@@ -56,7 +56,8 @@ public class ChatController {
 		}else {
 			System.out.println("이걸 거친다"+chatUser);
 			ArrayList<ChatMessage> list = service.selectOneCmList(chatUser);
-			service.readChat(chatUser);
+			System.out.println("읽음에 들어가는 값 : admin");
+			service.readChat("admin");
 			model.addAttribute("chatUser",chatUser);
 			model.addAttribute("cmList",list);			
 			

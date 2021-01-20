@@ -31,6 +31,9 @@
 	 	select * from (select * from CHAT_MESSAGE where CM_RECEIVER=#{_parameter} order by cm_no desc) where ROWNUM=1
 	 </select>
 	 <update id="readChat" parameterType="string">
-	 	update chat_message set check_message='읽음' where cm_sender=#{_parameter} or cm_receiver=#{_parameter}
+	 	update chat_message set check_message='읽음' where cm_receiver=#{_parameter}
 	 </update>
+	 <select id="cmCount" parameterType="string" resultType="_int">
+	 	select count(*) from chat_message where cm_receiver = #{_parameter} and check_message = '읽지않음'
+	 </select>
 </mapper>
