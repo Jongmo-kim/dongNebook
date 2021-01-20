@@ -79,6 +79,7 @@ position:relative;
         
      <c:forEach items="${list}" var="room">
 		<!--  <form action="/chat/chatRoom.do?chatUser=${room.getCmSender()}" method="post">-->
+		<c:if test="${room.getCmSender()!=null}">
 		<div class="chat-room-frame">
 			<p class="chat-room-name">${room.getCmSender()}님의 채팅방</p>
 				<div class="cmCount-frame">
@@ -87,6 +88,7 @@ position:relative;
 			</div>
 			<button class="button big green" onclick="openAdminWindow('${room.getCmSender()}')" type="submit">채팅방 입장</button>
 			<hr>
+			</c:if>
 		<!-- </form> -->
 	</c:forEach>
    </div>
