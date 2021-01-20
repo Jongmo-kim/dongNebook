@@ -49,7 +49,8 @@
          .rBtn{
          	margin-top:50px;
          	margin-bottom : 50px;
-         	width : 100px;
+         	margin-right : 15px;
+         	width : 110px;
          	height: 50px;
          	border: 2px solid #3b8686;
          	background-color:white;
