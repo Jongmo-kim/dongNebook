@@ -17,7 +17,7 @@ table>tbody>tr{
 }
 .contentTd{
 	text-align:center;
-	height:500px;
+	height:300px;
 }
 
 .main-wrap{
@@ -39,8 +39,9 @@ table>tbody>tr{
 <body>
 	<jsp:include page="/views/common/header.jsp" />
 	<div class="main-wrap">
+	<c:if test="${sessionScope.loginAdmin !=null}">
 	<jsp:include page="/views/common/adminSide.jsp" />
-	<div class="contents">
+	</c:if>
 	<c:if test="${n.noticeWriter.equals(sessionScope.loginAdmin.nickName) }">
 		<button onclick="updateNotice();" class="btn btn-lg btn-primary">수정하기</button>
 		<button onclick="deleteNotice();" class="btn btn-lg btn-danger">삭제하기</button>
@@ -87,7 +88,6 @@ table>tbody>tr{
 	</table>
 	<div class="btn-div">
 		<button onclick="noticeList();" class="btn btn-lg btn-outline-secondary">목록</button>
-	</div>
 	</div>
 	</div>
 	<script>

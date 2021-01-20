@@ -27,8 +27,9 @@ text-align:center;
 <body>
 	<jsp:include page="/views/common/header.jsp" />
 	<div class="main-wrap">
+	<c:if test="${sessionScope.loginAdmin !=null}">
 	<jsp:include page="/views/common/adminSide.jsp" />
-	<div class="contents">
+	</c:if>
 	<h1 style="font-size:30px;">| 공지사항</h1>
 	<hr>
 	<table class="table table-hover">
@@ -52,8 +53,6 @@ text-align:center;
 		<button onclick="deleteNotice();" class="btn btn-lg btn-danger">삭제하기</button>
 	</c:if>
 	<p style="text-align:center">${pageNavi }</p>
-	</div>
-	
 	</div>
 	
 	<script>
