@@ -137,9 +137,9 @@ textarea{
 			    console.log(files[i]);
 				upFiles.push(files[i]);
 		    }
-	    	if(upFiles.lengh == 0){
+/* 	    	if(upFiles.length == 0){
 				$(".defaultMsg").show();
-	    	}        
+	    	}   */      
 	  	});
 		
 	  	$(document).on("click",".cancelBtn",function(){
