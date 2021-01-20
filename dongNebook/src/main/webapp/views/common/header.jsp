@@ -8,11 +8,6 @@
 </style>
 <header>
 
-    
-            <div class="header">
-                <div class="menu-frame">
-                    <div>
-                        <div class="main-img">
 	<div class="header">
 		<div class="menu-frame">
 			<div>
@@ -44,13 +39,30 @@
 										<li><a href="/admin/logout.do">로그아웃</a></li>
 									</c:otherwise>
 								</c:choose>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="search-frame"></div>
-            
+								</c:when>
+							<c:otherwise>
+								<li><a href="/user/mypageFrm.do">마이페이지</a></li>
+								<li>
+									<!-- <i class="fas fa-clipboard"></i> --> <a href="#">도서 추천</a>
+								</li>
+								<li><a href="/user/logout.do">로그아웃</a></li>
+								<li><a class="chat-bell" onclick="openWindow()"> <!-- <i class="fas fa-bell"></i> -->
+										<i class="fas fa-lg fa-bell"></i>
+										<div class="cmCount-frame">
+											<p class="cmCount"></p>
+										</div>
+								</a></li>
+								<%-- <li>
+			                        	<a href="/user/delete.do?userNo=${loginUser.userNo }">Withdrawal</a>
+			                        </li> --%>
+							</c:otherwise>
+						</c:choose>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="search-frame"></div>
             <script>
     	
 		var ws;
@@ -117,6 +129,7 @@
 			}
 			else{				
 				var count = e.data;
+				$(".cmCount-frame").css("display","block");
 				$(".cmCount").html(count);
 			}
 		}
@@ -158,25 +171,5 @@
 
 		}
 	</script>
-							</c:when>
-							<c:otherwise>
-								<li><a href="/user/mypageFrm.do">마이페이지</a></li>
-								<li>
-									<!-- <i class="fas fa-clipboard"></i> --> <a href="#">도서 추천</a>
-								</li>
-								<li><a href="/user/logout.do">로그아웃</a></li>
-								<li><a onclick="openWindow()"> <!-- <i class="fas fa-bell"></i> -->
-										<i class="fas fa-lg fa-bell"></i>
-								</a></li>
-								<%-- <li>
-			                        	<a href="/user/delete.do?userNo=${loginUser.userNo }">Withdrawal</a>
-			                        </li> --%>
-							</c:otherwise>
-						</c:choose>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="search-frame"></div>
+							
 </header>
