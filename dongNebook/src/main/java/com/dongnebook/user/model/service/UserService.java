@@ -1,5 +1,7 @@
 package com.dongnebook.user.model.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +35,13 @@ public class UserService {
 
 	public int deleteUser(User u) {
 		return dao.deleteUser(u);
+	}
+
+	public ArrayList<User> selectUserBySearch(int reqPage, String inputStr, String searchKeyword) {
+		return dao.selectUserBySearch(reqPage,inputStr,searchKeyword);
+	}
+
+	public int totalCount(String inputStr, String searchKeyword) {
+		return dao.selectCountBySearch(inputStr,searchKeyword);
 	}
 }

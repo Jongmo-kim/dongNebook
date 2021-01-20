@@ -1,5 +1,9 @@
 package com.dongnebook.user.model.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,5 +34,20 @@ public class UserDao {
 	}
 	public int deleteUser(User u) {
 		return session.delete("user.deleteUser", u);
+	}
+	public ArrayList<User> selectUserBySearch(int reqPage, 
+			String inputStr, String searchKeyword) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("reqPage", reqPage);
+		map.put("inputStr", inputStr);
+		map.put("searchKeyword", searchKeyword);
+		List<User> list = session.selectList("user.selectUserBySearch", map);
+		return (ArrayList<User>)list;
+	}
+	public int selectCountBySearch(String inputStr, String searchKeyword) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("inputStr", inputStr);
+		map.put("searchKeyword", searchKeyword);
+		return session.selectOne("user.selectCountBySearch",map);
 	}
 }
