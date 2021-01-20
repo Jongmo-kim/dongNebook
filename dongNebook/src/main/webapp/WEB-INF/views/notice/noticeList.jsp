@@ -57,9 +57,9 @@ text-align:center;
 	</div>
 	
 	<script>
-	function noticeView(noticeNo){
-		location.href="/notice/noticeView.do?noticeNo="+noticeNo;
-	}
+		function noticeView(noticeNo){
+			location.href="/notice/noticeView.do?noticeNo="+noticeNo;
+		}
 		$(function(){
 			$(".allCheck").click(function (){
 				//전체 체크

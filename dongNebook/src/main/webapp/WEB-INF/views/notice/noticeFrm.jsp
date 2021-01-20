@@ -27,6 +27,7 @@ table>tbody>tr>td{
 	color:white;
 }
 .main-wrap{
+background-color:pink;
 	width:1200px;
 	margin:0 auto;
 }
@@ -47,6 +48,9 @@ textarea{
 }
 .defaultMsg{
 	text-align: center;
+}
+.contents{
+	width:1000px;
 }
 </style>
 </head>

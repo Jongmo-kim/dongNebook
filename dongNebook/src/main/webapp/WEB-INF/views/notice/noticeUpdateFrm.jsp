@@ -104,6 +104,7 @@ textarea{
 			<tr>
 				<th colspan="2">
 					<button type="button" onclick="updateNotice();" class="btn btn-lg btn-primary">수정하기</button>
+					<button id="cancel" class="btn btn-lg btn-outline-secondary">취소</button>
 				</th>
 			</tr>
 		</table>
@@ -177,10 +178,11 @@ textarea{
 	  	});
 	
 	
-	
-	
-	
-	
+	  	$("#cancel").click(function(event){
+	  		event.preventDefault();
+	  		var noticeNo=$("#noticeNo").val();
+			location.href="/notice/noticeView.do?noticeNo="+noticeNo;
+	  	})
 	
 	  	function updateNotice(){
 			var form = $("#updateFrm")[0];    	
@@ -212,7 +214,6 @@ textarea{
 					contentType : false,
 					cache:false,
 					success:function(data){
-						//location.href="/common/msg?msg='수정 성공'&loc='/notice/noticeView.do?noticeNo="+$("#noticeNo").val();
 						location.href="/notice/noticeView.do?noticeNo="+$("#noticeNo").val();
 					}
 				})

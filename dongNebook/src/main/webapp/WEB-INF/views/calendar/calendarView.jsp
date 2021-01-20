@@ -153,9 +153,17 @@
 </script>
 <style>
 	/* bootstrap이 modal-open에 padding-right를 줘서 !important로 style을 줌 */
-	.modal-open{
-		padding-right: 0px !important;
-	}
+.modal-open{
+	padding-right: 0px !important;
+}
+.main-wrap{
+	width:1200px;
+	margin:0 auto;
+}
+.adminSideMenu li:nth-child(8) a{
+   	background:#a8dba8;
+	color:white;
+}
 </style>
 </head>
 
@@ -225,11 +233,15 @@
 			</div>
 		</div>
 	</div>
-
-	<div id='calendar'></div>
-	<br>
-	<br>
-	<br>
+	<div class="main-wrap">
+	<jsp:include page="/views/common/adminSide.jsp" />
+		<div class="contents">
+			<div id='calendar'></div>
+			<br>
+			<br>
+			<br>
+		</div>
+	</div>
 	<script>
 		var radio = document.getElementsByName("backgroundColor");
 		var label = $("input[name='backgroundColor']+label");
