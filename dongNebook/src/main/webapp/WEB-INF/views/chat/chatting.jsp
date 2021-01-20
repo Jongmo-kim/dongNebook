@@ -499,7 +499,7 @@ ul {
 		window.onload=function(){
 			//스크롤 맨 아래로
 			$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
-			
+			//window.opener.location.reload();
 			
 		};
 		function closeWindow(){
