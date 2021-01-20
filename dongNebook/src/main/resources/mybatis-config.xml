@@ -20,6 +20,11 @@
 		<typeAlias type="com.dongnebook.admin.model.vo.Admin" alias="admin"/>
 		<typeAlias type="com.dongnebook.rental.model.vo.BookRental" alias="bookrental"/>
 		<typeAlias type="com.dongnebook.alert.model.vo.Alert" alias="alert"/>
+		<typeAlias type="com.dongnebook.review.model.vo.Review" alias="review"/>
+		<typeAlias type="com.dongnebook.review_co_comment.model.vo.ReviewCoComment" alias="review_co_comment"/>
+		<typeAlias type="com.dongnebook.review_comment.model.vo.ReviewComment" alias="review_comment"/>
+		<typeAlias type="com.dongnebook.tag.model.vo.Tag" alias="tag"/>
+		<typeAlias type="com.dongnebook.report.model.vo.Report" alias="report"/>
 		<typeAlias type="com.dongnebook.chat.model.vo.ChatUser" alias="cUser"/>
 		<typeAlias type="com.dongnebook.proposalAlert.model.vo.ProposalAlert" alias="pa"/>
 	</typeAliases>

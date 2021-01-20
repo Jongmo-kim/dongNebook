@@ -14,16 +14,16 @@
 
 	Swal.fire({
 		  icon: 'success',
-		  title: '성공',
-		  text: '${msg}'
+		  title: '${msg}',
+		  text: '${subMsg}'
 		}).then((result) => {
 			location.href='${loc}';
 		});
 	} else {
 		Swal.fire({
 			  icon: 'error',
-			  title: '실패',
-			  text: '${msg}'
+			  title: '${msg}',
+			  text: '${subMsg}'
 			}).then((result) => {
 				location.href='${loc}';
 			});

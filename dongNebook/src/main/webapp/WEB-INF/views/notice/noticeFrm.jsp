@@ -9,20 +9,57 @@
 <title>Insert title here</title>
 <jsp:include page="/views/common/linkHead.jsp" />
 <style>
-	.drag-over { background-color: #ff0; }
-	table{width:800px;}
+/* .drag-over { 
+	background-color: #ff0; 
+} */
+table{
+	width:100%;
+}
+table>tbody>tr>th{
+	text-indent: 10px;
+	width:150px;
+}
+table>tbody>tr>td{
+	vertical-align: middle;
+}
+.adminSideMenu li:nth-child(7) a{
+   	background:#a8dba8;
+	color:white;
+}
+.main-wrap{
+	width:1200px;
+	margin:0 auto;
+}
+input{
+	width: 100%;
+	outline:none;
+	height : 35px;
+	border : 1px solid #cccccc;
+}
+textarea{
+	width:100%;
+	height: 200px;
+	border : 1px solid #cccccc;
+	outline : none;
+}
+.btn-div{
+	text-align:right;
+}
+.defaultMsg{
+	text-align: center;
+}
 </style>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
+	<div class="main-wrap">
 	<jsp:include page="/views/common/adminSide.jsp" />
-	<section>
 		<!-- 파일 업로드를 하려면 method는 post, enctype는 multipart/form-data를 써야지만 업로드가 가능함! 파일을 업로드 할 폼이라고 미리 명시하는 것 -->
+		<div class="contents">
+         <h1 style="font-size:30px;">| 공지사항 작성</h1>
+         <br>
 				<form id="upFileFrm" action="/notice/insertNotice.do" method="post" enctype="multipart/form-data">
-					<table border="1">
-						<tr>
-							<th colspan="2">공지사항 작성</th>
-						</tr>
+					<table class="table">
 						<tr>
 							<th>제목</th>
 							<td><input type="text" name="noticeTitle" id="noticeTitle"></td>
@@ -31,13 +68,15 @@
 							<th>첨부파일</th>
 							<td>
 								<div class="card text-secondary bg-light mb-3 upfile">
-									<div class="card-header text-primary">FILE ZONE</div>
 									<!-- <form id="upFileFrm" action="/file/upFile.do" method="post" enctype="multipart/form-data"> -->
 										<input type="hidden" name="path" value="/">
 										<input type="file" name="files" id="upFile" multiple style="display:none;">					
 										<div class="card-body filezone">						
 											<div class="card-text">
-												<div class="defaultMsg">파일을 여기에 올려주세요</div>
+												<div class="defaultMsg">
+													<i class="fas fa-upload"></i><br>
+													여기에 파일을 올려주세요
+												</div>
 											</div>
 										</div>										
 									<!-- </form> -->
@@ -52,39 +91,40 @@
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td><textarea name="noticeContent" id="noticeContent" row="3" col="40"></textarea></td>
-						</tr>
-						<tr>
-							<th colspan="2">
-								<button type="button" class="btn btn-primary">등록하기</button>
-							</th>
+							<td><textarea name="noticeContent" id="noticeContent" row="3" col="40" style="resize: none;"></textarea></td>
 						</tr>
 					</table>
+					<div class="btn-div">
+					<button type="button" id="insert" class="btn btn-lg btn-primary">등록하기</button>
+					<button type="button" id="back" class="btn btn-lg btn-outline-secondary">취소</button>
+					</div>
 				</form>
-		<a href="/notice/noticeList.do?reqPage=1">목록으로 돌아가기</a>
-	</section>
+			</div>
+	</div>
+		
 	<script>
 		var upFiles = new Array();	
 		var filezone = $(".filezone");
 		filezone.on("dragenter",function(e){        
 		    e.stopPropagation();
 		    e.preventDefault();
-		    $(this).css('border', '3px dashed #593196');
-	
-		});
-		filezone.on("dragleave",function(e){
+		    $(this).css('border', '3px dashed #3b8686');
+
+		  });
+		  filezone.on("dragleave",function(e){
 		    e.stopPropagation();
 		    e.preventDefault();
-		    $(this).css('border', '3px dashed #a991d4');
-		});
-		filezone.on("dragover",function(e){
-		  	e.stopPropagation();
-		  	e.preventDefault();
-			$(this).css('border', '3px solid #593196');
-		});
+		    $(this).css('border', '3px dashed #a8dba8');
+		  });
+		  filezone.on("dragover",function(e){
+		    e.stopPropagation();
+		    e.preventDefault();
+		    $(this).css('border', '3px solid #3b8686');
+		  });
+		
 	  	filezone.on("drop",function(e){
 	    	e.preventDefault();
-		    $(this).css('border', '3px dashed #593196');
+		    $(this).css('border', 'none');
 		    $(".defaultMsg").hide();
 		    
 		    //드롭한 항목
@@ -97,10 +137,9 @@
 			    console.log(files[i]);
 				upFiles.push(files[i]);
 		    }
-	    	if(upFiles.lengh == 0){
+/* 	    	if(upFiles.length == 0){
 				$(".defaultMsg").show();
-	      		$(this).css('border', '3px dashed #a991d4');
-	    	}        
+	    	}   */      
 	  	});
 		
 	  	$(document).on("click",".cancelBtn",function(){
@@ -108,10 +147,21 @@
 	  		var idx = $(".cancelBtn").index(this);
 	  		$(".upFileList").eq(idx).remove();
 	  		upFiles.pop(idx);
+	  		
+	  		//upFileList(첨부파일 div)가 없으면 defaultMsg를 보여줌
+	  		if($('.upFileList').length==0){
+	  			$(".defaultMsg").show();
+	  		}
 	  	});
-
 		
-		$("button[type=button]").click(function(event){
+	  	
+	  	$("#back").click(function(){
+	  		location.href="/notice/noticeList.do?reqPage=1";
+	  	});
+	  	
+		
+		
+		$("#insert").click(function(event){
 			var form = $("#upFileFrm")[0];    	
 		  	var frmData = new FormData(form);
 			for(var i=0;i<upFiles.length;i++){  		

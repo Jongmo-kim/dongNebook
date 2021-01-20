@@ -82,7 +82,14 @@ public class UserController {
 	}
 	
 	@RequestMapping("/logout.do")
-	public String logout(HttpSession session, Model model) {
+	public String logout(HttpSession session,Model model) {
+		//세션 등록 시 member로 등록했으므로, member로 등록된 세션이 있는지 검사
+		//세션의 데이터를 가져와서 컨트롤러에서 사용하고 싶은 경우
+		//1. request.getSession() -> session.getAttribute()
+		//처럼 사용했지만 Spring에서는 
+		//@SessionAttribute를 사용하면 Session에 있는 멤버를 꺼내옴
+		//required=false -> data가 있으면 member객체가 들어있고, data가 없으면 null이 반환
+
 		User loginUser = (User)session.getAttribute("loginUser");
 		if(loginUser != null) {
 			model.addAttribute("msg", "로그아웃 성공");

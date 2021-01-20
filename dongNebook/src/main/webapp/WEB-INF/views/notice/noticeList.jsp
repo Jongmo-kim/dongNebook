@@ -7,35 +7,59 @@
 <meta charset="UTF-8">
 <title>동서남북 | 공지사항</title>
 <jsp:include page="/views/common/linkHead.jsp"/>
+<style>
+.main-wrap{
+	width:1200px;
+	margin:0 auto;
+}
+table{
+text-align:center;
+}
+.adminSideMenu li:nth-child(6) a{
+   	background:#a8dba8;
+	color:white;
+}
+#noticeTitle{
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-
-	<h1 style="font-size:30px;">공지사항 리스트</h1>
+	<div class="main-wrap">
+	<jsp:include page="/views/common/adminSide.jsp" />
+	<div class="contents">
+	<h1 style="font-size:30px;">| 공지사항</h1>
 	<hr>
-	<table border=1>
+	<table class="table table-hover">
 		<tr>
 			<c:if test="${sessionScope.loginAdmin!=null}">
-				<th><input type="checkbox" class="allCheck"></th>
+				<th style="width:5%;"><input type="checkbox" class="allCheck"></th>
 			</c:if>
-			<th>공지사항 번호</th><th>제목</th><th>작성자</th><th>작성일</th>
+			<th style="width:10%;">번호</th><th style="width:50%;">제목</th><th style="width:20%;">작성자</th><th style="width:15%;">작성일</th>
 		</tr>
 		<c:forEach items="${list }" var ="n">
 			<tr>
 				<c:if test="${sessionScope.loginAdmin!=null}">
 					<td><input type="checkbox" name="noticeCheck" value=${n.noticeNo }></td>
 				</c:if>
-				<td>${n.rNum }</td><td><a href="/notice/noticeView.do?noticeNo=${n.noticeNo}">${n.noticeTitle }</a></td><td>${n.noticeWriter }</td><td>${n.enrollDate }</td>			
+				<td>${n.rNum }</td><td id="noticeTitle" onclick="noticeView(${n.noticeNo});">${n.noticeTitle }</td><td>${n.noticeWriter }</td><td>${n.enrollDate }</td>			
 			</tr>
 		</c:forEach>
 	</table>
-	<p style="text-align:center">${pageNavi }</p>
 	<c:if test="${sessionScope.loginAdmin!=null}">
-		<button onclick="insertNotice();" class="btn btn-primary">추가</button>
-		<button onclick="deleteNotice();" class="btn btn-danger">삭제</button>
+		<button onclick="insertNotice();" class="btn btn-lg btn-primary">작성하기</button>
+		<button onclick="deleteNotice();" class="btn btn-lg btn-danger">삭제하기</button>
 	</c:if>
+	<p style="text-align:center">${pageNavi }</p>
+	</div>
+	
+	</div>
 	
 	<script>
+	function noticeView(noticeNo){
+		location.href="/notice/noticeView.do?noticeNo="+noticeNo;
+	}
 		$(function(){
 			$(".allCheck").click(function (){
 				//전체 체크

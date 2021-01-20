@@ -8,3 +8,11 @@
 	height: 50px;
 	
 }
+.content { 
+	min-width: 1800px;
+}
+form {
+    width: 80%;
+    margin: 0 auto;
+    text-align:center;
+}

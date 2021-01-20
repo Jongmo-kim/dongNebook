@@ -15,7 +15,10 @@
 	<jsp:include page="/views/common/header.jsp" />
 	<div class="content">
 		<form action="/user/searchId.do" method="post">
-			<h1>아이디 찾기</h1><hr>
+				<h1>로그인이 안 되시나요?</h1>
+				<p>아이디를 찾기 위해 가입하셨던 이메일을 적어주세요</p>
+				<br>
+				<br>
 				<div class="name inputBox">
 		            <input type="text" class="form-textbox" name="email">
 		            <span class="form-label">이메일</span>

@@ -1,3 +1,7 @@
+form[name="signFrm"]{
+    width: 100%;
+    min-width: 1800px;
+}
 .additional-info{
 	color:#DE071C;
 	font-size:13px;
