@@ -8,6 +8,5 @@
 </head>
 <body>
 	<a href="/book/bookList.do?reqPage=1">북 리스트</a>
-	<a href="/proposal/proposalList.do?reqPage=1">도서 신청</a>
 </body>
 </html>

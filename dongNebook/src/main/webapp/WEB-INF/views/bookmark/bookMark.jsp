@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +49,8 @@
          .rBtn{
          	margin-top:50px;
          	margin-bottom : 50px;
-         	width : 100px;
+         	margin-right : 15px;
+         	width : 110px;
          	height: 50px;
          	border: 2px solid #3b8686;
          	background-color:white;
@@ -59,6 +62,10 @@
          background-color: #3b8686;
          color : white;
          }
+         .noBook{
+         	margin-top : 100px;
+         	text-align : center;
+         }
 	</style>
 
 </head>
@@ -67,7 +74,13 @@
 	<jsp:include page="/views/common/header.jsp" />
 	
 	<table>
+				<c:if test="${fn:length(bookList) == 0 }">
+				<div class = "noBook"><h2>북마크한 책이 없습니다</h2></div>
+					
+				</c:if>
+	
 				<c:forEach items="${bookList }" var ="b">
+				
 			<tr>
 				<td><input type="checkbox" name="${b.bookNo }" class="chk" >
 				<input type=hidden class="bookNo" value="${b.bookNo }">
@@ -81,10 +94,12 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<c:if test="${fn:length(bookList) > 0 }">
 	<input type="hidden" class="userNo" value="${loginUser.userNo}">
 	<div class="button">
 	<input type="button" class = "rBtn" onclick="rental();" value="대여하기">
 	<input type="button" class="rBtn bmDelete" value="북마크 삭제">
+	</c:if>
 	</div>
 	<script>
     var maxChecked=3;
