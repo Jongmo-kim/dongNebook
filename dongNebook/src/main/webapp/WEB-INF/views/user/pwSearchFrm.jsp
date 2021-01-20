@@ -6,15 +6,19 @@
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
 <jsp:include page="/views/common/linkHead.jsp"/>
-<link href="../css/user/loginFrm.css" type="text/css" rel="stylesheet">
+<link href="../css/user/pwSearchFrm.css" type="text/css" rel="stylesheet">
 <link href="../css/user/inputBox.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet" href="../css/common/button.css">
 <script type="text/javascript" src="../js/user/inputBox.js"></script>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
+	<div class="content">
 	<form action="/user/pwSearch.do" method="post">
-		<h1>비밀번호 찾기</h1><hr>
+			<h1>로그인이 안 되시나요?</h1>
+				<p>비밀번호를 찾기 위해 가입하셨던 이메일과 아이디를 적어주세요</p>
+				<br>
+				<br>
 			<div class="name inputBox">
 		            <input type="text" class="form-textbox" name="userId">
 		            <span class="form-label">아이디</span>
@@ -29,7 +33,8 @@
 				<button class="btn btn-outline-primary">비밀번호찾기</button>
 			</div>
 	</form>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	</div>
+	<br><br><br><br><br>
 	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>
