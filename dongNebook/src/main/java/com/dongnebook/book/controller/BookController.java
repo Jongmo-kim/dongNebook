@@ -160,6 +160,7 @@ public class BookController {
 	public String searchInAladin() {
 		return "book/searchInAladin";
 	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/aladinPage", produces = "application/text; charset=utf8")
 	public String aladinPage(int totalCount, int reqPage) {

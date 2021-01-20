@@ -173,4 +173,7 @@ public class BookService {
 	public ArrayList<Book> selectAllBook() {
 		return dao.selectAllBook();
 	}
+	public ArrayList<Book> selectBook(Book b) {
+		return dao.selectBook(b);
+	}
 }

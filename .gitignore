@@ -4,10 +4,30 @@
 # ignore properties file
 config.properties
 pom.properties
+
 ### team2 ###
 .project
 .classpath
 Servers/
+config.js
+package-lock.json
+.eslintcache
+### react ###
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+node_modules
+bower_components
+
+*.sublime*
+
+psd
+thumb
+sketch
+
 debug.log
 ### Eclipse ###
 .metadata
