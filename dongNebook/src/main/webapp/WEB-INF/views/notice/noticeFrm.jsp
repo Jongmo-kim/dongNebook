@@ -48,6 +48,9 @@ textarea{
 .defaultMsg{
 	text-align: center;
 }
+.contents{
+	width:1000px;
+}
 </style>
 </head>
 <body>

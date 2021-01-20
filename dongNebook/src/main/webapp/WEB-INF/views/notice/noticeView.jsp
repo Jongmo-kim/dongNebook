@@ -17,6 +17,7 @@ table>tbody>tr{
 }
 .contentTd{
 	text-align:center;
+	height:500px;
 }
 
 .main-wrap{
@@ -67,7 +68,7 @@ table>tbody>tr{
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td class="contentTd">
+			<td class="contentTd" style="padding-top:40px;">
 				${n.noticeContentBr }<br>
 				<c:forEach items="${n.fileList }" var="f">
 					<script>
