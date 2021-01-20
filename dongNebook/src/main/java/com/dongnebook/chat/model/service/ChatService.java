@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dongnebook.chat.model.dao.ChatDao;
+import com.dongnebook.chat.model.vo.ChatMessage;
 import com.dongnebook.chat.model.vo.ChatUser;
 import com.dongnebook.chat.model.vo.ChatUserPageData;
+import com.dongnebook.user.model.vo.User;
 
 
 @Service
@@ -71,5 +73,43 @@ public class ChatService {
 		}
 		ChatUserPageData cupd=new ChatUserPageData(list,pageNavi);
 		return cupd;
+	}
+
+
+	public ArrayList<ChatMessage> selectOneCmList(String chatUser) {
+	
+		return dao.selectOneCmList(chatUser);
+	}
+
+
+	public String selectCmSender(ChatMessage cm) {
+		return dao.selectCmSender(cm);
+	}
+
+
+	public User selectOneMember(String cmReceiver) {
+		
+		return dao.selectOneMember(cmReceiver);
+	}
+
+
+	public int insertCM(ChatMessage cm) {
+		return dao.insertCM(cm);
+	}
+
+
+	public int insertCmSender(ChatMessage cm) {
+		return dao.insertCmSender(cm);
+	}
+
+
+	public ChatMessage selectLastCm(String loginUser) {
+		return dao.selectLastCm(loginUser);
+	}
+
+
+	public int readChat(String loginUser) {
+		return dao.readChat(loginUser);
+		
 	}
 }
