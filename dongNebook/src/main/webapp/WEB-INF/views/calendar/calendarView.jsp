@@ -164,6 +164,9 @@
    	background:#a8dba8;
 	color:white;
 }
+#calendar{
+	margin:0 auto;
+}
 </style>
 </head>
 
@@ -234,13 +237,13 @@
 		</div>
 	</div>
 	<div class="main-wrap">
+	<c:if test="${sessionScope.loginAdmin !=null}">
 	<jsp:include page="/views/common/adminSide.jsp" />
-		<div class="contents">
+	</c:if>
 			<div id='calendar'></div>
 			<br>
 			<br>
 			<br>
-		</div>
 	</div>
 	<script>
 		var radio = document.getElementsByName("backgroundColor");
