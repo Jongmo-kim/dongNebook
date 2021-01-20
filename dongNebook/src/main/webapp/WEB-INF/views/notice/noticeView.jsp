@@ -19,8 +19,8 @@
 <body>
 	<jsp:include page="/views/common/header.jsp" />
 	<c:if test="${n.noticeWriter.equals(sessionScope.loginAdmin.nickName) }">
-		<button onclick="deleteNotice();" class="btn btn-danger">삭제하기</button>
-		<button onclick="updateNotice();" class="btn btn-primary">수정하기</button>
+		<button onclick="updateNotice();" class="btn btn-lg btn-primary">수정하기</button>
+		<button onclick="deleteNotice();" class="btn btn-lg btn-danger">삭제하기</button>
 	</c:if>
 	<table border="1">
 		<tr>

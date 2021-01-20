@@ -75,7 +75,7 @@ textarea{
 											<div class="card-text">
 												<div class="defaultMsg">
 													<i class="fas fa-upload"></i><br>
-													Drag & Drop
+													여기에 파일을 올려주세요
 												</div>
 											</div>
 										</div>										
@@ -95,8 +95,8 @@ textarea{
 						</tr>
 					</table>
 					<div class="btn-div">
-					<button type="button" id="insert" class="btn btn-primary">등록하기</button>
-					<button type="button" id="back" class="btn btn-outline-secondary">취소</button>
+					<button type="button" id="insert" class="btn btn-lg btn-primary">등록하기</button>
+					<button type="button" id="back" class="btn btn-lg btn-outline-secondary">취소</button>
 					</div>
 				</form>
 			</div>
