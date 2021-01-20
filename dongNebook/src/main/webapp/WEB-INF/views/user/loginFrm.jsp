@@ -18,6 +18,7 @@
 	<div class="content">
 		<form action="/user/login.do" method="post">
 			<h1>로그인하기</h1><hr>
+				<br>
 			    <div class="name inputBox">
 		            <input type="text" class="form-textbox" name="userId">
 		            <span class="form-label">아이디</span>
@@ -33,11 +34,16 @@
 					<button class="btn btn-outline-primary">로그인하기</button>
 				</div>
 		</form>
-		<div class="searchFrm">
-			<a href="/user/idSearchFrm.do">ID 찾기</a>
-			<a href="/user/pwSearchFrm.do">비밀번호 찾기</a>
-			<a data-toggle="modal" data-target="#myModal">관리자 로그인</a>
+		
+		<hr>
+		<div class="searchFrm" style="text-align: center; width:100%;">
+			<a href="/user/signupFrm.do">회원가입</a> |
+			<a href="/user/idSearchFrm.do">ID 찾기</a> |
+			<a href="/user/pwSearchFrm.do">비밀번호 찾기</a> |
+			<a class="adminLogin"data-toggle="modal" data-target="#myModal">관리자 로그인</a>
 		</div>
+		
+		
 		<div class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
