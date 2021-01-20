@@ -8,7 +8,7 @@
 <title>동네 북</title>
 <style>
 	.alert-red{
-      background-color : rgba(255, 0, 0, 0.5);
+      background-color : rgba(255, 0, 0, 0.4);
       color : #404040;
       }
       .alert-blue{
@@ -98,7 +98,7 @@
 							
 							if(data[index].isproposal=='n'){
 								var alertt = "<div class='alert alert-red alert-dismissible fade show alert-div' role='alert'></div>";
-								var strongg = "신청하신 책 '<strong>"+data[index].bookName+"</strong>' 이 반려되었습니다.";
+								var strongg = "신청하신 책 '<strong>"+data[index].bookName+"</strong>' 반려되었습니다.";
 								var buttonn = "<button type='button' class='close pdelete' data-dismiss='alert' aria-label='close' value='"+data[index].alertNo+"'></button>";
 								var spann = "<span aria-hidden='true' class='close-btn'>&times;</span>";
 								

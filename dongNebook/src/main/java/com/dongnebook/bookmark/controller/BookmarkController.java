@@ -52,15 +52,16 @@ public class BookmarkController {
 		User loginUser = (User)session.getAttribute("loginUser");
 		System.out.println(loginUser.getUserNo());
 		int userNo = loginUser.getUserNo();
-		ArrayList<Bookmark> bookmark = service.searchBookMark(userNo);
-		System.out.println(bookmark.get(0).getISBN());
-		ArrayList<Book> list=new ArrayList<Book>();
-		for(int i=0;i<bookmark.size();i++) {
-			Book book=service.searchBookMarkList(bookmark.get(i).getISBN());
-			list.add(book);			
-		}
-		System.out.println(list.get(0).getBookName());
-		model.addAttribute("bookList",list);
+		ArrayList<Bookmark> list = service.searchBookMark(userNo);
+		
+//		System.out.println(bookmark.get(0).getISBN());
+//		ArrayList<Book> list=new ArrayList<Book>();
+//		for(int i=0;i<bookmark.size();i++) {
+//			Book book=service.searchBookMarkList(bookmark.get(i).getISBN());
+//			list.add(book);			
+//		}
+		
+		model.addAttribute("bookList", list);
 		return "bookmark/bookMark";
 	}
 	
