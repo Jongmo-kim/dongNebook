@@ -37,6 +37,51 @@
 	    from
 	    	book
 	</select>
+	<select id="selectBook" parameterType="book" resultType="book">
+		select 
+			book_no,
+	        book_name,
+	        book_kind,
+	        book_writer,
+	        book_publisher,
+	        book_introduce,
+	        ISBN,
+	        book_count,
+	        imageurl
+		from 
+			book
+		<trim prefix="where" prefixOverrides="AND">
+			<choose>
+				<when test="bookNo != 0">
+					 book_No = #{bookNo}
+				</when>
+				<when test="bookName != null">
+					 AND book_Name = #{bookName}
+				</when>
+				<when test="bookKind != null">
+					 AND book_kind= #{bookKind}
+				</when>
+				<when test="bookPublisher != null">
+					 AND book_publisher = #{bookPublisher}
+				</when>
+				<when test="bookIntroduce != null">
+					 AND book_introduce = #{bookIntroduce}
+				</when>
+			<!-- 	<when test="book_count != 0">
+					 book_count = #{bookCount}
+				</when> -->
+				<when test="imageurl != null">
+					 AND imageurl = #{imageurl}
+				</when>
+				<when test="ISBN != null">
+					AND ISBN = #{ISBN}
+				</when>
+				<otherwise>
+					 1=0
+				</otherwise>
+			</choose>
+		</trim>
+	</select>
 	<delete id="bookDelete" parameterType="_int">
 		delete from book where book_no=#{bookNo}
 	</delete>
@@ -102,10 +147,15 @@
 		select user_no as userNo from bookmark
 	</select>
 	<select id="searchBookMark" parameterType="_int" resultType="bookmark">
-		select 
-			user_no as userNo,
-			ISBN as ISBN
-		from bookmark where user_no = #{userNo}
+		select user_no as userNo,
+		book_No as bookNo,
+		book_name as bookName,
+		book_writer as bookWriter,
+		imageurl,
+		isbn
+		from "USER" 
+		join bookMark using (user_no)
+		join book using (isbn) where user_no = #{userNo}
 	</select>
 	<select id="searchBookList" parameterType="string" resultType="book">
 		select

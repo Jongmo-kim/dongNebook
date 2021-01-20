@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tag">
+	<insert id="insertTag" parameterType="tag">
+	insert into Tag values(
+		tag_seq.nextval,
+		#{reviewNo},
+		#{bookNo}
+	)
+		<selectKey resultType="int" keyProperty="tagNo" order="AFTER">
+	        SELECT tag_seq.currval AS tagNo FROM DUAL
+	   	</selectKey>
+	</insert>
+	<select id="selectTags" parameterType="review" resultType="tag">
+		select 
+			tag_no,
+			review_no,
+			book_no
+		from
+			"TAG"
+		where
+			review_no = #{reviewNo}
+	</select> 
+	<delete id="deleteTagByReview" parameterType="review">
+		delete from "TAG"
+			where
+				review_no = #{reviewNo}
+	</delete>
+</mapper>

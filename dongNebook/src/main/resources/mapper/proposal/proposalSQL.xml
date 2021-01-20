@@ -4,6 +4,7 @@
 	<select id="proposalList" parameterType="hashMap" resultType="pro">
 		select 
 			user_no as userNo,
+			user_name as userName,
 			book_name as bookName,
 			book_kind as bookKind,
 			book_writer as bookWriter,
@@ -13,10 +14,53 @@
 			imageurl,
 			reason,
 			isproposal
-		from (select rownum as pNum, p.* from (select * from book_proposal order by isproposal nulls first )p) where pNum between ${start} and ${end}
+		from (select rownum as pNum, p.* from (select * from book_proposal join "USER" using (user_no)
+	
+	<choose>
+		<when test="selectType == 0">
+		order by isproposal nulls first )p) where pNum between ${start} and ${end}
+		
+		</when>
+		<when test="selectType == 1">
+		where isproposal is null order by isproposal nulls first )p) where pNum between ${start} and ${end}
+		
+		</when>
+		
+		<when test="selectType == 2">
+		where isproposal = 'y' order by isproposal nulls first )p) where pNum between ${start} and ${end}
+		
+		</when>
+		
+		<when test="selectType == 3">
+		where isproposal = 'n' order by isproposal nulls first )p) where pNum between ${start} and ${end}
+		
+		</when>
+	
+	
+	</choose>
+	
 	</select>
-	<select id="totalCount" resultType="_int">
-		select count(*) from book_proposal
+	<select id="totalCount" parameterType="_int" resultType="_int">
+		select count(*) from book_proposal 
+		
+		<choose>
+		<when test = "value == 0">
+		
+		</when>
+		
+		<when test="value == 1">
+		where isproposal is null
+		</when>
+		
+		<when test="value == 2">
+		where isproposal = 'y'
+		</when>
+		
+		<when test="value == 3">
+		where isproposal = 'n'
+		</when>
+		
+		</choose>
 	</select>
 	
 	<insert id="inserBook" parameterType="book">

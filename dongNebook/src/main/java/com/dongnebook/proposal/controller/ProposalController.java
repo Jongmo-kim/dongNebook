@@ -42,22 +42,13 @@ public class ProposalController {
 	}
 	
 	@RequestMapping("/proposalList.do")
-	public String proposalList(Model model, int reqPage) {
-		ProposalPageData ppd = service.selectList(reqPage);
-		ArrayList<User> userList = new ArrayList<User>();
-		
-		for(int i=0; i<ppd.getList().size();i++) {
-			User u = new User();
-			u.setUserNo(ppd.getList().get(i).getUserNo());
-			u = userService.selectOneUser(u);
-			userList.add(u);
-		}
-		
-		System.out.println("userList = "+userList.size());
+	public String proposalList(Model model, int reqPage, int selectType) {
+		ProposalPageData ppd = service.selectList(reqPage, selectType);
+		System.out.println("controller list : "+ppd.getList().size());
 		System.out.println("ppdSize = "+ppd.getList().size());
 		model.addAttribute("list", ppd.getList());
-		model.addAttribute("userList",userList);
 		model.addAttribute("pageNavi", ppd.getPageNavi());
+		model.addAttribute("selectType", selectType);
 		return "proposal/proposal";
 	}
 

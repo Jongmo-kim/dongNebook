@@ -163,7 +163,19 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 	background: #a8dba8;
 	color: white;
 }
-
+.selectBook{
+	width: 130px;
+	height : 50px;
+	font-size: 18px;
+	border : none;
+	color : white;
+	background-color : lightgray;
+	outline : none;
+	margin-right : -2px;
+}
+.selectOn{
+	background-color : #3b8686;
+}
 </style>
 <jsp:include page="/views/common/linkHead.jsp" />
 </head>
@@ -174,6 +186,10 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 		<h1 style="font-size: 30px;">도서신청목록</h1>
 		<hr>
 		<div class="list-contents">
+		<input type="button" class= "selectBook" onclick="selected(0);" value="전체보기">
+		<input type="button" class= "selectBook" onclick="selected(1);" value="신청한 책">
+		<input type="button" class= "selectBook" onclick="selected(2);" value="승인된 책">
+		<input type="button" class= "selectBook" onclick="selected(3);" value="반려된 책">
 			<table>
 				<tr>
 					<th><input type="checkbox" id="allChk"></th>
@@ -183,7 +199,7 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 					<th>출판사</th>
 					<th>신청자</th>
 				</tr>
-				<c:forEach items="${list }" var="b" varStatus="status">
+				<c:forEach items="${list }" var="b">
 					<c:choose>
 					
 						<c:when test = "${b.isproposal eq null}">
@@ -201,13 +217,13 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 								<td>${b.bookPublisher }</td>
 								<input type="hidden" value="${b.bookIntroduce }">
 								<input type="hidden" value="${b.reason }">
-								<td>${userList.get(status.index).userName }</td>
+								<td>${b.userName}</td>
 							</tr>
 						</c:when>
 						
 						<c:when test="${b.isproposal eq 'y' }">
 						<tr>
-						<td>승인 됨</td>
+						<td>승인</td>
 						<td><img alt="${b.bookName }Image"
 							src="${b.imageurl }"></td>
 						<td>
@@ -221,14 +237,14 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 						<td>${b.bookPublisher }</td>
 						<input type="hidden" value="${b.bookIntroduce }">
 						<input type="hidden" value="${b.reason }">
-						<td>${userList.get(status.index).userName }
+						<td>${b.userName}
 						</td>
 					</tr>
 						</c:when>
 						
 						<c:when test="${b.isproposal eq 'n' }">
 						<tr>
-						<td>반려 됨</td>
+						<td>반려</td>
 						<td><img alt="${b.bookName }Image"
 							src="${b.imageurl }"></td>
 						<td>
@@ -242,7 +258,7 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 						<td>${b.bookPublisher }</td>
 						<input type="hidden" value="${b.bookIntroduce }">
 						<input type="hidden" value="${b.reason }">
-						<td>${userList.get(status.index).userName }
+						<td>${b.userName}
 						</td>
 					</tr>
 						</c:when>
@@ -300,8 +316,19 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 
 		<script>
 		
+		function selected(selectType){
+			
+			location.href="/proposal/proposalList.do?reqPage=1&selectType="+selectType;
+			
+			
+		};
+		
 			$(function() {
+				var selectType = '${selectType}';
+				$(".selectBook").eq(selectType).addClass("selectOn");
+		
 				
+					
 				$(".success").click(
 						function() {
 							var list = new Array();
@@ -411,7 +438,7 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 											url : "/proposal/proposalSuccess.do",
 											data : JSON.stringify(allList),
 											success : function(result) {
-												location.href = "/proposal/proposalList.do?reqPage=1";
+												location.href = "/proposal/proposalList.do?reqPage=1&selectType="+1;
 											},
 											error : function() {
 												alert("승인 실패");
@@ -439,7 +466,7 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 											url : "/proposal/proposalDelete.do",
 											data : JSON.stringify(list),
 											success : function(result) {
-												location.href = "/proposal/proposalList.do?reqPage=1";
+												location.href = "/proposal/proposalList.do?reqPage=1&selectType="+1;
 											},
 											error : function() {
 												alert("반려 실패");

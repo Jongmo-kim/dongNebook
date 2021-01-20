@@ -28,16 +28,18 @@
 <body>
 	<jsp:include page="/views/common/header.jsp" />
 	<form name="signFrm" method="post">
-		<h1>회원가입</h1><hr>
 		 <div class="container">
-	    <h2>동서남북 도서관</h2>
-	    <h3>회원가입</h3>
-	    <p>이미 동서남북의 회원이신가요? 
+		<div style="text-align:center;">		 
+	    <h1>회원가입</h1>
+	    <br><br>
+	     <p>이미 동서남북의 회원이신가요? 
 	    <a href="/user/idSearchFrm.do">ID</a> / <a href="/user/pwChangeFrm.do">PW</a>찾기</p>
 	    <p style="font-size:14px;">가입을 하면 동서남북의 이용약관, <a href="/views/signup/terms.jsp">개인정보취급방침</a> 및 <a href="/views/signup/privacy.jsp">개인정보3자제공에 동의하게 됩니다.</a><p>
-	
+		<br><br>
+	    </div>
 		<hr>
 		<br>
+		
 	        <div class="name inputBox">
 	            <input autofocus type="text" class="form-textbox" id="nameInput"name="userName">
 	            <span class="form-label label-focused">이름</span>

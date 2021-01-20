@@ -76,50 +76,50 @@
 	<script>
 	$(function(){
 		var userNo = $("#userNo").val();
-		if(!(typeof userNo == "undefined")){
-			$.ajax({
-				url : '/proposalAlert/proposalAlert.do',
-				method : 'get',
-				data : {userNo : userNo},
-				success : function(data){
-					
-						var num = 0;
-						$(data).each(function(index,item){
-							
-							if(data[index].isproposal=='n'){
-								var alertt = "<div class='alert alert-primary alert-dismissible fade show alert-div' role='alert'></div>";
-								var strongg = "신청하신 책 '<strong>"+data[index].bookName+"</strong>' 이 반려되었습니다.";
-								var buttonn = "<button type='button' class='close pdelete' data-dismiss='alert' aria-label='close' value='"+data[index].alertNo+"'></button>";
-								var spann = "<span aria-hidden='true' class='close-btn'>&times;</span>";
-								
-								if(data[index].chk==0){
-									$(".alert-wrap").append(alertt);
-									$(".alert-div").eq(num).append(strongg);
-									$(".alert-div").eq(num).append(buttonn);
-									$(".close").eq(num).append(spann);
-									num++;
-								}
-							}else{
-								var alertt = "<div class='alert alert-primary alert-dismissible fade show alert-div' role='alert'></div>";
-								var strongg = "신청하신 책 '<strong>"+data[index].bookName+"</strong>' 승인되었습니다.";
-								var buttonn = "<button type='button' class='close pdelete' data-dismiss='alert' aria-label='close' value='"+data[index].alertNo+"'></button>";
-								var spann = "<span aria-hidden='true' class='close-btn'>&times;</span>";
-								
-								if(data[index].chk==0){
-									$(".alert-wrap").append(alertt);
-									$(".alert-div").eq(num).append(strongg);
-									$(".alert-div").eq(num).append(buttonn);
-									$(".close").eq(num).append(spann);
-									num++;
-								}
-							}
-							
-						});
-				}
-				
-			});
-		};
-	});
+	      if(!(typeof userNo == "undefined")){
+	         $.ajax({
+	            url : '/proposalAlert/proposalAlert.do',
+	            method : 'get',
+	            data : {userNo : userNo},
+	            success : function(data){
+	               
+	                  var num = 0;
+	                  $(data).each(function(index,item){
+	                     
+	                     if(data[index].isproposal=='n'){
+	                        var alertt = "<div class='alert alert-danger alert-dismissible fade show alert-div' role='alert'></div>";
+	                        var strongg = "신청하신 책 '<strong>"+data[index].bookName+"</strong>'이 반려되었습니다.";
+	                        var buttonn = "<button type='button' class='close pdelete' data-dismiss='alert' aria-label='close' value='"+data[index].alertNo+"'></button>";
+	                        var spann = "<span aria-hidden='true' class='close-btn'>&times;</span>";
+	                        
+	                        if(data[index].chk==0){
+	                           $(".alert-wrap").append(alertt);
+	                           $(".alert-div").eq(num).append(strongg);
+	                           $(".alert-div").eq(num).append(buttonn);
+	                           $(".close").eq(num).append(spann);
+	                           num++;
+	                        }
+	                     }else{
+	                        var alertt = "<div class='alert alert-info alert-dismissible fade show alert-div' role='alert'></div>";
+	                        var strongg = "신청하신 책 '<strong>"+data[index].bookName+"</strong>'이 승인되었습니다.";
+	                        var buttonn = "<button type='button' class='close pdelete' data-dismiss='alert' aria-label='close' value='"+data[index].alertNo+"'></button>";
+	                        var spann = "<span aria-hidden='true' class='close-btn'>&times;</span>";
+	                        
+	                        if(data[index].chk==0){
+	                           $(".alert-wrap").append(alertt);
+	                           $(".alert-div").eq(num).append(strongg);
+	                           $(".alert-div").eq(num).append(buttonn);
+	                           $(".close").eq(num).append(spann);
+	                           num++;
+	                        }
+	                     }
+	                     
+	                  });
+	            }
+	            
+	         });
+	      };
+	   });
 	
 	$(document).on("click",".pdelete",function(){ 
 		
@@ -139,7 +139,6 @@
 	});
 	
 		$(function(){
-			
 			var userNo = $("#userNo").val();
 			if(!(typeof userNo == "undefined")){
 				$.ajax({

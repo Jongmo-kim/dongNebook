@@ -1,4 +1,17 @@
 @charset "UTF-8";
+/* sweet alert overloading*/
+.swal2-actions{
+    justify-content: space-between;
+}
+    /* //*/
+.content { 
+	min-width: 1800px;
+}
+form {
+    width: 80%;
+    margin: 0 auto;
+    text-align:center;
+}
 .submitBtn{
 	text-align:center;
 	padding-top: 25px;

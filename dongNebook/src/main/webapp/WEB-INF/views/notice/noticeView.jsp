@@ -8,23 +8,47 @@
 <title>Insert title here</title>
 <jsp:include page="/views/common/linkHead.jsp" />
 <style>
-	table>tbody>tr>th{
-		width:150px;
-	}
-	table>tbody>tr>td{
-		width:1000px;
-	}
+
+table{
+	width:100%;
+}
+table>tbody>tr{
+	text-indent:20px;
+}
+.contentTd{
+	text-align:center;
+	height:300px;
+}
+
+.main-wrap{
+	width:1200px;
+	margin:0 auto;
+}
+.adminSideMenu li:nth-child(7) a{
+   	background:#a8dba8;
+	color:white;
+}
+.btn-div{
+	text-align:right;
+}
+.btn{
+	margin-bottom:15px;
+}
 </style>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	<c:if test="${n.noticeWriter.equals(sessionScope.loginAdmin.nickName) }">
-		<button onclick="deleteNotice();" class="btn btn-danger">삭제하기</button>
-		<button onclick="updateNotice();" class="btn btn-primary">수정하기</button>
+	<div class="main-wrap">
+	<c:if test="${sessionScope.loginAdmin !=null}">
+	<jsp:include page="/views/common/adminSide.jsp" />
 	</c:if>
-	<table border="1">
+	<c:if test="${n.noticeWriter.equals(sessionScope.loginAdmin.nickName) }">
+		<button onclick="updateNotice();" class="btn btn-lg btn-primary">수정하기</button>
+		<button onclick="deleteNotice();" class="btn btn-lg btn-danger">삭제하기</button>
+	</c:if>
+	<table class="table">
 		<tr>
-			<th>제목</th>
+			<th style="width:20%;">제목</th>
 			<td>${n.noticeTitle }</td>
 		</tr>
 		<tr>
@@ -45,7 +69,7 @@
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td class="contentTd">
+			<td class="contentTd" style="padding-top:40px;">
 				${n.noticeContentBr }<br>
 				<c:forEach items="${n.fileList }" var="f">
 					<script>
@@ -62,7 +86,10 @@
 			</td>
 		</tr>
 	</table>
-	<a href="/notice/noticeList.do?reqPage=1">목록으로 돌아가기</a>
+	<div class="btn-div">
+		<button onclick="noticeList();" class="btn btn-lg btn-outline-secondary">목록</button>
+	</div>
+	</div>
 	<script>
       //첨부파일 다운로드
 		function fileDownload(filename,filepath){//인코딩작업해주려고 자바스크립트로 함
@@ -71,6 +98,10 @@
         	var encFilepath = encodeURIComponent(filepath);
         	location.href=url+"?filename="+encFilename+"&filepath="+encFilepath+"&noticeNo="+${n.noticeNo};
      	}
+      
+      	function noticeList(){
+      		location.href="/notice/noticeList.do?reqPage=1";
+      	}
 		
 		function updateNotice(){
 			location.href="/notice/updateNoticeFrm.do?noticeNo="+${n.noticeNo};

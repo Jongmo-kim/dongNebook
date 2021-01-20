@@ -6,11 +6,13 @@
 <meta charset="UTF-8">
 <title>회원정보 수정</title>
 <jsp:include page="/views/common/linkHead.jsp"/>
-<link href="../css/user/mypageFrm.css" type="text/css" rel="stylesheet">
 <link href="../css/user/inputBox.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet" href="../css/common/button.css">
 <script type="text/javascript" src="../js/user/inputBox.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<link href="../css/user/mypageFrm.css" type="text/css" rel="stylesheet">
+
 <script>
 	function addrSearch(){
     new daum.Postcode({
@@ -23,8 +25,9 @@
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
+	<div class="content">	
 	<form action="/user/update.do" method="post">
-		<h1>수정하기</h1><hr>
+		<h1>내 정보 수정하기</h1><hr>
 		<input type="hidden" name="userNo" value="${loginUser.userNo }">
 		<br>
 		<div class="name inputBox">
@@ -63,8 +66,42 @@
 			<button class="btn btn-outline-primary">비밀번호 수정하기</button>
 		</div>
 	</form>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
+	<form name="delete" style="text-align:right; width:80%;">
+	<input type="hidden" name="userNo" value="${loginUser.userNo }"><br>
+		<button class="btn btn-outline-primary">탈퇴하기</button>
+	</form>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	</div>
+	<script>
+	document.delete.addEventListener('submit',deleteFunc);
+
+	function deleteFunc(e){
+	  e.preventDefault();
+	  const swalWithBootstrapButtons = Swal.mixin({
+	  customClass: {
+	    confirmButton: 'btn btn-success',
+	    cancelButton: 'btn btn-danger'
+	  },
+	  buttonsStyling: false
+	})
+	//
+	swalWithBootstrapButtons.fire({
+	  title: '정말 탈퇴하실 건가요?',
+	  text: "저장된 모든 정보가 파기됩니다.",
+	  icon: 'warning',
+	  showCancelButton: true,
+	  confirmButtonText: '탈퇴하기',
+	  cancelButtonText: '취소하기',
+	  reverseButtons: true
+	}).then((result) => {
+	  if (result.isConfirmed) {
+	    document.delete.action = "/user/delete.do";
+	    document.delete.submit();
+	  }
+	})
+	}
+	</script>
 	<jsp:include page="/views/common/footer.jsp" />
 </body>
 </html>
