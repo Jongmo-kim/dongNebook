@@ -127,13 +127,16 @@
  				
  				
  				var bc = $("input[name='backgroundColor']");
+ 				//.check가 포함된 요소를 전부 지운다.(i요소를 지움);
+ 				$(".check").detach();
+ 				
  				bc.each(function(index, item){
  					//색상 radio의 value와 현재 이벤트에 적용된 배경색이 같을 경우
  					if($(item).val()==backgroundColor){
  						//라디오버튼 체크
  						$(item).prop('checked',true);
  						//라벨에 체크 기호 삽입
- 						$("input[name='backgroundColor']+label").eq(index).append("<i class='fas fa-check'></i>");
+ 						$("input[name='backgroundColor']+label").eq(index).append("<i class='fas fa-check check'></i>");
  					}
  				})
  				
