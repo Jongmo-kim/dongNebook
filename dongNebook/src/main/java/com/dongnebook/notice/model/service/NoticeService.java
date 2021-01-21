@@ -77,7 +77,7 @@ public class NoticeService {
 		}
 		//페이시 수가 총 페이지 수보다 같거나 작다면 -> 다음페이지가 있다는 뜻
 		if(pageNo<=totalPage) {
-			pageNavi +="<a href='/book/bookList.do?reqPage="+pageNo+"'>[다음]</a>";
+			pageNavi +="<a href='/notice/noticeList.do?reqPage="+pageNo+"'>[다음]</a>";
 		}
 		NoticePageData npd = new NoticePageData(list, pageNavi);
 		return npd;
