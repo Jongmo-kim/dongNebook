@@ -181,8 +181,12 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	<jsp:include page="/views/common/adminSide.jsp" />
+	<div class="contents-frame">
 	<div class="contents">
+	
+	<jsp:include page="/views/common/adminSide.jsp" />
+	<div class="admin-contents">
+	<div id="main-container" class="main-container nav-effect-1">
 		<h1 style="font-size: 30px;">도서신청목록</h1>
 		<hr>
 		<div class="list-contents">
@@ -308,12 +312,13 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 					</div>
 				</div>
 			</div>
-
+</div></div>
 			<div class="pagination justify-content-center" id="pageNavi">${pageNavi }</div>
 
 
 		</div>
-
+</div>
+</div>
 		<script>
 		
 		function selected(selectType){
