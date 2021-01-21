@@ -36,19 +36,24 @@
    border-right: 1px solid #f8f9fa;
 }
 .bookListTable>tbody>tr:first-child>th:first-child{
+	border-right: 1px dashed lightgray;
    width: 50px;
 }
 .bookListTable>tbody>tr:first-child>th:nth-child(2){
-   width: 100px;
+	border-right: 1px dashed lightgray;
+   width: 130px;
 }
  .bookListTable>tbody>tr:first-child>th:nth-child(3){
+ border-right: 1px dashed lightgray;
    width: 500px;
 }
 .bookListTable>tbody>tr:first-child>th:nth-child(4){
-   width: 150px;
+	border-right: 1px dashed lightgray;
+   width: 100px;
 }
 .bookListTable>tbody>tr:first-child>th:nth-child(5){
-   width: 150px;
+	border-right: 1px dashed lightgray;
+   width: 100px;
 }
 .bookListTable>tbody>tr:first-child>th:nth-child(6){
    width: 60px;
@@ -56,7 +61,7 @@
 .bookListTable>tbody>tr>td {
    font-size: 15px;
    border-top: 1px solid lightgray;
-   height: 150px;
+   height: 200px;
    border-right: 1px dashed lightgray;
 }
 .bookListTable>tbody>tr>td:last-child{
@@ -85,17 +90,27 @@
    text-align:center;
 }
 .pbtn{
-   border: 2px solid #3b8686;
+outline:none;
+border : none;
    background-color:white;
    font-size : 18px;
-   border-radius: 5px;
    width: 50px;
    margin-bottom: 10px;
    margin-top: 10px;
+   color : #003300;
+   
 }
-.pbtn:hover{
-   background-color: #3b8686;
-   color:white;
+.svg-inline--fa{
+   text-align : left;
+   font-size : 30px;
+   
+}
+.pp{
+   text-align : left;
+   margin-left : 5px;
+}
+.pbtn:focus{
+   outline:none;
 }
 .adminSideMenu li:nth-child(2) a{
    background:#a8dba8;
@@ -108,11 +123,13 @@
 .main-frame{
    margin:0 auto;
 }
+
 .table-header{
    background: #3b8686;
     color: white;
 }
+
 .bookListTable img{
-	    width: 112px;
-    height: 163px;
+	    width: 95%;
+    height: 95%;
 }

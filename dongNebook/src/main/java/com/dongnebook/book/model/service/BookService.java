@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.dongnebook.book.model.dao.BookDao;
 import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.book.model.vo.BookPageData;
+import com.dongnebook.proposal.model.vo.ProposalPageData;
 import com.dongnebook.proposal.model.vo.ProposalVO;
 
 
@@ -175,5 +176,50 @@ public class BookService {
 	}
 	public ArrayList<Book> selectBook(Book b) {
 		return dao.selectBook(b);
+	}
+
+	public Object selectSearchBookNavi(String inputStr, String searchKeyword,int reqPage) {
+		int totalCount = dao.totalCount(inputStr,searchKeyword);
+		int numPerPage = 10;
+		int totalPage = 0;
+		if (totalCount % numPerPage == 0) {
+			totalPage = totalCount / numPerPage;
+		} else {
+			totalPage = totalCount / numPerPage + 1;
+		}
+
+		int pageNaviSize = 5;
+		String pageNavi = "";
+
+		int pageNo = reqPage - 2;
+		if (reqPage <= 3) {
+			pageNo = 1;
+		}else if(reqPage >= totalPage){
+			pageNo = totalPage-3;
+		}else if (pageNo > totalPage - 4) {
+			pageNo = totalPage - 4;
+		}
+		
+		if (pageNo != 1) {
+			pageNavi += "<li class='page-item'><a class='btn page-link' href='/book/searchBook.do?"
+					+ (pageNo - 1) + "&searchKeyword=" + searchKeyword +"&inputStr="+inputStr+"'>이전</a>";
+		}
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (reqPage == pageNo) {
+				pageNavi += "<li class='page-item'><span class='selectPage page-link'>" + pageNo + "</span>";
+			} else {
+				pageNavi += "<li class='page-item'><a class='btn page-link' href='/book/searchBook.do?reqPage="
+						+ pageNo + "&searchKeyword=" + searchKeyword +"&inputStr="+inputStr+"'>" + pageNo + "</a>";
+			}
+			pageNo++;
+			if (pageNo > totalPage) {
+				break;
+			}
+		}
+		if (pageNo <= totalPage) {
+			pageNavi += "<li class='page-item'><a class='btn page-link' href='/book/searchBook.do?reqPage="
+					+ (pageNo) + "&searchKeyword=" + searchKeyword +"&inputStr="+inputStr+ "'>다음</a>";
+		}
+		return pageNavi;
 	}
 }
