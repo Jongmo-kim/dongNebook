@@ -28,6 +28,7 @@ table>tbody>tr{
    	background:#a8dba8;
 	color:white;
 }
+
 .btn-div{
 	text-align:right;
 }
@@ -39,9 +40,17 @@ table>tbody>tr{
 <body>
 	<jsp:include page="/views/common/header.jsp" />
 	<div class="main-wrap">
-	<c:if test="${sessionScope.loginAdmin !=null}">
-	<jsp:include page="/views/common/adminSide.jsp" />
-	</c:if>
+		<c:choose>
+			<c:when test="${sessionScope.loginAdmin !=null}">
+				<jsp:include page="/views/common/adminSide.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include page="/views/common/userSide.jsp" />
+			</c:otherwise>
+		</c:choose>
+		<div class="contents">
+			<div class="admin-contents">
+				<div id="main-container" class="main-container nav-effect-1">
 	<c:if test="${n.noticeWriter.equals(sessionScope.loginAdmin.nickName) }">
 		<button onclick="updateNotice();" class="btn btn-lg btn-primary">수정하기</button>
 		<button onclick="deleteNotice();" class="btn btn-lg btn-danger">삭제하기</button>
@@ -89,6 +98,8 @@ table>tbody>tr{
 	<div class="btn-div">
 		<button onclick="noticeList();" class="btn btn-lg btn-outline-secondary">목록</button>
 	</div>
+		</div></div></div>
+	
 	</div>
 	<script>
       //첨부파일 다운로드

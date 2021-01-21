@@ -79,11 +79,11 @@ table>tbody>tr:first-child>th:nth-child(3) {
 }
 
 table>tbody>tr:first-child>th:nth-child(4) {
-	width: 150px;
+	width: 100px;
 }
 
 table>tbody>tr:first-child>th:nth-child(5) {
-	width: 150px;
+	width: 100px;
 }
 
 table>tbody>tr:first-child>th:nth-child(6) {
@@ -123,7 +123,10 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 .botton {
 	text-align: center;
 }
-
+	img{
+	width:100%;
+	height : 100%;
+	}
 .pbtn {
 	width: 100px;
 	height: 50px;
@@ -176,13 +179,29 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 .selectOn{
 	background-color : #3b8686;
 }
+.reason1{
+	display : none;
+}
+.reason{
+	outline: none;
+	border : none;
+	background-color: white;
+	border-radius: 5px;
+}
+.reason:focus{
+	outline : none;
+}
 </style>
 <jsp:include page="/views/common/linkHead.jsp" />
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	<jsp:include page="/views/common/adminSide.jsp" />
+	<div class="contents-frame">
 	<div class="contents">
+	
+	<jsp:include page="/views/common/adminSide.jsp" />
+	<div class="admin-contents">
+	<div id="main-container" class="main-container nav-effect-1">
 		<h1 style="font-size: 30px;">도서신청목록</h1>
 		<hr>
 		<div class="list-contents">
@@ -210,7 +229,8 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 									<p>${b.bookName }</p>
 									<p>${b.bookWriter }</p>
 									<p>${b.ISBN }</p>
-									<p>${b.reason }</p>
+									<button class="reason">사유 <i class="fas fa-angle-down"></i></button>
+							<div class = "reason1">${b.reason }</div>
 								</td>
 								<td>${b.bookKind }</td>
 
@@ -230,7 +250,8 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 							<p>${b.bookName }</p>
 							<p>${b.bookWriter }</p>
 							<p>${b.ISBN }</p>
-							<p>${b.reason }</p>
+							<button class="reason">사유 <i class="fas fa-angle-down"></i></button>
+							<div class = "reason1">${b.reason }</div>
 						</td>
 						<td>${b.bookKind }</td>
 
@@ -251,7 +272,8 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 							<p>${b.bookName }</p>
 							<p>${b.bookWriter }</p>
 							<p>${b.ISBN }</p>
-							<p>${b.reason }</p>
+							<button class="reason">사유 <i class="fas fa-angle-down"></i></button>
+							<div class = "reason1">${b.reason }</div>
 						</td>
 						<td>${b.bookKind }</td>
 
@@ -308,14 +330,18 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 					</div>
 				</div>
 			</div>
-
+</div></div>
 			<div class="pagination justify-content-center" id="pageNavi">${pageNavi }</div>
 
 
 		</div>
-
+</div>
+</div>
 		<script>
-		
+		$(".reason").click(function(){
+			$(this).next().slideToggle();
+			
+		})
 		function selected(selectType){
 			
 			location.href="/proposal/proposalList.do?reqPage=1&selectType="+selectType;

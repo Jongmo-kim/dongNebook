@@ -836,7 +836,9 @@ body {
 		color:white;
          }
 .aladin-img{
-	height:50px;
+	height: 50px;
+    width: 14%;
+    float: left;
 }
 .aladin-img img{
 	height:50px;
@@ -855,7 +857,7 @@ body {
 </style>
 <body>
 <jsp:include page="/views/common/header.jsp" />
-	<jsp:include page="/views/common/adminSide.jsp" />
+	<jsp:include page="/views/common/userSide.jsp" />
 	<div class="contents">
 	<h1 style="font-size:30px;">도서등록</h1>
 		<hr>
@@ -866,7 +868,7 @@ body {
   <div class="main clearfix">
 
     <!-- Header Content -->
-    <header id="header" class="page-header">
+    <header id="headerContent" class="page-header">
       
       <div class="aladin-img"><img src="/image/book/aladin.png"></div>
       <div align="right" class="form-inline">
@@ -921,8 +923,17 @@ const resultFunc = function(success, data){//const = final  상수형변수
 			console.log(cover500);
 			console.log(data);
 			console.log("보낼거"+JSON.stringify(data.item[i]));
+			//특수문자 제거중.....
+			var tmp=data.item[i].description;
+			var description = tmp.replace(/\'/g,'');
+			var title=(data.item[i].title).replace(/[\☆♡\[\]★]/g,'');
+			data.item[i].description=description;
+			data.item[i].title=title;
+			console.log("봐봐"+description);
+			console.log("타이틀"+title);
 			var sendData= JSON.stringify(data.item[i]);
-			$("#grid").append("<li class='book-item small-12 medium-6 columns' data-groups='[classic]' data-date-created='1937' data-title='Of Mice and Men' data-color='#fcc278'>"+"<div class='bk-img'>"+"<div class='bk-wrapper'>"+"<div class='bk-book bk-bookdefault'>"+"<div class='bk-front'>"+"<div class='bk-cover' style='background-image: url("+cover500+")'>"+"</div>"+"</div>"+"<div class='bk-back'>"+"</div>"+"<div class='bk-left'></div></div></div></div><div class='item-details'><h3 class='book-item_title'>"+data.item[i].title+"</h3><p class='author'>"+data.item[i].author+"</p><p>"+data.item[i].description+"</p><a onclick='bookinsert("+sendData+")' class='button'>신청</a></div></li>");
+			//특수문자 제거완료.....
+			$("#grid").append("<li class='book-item small-12 medium-6 columns' data-groups='[classic]' data-date-created='1937' data-title='Of Mice and Men' data-color='#fcc278'>"+"<div class='bk-img'>"+"<div class='bk-wrapper'>"+"<div class='bk-book bk-bookdefault'>"+"<div class='bk-front'>"+"<div class='bk-cover' style='background-image: url("+cover500+")'>"+"</div>"+"</div>"+"<div class='bk-back'>"+"</div>"+"<div class='bk-left'></div></div></div></div><div class='item-details'><h3 class='book-item_title'>"+data.item[i].title+"</h3><p class='author'>"+data.item[i].author+"</p><p>"+(data.item[i].description)+"</p><a onclick='bookinsert("+sendData+")' class='button'>신청</div></li>");
 		}	
 		$.ajax({
 			method: "get",
@@ -970,7 +981,7 @@ function bookSearch(page){
 		complete: function(){
 			$('.searchBtn').html('Submit');
 		},
-		data : {ttbkey:'ttboptta922158008',Query:searchKeyword,maxresult:'10',Start:page,Output:'js'}, 
+		data : {ttbkey:'ttboptta922158008',Query:searchKeyword,maxresult:'10',Start:page,Output:'js',SearchTarget:'Book',Sort:'SalesPoint',Cover:'Big'}, 
 		jsonpCallback : "resultFunc", //response받을때 동작하는 함수명  resultFunc 위 함수
 		dataType:"jsonp"	//cors우회..	 해킹
 	});

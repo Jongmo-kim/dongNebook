@@ -7,12 +7,66 @@
 <meta charset="UTF-8">
 <title>책 상세정보</title>
 <jsp:include page="/views/common/linkHead.jsp"/>
+<link rel="stylesheet" href="/css/book/selectOneBook.css?v=<%=System.currentTimeMillis()%>">
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	
-	<h1 style="font-size:30px;">책 상세정보</h1>
-	<hr>
+	<jsp:include page="/views/common/userSide.jsp" />
+	<div class="content-wrap">
+		<h1 style="font-size:30px;">도서등록</h1>
+		<hr>
+		<div class="content">
+			<div class="content-top">
+				<div class="BookInfo">
+					<div id="selectBookImg">
+						<img alt="${b.bookName }Image" src="${b.imageurl}" width="100%" height="100%">
+					</div>
+					<div id="bookTable">
+						<table border="0" width="700" style="table-layout:fixed;">
+							<tr id="title">
+								<th>제목</th><td>${b.bookName}</td>
+							</tr>
+							<tr id="title">
+								<th>저자</th><td>${b.bookWriter}</td>
+							</tr>
+							<tr id="title">
+								<th>카테고리</th><td>${b.bookKind}</td>
+							</tr>
+							<tr id="title">
+								<th>출판사</th><td>${b.bookPublisher}</td>
+							</tr>
+							<tr id="title">
+								<th>표준부호</th><td>${b.ISBN}</td>
+							</tr>
+							<tr id="introduce">
+								<th style="padding-bottom: 50px;">책소개</th><td style="word-break:break-all;">${b.bookIntroduce}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="content-middle">
+				<ul class="status">
+					<li><strong>표준부호(ISBN)</strong></li>
+					<li><strong>반납 예정일</strong></li>
+					<li><strong>대출상태</strong></li>
+					<li>${b.ISBN}</li>
+					<li>반납예정일</li>
+					<li style="line-height: normal;">대출불가상태(다른 사용자 대출중 21/01/20 반납예정)</li>
+				</ul>
+			</div>
+			<div class="content-bottom">
+				<c:if test="${loginUser!=null }">
+					<a href="/bookRental.do?bookNo=${b.bookNo}">대출신청</a><a>이전으로</a>
+ 				</c:if>
+ 				<c:if test="${loginUser==null }">
+					<a href="/loginFrm.do">대출신청</a><a style="color: #80e27e;">이전으로</a>
+				</c:if>
+			</div>
+		</div>
+	</div>
+		
+	<!-- 
 	<table border=1>
 		<tr>
 			<th>책이름</th><th>이미지</th><th>카테고리</th><th>저자</th><th>출판사</th><th>소개</th><th>대출</th>
@@ -29,5 +83,6 @@
 			</td>
 		</tr>
 	</table>
+	 -->
 </body>
 </html>

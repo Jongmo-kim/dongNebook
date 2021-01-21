@@ -314,9 +314,12 @@ body {margin: 10px;}
 </style>
 <body>
 <jsp:include page="/views/common/header.jsp" />
-   
-   <jsp:include page="/views/common/adminSide.jsp" />
+   <div class="contents-frame">
 	<div class="contents">
+   <jsp:include page="/views/common/adminSide.jsp" />
+   <div class="admin-contents">
+	
+	<div id="main-container" class="main-container nav-effect-1">
 	<h1 style="font-size:30px;">대출관리</h1>
          <hr>
          <form action="/admin/manageUser.do" method="get">
@@ -404,7 +407,10 @@ body {margin: 10px;}
                </div>
 	    </c:forEach>
 	  </ul>
+	  </div>
+	  </div>
 		  <div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
+  </div>
   </div>
   <script>
  // var arr = new Array();
