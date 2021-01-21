@@ -239,12 +239,12 @@
 	<div class="contents-frame">
 	<div class="contents">
 	<c:choose>
-		<c:when test="${sessionScope.loginAdmin !=null}">
-			<jsp:include page="/views/common/adminSide.jsp" />
-		</c:when>
-		<c:otherwise>
-		
-		</c:otherwise>
+	<c:when test="${sessionScope.loginAdmin !=null}">
+	<jsp:include page="/views/common/adminSide.jsp" />
+	</c:when>
+	<c:otherwise>
+		<jsp:include page="/views/common/userSide.jsp" />
+	</c:otherwise>
 	</c:choose>
 	<div class="admin-contents">
 	

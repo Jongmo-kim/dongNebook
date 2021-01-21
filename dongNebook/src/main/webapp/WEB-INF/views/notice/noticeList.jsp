@@ -57,9 +57,14 @@ display:inline-block;
 	<jsp:include page="/views/common/header.jsp" />
 	<div class="contents-frame">
 	<div class="contents">
-	<c:if test="${sessionScope.loginAdmin !=null}">
+	<c:choose>
+	<c:when test="${sessionScope.loginAdmin !=null}">
 	<jsp:include page="/views/common/adminSide.jsp" />
-	</c:if>
+	</c:when>
+	<c:otherwise>
+		<jsp:include page="/views/common/userSide.jsp" />
+	</c:otherwise>
+	</c:choose>
 	<div class="admin-contents">
 	
 	<div id="main-container" class="main-container nav-effect-1">
