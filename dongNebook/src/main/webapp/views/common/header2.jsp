@@ -108,20 +108,28 @@
 padding-top:50px;}
 
 .menu{
-	padding-top:70px;
+	/* padding-top: 70px; */
+    display: block;
+    /* font-size: 10px; */
 }
 .menu>ul{
-list-style-type: none;
-padding:0;
-margin:0;}
+	list-style-type: none;
+    /* padding: 0; */
+    /* margin: 0; */
+    float: right;
+}
 .menu>ul>li{
-float:right;
-margin-right:20px;
+    /* float: right; */
+    float: left;
+    margin-right: 20px;
+    font-size: 10px;
+    /* width: 14px; */
 }
 .menu>ul>li>a{
-text-decoration: none;
-color : black;
-font-size: 20px;
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
 }
 </style>
 <header>

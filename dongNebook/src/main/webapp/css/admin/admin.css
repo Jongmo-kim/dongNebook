@@ -78,3 +78,10 @@
     height: 100%;
     min-width: 1800px;
 }
+.main-container {
+  position: relative;
+  overflow-x: hidden;
+}
+.main-container.prevent-scroll, .main-container.nav-menu-open {
+  overflow: hidden;
+}
