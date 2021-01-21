@@ -1,8 +1,13 @@
 @charset "UTF-8";
+	.wrap{
+		width: 100vw;
+		min-width: 1800px;		
+	}
 	.content-wrap{
+		margin: 0 auto;
 		float: left;
 		margin-left: 20px;
-		width: calc(100%-200px);
+		width: 80%;
 	}
 	.content{
 		width: 100%;

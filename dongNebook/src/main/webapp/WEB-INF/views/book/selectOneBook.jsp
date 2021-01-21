@@ -60,7 +60,7 @@
 					<a href="/bookRental.do?bookNo=${b.bookNo}">대출신청</a><a>이전으로</a>
  				</c:if>
  				<c:if test="${loginUser==null }">
-					<a href="/loginFrm.do">대출신청</a><a style="color: #80e27e;">이전으로</a>
+					<a href="/user/loginFrm.do">대출신청</a><a style="color: #80e27e;">이전으로</a>
 				</c:if>
 			</div>
 		</div>
