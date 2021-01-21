@@ -12,7 +12,6 @@
 	<jsp:include page="/views/common/header.jsp" />
 	
 	<h1 style="font-size:30px;">책 상세정보</h1>
-	<h1 style="font-size:30px;">책 상세정보</h1>
 	<hr>
 	<table border=1>
 		<tr>
