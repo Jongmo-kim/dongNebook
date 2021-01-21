@@ -236,7 +236,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="main-wrap">
+	<div class="contents-frame">
+	<div class="contents">
 	<c:choose>
 		<c:when test="${sessionScope.loginAdmin !=null}">
 			<jsp:include page="/views/common/adminSide.jsp" />
@@ -245,12 +246,16 @@
 		
 		</c:otherwise>
 	</c:choose>
-	<div class="contents">
+	<div class="admin-contents">
+	
+	<div id="main-container" class="main-container nav-effect-1">
 	<h3>| 이달의 도서관</h3>
 	<hr>
 	<br>
 	<div id='calendar'></div>
 	<br><br><br>
+	</div>
+	</div>
 	</div>
 	</div>
 	<script>

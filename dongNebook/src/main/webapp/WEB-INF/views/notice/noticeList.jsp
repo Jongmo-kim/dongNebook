@@ -26,11 +26,14 @@ text-align:center;
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	<div class="main-wrap">
+	<div class="contents-frame">
+	<div class="contents">
 	<c:if test="${sessionScope.loginAdmin !=null}">
 	<jsp:include page="/views/common/adminSide.jsp" />
 	</c:if>
-	<div class="contents">
+	<div class="admin-contents">
+	
+	<div id="main-container" class="main-container nav-effect-1">
 	<h1 style="font-size:30px;">| 공지사항</h1>
 	<hr>
 	<table class="table table-hover">
@@ -53,6 +56,8 @@ text-align:center;
 		<button onclick="insertNotice();" class="btn btn-lg btn-primary">작성하기</button>
 		<button onclick="deleteNotice();" class="btn btn-lg btn-danger">삭제하기</button>
 	</c:if>
+	</div>
+	</div>
 	<p style="text-align:center">${pageNavi }</p>
 	</div>
 	</div>
