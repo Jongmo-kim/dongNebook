@@ -28,6 +28,7 @@ table>tbody>tr{
    	background:#a8dba8;
 	color:white;
 }
+
 .btn-div{
 	text-align:right;
 }
