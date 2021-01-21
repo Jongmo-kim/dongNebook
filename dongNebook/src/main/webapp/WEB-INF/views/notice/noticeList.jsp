@@ -56,7 +56,6 @@ width:1200px !important;}
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-<<<<<<< HEAD
 	<div class="contents-frame">
 	<div class="contents">
 	<c:if test="${sessionScope.loginAdmin !=null}">
