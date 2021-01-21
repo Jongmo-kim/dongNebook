@@ -90,4 +90,11 @@ public class BookDao {
 		return (ArrayList<Book>)list;
 	}
 
+	public int totalCount(String inputStr, String searchKeyword) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("inputStr", inputStr);
+		map.put("searchKeyword", searchKeyword);
+		return session.selectOne("book.selectSearchCount",map);
+	}
+
 }

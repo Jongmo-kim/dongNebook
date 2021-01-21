@@ -23,6 +23,34 @@
 		(select rownum as rnum, n.* from(select * from book order by 1 desc)n) 
 		where rnum between #{start} and #{end}
 	</select>
+	<select id="selectSearchCount" resultType="_int" parameterType="map">
+				
+	SELECT count(*)
+	FROM
+	           (select
+					*
+				from
+					book
+				where 1=1
+					<choose>
+						<when test="searchKeyword.equals('책이름')">
+							AND book_name like '%' || #{inputStr} || '%'
+						</when>
+						<when test="searchKeyword.equals('저자')">
+							AND book_writer like '%' || #{inputStr} || '%'
+						</when>
+						<when test="searchKeyword.equals('출판사')">
+							AND book_publisher like '%' || #{inputStr} || '%'
+						</when>
+						<otherwise>
+							and book_name like '%' || #{inputStr} || '%'
+							or book_publisher like '%' || #{inputStr} || '%'
+							or book_writer like '%' || #{inputStr} || '%'
+						</otherwise>
+					</choose>
+				)
+	
+	</select>
 	<select id="selectAllBook" resultType="book">
 		select 
 	     	book_no,
