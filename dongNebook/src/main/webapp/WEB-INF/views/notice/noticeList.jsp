@@ -46,8 +46,7 @@ width:20x;
 height:40px;
 display:inline-block;
 }
-.contents{
-width:1200px !important;}
+
 .admin-contents{
 }
 #main-container{
@@ -56,7 +55,7 @@ width:1200px !important;}
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-<<<<<<< HEAD
+
 	<div class="contents-frame">
 	<div class="contents">
 	<c:if test="${sessionScope.loginAdmin !=null}">
