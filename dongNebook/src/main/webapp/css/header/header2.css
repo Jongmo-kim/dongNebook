@@ -177,12 +177,8 @@ html {
     	margin-right: 10px;
     	
     }
-    .nav-chat{
-    	width: 30px;
-   	 	height: 100%;
-    	text-align: center;
-    	line-height: 46px;
-    	float:left;
+    .chat-bell{
+    	position:relative;
     }
     .nav-board path{
     	
@@ -198,4 +194,23 @@ html {
     .nav-chat a{
     	text-decoration:none;
     	color: black;
+    }
+    .chat-bell div{
+    	position: absolute;
+       top: 11px;
+    left: 9px;
+    border-radius: 50%;
+    border: 7px solid red;
+    display:none;
+    }
+    .chat-bell p{
+    position: absolute;
+    top: -23px;
+    left: -6px;
+    width: 12px;
+    text-align: center;
+    
+    font-size: 2px;
+    z-index:999;
+    color: white;
     }

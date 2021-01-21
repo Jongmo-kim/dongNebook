@@ -6,15 +6,17 @@
 <meta charset="UTF-8">
 <title>비밀번호 변경</title>
 <jsp:include page="/views/common/linkHead.jsp"/>
-<link href="../css/user/loginFrm.css" type="text/css" rel="stylesheet">
+<link href="../css/user/mypageFrm.css" type="text/css" rel="stylesheet">
 <link href="../css/user/inputBox.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet" href="../css/common/button.css">
 <script type="text/javascript" src="../js/user/inputBox.js"></script>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
+	<div class="content">
 	<form action="/user/update.do" method="post">
-		<h1>비밀번호 변경</h1><hr>
+		<h1 style="text-aligin:center;">비밀번호 변경</h1><hr>
+		<br>
             <input type="hidden" name="userNo" value="${loginUser.userNo }" >
             <div class="name inputBox">
 				<input type="password" name="userPw" class="form-textbox">
@@ -36,6 +38,7 @@
         	<button class="btn btn-outline-primary">수정하기</button>
         </div>
 	</form>
+	</div>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<jsp:include page="/views/common/footer.jsp" />
 </body>

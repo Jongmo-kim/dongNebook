@@ -25,12 +25,15 @@
 	 	insert into chat_message values(cm_seq.nextval, #{cmSender},#{cmReceiver},#{message},'읽지않음',to_char(sysdate,'yyyy-mm-dd'))
 	 </insert>
 	 <insert id="insertCmSender" parameterType="com.dongnebook.chat.model.vo.ChatMessage">
-	 	insert into chat_user values(#{cmSender})
+	 	insert into chat_user values(cu_seq.nextval,#{cmSender})
 	 </insert>
 	 <select id="selectLastCm" parameterType="string" resultType="com.dongnebook.chat.model.vo.ChatMessage">
 	 	select * from (select * from CHAT_MESSAGE where CM_RECEIVER=#{_parameter} order by cm_no desc) where ROWNUM=1
 	 </select>
 	 <update id="readChat" parameterType="string">
-	 	update chat_message set check_message='읽음' where cm_sender=#{_parameter} or cm_receiver=#{_parameter}
+	 	update chat_message set check_message='읽음' where cm_receiver=#{_parameter}
 	 </update>
+	 <select id="cmCount" parameterType="string" resultType="_int">
+	 	select count(*) from chat_message where cm_receiver = #{_parameter} and check_message = '읽지않음'
+	 </select>
 </mapper>

@@ -57,7 +57,12 @@ public class ChatDao {
 	}
 
 	public int readChat(String loginUser) {
+		System.out.println("리시버 처리:"+loginUser);
 		return session.update("chat.readChat",loginUser);
+	}
+
+	public int cmCount(String data) {
+		return session.selectOne("chat.cmCount", data);
 	}
 	
 }

@@ -13,6 +13,62 @@
          	background:#a8dba8;
 		color:white;
 }
+
+.green {
+    color: #3e5706;
+}
+.button {
+    display: block;
+    position: relative;
+    margin: 10px;
+    padding: 0 20px;
+    text-align: center;
+    text-decoration: none;
+    font: bold 12px/25px Arial, sans-serif;
+ 	width:200px;
+    text-shadow: 1px 1px 1px rgba(255,255,255, .22);
+ 
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+ 
+    -webkit-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+    -moz-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+    box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+ 
+    -webkit-transition: all 0.15s ease;
+    -moz-transition: all 0.15s ease;
+    -o-transition: all 0.15s ease;
+    -ms-transition: all 0.15s ease;
+    transition: all 0.15s ease;
+}
+.chat-room-name{
+	padding-left:12px;
+	
+}
+.chat-room-frame{
+position:relative;
+}
+.cmCount-frame{
+    position: absolute;
+    top: 11px;
+    right: 9px;
+    border-radius: 50%;
+    border: 8px solid red;
+    display: none;
+}
+    }
+    .cmCount-frame p{
+    position: absolute;
+    top: -23px;
+    left: -6px;
+    width: 12px;
+    text-align: center;
+    
+    font-size: 2px;
+    z-index:999;
+    color: white;
+    }
 </style>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
@@ -22,10 +78,28 @@
          <hr>
         
      <c:forEach items="${list}" var="room">
-		<form action="/chat/chatRoom.do?chatUser=${room.getCmSender()}" method="post">
-			<button class="chatRoom" type="submit">${room.getCmSender()}의 방</button>
-		</form>
+		<!--  <form action="/chat/chatRoom.do?chatUser=${room.getCmSender()}" method="post">-->
+		<c:if test="${room.getCmSender()!=null}">
+		<div class="chat-room-frame">
+			<p class="chat-room-name">${room.getCmSender()}님의 채팅방</p>
+				<div class="cmCount-frame">
+											<p class="cmCount" id="${room.getCmSender()}"></p>
+				</div>
+			</div>
+			<button class="button big green" onclick="openAdminWindow('${room.getCmSender()}')" type="submit">채팅방 입장</button>
+			<hr>
+			</c:if>
+		<!-- </form> -->
 	</c:forEach>
    </div>
+   <script >
+   		function openAdminWindow(data){
+   			console.log(data);
+   			var parameter=data;
+			   var	ret = window.open("/chat/chatRoom.do?chatUser="+parameter+"", "PopupWin", "width=420,height=600,top=-100,left=12000,status=0,toolbar=0,scrollbars=0,titlebar=0");	
+			   
+   		}
+   		
+   </script>
 </body>
 </html>
