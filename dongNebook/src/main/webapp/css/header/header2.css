@@ -139,7 +139,7 @@ html {
         max-width: 100%;
     }
     .mem-sel {
-       /*  width: 25%; */
+       width: 25%;
         height: 100%;
         float: left;
         text-align: right;
