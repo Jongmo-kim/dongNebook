@@ -13,6 +13,9 @@
 	.alert{
 		margin-bottom: 2px;
 	}
+	.autor{
+		
+	}
 </style>
 
 <link rel="stylesheet" href="/css/book/searchBook.css?v=<%=System.currentTimeMillis()%>">
@@ -33,7 +36,7 @@
             <div style="position:relative">
 
                 <!--가로--> <img class="d-block w-100" src="../image/index/img.png" alt="First slide">
-				<div class="searchBox"style="position: absolute; top: 50%;">
+				<div class="searchBox">
 		<div class="searchFrm" ">
 			<form action="/book/searchBook.do" name="searchBook" method="get" >
 				<input type="hidden" name="reqPage" value="1">
@@ -59,34 +62,51 @@
         </div>
 
         <div class="sub-description">
-            <p>대출순위</p>
+        <div>
+            <p>대출베스트</p>
+            </div>
         </div>
         <div class="sub-item">
             <div>
-                <div class="book-rank-frame">
+                <div class="book-rank-frame" id="rank-first-frame">
                 	<div class="book-rank"></div>
-                    <div class="book-img"><img src="https://image.aladin.co.kr/product/24788/21/cover/k342631735_1.jpg"></div>
-                    <div class="book-info"></div>
+                    <div class="book-img"></div>
+                    <div class="book-info">
+                    	<h3 class="book-title"></h3>
+                    	<h4 class="autor"></h4>
+                    </div>
                 </div>
                 <div class="book-rank-frame">
                 <div class="book-rank"></div>
                     <div class="book-img"></div>
-                    <div class="book-info"></div>
+                    <div class="book-info">
+                    	<h3 class="book-title"></h3>
+                    	<h4 class="autor"></h4>
+                    </div>
                 </div>
                 <div class="book-rank-frame">
                 <div class="book-rank"></div>
                     <div class="book-img"></div>
-                    <div class="book-info"></div>
+                    <div class="book-info">
+                    	<h3 class="book-title"></h3>
+                    	<h4 class="autor"></h4>
+                    </div>
                 </div>
                 <div class="book-rank-frame">
                 <div class="book-rank"></div>
                     <div class="book-img"></div>
-                    <div class="book-info"></div>
+                    <div class="book-info">
+                    	<h3 class="book-title"></h3>
+                    	<h4 class="autor"></h4>
+                    </div>
                 </div>
                 <div class="book-rank-frame">
                 <div class="book-rank"></div>
                     <div class="book-img"></div>
-                    <div class="book-info"></div>
+                    <div class="book-info">
+                    	<h3 class="book-title"></h3>
+                    	<h4 class="autor"></h4>
+                    </div>
                 </div>
             </div>
         </div>
@@ -195,16 +215,40 @@
 				data : {},
 				success:function(data){
 					
-						/*var rank= document.getElementsByClassName("book-img");
+						var rank= document.getElementsByClassName("book-img");
+						var title= document.getElementsByClassName("book-title");
+						var autor= document.getElementsByClassName("autor");
 						console.log(data);
+						console.log(data[0]);
 					for(var i=0;i<5;i++){
-						let cover500 = data.item[i].cover.replace(/coversum/g,'cover500');
+						//let cover500 = data.item[i].cover.replace(/coversum/g,'cover500');
 						console.log(i);
-						console.log(rank[i]);
-						rank[i].innerHTML='<img src="' +cover500+ '" />';
+						console.log(data[i].bookName.length);
+						console.log(data[i].bookWriter);
+						var bookName=data[i].bookName;
+						var bookWriter;
+						if(data[i].bookWriter==undefined){
+							console.log("언디파인");
+							bookWriter="작가미상";
+							console.log("언디파인:"+bookWriter);
+						}else{							
+							bookWriter=data[i].bookWriter;
+						}
+						if(bookName.length>10){
+							console.log("넘는다");
+							bookName= data[i].bookName.substring(0,9)+"...";
+							
+							console.log(bookName);
+						}
+						if(bookWriter.length>13){
+							bookWriter=data[i].bookWriter.substring(0,13)+"...";
+							console.log("... 작가:"+bookWriter);
+						}
+						rank[i].innerHTML='<img src="' +data[i].imageurl+ '" />';
+						title[i].innerHTML=bookName;
+						autor[i].innerHTML=bookWriter;
 						
-						
-					}*/
+					}
 				}
 			});
 		});
