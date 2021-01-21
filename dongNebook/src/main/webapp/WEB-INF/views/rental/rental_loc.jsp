@@ -14,7 +14,9 @@
 	<div class="admin-contents-frame">
        
         <div class="admin-contents">
-           
+        	<h3>상호대차 위치검색</h3>
+        	<hr>
+           <br>
             <div class="admin-map">
             	<div class="map_wrap">
 				    <div id="map" style="width:100%;height:555px;position:relative;overflow:hidden;"></div>
@@ -35,15 +37,15 @@
 </div>
             </div>
             <div class="admin-explain">
-            	<input type="hidden" value="${rentalList }">
-	            <input type="text" class="loc-inform" name="placeName" id="loc-inform" readonly>
-            </div>
             <form action="/mergeLoc.do">
             
+	            <input type="text" class="loc-inform" name="placeName" id="loc-inform" readonly>
+            	<input type="hidden" value="${rentalList }">
 				<input type="hidden" id="loc-addr" name="addr">
 				<input type="hidden" id="loc-phone" name="phone">
 	            <button class="loc-inform-submit">확인</button>
             </form>
+            </div>
         </div>
     </div>
     

@@ -5,220 +5,171 @@
 .fa-clipboard, .fa-bell {
 	cursor: pointer;
 }
-
-* {
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 11pt;
-}
-
-.row {
-	width: 100%;
-	margin-right: 0;
-}
-
-.nav-wrap {
-	position: relative;
-    width: 80%;
-    margin: 0 auto;
-}
-
-.row>* {
-	z-index: 10;
-}
-
-.col-md-3, .col-md-6 {
-	padding: 0;
-	height: 120px;
-	display: flex;
-	/* justify-content: center; */
-	align-items: center;
-}
-
-.nav>ul {
-	list-style-type: none;
-	margin: 0 auto;
-	padding: 0;
-	display: flex;
-	justify-content: center;
-}
-
-.nav>ul>li {
-	float: left;
-}
-
-.nav>ul>li>a {
-	text-decoration: none;
-	color: black;
-	width: 150px;
-	height: 80px;
-	line-height: 80px;
-	display: block;
-	text-align: center;
-	font-size: 28px;
-	font-weight: 400;
-}
-
-.nav>ul>li>ul {
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-	position: absolute;
-	display: none;
-}
-
-.nav>ul>li>ul>li>a {
-	text-decoration: none;
-	color: black;
-	width: 150px;
-	height: 30px;
-	line-height: 30px;
-	display: block;
-	text-align: center;
-}
-
-.nav>ul>li>ul>li>a:hover {
-	color: brown;
-	text-decoration: underline;
-}
-.sub {
-	width: 100vw;
-    height: 350px;
-    background-color: white;
-    display: none;
-    z-index: 9;
-    position: absolute;
-    top: 0;
-    left: -183px;
-
-}
-
-.sub-wrap {
-	    position: absolute;
-    top: 0px;
-    left: -185px;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 8;
-    display: none;
-    justify-content: center;
-    align-items: center;
-}
-.nav{
-padding-top:50px;}
-
-.menu{
-	/* padding-top: 70px; */
-    display: block;
-    /* font-size: 10px; */
-}
-.menu>ul{
-	list-style-type: none;
-    /* padding: 0; */
-    /* margin: 0; */
-    float: right;
-}
-.menu>ul>li{
-    /* float: right; */
-    float: left;
-    margin-right: 20px;
-    font-size: 10px;
-    /* width: 14px; */
-}
-.menu>ul>li>a{
-    text-decoration: none;
-    color: black;
-    font-size: 15px;
-    font-weight: bold;
-}
 </style>
 <header>
+
 	<div class="header">
-		<div class="nav-wrap">
-			<div class="row">
-				<div class="col-md-3 logo">
-					<div class="main-img">
-						<a href="/"> <img src="../image/header/DongNeBook2nd.png">
-						</a>
-					</div>
+		<div class="menu-frame">
+			<div>
+				<div class="main-img">
+					<a href="/"> <img src="../image/header/colorBook-logo.png">
+					</a>
 				</div>
-				<div class="col-md-6 nav">
-					<ul>
-						<li><a href="#">자료검색</a>
-							<ul>
-								<li><a href="#">자료 검색</a></li>
-								<li><a href="#">새로 들어온 책</a></li>
-								<li><a href="#">대출 베스트</a></li>
-							</ul></li>
-						<li><a href="#">열린공간</a>
-							<ul>
-								<li><a href="#">이 달의 도서관</a></li>
-								<li><a href="#">공지사항</a></li>
-							</ul></li>
-						<li><a href="#">나의 도서관</a>
-							<ul>
-								<li><a href="#">내 서재</a></li>
-								<li><a href="#">마이페이지</a></li>
-							</ul></li>
+				<div class="main-menu">
+					<ul class="menu-list">
+						<li><a href="/book/searchBookFrm.do">Book</a></li>
+						<li><a href="/calendar/calendarView.do">Service</a></li>
+						<li><a href="/notice/noticeList.do?reqPage=1">Notice</a></li>
 					</ul>
 				</div>
-				<div class="col-md-3 menu">
-						<ul>
-							<c:choose>
-								<c:when test="${loginUser == null }">
-									<c:choose>
-										<c:when test="${loginAdmin == null }">
-											<li><a href="/user/loginFrm.do">로그인</a></li>
-											<li><a href="/user/signupFrm.do">회원가입</a></li>
-										</c:when>
-										<c:otherwise>
-											<li><a href="/aladin/searchInAladin.do">관리자</a></li>
-											<li><a href="/admin/logout.do">로그아웃</a></li>
-										</c:otherwise>
-									</c:choose>
+
+
+
+				<div class="mem-sel">
+					<ul>
+						<c:choose>
+							<c:when test="${loginUser == null }">
+								<c:choose>
+									<c:when test="${loginAdmin == null }">
+										<li><a href="/user/loginFrm.do">로그인</a></li>
+										<li><a href="/user/signupFrm.do">회원가입</a></li>
+									</c:when>
+									<c:otherwise>
+										<li><a href="/aladin/searchInAladin.do">관리자</a></li>
+										<li><a href="/admin/logout.do">로그아웃</a></li>
+									</c:otherwise>
+								</c:choose>
 								</c:when>
-								<c:otherwise>
-									<li><a href="/user/mypageFrm.do">마이페이지</a></li>
-									<li>
-										<!-- <i class="fas fa-clipboard"></i> --> <a href="#">도서
-											추천</a>
-									</li>
-									<li><a href="/user/logout.do">로그아웃</a></li>
-									<li><a onclick="openWindow()"> <!-- <i class="fas fa-bell"></i> -->
-											<i class="fas fa-lg fa-bell"></i>
-									</a></li>
-									<%-- <li>
+							<c:otherwise>
+								<li><a href="/user/mypageFrm.do">마이페이지</a></li>
+								<li>
+									<!-- <i class="fas fa-clipboard"></i> --> <a href="#">도서 추천</a>
+								</li>
+								<li><a href="/user/logout.do">로그아웃</a></li>
+								<li><a class="chat-bell" onclick="openWindow()"> <!-- <i class="fas fa-bell"></i> -->
+										<i class="fas fa-lg fa-bell"></i>
+										<div class="cmCount-frame">
+											<p class="cmCount"></p>
+										</div>
+								</a></li>
+								<%-- <li>
 			                        	<a href="/user/delete.do?userNo=${loginUser.userNo }">Withdrawal</a>
 			                        </li> --%>
-								</c:otherwise>
-							</c:choose>
-						</ul>
-					</div>
+							</c:otherwise>
+						</c:choose>
+					</ul>
+				</div>
 			</div>
-			<div class="sub"></div>
-			<div class="sub-wrap"></div>
-			<div class="blank"></div>
 		</div>
-
 	</div>
 	<div class="search-frame"></div>
-	<script>
-        $(function() {
-            $(".col-md-6>ul").mouseover(function() {
-                $(".sub-wrap").show();
-                $(".sub").slideDown(500);
-                $(".nav>ul>li>ul").slideDown(600);
-                $(".logo>img").attr('src', 'img/logo2.png');
+            <script>
+    	
+		var ws;
+		var memberId = '${sessionScope.loginUser.userId}';
+		var adminId='${sessionScope.loginAdmin.adminId}';
+		function connect(){
+			ws = new WebSocket("ws://localhost/chat.do");
+			ws.onopen = onOpen;
+			ws.onmessage = onMessage;
+			ws.onclose = onClose;
+		}
+		function onOpen(){
+			console.log("접속 성공");
+			if(memberId!=""){
+				console.log("유저");
+				var msg = {
+						type : "register",
+						data : memberId
+				}
+				sendMsg(memberId);
+			}
+			else{
+				console.log("관리자");
+				var msg = {
+						type : "register",
+						data : adminId
+				}
+				sendMsg(adminId);
+			}
+			ws.send(JSON.stringify(msg));
+			//위의 onOpen을  DmCount의 handleTextMessage 로 보냄
+			//sendMsg(memberId);//로그인한 아이디 보냄
+		}
+		function onMessage(e) {
+			//리시버를 데이터에 넣는다
+			var receiver=e.data;
+			console.log("e데이터"+e.data);
+			
+			if(receiver=="${sessionScope.loginUser.userId}"){ //로그인 유저랑 리시버랑 비교
+				$.ajax({
+					url : "/chat/chatReload.do",
+					data : {loginUser:"${sessionScope.loginUser.userId}"},
+					type : "post",
+					success : function(data){
+						console.log(data);
+						//채팅 css 추가하는것  (리시버일때만)
+						$(".chat-messages").append("<div class='message-box-holder'><div class='message-sender'>"+data.cmSender+"</div><div class='message-box message-partner'>"+data.message+"</div></div>");
+						$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
+						//$(".cmCount").html(0);
+					}
+				});
+			}else if(receiver=="admin"){
+				$.ajax({
+					url : "/chat/chatReload.do",
+					data : {loginUser:"admin"},
+					type : "post",
+					success : function(data){
+						console.log(data);
+						//채팅 css 추가하는것  (리시버일때만)
+						$(".chat-messages").append("<div class='message-box-holder'><div class='message-sender'>"+data.cmSender+"</div><div class='message-box message-partner'>"+data.message+"</div></div>");
+						$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
+					}
+				});
+			}
+			else{				
+				var count = e.data;
+				$(".cmCount-frame").css("display","block");
+				$(".cmCount").html(count);
+			}
+		}
+		function onClose() {
+			console.log("접속 종료");
+		}
+		function sendMsg(receiver) {
+			var msg = {
+					type : "count",
+					data : receiver
+			}
+			ws.send(JSON.stringify(msg));
+			//receiver=memberId
+			// DmCount의 handleTextMessage 로 보냄
+		}
+		function saveReceiver(receiver){
+			//이거는 리시버를 save타입으로 보내서 로그인 유저와 리시버를 체크하는 용도
+			var msg = {
+					type : "save",
+					data : receiver
+			}
+			ws.send(JSON.stringify(msg));
+		}
+		$(function() {
+			connect();
+		});
+			
+		
+		var ret;
+		function openWindow(){
+			
+			if(${loginUser!=null}){
+				ret = window.open("/chat/chatRoom.do?chatUser=admin", "PopupWin", "width=420,height=600,top=-100,left=12000,status=0,toolbar=0,scrollbars=0,titlebar=0");	
+				
+			}else{
+				alert("사용자만 접근이 가능합니다!");
+			}
+			
 
-            });
-            $(".col-md-6>ul").mouseleave(function() {
-                $(".sub").slideUp(600);
-                $(".sub-wrap").hide();
-                //$(".nav>ul>li>ul").slideUp();
-                $(".nav>ul>li>ul").hide();
-                $(".logo>img").attr('src', 'img/logo3.png');
-            });
-        });
-
-    </script>
+		}
+	</script>
+							
 </header>

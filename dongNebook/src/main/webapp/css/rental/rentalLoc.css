@@ -4,7 +4,7 @@
         position: relative;
         width: 1200px;
         height: 1000px;
-        left: 120px;
+        
         top: 0px;
 
         background: #FFFFFF;
@@ -12,7 +12,7 @@
 
     .admin-contents-frame {
 
-        width: 1200px;
+        width: 470px;
     }
 
     .admin-contents-main {
@@ -115,22 +115,19 @@
     .admin-map {
 
 
-        position: absolute;
+        
         width: 450px;
         height: 555px;
-        left: 231px;
-        top: 274px;
-
+       float:left;
         background: #FFFFFF;
 
     }
     .admin-explain{
-        position: absolute;
+       
         width: 450px;
         height: 555px;
-        left: 716px;
-        top: 274px;
-
+        float:left;
+		display:none;
         background: #FFFFFF;
     }
 	
