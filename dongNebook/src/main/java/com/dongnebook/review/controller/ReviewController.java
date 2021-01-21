@@ -90,8 +90,6 @@ public class ReviewController {
 	public JsonArray item(){
 		JsonArray arr = new JsonArray();
 		JsonObject o = new JsonObject();
-		o.addProperty("value", "One");
-		o.addProperty("label", "Label One");
 		arr.add(o);
 		arr.add(o);
 		arr.add(o);
