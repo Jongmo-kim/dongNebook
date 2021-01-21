@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <jsp:include page="/views/common/linkHead.jsp"/>
+
 </head>
 <style>
 	.adminSideMenu li:nth-child(5) a{
@@ -15,17 +16,16 @@
 }
 
 .green {
-    color: #3e5706;
+  
 }
 .button {
     display: block;
     position: relative;
-    margin: 10px;
     padding: 0 20px;
     text-align: center;
     text-decoration: none;
     font: bold 12px/25px Arial, sans-serif;
- 	width:200px;
+ 	width: 114px;
     text-shadow: 1px 1px 1px rgba(255,255,255, .22);
  
     -webkit-border-radius: 30px;
@@ -81,25 +81,77 @@ position:relative;
    
 	<h1 style="font-size:30px;">1:1상담</h1>
          <hr>
-        
+        <table class="table">
+    <thead>
+        <tr>
+            <th>방번호</th>
+            <th>유저아이디</th>
+            <th>입장</th>
+        </tr>
+    </thead>
+     <tbody>
+        <!-- <tr>
+            <td>Default</td>
+            <td>Defaultson</td>
+            <td>def@somemail.com</td>
+        </tr>     
+        <tr class="success">
+            <td>Success</td>
+            <td>Doe</td>
+            <td>john@example.com</td>
+        </tr>
+        <tr class="danger">
+            <td>Danger</td>
+            <td>Moe</td>
+            <td>mary@example.com</td>
+        </tr>
+        <tr class="info">
+            <td>Info</td>
+            <td>Dooley</td>
+            <td>july@example.com</td>
+        </tr>
+        <tr class="warning">
+            <td>Warning</td>
+            <td>Refs</td>
+            <td>bo@example.com</td>
+        </tr>
+        <tr class="active">
+            <td>Active</td>
+            <td>Activeson</td>
+            <td>act@example.com</td>
+        </tr> -->
+   	<%!
+   		int i=1;
+   	%>
      <c:forEach items="${list}" var="room">
 		<!--  <form action="/chat/chatRoom.do?chatUser=${room.getCmSender()}" method="post">-->
 		<c:if test="${room.getCmSender()!=null}">
-		<div class="chat-room-frame">
+		<tr>
+            <td><%=i++ %></td>
+            <td>${room.getCmSender()}님</td>
+            <td><button class="button big green" onclick="openAdminWindow('${room.getCmSender()}')" type="submit">채팅방 입장</button></td>
+        </tr> 
+		<%-- <div class="chat-room-frame">
 			<p class="chat-room-name">${room.getCmSender()}님의 채팅방</p>
 				<div class="cmCount-frame">
 											<p class="cmCount" id="${room.getCmSender()}"></p>
 				</div>
 			</div>
 			<button class="button big green" onclick="openAdminWindow('${room.getCmSender()}')" type="submit">채팅방 입장</button>
-			<hr>
+			<hr> --%>
+			
 			</c:if>
 		<!-- </form> -->
 	</c:forEach>
+	 </tbody>
+</table>
    </div>
    </div>
    </div>
    </div>
+   
+   
+   
    <script >
    		function openAdminWindow(data){
    			console.log(data);
