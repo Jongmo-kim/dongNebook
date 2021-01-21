@@ -99,6 +99,14 @@
 			</tr>			
 			</c:forEach>
 		</table>
+		<div class="navi">
+			<ul class="pagination justify-content-center" id="pageNavi">
+				<!-- <li class='page-item'>
+					<span class='selectPage page-link'>1</span>
+				</li> -->
+				${navi}
+			</ul>
+		</div>
 	</c:when>
 	<c:otherwise>
 	<div class="notice" style="text-align:center;">

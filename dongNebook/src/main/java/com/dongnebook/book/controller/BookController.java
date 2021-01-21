@@ -112,7 +112,7 @@ public class BookController {
 	public String searchBook(Model model,String inputStr, String searchKeyword,int reqPage,HttpSession session) {
 		ArrayList<Book> list = service.selectBookByKeyword(inputStr,searchKeyword,reqPage);
 		model.addAttribute("bookList", list);
-		
+		model.addAttribute("navi", service.selectSearchBookNavi(inputStr,searchKeyword,reqPage));
 		//여기부턴 북마크용 데이터 입출력 입니다.
 		
 		User loginUser = (User)session.getAttribute("loginUser");
