@@ -16,7 +16,7 @@ import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.book.model.vo.BookPageData;
 import com.dongnebook.common.hangulTrie;
 import com.dongnebook.common.hangulTrie.trieNode;
-import com.dongnebook.proposal.model.vo.ProposalVO;
+import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.user.model.vo.User;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -140,8 +140,12 @@ public class BookController {
 		return "common/msg";
 	}
 	@RequestMapping("/selectOneBook.do")
-	public String selectOneBook(Model model, int bookNo) {
+	public String selectOneBook( Model model, int bookNo) {
 		Book book = service.selectOneBook(bookNo);
+		BookRental isRental = service.selectIsRental(bookNo);
+		if(isRental != null) {
+			model.addAttribute("returnDate", isRental);			
+		}
 		model.addAttribute("b", book);
 		return "book/selectOneBook";
 	}

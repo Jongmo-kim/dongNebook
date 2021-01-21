@@ -57,13 +57,13 @@
 						</table>
 						<h3 style="display: inline-block;">상호대차 지정</h3>
 						<div class="content-middle">
-							<input type="text" name="placeName" value="${rentalLoc.placeName }" readonly><input type="button" class="goRentalLoc" value="검색">
+							<input type="text" name="placeName" value="${rentalLoc.placeName }"><input type="button" class="goRentalLoc" value="검색">
 							<input type="hidden" name="addr" value="${rentalLoc.addr }">
 							<input type="hidden" name="phone" value="${rentalLoc.phone }">
 						</div>
 					</div>
 					<div class="content-bottom">
-						<input type="submit" value="대출하기"><a href="#">이전으로</a>
+						<input type="submit" value="대출하기"><input type="button" id="pageBack" value="이전으로">
 					</div>
 				</form>
 				<form action="/rentalLoc.do"  method="post">
@@ -105,8 +105,12 @@
 	</form>-->
 </body>
 <script>
-$('.goRentalLoc').on('click', function() {
-	  $('#goRentalLoc').trigger('click');
+	$('.goRentalLoc').on('click', function() {
+		$('#goRentalLoc').trigger('click');
 	});
+	$('#pageBack').on('click', function () {
+		history.back();
+	});
+	
 </script>
 </html>

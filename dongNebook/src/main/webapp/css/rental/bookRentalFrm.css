@@ -44,7 +44,7 @@
 
 
 	.content-bottom{
-		width: 100%;
+		width: 900px;
 		margin-top: 50px;
 		text-align: center;
 	}
@@ -67,8 +67,19 @@
 		height: 15px;
 		font-size: 13.5px;
 		margin-left: 15px;
+		outline: none;
 	}
-	.content-bottom>*:hover{
+	.content-bottom>a:hover{
+		color: #fff;
+		background-color: #80e27e;
+		cursor: pointer;
+	}
+	#pageBack{
+		outline: none;
+		display: inline-block;
+		margin-left: 15px;
+	}
+	#PageBack:hover{
 		color: #fff;
 		background-color: #80e27e;
 		cursor: pointer;
