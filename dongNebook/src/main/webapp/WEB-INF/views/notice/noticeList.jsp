@@ -46,8 +46,7 @@ width:20x;
 height:40px;
 display:inline-block;
 }
-.contents{
-width:1200px !important;}
+
 .admin-contents{
 }
 #main-container{
