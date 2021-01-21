@@ -22,10 +22,41 @@ text-align:center;
 #noticeTitle{
 	cursor: pointer;
 }
+.page:hover, .previous:hover, .next:hover{
+	text-decoration: none;
+	color:#a8dba8;
+}
+.page{
+color:black;
+text-decoration: none;
+font-size:17px;
+width:20px;
+height:40px;
+display:inline-block;
+}
+.selectedPage{
+font-size:20px;
+font-weight: bold;
+color:#3b8686;
+}
+.previous, .next{
+color:black;
+font-size:17px;
+width:20x;
+height:40px;
+display:inline-block;
+}
+.contents{
+width:1200px !important;}
+.admin-contents{
+}
+#main-container{
+}
 </style>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
+<<<<<<< HEAD
 	<div class="contents-frame">
 	<div class="contents">
 	<c:if test="${sessionScope.loginAdmin !=null}">
