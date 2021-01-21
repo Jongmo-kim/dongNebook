@@ -11,9 +11,11 @@
 </head>
 <body>
 <jsp:include page="/views/common/header.jsp" />
-   <div class="main-frame">
-   <jsp:include page="/views/common/adminSide.jsp" />
+   <div class="contents-frame">
       <div class="contents">
+   <jsp:include page="/views/common/adminSide.jsp" />
+   <div class="admin-contents">
+   <div id="main-container" class="main-container nav-effect-1">
          <h1 style="font-size:30px;">책 리스트</h1>
          <hr>
          <div class="list-contents">
@@ -65,6 +67,8 @@
                </div>
             </c:forEach>
          </table>
+      </div>
+      </div>
       </div>
          <p style="text-align:center">${pageNavi }</p>
    </div>

@@ -30,6 +30,7 @@ text-align:center;
 	<c:if test="${sessionScope.loginAdmin !=null}">
 	<jsp:include page="/views/common/adminSide.jsp" />
 	</c:if>
+	<div class="contents">
 	<h1 style="font-size:30px;">| 공지사항</h1>
 	<hr>
 	<table class="table table-hover">
@@ -53,6 +54,7 @@ text-align:center;
 		<button onclick="deleteNotice();" class="btn btn-lg btn-danger">삭제하기</button>
 	</c:if>
 	<p style="text-align:center">${pageNavi }</p>
+	</div>
 	</div>
 	
 	<script>
