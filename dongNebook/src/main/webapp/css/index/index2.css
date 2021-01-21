@@ -118,3 +118,98 @@ font-size: 32px;
     	   font-weight: bolder;
     font-size: 1.75rem;
     }
+    
+      /*search Frm */
+      .searchFrm{
+  width:100%;
+  text-align: center;
+}
+.searchFrm > input{
+  width: 60%;
+}
+.searchFrm > button{
+  width : 100px;
+}
+#searchFrm{
+  outline: 0;
+  height: 100%;
+    border: 0;
+    display: block;
+    width: 100%;
+    padding: 10px 32px 10px 250px;
+    font-size: 18px;
+    height: 70px;
+    color: #333;
+    background: linear-gradient(to right, #a8dba8 0%, #a8dba8 87%, #3b8686 96%, #3b8686 100%);
+  font-family: 'Lato', sans-serif;
+  
+  box-shadow: 0 8px 20px 0 rgba(0,0,0,.15);
+    overflow: hidden;
+    border-radius: 34px;
+    margin-bottom: 5px;
+}
+.inputField{
+  position:relative;
+}
+.icon-wrap{
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 60px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.icon-wrap > svg{
+  width: 34px;
+    height: 34px;
+    fill: #fff;
+}
+
+.searchBox{
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	height: 262px;
+	position: relative;
+}
+.guessedBox{
+	display:none;
+  top: 172px;
+	right: 0;
+	width: 1200px;
+	position: absolute;
+	background: #fff;
+  padding: 40px;
+  box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+	border-radius: 10px;
+	
+}
+.exit-icon > .icon-wrap{
+  width: 34px;
+  height: 34px;
+  top: -27px;
+  right: -23px;
+}
+.exit-icon> .icon-wrap > svg{
+  fill: #333333;
+}
+.exit-icon{
+  position: relative;
+  width: 100%;
+  height: 0px;
+}
+.searchFieldFrm {
+    position: absolute;
+    width: 200px;
+    height: 50px; 
+    top: 11px;
+    left: 26px;
+    background-color: #a8dba8;
+}
+       /* //search Frm */
