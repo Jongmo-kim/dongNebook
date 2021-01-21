@@ -319,6 +319,16 @@ body {margin: 10px;}
 	<div class="contents">
 	<h1 style="font-size:30px;">대출관리</h1>
          <hr>
+         <form action="/admin/manageUser.do" method="get">
+         		<input type="hidden" name="reqPage" value="1">
+			   <input type="text" name="inputStr" placeholder="inputStr">
+			   <select name="searchKeyword">
+			   		<option value="전체">전체</option>
+			   		<option value="아이디">아이디</option>
+			   		<option value="이름">이름</option>
+			   </select>
+			   <button>검색하기</button>
+         </form>
 	  <ul class="user-list">
 	    
 	    <c:forEach items="${list }" var ="u">

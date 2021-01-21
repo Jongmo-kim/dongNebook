@@ -46,6 +46,60 @@
 			</choose>
 		</trim>
 	</select>
+	<select id="selectUserBySearch" parameterType="map" resultType="user">
+	SELECT *
+	FROM
+	  (
+	    SELECT 
+	        ROWNUM as rnum,
+            user_no,
+			user_id,
+			user_name,
+			phone,
+			email,
+			addr
+	    FROM 
+	           (select
+					*
+				from
+					"USER"
+				where 1=1
+				<choose>
+						<when test="searchKeyword.equals('이름')">
+							AND user_name like '%' || #{inputStr}|| '%'
+						</when>
+						<when test="searchKeyword.equals('아이디')">
+							AND user_id like '%' || #{inputStr} || '%'
+						</when>
+						<otherwise>
+							and user_name like '%' || #{inputStr}|| '%'
+							or user_id like '%' || #{inputStr} || '%'
+						</otherwise>
+					</choose>
+				)
+	    where rownum  <![CDATA[ <= ]]>	 (#{reqPage}-1)*10+10
+	    ORDER BY user_no DESC
+	  )u
+	WHERE u.rnum >= (#{reqPage}-1)*10+1
+	</select>
+	<select id="selectCountBySearch" resultType="_int" parameterType="map">
+	select count(*)
+	from
+					"USER"
+				where 1=1
+				<choose>
+						<when test="searchKeyword.equals('이름')">
+							AND user_name like '%' || #{inputStr}|| '%'
+						</when>
+						<when test="searchKeyword.equals('아이디')">
+							AND user_id like '%' || #{inputStr} || '%'
+						</when>
+						<otherwise>
+							and user_name like '%' || #{inputStr}|| '%'
+							or user_id like '%' || #{inputStr} || '%'
+						</otherwise>
+					</choose>
+	</select>
 	<update id="updateUser" parameterType="user">
 		update "USER"
 		<trim prefix="set" suffixOverrides="," prefixOverrides=",">

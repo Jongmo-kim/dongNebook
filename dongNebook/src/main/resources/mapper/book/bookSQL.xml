@@ -147,10 +147,15 @@
 		select user_no as userNo from bookmark
 	</select>
 	<select id="searchBookMark" parameterType="_int" resultType="bookmark">
-		select 
-			user_no as userNo,
-			ISBN as ISBN
-		from bookmark where user_no = #{userNo}
+		select user_no as userNo,
+		book_No as bookNo,
+		book_name as bookName,
+		book_writer as bookWriter,
+		imageurl,
+		isbn
+		from "USER" 
+		join bookMark using (user_no)
+		join book using (isbn) where user_no = #{userNo}
 	</select>
 	<select id="searchBookList" parameterType="string" resultType="book">
 		select

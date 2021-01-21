@@ -3,6 +3,7 @@ package com.dongnebook.chat.socket;
 import java.util.HashMap;
 import java.util.Set;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.dongnebook.chat.model.dao.ChatDao;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -40,16 +42,28 @@ public class ChatSocket extends TextWebSocketHandler{
 		System.out.println("리시버:"+data);
 		System.out.println("타입:"+type);
 		if(type.equals("register")) {
+			System.out.println("레지스터:"+data);
 			connectMembers.put(data, session);
 		}else if(type.equals("count")) {
-			//int count = dao.cmCount(data);//data = memberId
-			//connectMembers.get(data).sendMessage(new TextMessage(String.valueOf(count)));
+			System.out.println("읽지않은 메세지 검사할:"+data);
+			int count = dao.cmCount(data);//data = memberId
+			System.out.println("읽지않은 메세지:"+count);
+			if(count!=0) {
+				connectMembers.put(data, session);
+				connectMembers.get(data).sendMessage(new TextMessage(String.valueOf(count)));				
+			}
 			//header의 onMessage메소드로 보냄
 		}else {
 			//type이 receiver일때 호출
 			System.out.println("메세지를 보내는 곳으로 이동");
+			//JSONObject jObj = new JSONObject();
 			String receiver=data;  //보낸사람을ㄹ 저장하고 전송
+			int count = dao.cmCount(data);//data = memberId
+			//jObj.put("receiver", receiver);
+			//jObj.put("count", count);
+			//dao.readChat(receiver);
 			connectMembers.get(data).sendMessage(new TextMessage(receiver));
+			connectMembers.get(data).sendMessage(new TextMessage(String.valueOf(count)));
 		}
 	}
 	@Override
@@ -60,6 +74,9 @@ public class ChatSocket extends TextWebSocketHandler{
 		for(String key : keys) {
 			WebSocketSession currentSession = connectMembers.get(key);
 			if(currentSession.equals(session)) {
+				dao.readChat(key);
+				String receiver=key;
+				System.out.println("종료 키값"+receiver);
 				connectMembers.remove(key);
 				break;
 			}

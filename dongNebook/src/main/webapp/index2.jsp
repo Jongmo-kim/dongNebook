@@ -13,12 +13,7 @@
 	.alert{
 		margin-bottom: 2px;
 	}
-	.autor{
-		
-	}
 </style>
-
-
 </head>
 <body>
 	<div class="alert-wrap">
@@ -26,90 +21,53 @@
 	<c:if test="${sessionScope.loginUser !=null}">
 		<input type="hidden" id="userNo" value=${sessionScope.loginUser.userNo }>
 	</c:if>
-	<jsp:include page="/views/common/header.jsp" />
+	<jsp:include page="/views/common/header2.jsp" />
 	
 	 <div class="content">
        <div class="img-main">
 
-            <div style="position:relative">
+            <div>
 
                 <!--가로--> <img class="d-block w-100" src="../image/index/img.png" alt="First slide">
-				<div class="searchBox">
-		<div class="searchFrm" ">
-			<form action="/book/searchBook.do" name="searchBook" method="get" >
-				<input type="hidden" name="reqPage" value="1">
-				<div class="inputField">
-					<input type="hidden" name="searchKeyword" value="전체">
-					<input type="text" id="searchFrm" name="inputStr" autocomplete="off">
-					<div class="icon-wrap">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-							<path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-						</svg>
-					</div>
-				</div>
-				
-			</form>
-		</div>
-		<div class="guessedBox">
-			
-		</div>
-	</div>
+
             </div>
 
 
         </div>
 
         <div class="sub-description">
-        <div>
-            <p>대출베스트</p>
-            </div>
+            <p>대출순위</p>
         </div>
         <div class="sub-item">
             <div>
-                <div class="book-rank-frame" id="rank-first-frame">
+                <div class="book-rank-frame">
                 	<div class="book-rank"></div>
-                    <div class="book-img"></div>
-                    <div class="book-info">
-                    	<h3 class="book-title"></h3>
-                    	<h4 class="autor"></h4>
-                    </div>
+                    <div class="book-img"><img src="https://image.aladin.co.kr/product/24788/21/cover/k342631735_1.jpg"></div>
+                    <div class="book-info"></div>
                 </div>
                 <div class="book-rank-frame">
                 <div class="book-rank"></div>
                     <div class="book-img"></div>
-                    <div class="book-info">
-                    	<h3 class="book-title"></h3>
-                    	<h4 class="autor"></h4>
-                    </div>
+                    <div class="book-info"></div>
                 </div>
                 <div class="book-rank-frame">
                 <div class="book-rank"></div>
                     <div class="book-img"></div>
-                    <div class="book-info">
-                    	<h3 class="book-title"></h3>
-                    	<h4 class="autor"></h4>
-                    </div>
+                    <div class="book-info"></div>
                 </div>
                 <div class="book-rank-frame">
                 <div class="book-rank"></div>
                     <div class="book-img"></div>
-                    <div class="book-info">
-                    	<h3 class="book-title"></h3>
-                    	<h4 class="autor"></h4>
-                    </div>
+                    <div class="book-info"></div>
                 </div>
                 <div class="book-rank-frame">
                 <div class="book-rank"></div>
                     <div class="book-img"></div>
-                    <div class="book-info">
-                    	<h3 class="book-title"></h3>
-                    	<h4 class="autor"></h4>
-                    </div>
+                    <div class="book-info"></div>
                 </div>
             </div>
         </div>
 
-    </div>
     </div>
     <br>
     <jsp:include page="/views/common/footer2.jsp" />
@@ -213,40 +171,16 @@
 				data : {},
 				success:function(data){
 					
-						var rank= document.getElementsByClassName("book-img");
-						var title= document.getElementsByClassName("book-title");
-						var autor= document.getElementsByClassName("autor");
+						/*var rank= document.getElementsByClassName("book-img");
 						console.log(data);
-						console.log(data[0]);
 					for(var i=0;i<5;i++){
-						//let cover500 = data.item[i].cover.replace(/coversum/g,'cover500');
+						let cover500 = data.item[i].cover.replace(/coversum/g,'cover500');
 						console.log(i);
-						console.log(data[i].bookName.length);
-						console.log(data[i].bookWriter);
-						var bookName=data[i].bookName;
-						var bookWriter;
-						if(data[i].bookWriter==undefined){
-							console.log("언디파인");
-							bookWriter="작가미상";
-							console.log("언디파인:"+bookWriter);
-						}else{							
-							bookWriter=data[i].bookWriter;
-						}
-						if(bookName.length>10){
-							console.log("넘는다");
-							bookName= data[i].bookName.substring(0,9)+"...";
-							
-							console.log(bookName);
-						}
-						if(bookWriter.length>13){
-							bookWriter=data[i].bookWriter.substring(0,13)+"...";
-							console.log("... 작가:"+bookWriter);
-						}
-						rank[i].innerHTML='<img src="' +data[i].imageurl+ '" />';
-						title[i].innerHTML=bookName;
-						autor[i].innerHTML=bookWriter;
+						console.log(rank[i]);
+						rank[i].innerHTML='<img src="' +cover500+ '" />';
 						
-					}
+						
+					}*/
 				}
 			});
 		});
@@ -269,9 +203,13 @@
 		});
 	</script>
 	<script>
-	
-
-
+	function openWindow(){
+		if(${loginUser!=null}){
+			var ret = window.open("/chat/chatRoom.do?chatUser=admin", "PopupWin", "width=500,height=600,left=12000");			
+		}else{
+			alert("놉");
+		}
+	}
 </script>
 </body>
 

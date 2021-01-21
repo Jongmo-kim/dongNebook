@@ -19,16 +19,17 @@ public class ProposalDao {
 	@Autowired
 	private SqlSessionTemplate session;
 
-	public ArrayList<ProposalVO> selectProposalList(int start, int end) {
+	public ArrayList<ProposalVO> selectProposalList(int start, int end, int selectType) {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("start", start);
 		map.put("end", end);
+		map.put("selectType", selectType);
 		List<ProposalVO> list = session.selectList("pro.proposalList", map);
 		return (ArrayList<ProposalVO>)list;
 	}
 
-	public int totalCount() {
-		return session.selectOne("pro.totalCount");
+	public int totalCount(int selectType) {
+		return session.selectOne("pro.totalCount", selectType);
 	}
 
 	public int insertBook(Book b) {

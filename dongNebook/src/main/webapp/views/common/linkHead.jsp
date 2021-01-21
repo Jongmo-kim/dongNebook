@@ -6,7 +6,8 @@
 <!-- 글꼴 -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
 <!-- jQuery -->
 <script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
 
@@ -21,7 +22,7 @@
 <!-- CSS FILES -->
 <link href="/css/header/header2.css" type="text/css" rel="stylesheet">
 <link href="/css/footer/footer.css" type="text/css" rel="stylesheet">
-<link href="/css/admin/admin.css" type="text/css" rel="stylesheet">
+<link href="/css/admin/admin.css?v=<%=System.currentTimeMillis()%>" type="text/css" rel="stylesheet" >
 
 <!-- FontAwesome -->
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>

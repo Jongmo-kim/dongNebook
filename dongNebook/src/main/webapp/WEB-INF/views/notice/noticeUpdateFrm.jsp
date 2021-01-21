@@ -7,16 +7,54 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <jsp:include page="/views/common/linkHead.jsp" />
+<style>
+table{
+	width:100%;
+}
+table>tbody>tr>th{
+	text-indent: 10px;
+	width:150px;
+}
+table>tbody>tr>td{
+	vertical-align: middle;
+}
+.adminSideMenu li:nth-child(7) a{
+   	background:#a8dba8;
+	color:white;
+}
+.main-wrap{
+	width:1200px;
+	margin:0 auto;
+}
+input{
+	width: 100%;
+	outline:none;
+	height : 35px;
+	border : 1px solid #cccccc;
+}
+textarea{
+	width:100%;
+	height: 200px;
+	border : 1px solid #cccccc;
+	outline : none;
+}
+.btn-div{
+	text-align:right;
+}
+.defaultMsg{
+	text-align: center;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
+	<div class="main-wrap">
+	<jsp:include page="/views/common/adminSide.jsp" />
+	<div class="contents">
 	<form action="/notice/updateNotice.do" id="updateFrm" method="post"
 		enctype="multipart/form-data">
 		<input type="hidden" name="noticeNo" id="noticeNo" value=${n.noticeNo }>
-		<table border="1">
-			<tr>
-				<th colspan="2">공지사항 수정</th>
-			</tr>
+		<table class="table">
 			<tr>
 				<th>제목</th>
 				<td><input type="text" name="noticeTitle"
@@ -26,13 +64,13 @@
 				<th>첨부파일</th>
 				<td>
 					<div class="card text-secondary bg-light mb-3 upfile">
-						<div class="card-header text-primary">FILE ZONE</div>
-							<input type="hidden" name="path" value="/">
 							<input type="file" name="files" id="upFile" multiple style="display:none;">					
 							<div class="card-body filezone">						
 								<div class="card-text">
-									<c:choose>
-										<c:when test="${n.fileList != null}">
+											<div class="defaultMsg">
+													<i class="fas fa-upload"></i><br>
+													여기에 파일을 올려주세요
+											</div>
 											<c:forEach items="${n.fileList }" var="f">
 												<div class='upFileList'>
 													<span>${f.filename }</span> <button type='button' class='btn btn-primary btn-sm fileDelBtn'>삭제</button>
@@ -40,11 +78,6 @@
 													<input type="hidden" name="oldFilepath" class="oldFilepath" value=${f.filepath }>
 												</div>
 											</c:forEach>
-										</c:when>
-										<c:otherwise>
-											<div class="defaultMsg">파일을 여기에 올려주세요</div>
-										</c:otherwise>
-									</c:choose>
 								</div>
 							</div>										
 					</div>
@@ -70,13 +103,21 @@
 			</tr>
 			<tr>
 				<th colspan="2">
-					<button type="button" class="btn btn-primary">수정하기</button>
+					<button type="button" onclick="updateNotice();" class="btn btn-lg btn-primary">수정하기</button>
+					<button id="cancel" class="btn btn-lg btn-outline-secondary">취소</button>
 				</th>
 			</tr>
 		</table>
 		<input type="hidden" name="delFileList" id="delFileList">
 	</form>
+	</div>
+	</div>
 	<script>
+		if($('.upFileList').length==0){
+			$(".defaultMsg").show();
+		} else {
+			$(".defaultMsg").hide();
+		}
 		var upFiles = new Array();	
 		var filezone = $(".filezone");
 		filezone.on("dragenter",function(e){        
@@ -115,21 +156,35 @@
 	      		$(this).css('border', '3px dashed #a991d4');
 	    	}        
 	  	});
-		
+		/* 
 	  	$(document).on("click",".cancelBtn",function(){
 	  		var idx = $(".cancelBtn").index(this);
 	  		//$(".upFileList").eq(idx).remove();
 	  		$(this).parent("div.upFileList").remove();
 	  		upFiles.pop(idx);
+	  	}); */
+	  	
+	  	$(document).on("click",".cancelBtn",function(){
+	  		console.log(upFiles);
+	  		var idx = $(".cancelBtn").index(this);
+	  		$(".upFileList").eq(idx).remove();
+	  		upFiles.pop(idx);
+	  		
+	  		//upFileList(첨부파일 div)가 없으면 defaultMsg를 보여줌
+	  		if($('.upFileList').length==0){
+	  			$(".defaultMsg").show();
+	  		}
+	  		console.log(upFiles);
 	  	});
 	
 	
+	  	$("#cancel").click(function(event){
+	  		event.preventDefault();
+	  		var noticeNo=$("#noticeNo").val();
+			location.href="/notice/noticeView.do?noticeNo="+noticeNo;
+	  	})
 	
-	
-	
-	
-	
-	  	$("button[type=button]").click(function(event){
+	  	function updateNotice(){
 			var form = $("#updateFrm")[0];    	
 		  	var frmData = new FormData(form);
 			for(var i=0;i<upFiles.length;i++){  		
@@ -159,12 +214,11 @@
 					contentType : false,
 					cache:false,
 					success:function(data){
-						//location.href="/common/msg?msg='수정 성공'&loc='/notice/noticeView.do?noticeNo="+$("#noticeNo").val();
 						location.href="/notice/noticeView.do?noticeNo="+$("#noticeNo").val();
 					}
 				})
 			}
-		})
+		}
 	
 	
 	

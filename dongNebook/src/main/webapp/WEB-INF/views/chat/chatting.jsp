@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<jsp:include page="/views/common/linkHead.jsp"/>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i');
@@ -332,7 +333,7 @@ ul {
 </style>
 </head>
 <body>
-
+<jsp:include page="/views/common/header.jsp" />
 	<div class="chatbox-holder">
   <div class="chatbox" id="chatBox">
   
@@ -340,6 +341,7 @@ ul {
       <div class="chat-partner-name">
         <span class="status online"></span>
         <a target="_blank" href="https://www.facebook.com/mfreak">${chatUser }</a>
+        <button onclick="closeWindow()">창닫기</button>
       </div>     
     </div>
     <c:if test='${!chatUser.equals("admin") }'>
@@ -429,6 +431,8 @@ ul {
 </div>
 <script>
 	
+
+	
 	$(function(){
 	  $('.fa-minus').click(function(){    $(this).closest('.chatbox').toggleClass('chatbox-min');
 	  });
@@ -450,7 +454,7 @@ ul {
 				if(data == 1){
 					console.log(1);
 					//alert("쪽지보내기 성공");
-					//sendMsg(cmReceiver);
+					sendMsg(cmSender);
 					saveReceiver(cmReceiver);
 					//샌드메세지에 받은 사람아이디를 줘서 주회함
 					location.reload();
@@ -478,7 +482,7 @@ ul {
 				if(data == 1){
 					console.log(1);
 					//alert("쪽지보내기 성공");
-					//sendMsg(cmReceiver);
+					sendMsg(cmSender);
 					saveReceiver(cmReceiver);
 					//샌드메세지에 받은 사람아이디를 줘서 주회함
 					location.reload();
@@ -495,10 +499,15 @@ ul {
 		window.onload=function(){
 			//스크롤 맨 아래로
 			$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
-			
+			//window.opener.location.reload();
 			
 		};
+		function closeWindow(){
+			window.opener.location.reload();
+			self.close();			
+		}
 </script>
+<!-- 
 <script>
     	
 		var ws;
@@ -590,5 +599,6 @@ ul {
 		});
 			
 	</script>
+	 -->
 </body>
 </html>

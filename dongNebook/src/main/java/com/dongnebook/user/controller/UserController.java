@@ -207,6 +207,17 @@ public class UserController {
 		
 		return o;
 	}
+	
+	@RequestMapping("/searchFrm.do")
+	public String userSearchFrm(Model model,int reqPage,String inputStr,String searchKeyword) {
+		ArrayList<User> list = null;
+		if(searchKeyword != null) {
+			list = service.selectUserBySearch(reqPage,inputStr,searchKeyword);
+			model.addAttribute("userList", list);
+		}
+		return "/user/searchFrm";
+	}
+	
 	private void sendMail(String email, String title, String content) throws MailException {
 		if(!mailController.mailSend(email, title, content)) {
 			throw new MailException("메일을 보내지 못했습니다.");
