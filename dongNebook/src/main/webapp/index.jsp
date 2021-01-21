@@ -18,8 +18,6 @@
 	}
 </style>
 
-<link rel="stylesheet" href="/css/book/searchBook.css?v=<%=System.currentTimeMillis()%>">
-<script type="text/javascript" src="/js/book/searchBook.js?v=<%=System.currentTimeMillis()%>"></script>
 
 </head>
 <body>
