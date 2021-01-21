@@ -17,6 +17,7 @@
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
+	<jsp:include page="/views/common/userSide.jsp" />
 	<h2>도서검색</h2>
 	<hr>
 	<div class="content">
