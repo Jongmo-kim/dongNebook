@@ -1,0 +1,70 @@
+@charset "UTF-8";
+	.content-wrap{
+		float: left;
+		margin-left: 20px;
+		width: calc(100%-200px);
+	}
+	.content{
+		width: 100%;
+	}
+	.content-top{
+		margin: 30px;
+		padding: 0px 20px;
+		width: 900px;
+		background-color: rgb(255, 252, 245);
+	}
+	.content-top>table{
+		margin-top: 25px;
+		text-align: center;
+	}
+	.content-middle{
+		width: 100%;
+	}
+	.content-middle>input:first-child{
+		width: 200px;
+		height: 26px;
+		outline: none;
+		border: 1px solid #feebe1;
+	}
+	.goRentalLoc{
+		outline: none;
+		border: 1px solid #feebe1;
+		background-color: #feebe1;
+		width: 80px;
+		height: 30px;
+	}
+	.content-middle>*:hover{
+		cursor: pointer;
+	}
+
+
+	.content-bottom{
+		width: 100%;
+		margin-top: 50px;
+		text-align: center;
+	}
+	.content-bottom>*{
+		padding: 0px 0px 0px 0px;
+		width: 100px;
+		height: 40px;
+		color: #80e27e;
+		background-color: #fff;
+		border: 3px solid #80e27e;
+		padding: 10px;
+		border-radius: 5px;
+	}
+	a{
+		text-decoration: none;
+	}
+	.content-bottom>a{
+		display: inline-block;
+		width: 74px;
+		height: 15px;
+		font-size: 13.5px;
+		margin-left: 15px;
+	}
+	.content-bottom>*:hover{
+		color: #fff;
+		background-color: #80e27e;
+		cursor: pointer;
+	}
