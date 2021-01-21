@@ -18,7 +18,8 @@
 
 .nav-wrap {
 	position: relative;
-	width: 100%;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .row>* {
@@ -29,7 +30,7 @@
 	padding: 0;
 	height: 120px;
 	display: flex;
-	justify-content: center;
+	/* justify-content: center; */
 	align-items: center;
 }
 
@@ -47,7 +48,7 @@
 
 .nav>ul {
 	list-style-type: none;
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
 	display: flex;
 	justify-content: center;
@@ -102,28 +103,28 @@
 }
 
 .sub {
-	width: 100%;
-	height: 350px;
-	background-color: white;
-	display: none;
-	z-index: 9;
-	position: absolute;
-	top: 0;
+	width: 100vw;
+    height: 350px;
+    background-color: white;
+    display: none;
+    z-index: 9;
+    position: absolute;
+    top: 0;
+    left: -183px;
+
 }
 
 .sub-wrap {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 100vw;
-	height: 100vh;
-	background-color: rgba(0, 0, 0, 0.5);
-	z-index: 8;
-	display: none;
-	/*메인축*/
-	justify-content: center;
-	/*반대축*/
-	align-items: center;
+	    position: absolute;
+    top: 0px;
+    left: -185px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 8;
+    display: none;
+    justify-content: center;
+    align-items: center;
 }
 .nav{
 padding-top:50px;}
