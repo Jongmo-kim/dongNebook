@@ -55,10 +55,13 @@ textarea{
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	<div class="main-wrap">
-	<jsp:include page="/views/common/adminSide.jsp" />
-		<!-- 파일 업로드를 하려면 method는 post, enctype는 multipart/form-data를 써야지만 업로드가 가능함! 파일을 업로드 할 폼이라고 미리 명시하는 것 -->
+	<div class="contents-frame">
 		<div class="contents">
+	<jsp:include page="/views/common/adminSide.jsp" />
+	<div class="admin-contents">
+	
+	<div id="main-container" class="main-container nav-effect-1">
+		<!-- 파일 업로드를 하려면 method는 post, enctype는 multipart/form-data를 써야지만 업로드가 가능함! 파일을 업로드 할 폼이라고 미리 명시하는 것 -->
          <h1 style="font-size:30px;">| 공지사항 작성</h1>
          <br>
 				<form id="upFileFrm" action="/notice/insertNotice.do" method="post" enctype="multipart/form-data">
@@ -102,6 +105,8 @@ textarea{
 					<button type="button" id="back" class="btn btn-lg btn-outline-secondary">취소</button>
 					</div>
 				</form>
+			</div>
+			</div>
 			</div>
 	</div>
 		

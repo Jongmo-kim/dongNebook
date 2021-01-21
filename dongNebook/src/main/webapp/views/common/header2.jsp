@@ -18,7 +18,8 @@
 
 .nav-wrap {
 	position: relative;
-	width: 100%;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .row>* {
@@ -29,25 +30,13 @@
 	padding: 0;
 	height: 120px;
 	display: flex;
-	justify-content: center;
+	/* justify-content: center; */
 	align-items: center;
-}
-
-.icon {
-	height: 120px;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	flex-direction: row;
-}
-
-.logo>img {
-	width: 50%;
 }
 
 .nav>ul {
 	list-style-type: none;
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
 	display: flex;
 	justify-content: center;
@@ -91,42 +80,57 @@
 	color: brown;
 	text-decoration: underline;
 }
-
-.icon {
-	display: flex;
-	align-items: center;
-}
-
-.icon>svg {
-	margin: 10px;
-}
-
 .sub {
-	width: 100%;
-	height: 350px;
-	background-color: white;
-	display: none;
-	z-index: 9;
-	position: absolute;
-	top: 0;
+	width: 100vw;
+    height: 350px;
+    background-color: white;
+    display: none;
+    z-index: 9;
+    position: absolute;
+    top: 0;
+    left: -183px;
+
 }
 
 .sub-wrap {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 100vw;
-	height: 100vh;
-	background-color: rgba(0, 0, 0, 0.5);
-	z-index: 8;
-	display: none;
-	/*메인축*/
-	justify-content: center;
-	/*반대축*/
-	align-items: center;
+	    position: absolute;
+    top: 0px;
+    left: -185px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 8;
+    display: none;
+    justify-content: center;
+    align-items: center;
 }
 .nav{
 padding-top:50px;}
+
+.menu{
+	/* padding-top: 70px; */
+    display: block;
+    /* font-size: 10px; */
+}
+.menu>ul{
+	list-style-type: none;
+    /* padding: 0; */
+    /* margin: 0; */
+    float: right;
+}
+.menu>ul>li{
+    /* float: right; */
+    float: left;
+    margin-right: 20px;
+    font-size: 10px;
+    /* width: 14px; */
+}
+.menu>ul>li>a{
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+}
 </style>
 <header>
 	<div class="header">
@@ -158,8 +162,7 @@ padding-top:50px;}
 							</ul></li>
 					</ul>
 				</div>
-				<div class="col-md-3 icon">
-					<div class="mem-sel">
+				<div class="col-md-3 menu">
 						<ul>
 							<c:choose>
 								<c:when test="${loginUser == null }">
@@ -191,7 +194,6 @@ padding-top:50px;}
 							</c:choose>
 						</ul>
 					</div>
-				</div>
 			</div>
 			<div class="sub"></div>
 			<div class="sub-wrap"></div>

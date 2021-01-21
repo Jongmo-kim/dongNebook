@@ -14,25 +14,25 @@
 			imageurl,
 			reason,
 			isproposal
-		from (select rownum as pNum, p.* from (select * from book_proposal join "USER" using (user_no)
+		from (select rownum as pNum, p.* from (select * from book_proposal left join "USER" using (user_no)
 	
 	<choose>
 		<when test="selectType == 0">
-		order by isproposal nulls first )p) where pNum between ${start} and ${end}
+		order by isproposal nulls first, book_proposal_no asc )p) where pNum between ${start} and ${end}
 		
 		</when>
 		<when test="selectType == 1">
-		where isproposal is null order by isproposal nulls first )p) where pNum between ${start} and ${end}
+		where isproposal is null order by isproposal nulls first, book_proposal_no asc )p) where pNum between ${start} and ${end}
 		
 		</when>
 		
 		<when test="selectType == 2">
-		where isproposal = 'y' order by isproposal nulls first )p) where pNum between ${start} and ${end}
+		where isproposal = 'y' order by isproposal nulls first, book_proposal_no desc )p) where pNum between ${start} and ${end}
 		
 		</when>
 		
 		<when test="selectType == 3">
-		where isproposal = 'n' order by isproposal nulls first )p) where pNum between ${start} and ${end}
+		where isproposal = 'n' order by isproposal nulls first, book_proposal_no desc )p) where pNum between ${start} and ${end}
 		
 		</when>
 	

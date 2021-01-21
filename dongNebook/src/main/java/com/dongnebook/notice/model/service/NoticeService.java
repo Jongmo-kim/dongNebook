@@ -59,17 +59,18 @@ public class NoticeService {
 		//페이지네비 html 태그 작성
 		String pageNavi = "";
 		if(pageNo!=1) {
-			pageNavi += "<a href='/notice/noticeList.do?reqPage="+(reqPage-1)+"'>[이전]</a>";
+			pageNavi += "<a class='previous' href='/notice/noticeList.do?reqPage="+(reqPage-1)+"'>[이전]</a>";
 		}
 		
 		for(int i=0;i<pageNaviSize;i++) {
 			if(pageNo!=reqPage) {
-				pageNavi += "<a href='/notice/noticeList.do?reqPage="+pageNo+"'>"+pageNo+"</a>";
+				pageNavi += "<a class='page' href='/notice/noticeList.do?reqPage="+pageNo+"'>"+pageNo+"</a>";
 			}else {
-				pageNavi+="<span class='selectedPage'>"+pageNo+"</span>";
+				//pageNavi+="<span class='selectedPage'>"+pageNo+"</span>";
+				pageNavi+="<span class='page selectedPage'>"+pageNo+"</span>";
 			}
 			pageNo++;
-			
+
 			//페이지 수가 총 페이지수보다 커지면 break
 			if(pageNo>totalPage) {
 				break;
@@ -77,7 +78,7 @@ public class NoticeService {
 		}
 		//페이시 수가 총 페이지 수보다 같거나 작다면 -> 다음페이지가 있다는 뜻
 		if(pageNo<=totalPage) {
-			pageNavi +="<a href='/book/bookList.do?reqPage="+pageNo+"'>[다음]</a>";
+			pageNavi +="<a class='next' href='/notice/noticeList.do?reqPage="+pageNo+"'>[다음]</a>";
 		}
 		NoticePageData npd = new NoticePageData(list, pageNavi);
 		return npd;

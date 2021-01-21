@@ -119,8 +119,8 @@ font-size: 32px;
     font-size: 1.75rem;
     }
     
-      /*search Frm */
-      .searchFrm{
+/* searchFrm */
+.searchFrm{
   width:100%;
   text-align: center;
 }
@@ -182,7 +182,7 @@ font-size: 32px;
 	display:none;
   top: 172px;
 	right: 0;
-	width: 1200px;
+	width: 887px;
 	position: absolute;
 	background: #fff;
   padding: 40px;
@@ -204,6 +204,7 @@ font-size: 32px;
   width: 100%;
   height: 0px;
 }
+
 .searchFieldFrm {
     position: absolute;
     width: 200px;
@@ -211,5 +212,8 @@ font-size: 32px;
     top: 11px;
     left: 26px;
     background-color: #a8dba8;
+
+   
 }
-       /* //search Frm */
+
+/*//searchFrm */
