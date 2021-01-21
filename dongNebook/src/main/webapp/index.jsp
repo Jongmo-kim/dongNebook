@@ -36,7 +36,7 @@
             <div style="position:relative">
 
                 <!--가로--> <img class="d-block w-100" src="../image/index/img.png" alt="First slide">
-				<div class="searchBox"style="position: absolute; top: 50%;">
+				<div class="searchBox">
 		<div class="searchFrm" ">
 			<form action="/book/searchBook.do" name="searchBook" method="get" >
 				<input type="hidden" name="reqPage" value="1">
@@ -62,11 +62,13 @@
         </div>
 
         <div class="sub-description">
+        <div>
             <p>대출베스트</p>
+            </div>
         </div>
         <div class="sub-item">
             <div>
-                <div class="book-rank-frame">
+                <div class="book-rank-frame" id="rank-first-frame">
                 	<div class="book-rank"></div>
                     <div class="book-img"></div>
                     <div class="book-info">

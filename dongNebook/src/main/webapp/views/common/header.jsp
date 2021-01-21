@@ -12,7 +12,7 @@
 		<div class="menu-frame">
 			<div>
 				<div class="main-img">
-					<a href="/"> <img src="../image/header/DongNeBook2nd.png">
+					<a href="/"> <img src="../image/header/colorBook-logo.png">
 					</a>
 				</div>
 				<div class="main-menu">
