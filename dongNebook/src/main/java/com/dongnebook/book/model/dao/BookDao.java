@@ -37,7 +37,8 @@ public class BookDao {
 	}
 
 	public int bookDelete(int bookNo) {
-		return session.delete("book.bookDelete",bookNo);
+		System.out.println(bookNo);
+		return session.delete("book.deleteBook",bookNo);
 	}
 	public ArrayList<Book> selectBookByKeyword(String inputStr, String searchKeyword) {
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -88,6 +89,13 @@ public class BookDao {
 	public ArrayList<Book> selectBook(Book b) {
 		List<Book> list =  session.selectList("book.selectBook",b);
 		return (ArrayList<Book>)list;
+	}
+
+	public int totalCount(String inputStr, String searchKeyword) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("inputStr", inputStr);
+		map.put("searchKeyword", searchKeyword);
+		return session.selectOne("book.selectSearchCount",map);
 	}
 
 }

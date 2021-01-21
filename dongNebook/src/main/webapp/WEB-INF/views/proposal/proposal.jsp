@@ -123,7 +123,10 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 .botton {
 	text-align: center;
 }
-
+	img{
+	width:95%;
+	height : 95%;
+	}
 .pbtn {
 	width: 100px;
 	height: 50px;

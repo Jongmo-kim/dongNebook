@@ -1,4 +1,8 @@
 @charset "UTF-8";
+.content{
+	margin : 0 auto;
+	width: 80%;
+}
 .searchFrm{
   width:100%;
   text-align: center;
@@ -58,10 +62,11 @@
 	position: relative;
 }
 .guessedBox{
+	width: 85%;
+    top: 172px;
+    right: 2px;
 	display:none;
   top: 172px;
-	right: 0;
-	width: 1200px;
 	position: absolute;
 	background: #fff;
   padding: 40px;
