@@ -55,7 +55,6 @@ display:inline-block;
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-
 	<div class="contents-frame">
 	<div class="contents">
 	<c:if test="${sessionScope.loginAdmin !=null}">
