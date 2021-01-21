@@ -22,6 +22,22 @@ text-align:center;
 #noticeTitle{
 	cursor: pointer;
 }
+a{
+	color:black;
+	text-decoration: none;
+}
+.page{
+font-size:15px;
+}
+.selectedPage{
+font-size:15px;
+}
+.previous{
+font-size:15px;
+}
+.next{
+font-size:15px;
+}
 </style>
 </head>
 <body>
