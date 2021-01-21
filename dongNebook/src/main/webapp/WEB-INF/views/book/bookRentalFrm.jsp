@@ -6,7 +6,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
 	Date nowTime = new Date();
-	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh");
+	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일");
 	
 	Calendar cal = Calendar.getInstance();
 	
@@ -23,13 +23,58 @@
 <jsp:include page="/views/common/linkHead.jsp"/>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <link rel="stylesheet" href="/css/rental/rentalLoc.css?v=<%=System.currentTimeMillis()%>">
+
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	
-	<h1 style="font-size:30px;">책 대출</h1>
-	<hr>
-	<form action="/insertBookRental.do" method="post">
+	<jsp:include page="/views/common/userSide.jsp" />
+	<div class="wrap"> 
+		<div class="content-wrap">
+			<h1 style="font-size:30px;">책 대출</h1>
+			<hr>
+			<div class="content">
+				<form action="/insertBookRental.do" method="POST">
+					<div class="content-top">
+						<table style="table-layout:fixed;" bordercolor="#feebe1" cellpadding="5" border="1" cellspacing="0" align="center" style="border-collapse:collapse; border:1px lightgray solid;">
+							<tr>
+								<th>도서번호</th>
+								<th>이미지</th>
+								<th>제목</th>
+								<th>저자</th>
+								<th style="width: 40px;">수량</th>
+								<th>대출일자</th>
+								<th>반납일자</th>
+							</tr>
+							<c:forEach items="${rentalList }" var ="b">
+							<tr>
+								<td>${b.bookNo}</td>
+								<td style="width: 100px; height: 150px;"><img src="${b.imageurl }" width="100%" height="100%"></td>
+								<td>${b.bookName}</td>
+								<td>${b.bookWriter}</td>
+								<td>1</td>
+								<td><%= sf.format(nowTime) %></td>
+								<td><%= sf.format(cal.getTime())%></td>
+							</tr>
+							</c:forEach>
+						</table>
+						<h3 style="display: inline-block;">상호대차 지정</h3>
+						<div class="content-middle">
+							<input type="text" name="placeName" value="${rentalLoc.placeName }" readonly><input type="button" class="goRentalLoc" value="검색">
+							<input type="hidden" name="addr" value="${rentalLoc.addr }">
+							<input type="hidden" name="phone" value="${rentalLoc.phone }">
+						</div>
+					</div>
+					<div class="content-bottom">
+						<input type="submit" value="대출하기"><a href="#">이전으로</a>
+					</div>
+				</form>
+				<form action="/rentalLoc.do"  method="post">
+					<input type="submit" id="goRentalLoc" value="검색" style="display:none">
+				</form>
+			</div>
+		</div>
+	</div>
+	<!--<form action="/insertBookRental.do" method="post">
 		<table border=1>
 			<tr>
 				<th>책 번호</th><th>이미지</th><th>책이름</th><th>저자</th><th>수량</th><th>대출일자</th><th>반납일자</th>
@@ -57,6 +102,7 @@
 		</table>
 	</form>
 	
+<<<<<<< HEAD
 
 		<input type="submit" id="goRentalLoc" value="검색" data-toggle="modal" data-target="#myModal" style="display:none">
 	<!-- The Modal -->
@@ -119,6 +165,11 @@
                       </div>
                  </div>
                </div>
+
+	<form action="/rentalLoc.do"  method="post">
+		<input type="submit" id="goRentalLoc" value="검색" style="display:none">
+	</form>
+
 </body>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d94e3fab43df95c64983cf272918d89e&libraries=services"></script>
 
