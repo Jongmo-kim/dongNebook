@@ -72,8 +72,13 @@ position:relative;
 </style>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
+	<div class="contents-frame">
+	<div class="contents">
    <jsp:include page="/views/common/adminSide.jsp" />
-   <div class="contents">
+   <div class="admin-contents">
+	
+	<div id="main-container" class="main-container nav-effect-1">
+   
 	<h1 style="font-size:30px;">1:1상담</h1>
          <hr>
         
@@ -91,6 +96,9 @@ position:relative;
 			</c:if>
 		<!-- </form> -->
 	</c:forEach>
+   </div>
+   </div>
+   </div>
    </div>
    <script >
    		function openAdminWindow(data){
