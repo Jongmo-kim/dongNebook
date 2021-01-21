@@ -29,8 +29,8 @@ text-align:center;
 	<div class="main-wrap">
 	<c:if test="${sessionScope.loginAdmin !=null}">
 	<jsp:include page="/views/common/adminSide.jsp" />
-	<div class="contents">
 	</c:if>
+	<div class="contents">
 	<h1 style="font-size:30px;">| 공지사항</h1>
 	<hr>
 	<table class="table table-hover">
