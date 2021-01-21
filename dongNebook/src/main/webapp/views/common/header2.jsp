@@ -34,18 +34,6 @@
 	align-items: center;
 }
 
-.icon {
-	height: 120px;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	flex-direction: row;
-}
-
-.logo>img {
-	width: 50%;
-}
-
 .nav>ul {
 	list-style-type: none;
 	margin: 0 auto;
@@ -92,16 +80,6 @@
 	color: brown;
 	text-decoration: underline;
 }
-
-.icon {
-	display: flex;
-	align-items: center;
-}
-
-.icon>svg {
-	margin: 10px;
-}
-
 .sub {
 	width: 100vw;
     height: 350px;
@@ -128,6 +106,23 @@
 }
 .nav{
 padding-top:50px;}
+
+.menu{
+	padding-top:70px;
+}
+.menu>ul{
+list-style-type: none;
+padding:0;
+margin:0;}
+.menu>ul>li{
+float:right;
+margin-right:20px;
+}
+.menu>ul>li>a{
+text-decoration: none;
+color : black;
+font-size: 20px;
+}
 </style>
 <header>
 	<div class="header">
@@ -159,8 +154,7 @@ padding-top:50px;}
 							</ul></li>
 					</ul>
 				</div>
-				<div class="col-md-3 icon">
-					<div class="mem-sel">
+				<div class="col-md-3 menu">
 						<ul>
 							<c:choose>
 								<c:when test="${loginUser == null }">
@@ -192,7 +186,6 @@ padding-top:50px;}
 							</c:choose>
 						</ul>
 					</div>
-				</div>
 			</div>
 			<div class="sub"></div>
 			<div class="sub-wrap"></div>

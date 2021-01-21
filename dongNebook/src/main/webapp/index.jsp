@@ -35,7 +35,7 @@
 
                 <!--가로--> <img class="d-block w-100" src="../image/index/img.png" alt="First slide">
 				<div class="searchBox">
-		<div class="searchFrm" ">
+		<div class="searchFrm">
 			<form action="/book/searchBook.do" name="searchBook" method="get" >
 				<input type="hidden" name="reqPage" value="1">
 				<div class="inputField">
