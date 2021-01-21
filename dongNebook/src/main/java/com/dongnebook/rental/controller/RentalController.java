@@ -90,6 +90,7 @@ public class RentalController {
 		int result = service.insertReserve(reserve);
 		if(result>0) {
 			model.addAttribute("msg","예약 성공");
+			model.addAttribute("result", "true");
 		}else {
 			model.addAttribute("msg","예약 실패");
 		}

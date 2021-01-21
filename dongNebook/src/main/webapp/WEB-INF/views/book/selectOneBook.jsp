@@ -53,11 +53,11 @@
 					<li>${b.ISBN}</li>
 					<c:if test="${b.bookCount!=0}"> 
 					<li></li>
-					<li style="line-height: normal;">대출 가능</li>
+					<li style="line-height: normal; color: blue;">대출 가능</li>
 					</c:if>
 					<c:if test="${b.bookCount==0}"> 
 					<li>${returnDate}</li>
-					<li style="line-height: normal; color: blue;">대출불가상태(다른 사용자 대출중 ${returnDate} 반납예정)</li>
+					<li style="line-height: normal;">대출불가상태(다른 사용자 대출중 ${returnDate} 반납예정)</li>
 					</c:if>
 				</ul>
 			</div>
@@ -67,7 +67,7 @@
 						<a href="/bookRental.do?bookNo=${b.bookNo}">대출신청</a><a href="/book/searchBookFrm.do">이전으로</a>
 					</c:if>
 					<c:if test="${b.bookCount==0}"> 
-						<a href="/bookReserve.do?bookNo=${b.bookNo}">예약신청</a><a href="/book/searchBookFrm.do">이전으로</a>
+						<a href="/insertReserve.do?bookNo=${b.bookNo}">예약신청</a><a href="/book/searchBookFrm.do">이전으로</a>
 					</c:if>
  				</c:if>
  				<c:if test="${loginUser==null }">
