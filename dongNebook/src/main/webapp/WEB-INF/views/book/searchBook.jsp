@@ -48,6 +48,7 @@
 			
 		</div>
 	</div>
+	<div class="searchResult">
 	<c:choose>
 	<c:when test="${bookList == null }">
 		<!-- 첫 페이지 -->
@@ -64,7 +65,6 @@
 				<th>책 종류</th>
 				<th>저자</th>
 				<th>출판사</th>
-				<th>책 번호</th>
 			</tr>
 			<c:forEach var="b" items="${bookList }">
 			<tr>
@@ -89,21 +89,17 @@
 					 -->
 				 </c:if>
 				 <!-- 여기는 북마크 전용 구간입니다. -->
-				<td><a href="/book/selectOneBook.do?bookNo=${b.bookNo}">${fn:length(b.bookName) < 8 ? b.bookName : fn:substring(b.bookName,0,7).concat("...") }</a></td>
-				<td>${fn:length(b.bookIntroduce)==0 ? "소개글이 없습니다."  : b.bookIntroduce}</td>
+				<td><a href="/book/selectOneBook.do?bookNo=${b.bookNo}">${fn:length(b.bookName) < 25 ? b.bookName : fn:substring(b.bookName,0,12).concat("...") }</a></td>
+				<td>${fn:length(b.bookIntroduce)==0 ? "소개글이 없습니다."  : fn:length(b.bookIntroduce) <25 ?b.bookIntroduce : fn:substring(b.bookIntroduce,0,50).concat("...")}</td>
 				<c:set var="kindArr" value="${fn:split(b.bookKind, '>') }" />
 				<td>${kindArr[1]}</td>
 				<td>${b.bookWriter }</td>
 				<td>${b.bookPublisher }</td>
-				<td>${b.bookNo }</td>
 			</tr>			
 			</c:forEach>
 		</table>
 		<div class="navi">
 			<ul class="pagination justify-content-center" id="pageNavi">
-				<!-- <li class='page-item'>
-					<span class='selectPage page-link'>1</span>
-				</li> -->
 				${navi}
 			</ul>
 		</div>
@@ -114,6 +110,7 @@
 	</div>
 	</c:otherwise>
 	</c:choose>
+	</div>
 	</div>
 	
 

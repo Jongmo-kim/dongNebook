@@ -177,7 +177,7 @@
  color : #79bd9a;
 }
 .bookListTable {
- width : 100%;
+	width:99%;
  margin: 0 auto;
  border-top: 3px solid lightgray;
  border-bottom: 3px solid lightgray;

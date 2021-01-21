@@ -85,4 +85,8 @@ public class ReviewDao {
 	public int selectReviewCount() {
 		return session.selectOne("review.selectReviewCount");
 	}
+
+	public String selectReviewNaviByReqpage(int reqPage) {
+		return session.selectOne("review.selectReviewNaviByReqpage",reqPage);
+	}
 }

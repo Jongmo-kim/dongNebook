@@ -63,6 +63,7 @@ public class ReviewController {
 	@RequestMapping("/main")
 	public String sendToMain(Model model,int reqPage) {
 		model.addAttribute("reviewList", service.selectReviewByReqpage(reqPage));
+		model.addAttribute("navi", service.selectReviewNaviByReqpage(reqPage));
 		return "/review/main";
 	}
 	
