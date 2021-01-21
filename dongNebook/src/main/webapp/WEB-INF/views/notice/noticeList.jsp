@@ -46,10 +46,9 @@ width:20x;
 height:40px;
 display:inline-block;
 }
-
-.admin-contents{
-}
-#main-container{
+.SideMenu li:nth-child(1) a{
+background:#a8dba8;
+	color:white;
 }
 </style>
 </head>

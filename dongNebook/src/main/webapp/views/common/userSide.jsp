@@ -16,7 +16,8 @@
 					<h2>도서</h2>
 				</div>
 				<ul>
-					<li><a href="#">메뉴추가</a></li>
+					<li><a href="/notice/noticeList.do?reqPage=1">공지사항</a></li>
+					<li><a href="/calendar/calendarView.do">이달의 도서관</a></li>
 				</ul>
 			</div>
 		</div>

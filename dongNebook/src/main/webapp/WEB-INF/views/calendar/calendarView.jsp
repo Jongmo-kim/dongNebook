@@ -167,6 +167,10 @@
 #calendar{
 	margin:0 auto;
 }
+.SideMenu li:nth-child(2) a{
+background:#a8dba8;
+	color:white;
+}
 </style>
 </head>
 
@@ -249,7 +253,7 @@
 	<div class="admin-contents">
 	
 	<div id="main-container" class="main-container nav-effect-1">
-	<h3>| 이달의 도서관</h3>
+	<h1 style="font-size:30px;">| 이달의 도서관</h1>
 	<hr>
 	<br>
 	<div id='calendar'></div>
