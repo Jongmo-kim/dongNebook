@@ -19,7 +19,7 @@
 	            from dual
 	    </foreach>) A
 	</insert>
-	<select id="selectIsRental" parameterType="_int" resultType="_int">
-		select return_date from book_rental where book_no=#{bookNo}
+	<select id="selectIsRental" parameterType="_int" resultType="rental">
+		select * from book_rental where book_no=#{bookNo}
 	</select>
 </mapper>

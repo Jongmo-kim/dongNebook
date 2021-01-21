@@ -47,11 +47,12 @@
 							</tr>
 							<c:forEach items="${rentalList }" var ="b">
 							<tr>
-								<td>${b.bookNo}</td>
+								<input type="hidden" value="${b.bookNo}" name="bookNo">
+								<td name="bookNo">${b.bookNo}</td>
 								<td style="width: 100px; height: 150px;"><img src="${b.imageurl }" width="100%" height="100%"></td>
 								<td>${b.bookName}</td>
 								<td>${b.bookWriter}</td>
-								<td>1</td>
+								<td>1/${bookCount}</td>
 								<td><%= sf.format(nowTime) %></td>
 								<td><%= sf.format(cal.getTime())%></td>
 							</tr>
@@ -59,15 +60,9 @@
 						</table>
 						<h3 style="display: inline-block;">상호대차 지정</h3>
 						<div class="content-middle">
-<<<<<<< HEAD
-							<input type="text" name="placeName" value="${rentalLoc.placeName }"><input type="button" class="goRentalLoc" value="검색">
-							<input type="hidden" name="addr" value="${rentalLoc.addr }">
-							<input type="hidden" name="phone" value="${rentalLoc.phone }">
-=======
 							<input type="text" id="loc-inform" name="placeName" value="${rentalLoc.placeName }" readonly><input type="button" class="goRentalLoc" value="검색">
 							<input type="hidden" id="loc-addr" name="addr" value="${rentalLoc.addr }">
 							<input type="hidden" id="loc-phone" name="phone" value="${rentalLoc.phone }">
->>>>>>> develop/0.0.0
 						</div>
 					</div>
 					<div class="content-bottom">
@@ -80,37 +75,6 @@
 			</div>
 		</div>
 	</div>
-	<!--<form action="/insertBookRental.do" method="post">
-		<table border=1>
-			<tr>
-				<th>책 번호</th><th>이미지</th><th>책이름</th><th>저자</th><th>수량</th><th>대출일자</th><th>반납일자</th>
-			</tr>
-			<c:forEach items="${rentalList }" var ="b"> 
-			<tr>
-				<td><input type="text" name="bookNo" value="${b.bookNo}" readonly></td><td><img src=${b.imageurl}></td><td>${b.bookName }</td><td>${b.bookWriter }</td><td>${b.bookCount}</td><td><%= sf.format(nowTime) %>시</td><td><%= sf.format(cal.getTime())%></td>	
-			</tr>
-			</c:forEach>
-			
-				<tr>
-					<td colspan="6">상호대차 장소 검색</td>
-					<td>
-						<input type="button" class="goRentalLoc" value="검색">
-					</td>
-				</tr>
-				<tr>
-					<input type="text" name="placeName" value="${rentalLoc.placeName }">
-					<input type="hidden" name="addr" value="${rentalLoc.addr }">
-					<input type="hidden" name="phone" value="${rentalLoc.phone }">
-				</tr>
-			<tr>
-				<td colspan="7"><input type="submit" value="대출하기"><input type="reset" value="취소하기"></td> 
-			</tr>
-		</table>
-	</form>
-	
-<<<<<<< HEAD
-
-		<input type="submit" id="goRentalLoc" value="검색" data-toggle="modal" data-target="#myModal" style="display:none">
 	<!-- The Modal -->
                <div class="modal" id="myModal">
                  <div class="modal-dialog">
@@ -184,13 +148,10 @@
 	$('.goRentalLoc').on('click', function() {
 		$('#goRentalLoc').trigger('click');
 	});
-<<<<<<< HEAD
 	$('#pageBack').on('click', function () {
 		history.back();
 	});
 	
-=======
-
 $("#myModal").on('shown.bs.modal', function() {
 	map.relayout(); 
 	});
@@ -200,6 +161,5 @@ $(document).ready(function(){
         $(".modal").modal("hide");
     });
 });
->>>>>>> develop/0.0.0
 </script>
 </html>

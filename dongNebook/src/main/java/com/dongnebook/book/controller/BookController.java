@@ -1,5 +1,6 @@
 package com.dongnebook.book.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
@@ -141,10 +142,16 @@ public class BookController {
 	}
 	@RequestMapping("/selectOneBook.do")
 	public String selectOneBook( Model model, int bookNo) {
+		System.out.println("입장");
+		System.out.println(bookNo);
 		Book book = service.selectOneBook(bookNo);
 		BookRental isRental = service.selectIsRental(bookNo);
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		if(isRental != null) {
-			model.addAttribute("returnDate", isRental);			
+			String returnDate = transFormat.format(isRental.getReturnDate());
+			model.addAttribute("returnDate", returnDate);			
+		}else {
+			model.addAttribute("returnDate", "");
 		}
 		model.addAttribute("b", book);
 		return "book/selectOneBook";

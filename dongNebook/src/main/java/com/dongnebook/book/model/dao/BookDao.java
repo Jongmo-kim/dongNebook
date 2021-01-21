@@ -68,6 +68,7 @@ public class BookDao {
 	}
 	
 	public Book selectOneBook(int bookNo) {
+		System.out.println("dao"+bookNo);
 		return session.selectOne("book.selectOneBook", bookNo);
 	}	
 	public ArrayList<Book> newBook() {
