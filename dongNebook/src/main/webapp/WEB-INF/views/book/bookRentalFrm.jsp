@@ -59,18 +59,18 @@
 						</table>
 						<h3 style="display: inline-block;">상호대차 지정</h3>
 						<div class="content-middle">
-							<input type="text" name="placeName" value="${rentalLoc.placeName }" readonly><input type="button" class="goRentalLoc" value="검색">
-							<input type="hidden" name="addr" value="${rentalLoc.addr }">
-							<input type="hidden" name="phone" value="${rentalLoc.phone }">
+							<input type="text" id="loc-inform" name="placeName" value="${rentalLoc.placeName }" readonly><input type="button" class="goRentalLoc" value="검색">
+							<input type="hidden" id="loc-addr" name="addr" value="${rentalLoc.addr }">
+							<input type="hidden" id="loc-phone" name="phone" value="${rentalLoc.phone }">
 						</div>
 					</div>
 					<div class="content-bottom">
 						<input type="submit" value="대출하기"><a href="#">이전으로</a>
 					</div>
 				</form>
-				<form action="/rentalLoc.do"  method="post">
-					<input type="submit" id="goRentalLoc" value="검색" style="display:none">
-				</form>
+				<!-- <form action="/rentalLoc.do"  method="post"> -->
+					<input type="submit" id="goRentalLoc" data-toggle="modal" data-target="#myModal" value="검색" style="display:none">
+				<!-- </form> -->
 			</div>
 		</div>
 	</div>
@@ -178,5 +178,15 @@
 $('.goRentalLoc').on('click', function() {
 	  $('#goRentalLoc').trigger('click');
 	});
+
+$("#myModal").on('shown.bs.modal', function() {
+	map.relayout(); 
+	});
+$(document).ready(function(){
+    $(".info").click(function(){
+        console.log("12");
+        $(".modal").modal("hide");
+    });
+});
 </script>
 </html>
