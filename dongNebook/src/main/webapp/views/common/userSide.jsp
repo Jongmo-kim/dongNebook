@@ -16,7 +16,8 @@
 					<h2>도서</h2>
 				</div>
 				<ul>
-					<li><a href="#">메뉴추가</a></li>
+					<li><a href="/book/searchBookFrm.do">도서검색</a></li>
+					<li><a href="/proposal/bookProposal.do">도서신청</a></li>
 				</ul>
 			</div>
 		</div>

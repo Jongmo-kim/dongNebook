@@ -121,16 +121,9 @@ public class ProposalController {
 		p.setBookWriter(o.getAsJsonObject().get("author").getAsString());
 		p.setImageurl(o.getAsJsonObject().get("cover").getAsString());
 		p.setISBN(o.getAsJsonObject().get("isbn").getAsString());
-		
-		Book book = bookService.selectOneBook(p.getISBN());
-		
-		int result=0;
-		if(book==null) {			
-			result = service.insertProposal(p);
-		}else {
-//			result = bookService.updateCntBook(book);
-//			관리자에게 bookCount +1 하라고 알려줘야함
-		}
+				
+		int result = service.insertProposal(p);
+
 		if(result > 0) {
 			return p.getBookName()+" 신청 완료";
 		}else {

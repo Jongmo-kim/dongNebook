@@ -85,9 +85,9 @@
 	</update>
 	
 	<insert id="insertProposal" parameterType="pro">
-		insert into Book values(
+		insert into book_proposal values(
 			book_proposal_seq.nextval,
-			#{UserNo},
+			#{userNo},
 			#{bookName},
 			#{bookKind},
 			#{bookWriter},
@@ -95,7 +95,8 @@
 			#{bookIntroduce},
 			#{ISBN},
 			#{imageurl},
-			#{보고싶어서}
+			'보고싶어서',
+			null
 		)
 	</insert>
 </mapper>
