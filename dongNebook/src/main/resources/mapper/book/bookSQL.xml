@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="book">
-	<insert id="insertBook" parameterType="book">
+	<insert id="insertBook" parameterType="com.dongnebook.book.model.vo.Book">
 		insert into Book values(
 			book_seq.nextval,
 			#{bookName},
@@ -110,8 +110,8 @@
 			</choose>
 		</trim>
 	</select>
-	<delete id="bookDelete" parameterType="_int">
-		delete from book where book_no=#{bookNo}
+	<delete id="deleteBook" parameterType="_int">
+		delete from book where book_no=#{_parameter}
 	</delete>
 	<select id="selectBookByKeyword" parameterType="map" resultType="book">
 			

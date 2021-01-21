@@ -37,7 +37,8 @@ public class BookDao {
 	}
 
 	public int bookDelete(int bookNo) {
-		return session.delete("book.bookDelete",bookNo);
+		System.out.println(bookNo);
+		return session.delete("book.deleteBook",bookNo);
 	}
 	public ArrayList<Book> selectBookByKeyword(String inputStr, String searchKeyword) {
 		HashMap<String, String> map = new HashMap<String, String>();

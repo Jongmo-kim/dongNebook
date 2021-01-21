@@ -65,7 +65,7 @@ public class BookController {
 		b.setBookCount(1);
 		
 		Book book = service.selectOneBook(b.getISBN());
-		
+		System.out.println(b.getBookName());
 		int result=0;
 		if(book==null) {			
 			result = service.insertBook(b);
