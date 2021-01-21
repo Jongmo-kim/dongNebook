@@ -71,7 +71,7 @@ table>tbody>tr:first-child>th:first-child {
 }
 
 table>tbody>tr:first-child>th:nth-child(2) {
-	width: 130px;
+	width: 100px;
 }
 
 table>tbody>tr:first-child>th:nth-child(3) {
@@ -93,7 +93,7 @@ table>tbody>tr:first-child>th:nth-child(6) {
 table>tbody>tr>td {
 	font-size: 15px;
 	border-top: 1px solid lightgray;
-	height: 200px;
+	height: 150px;
 	border-right: 1px dashed lightgray;
 }
 
@@ -123,7 +123,10 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 .botton {
 	text-align: center;
 }
-
+	img{
+	width:100%;
+	height : 100%;
+	}
 .pbtn {
 	width: 100px;
 	height: 50px;
