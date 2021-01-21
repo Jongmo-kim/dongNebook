@@ -22,55 +22,78 @@ text-align:center;
 #noticeTitle{
 	cursor: pointer;
 }
-a{
-	color:black;
+.page:hover, .previous:hover, .next:hover{
 	text-decoration: none;
+	color:#a8dba8;
 }
 .page{
-font-size:15px;
+color:black;
+text-decoration: none;
+font-size:17px;
+width:20px;
+height:40px;
+display:inline-block;
 }
 .selectedPage{
-font-size:15px;
+font-size:20px;
+font-weight: bold;
+color:#3b8686;
 }
-.previous{
-font-size:15px;
+.previous, .next{
+color:black;
+font-size:17px;
+width:20x;
+height:40px;
+display:inline-block;
 }
-.next{
-font-size:15px;
+.contents{
+width:1200px !important;}
+.admin-contents{
+}
+#main-container{
 }
 </style>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
 	<div class="main-wrap">
-	<c:if test="${sessionScope.loginAdmin !=null}">
-	<jsp:include page="/views/common/adminSide.jsp" />
-	</c:if>
-	<div class="contents">
-	<h1 style="font-size:30px;">| 공지사항</h1>
-	<hr>
-	<table class="table table-hover">
-		<tr>
-			<c:if test="${sessionScope.loginAdmin!=null}">
-				<th style="width:5%;"><input type="checkbox" class="allCheck"></th>
-			</c:if>
-			<th style="width:10%;">번호</th><th style="width:50%;">제목</th><th style="width:20%;">작성자</th><th style="width:15%;">작성일</th>
-		</tr>
-		<c:forEach items="${list }" var ="n">
-			<tr>
-				<c:if test="${sessionScope.loginAdmin!=null}">
-					<td><input type="checkbox" name="noticeCheck" value=${n.noticeNo }></td>
-				</c:if>
-				<td>${n.rNum }</td><td id="noticeTitle" onclick="noticeView(${n.noticeNo});">${n.noticeTitle }</td><td>${n.noticeWriter }</td><td>${n.enrollDate }</td>			
-			</tr>
-		</c:forEach>
-	</table>
-	<c:if test="${sessionScope.loginAdmin!=null}">
-		<button onclick="insertNotice();" class="btn btn-lg btn-primary">작성하기</button>
-		<button onclick="deleteNotice();" class="btn btn-lg btn-danger">삭제하기</button>
-	</c:if>
-	<p style="text-align:center">${pageNavi }</p>
-	</div>
+		<c:choose>
+			<c:when test="${sessionScope.loginAdmin !=null}">
+				<jsp:include page="/views/common/adminSide.jsp" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include page="/views/common/userSide.jsp" />
+			</c:otherwise>
+		</c:choose>
+		<div class="contents">
+			<div class="admin-contents">
+				<div id="main-container" class="main-container nav-effect-1">
+					<h1 style="font-size:30px;">| 공지사항</h1>
+					<hr>
+					<table class="table table-hover">
+						<tr>
+							<c:if test="${sessionScope.loginAdmin!=null}">
+								<th style="width:5%;"><input type="checkbox" class="allCheck"></th>
+							</c:if>
+							<th style="width:10%;">번호</th><th style="width:50%;">제목</th><th style="width:20%;">작성자</th><th style="width:15%;">작성일</th>
+						</tr>
+						<c:forEach items="${list }" var ="n">
+							<tr>
+								<c:if test="${sessionScope.loginAdmin!=null}">
+									<td><input type="checkbox" name="noticeCheck" value=${n.noticeNo }></td>
+								</c:if>
+								<td>${n.rNum }</td><td id="noticeTitle" onclick="noticeView(${n.noticeNo});">${n.noticeTitle }</td><td>${n.noticeWriter }</td><td>${n.enrollDate }</td>			
+							</tr>
+						</c:forEach>
+					</table>
+					<c:if test="${sessionScope.loginAdmin!=null}">
+						<button onclick="insertNotice();" class="btn btn-lg btn-primary">작성하기</button>
+						<button onclick="deleteNotice();" class="btn btn-lg btn-danger">삭제하기</button>
+					</c:if>
+					<p style="text-align:center">${pageNavi }</p>
+				</div>
+			</div>
+		</div>
 	</div>
 	
 	<script>
