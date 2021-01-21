@@ -239,12 +239,17 @@
 	<div class="main-wrap">
 	<c:if test="${sessionScope.loginAdmin !=null}">
 	<jsp:include page="/views/common/adminSide.jsp" />
+	<div class="contents">
 	</c:if>
-			<div id='calendar'></div>
-			<br>
-			<br>
-			<br>
+	<h3>| 이달의 도서관</h3>
+	<hr>
+	<br>
+	<div id='calendar'></div>
+	<br><br><br>
 	</div>
+	<c:if test="${sessionScope.loginAdmin !=null}">
+	</div>
+	</c:if>
 	<script>
 		var radio = document.getElementsByName("backgroundColor");
 		var label = $("input[name='backgroundColor']+label");
