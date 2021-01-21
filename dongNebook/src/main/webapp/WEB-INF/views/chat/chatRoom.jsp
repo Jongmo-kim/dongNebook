@@ -71,12 +71,14 @@ position:relative;
     }
 </style>
 <body>
+
 	<jsp:include page="/views/common/header.jsp" />
 	<div class="contents-frame">
 	<div class="contents">
    <jsp:include page="/views/common/adminSide.jsp" />
    <div class="admin-contents">
 	
+       
 	<div id="main-container" class="main-container nav-effect-1">
    
 	<h1 style="font-size:30px;">1:1상담</h1>
@@ -120,14 +122,12 @@ position:relative;
             <td>Activeson</td>
             <td>act@example.com</td>
         </tr> -->
-   	<%!
-   		int i=1;
-   	%>
-     <c:forEach items="${list}" var="room">
+   	
+     <c:forEach items="${list}" var="room" varStatus="status">
 		<!--  <form action="/chat/chatRoom.do?chatUser=${room.getCmSender()}" method="post">-->
 		<c:if test="${room.getCmSender()!=null}">
 		<tr>
-            <td><%=i++ %></td>
+            <td>${status.count}</td>
             <td>${room.getCmSender()}님</td>
             <td><button class="button big green" onclick="openAdminWindow('${room.getCmSender()}')" type="submit">채팅방 입장</button></td>
         </tr> 
@@ -145,13 +145,13 @@ position:relative;
 	</c:forEach>
 	 </tbody>
 </table>
+	<%--  <%!i=1; %> --%>
    </div>
    </div>
    </div>
    </div>
    
-   
-   
+ 
    <script >
    		function openAdminWindow(data){
    			console.log(data);
