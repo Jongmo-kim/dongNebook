@@ -283,7 +283,10 @@ background:#a8dba8;
 				}
 			})
 		});			
-	
+		$("#calendarStartDate").change(function(){
+			var start = $("#calendarStartDate").val();
+			$("#calendarEndDate").val(start);
+		});
 				
 		function insertCalendar(){
 			var title = $("#calendarTitle").val();
