@@ -12,7 +12,7 @@
 		<div class="menu-frame">
 			<div>
 				<div class="main-img">
-					<a href="/"> <img src="../image/header/logo.png">
+					<a href="/"> <img src="../image/header/finalLogo.png">
 					</a>
 				</div>
 				<div class="main-menu">

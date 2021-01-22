@@ -55,11 +55,11 @@ html {
         float: left;
         box-sizing: border-box;
         line-height: 10;
-    padding-left: 15px;
+   
         text-align: left;
     }
     .main-img img {
-        height: 77px;
+        height: 110px;
 
     }
     .main-menu {
