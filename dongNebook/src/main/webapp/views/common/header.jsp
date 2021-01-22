@@ -18,9 +18,9 @@
 				<div class="main-menu">
 					<ul class="menu-list">
 						<li><a href="/book/searchBookFrm.do">도서대출</a></li>
-						<li><a href="/calendar/calendarView.do">사용자 서비스</a></li>
+						<li><a href="/rank/rankList.do?reqPage=1">사용자 서비스</a></li>
 						<li><a href="/notice/noticeList.do?reqPage=1">공지사항</a></li>
-						<li><a href="/book/searchBookFrm.do">일정</a></li>
+						<li><a href="/calendar/calendarView.do">일정</a></li>
 					</ul>
 				</div>
 

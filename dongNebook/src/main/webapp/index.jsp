@@ -184,6 +184,7 @@
 						
 					</div>
 					</div>
+                    <input type="hidden" class="book-no">
 					</div>
                     <div class="book-info">
                     	<h3 class="book-title"></h3>
@@ -202,6 +203,7 @@
 						
 					</div>
 					</div>
+                    <input type="hidden" class="book-no">
 					</div>
                     <div class="book-info">
                     	<h3 class="book-title"></h3>
@@ -220,6 +222,7 @@
 						
 					</div>
 					</div>
+                    <input type="hidden" class="book-no">
 					</div>
                     <div class="book-info">
                     	<h3 class="book-title"></h3>
@@ -238,6 +241,7 @@
 						
 					</div>
 					</div>
+                    <input type="hidden" class="book-no">
 					</div>
                     <div class="book-info">
                     	<h3 class="book-title"></h3>
@@ -256,6 +260,7 @@
 						
 					</div>
 					</div>
+                    <input type="hidden" class="book-no">
 					</div>
                     <div class="book-info">
                     	<h3 class="book-title"></h3>
@@ -372,6 +377,7 @@
 						var rank= document.getElementsByClassName("book-img");
 						var title= document.getElementsByClassName("book-title");
 						var autor= document.getElementsByClassName("autor");
+						var number=document.getElementsByClassName("book-no");
 						console.log(data);
 						console.log(data[0]);
 					for(var i=0;i<5;i++){
@@ -379,6 +385,7 @@
 						console.log(i);
 						console.log(data[i].bookName.length);
 						console.log(data[i].bookWriter);
+						console.log("책번호"+data[i].bookNo);
 						var bookName=data[i].bookName;
 						var bookWriter;
 						if(data[i].bookWriter==undefined){
@@ -399,6 +406,7 @@
 							console.log("... 작가:"+bookWriter);
 						}
 						rank[i].innerHTML='<img src="' +data[i].imageurl+ '" />';
+						number[i].value=data[i].bookNo;
 						title[i].innerHTML=bookName;
 						autor[i].innerHTML=bookWriter;
 						
@@ -422,6 +430,12 @@
 					}
 				}
 			});
+		});
+		$('.book').click(function(){
+			$(this).next().trigger('click');
+		});
+		$('.book-no').click(function(){
+			location.href="/book/selectOneBook.do?bookNo="+$(this).val()+"";
 		});
 	</script>
 	<script>

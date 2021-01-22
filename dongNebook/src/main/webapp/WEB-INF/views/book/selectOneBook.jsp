@@ -11,8 +11,12 @@
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	<jsp:include page="/views/common/userSide.jsp" />
-	<div class="content-wrap">
+	<div class="contents-frame">
+		
+		<div class="contents">
+				<jsp:include page="/views/common/userSide.jsp" />
+			<div class="admin-contents">
+				<div id="main-container" class="main-container nav-effect-1">
 		<h1 style="font-size:30px;">도서등록</h1>
 		<hr>
 		<div class="content">
@@ -95,6 +99,9 @@
 		</tr>
 	</table>
 	 -->
+	 </div>
+	 </div>
+	 </div>
 </body>
 <script>
 	$('#notLogin').click(function () {

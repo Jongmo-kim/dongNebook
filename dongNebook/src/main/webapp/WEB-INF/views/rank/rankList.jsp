@@ -74,15 +74,23 @@
 		color:#404040;
 		font-size : 33px;
 	}
+	.SideMenu li:nth-child(3) a {
+    background: #a8dba8;
+    color: white;
+}
 </style>
 <jsp:include page="/views/common/linkHead.jsp"/>
 </head>
 <body>
-  <div class="contents-frame">
-   <div class="contents">
 		<jsp:include page="/views/common/header.jsp" />
-		<div class="con">
-	<h1>| 대출 순위</h1>
+  <div class="contents-frame">
+		
+		<div class="contents">
+				<jsp:include page="/views/common/userSide.jsp" />
+			<div class="admin-contents">
+				<div id="main-container" class="main-container nav-effect-1">
+	<h1 style="font-size:30px;"> 대출 순위</h1>
+	<hr>
 	<table>
 		<c:forEach items="${list }" var ="b">
 			<tr>
@@ -99,6 +107,6 @@
 		<div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
 		</div>
 		</div>
-			
+			</div>
 </body>
 </html>

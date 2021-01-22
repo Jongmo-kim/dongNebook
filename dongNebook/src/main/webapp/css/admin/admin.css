@@ -64,6 +64,7 @@
 	}
 	.admin-contents{
 		padding-left:20px;
+		height:100vh;
 	}
 	.list-contents{
 		padding:20px;
@@ -80,6 +81,7 @@
 .main-container {
   position: relative;
   overflow-x: hidden;
+  height: 100%;
 }
 .main-container.prevent-scroll, .main-container.nav-menu-open {
   overflow: hidden;

@@ -66,16 +66,29 @@
          	margin-top : 100px;
          	text-align : center;
          }
+         .bookmark-table{
+         	width:100%;
+         }
+         .SideMenu li:nth-child(4) a{
+background:#a8dba8;
+	color:white;
+}
 	</style>
 
 </head>
 <jsp:include page="/views/common/linkHead.jsp"/>
 <body>
-  <div class="contents-frame">
-   <div class="contents">
-	<jsp:include page="/views/common/header.jsp" />
-	
-	<table>
+  <jsp:include page="/views/common/header.jsp" />
+	<div class="contents-frame">
+		<div class="contents">
+				<jsp:include page="/views/common/userSide.jsp" />
+			<div class="admin-contents">
+				<div id="main-container" class="main-container nav-effect-1">
+	<h1 style="font-size:30px;">희망도서</h1>
+         <hr>
+	<%-- <c:choose>
+	<c:when test="${loginUser!=null }"> --%>
+	<table class="bookmark-table">
 				<c:if test="${fn:length(bookList) == 0 }">
 				<div class = "noBook"><h2>북마크한 책이 없습니다</h2></div>
 					
@@ -104,7 +117,13 @@
 	</c:if>
 	</div>
 	</div>
-	
+	</div>
+	</div>
+	<%-- </c:when>
+	<c:otherwise>
+		<div class = "noBook"><h2>로그인이 필요한 서비스입니다.</h2></div>
+	</c:otherwise>
+	</c:choose> --%>
 	<script>
     var maxChecked=3;
     var totalChecked = 0;
@@ -192,7 +211,31 @@
          });
        */
      };
-
+     var sessionEmail='';
+     $(document).ready(function(){
+    	 sessionCheck();
+     });
+     
+	function sessionCheck(){
+		$.ajax({
+			type:'POST',
+			datatype:'json',
+			url:"/main/memberSessionCheck.do",
+			async:false,
+			success:function(result){
+				sessionEmail=result;
+			}
+		});
+		if(sessionEmail ==''){
+			var reLogin = confirm('로그인이 필요한 서비스 입니다. 확인 시 로그인 창으로 이동됩니다.');
+			if(reLogin){
+				location.href='/user/loginFrm.do';
+				return;
+			}
+		}else{
+			return;
+		}
+	}
 	</script>
 </body>
 </html>
