@@ -73,7 +73,8 @@ public class AdminController {
 			}
 		}
 		System.out.println("다시뽑은책명"+list.get(0));
-		int result = service.deleteBooks(list);
+		//int result = service.deleteBooks(list);
+		int result = service.returnBooks(list);
 		System.out.println(result);
 		return null;
 	}
