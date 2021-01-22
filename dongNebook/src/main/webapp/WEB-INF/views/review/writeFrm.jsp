@@ -22,11 +22,11 @@
 		<input type="hidden" name="userNo" value="${sessionScope.loginUser.userNo }">
 			<table class="table table-bordered" >
 				<tr>
-						<th>
-							제목
+						<th style="width:10%;">
+						제목
 						</th>
-						<td>
-								<input type="text" name="title" value="title">
+						<td style="width:75%;">
+								<input type="text" name="title" value="title" style="width:100%;">
 						</td>
 				</tr>
 				<tr>
@@ -50,7 +50,7 @@
 				</tr>		
 		</table>
 		<div class="submitBtn" style="text-align:center;">
-			<button class="btn">글쓰기</button>
+			<button class="btn btn-lg btn-outline-secondary">글쓰기</button>
 		</div>
 	</form>
 	</div>
