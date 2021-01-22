@@ -11,31 +11,58 @@
 <link rel="stylesheet" href="/lib/choices/choices.min.css" type="text/css">
 <script src="/lib/choices/choices.min.js" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
+<link rel="stylesheet" href="../css/review/content.css" type="text/css">
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
+	<div class="content">
 	<h2>리뷰 수정하기</h2>
 	<hr>
-	<div class="content">
 	<form action="/review/update.do" method="post" accept-charset="UTF-8">
 		<input type="hidden" name="userNo" value="${sessionScope.loginUser.userNo }">
 		<input type="hidden" name="reviewNo" value="${view.reviewNo }">
-		<input type="text" name="title" value="${view.title }">
-		<textarea rows="5" name="content" cols="50" style="resize:none;">${view.content }</textarea>
+		<table class="table table-bordered">
+				<tr>
+					<th style="width:10%;">
+						제목
+					</th>
+					<td style="width:75%;">
+						<input type="text" name="title" value="${view.title }">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						내용
+					</th>
+					<td>
+						<textarea rows="5" name="content" cols="50" style="resize:none; width:100%;">${view.content }</textarea>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						책 태그
+					</th>
+					<td>
+					<select class="form-control" name="tags" id="choices" placeholder="This is a placeholder" multiple>
+						<c:forEach var="t" items="${tags }">
+							<option value="${t.book.bookName }" selected>${t.book.bookName }</option>
+						</c:forEach>
+					</select>
+					</td>
+				</tr>
+		</table>
 		
-		<select class="form-control" name="tags" id="choices" placeholder="This is a placeholder" multiple>
-			<c:forEach var="t" items="${tags }">
-				<option value="${t.book.bookName }" selected>${t.book.bookName }</option>
-			</c:forEach>
-		</select>
-		<button>수정하기</button>
+		
+		
+		
+		<button class="btn">수정하기</button>
 	</form>
 	<form name="delete" method="post">
 		<input type="hidden" name="reviewNo" value="${view.reviewNo }">
-		<button class="deleteBtn">삭제하기</button>
+		<button class="deleteBtn btn">삭제하기</button>
 	</form>
 	</div>
+	
 	<script src="/js/review/updateFrm.js" type="text/javascript"></script>
 </body>
 </html>

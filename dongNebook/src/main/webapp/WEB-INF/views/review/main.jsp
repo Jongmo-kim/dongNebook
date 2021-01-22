@@ -32,16 +32,14 @@
 			<table class="bookListTable" border=1>
 				<tr class="table-header">
 					<th>게시글번호</th>
-					<th>글쓰니</th>
+					<th>글쓴이</th>
 					<th>제목</th>
-					<th>컨텐츠</th>
 				</tr>
 			<c:forEach var="b" items="${reviewList }">
 				<tr>
 					<td>${b.reviewNo }</td>
 					<td>${b.user.userName }</td>
 					<td><a href="/review/view.do?reviewNo=${b.reviewNo }">${b.title }</a></td>
-					<td>${b.content }</td>
 				</tr>
 			</c:forEach>
 			</table>
