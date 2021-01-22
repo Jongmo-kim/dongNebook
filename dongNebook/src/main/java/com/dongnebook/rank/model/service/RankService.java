@@ -54,7 +54,9 @@ public class RankService {
 			if(reqPage == pageNo) {
 				pageNavi += "<li class='page-item'><span class='selectPage page-link'>"+pageNo+"</span>";
 			}else {
-				pageNavi += "<li class='page-item'><a class='btn page-link' href='/rank/rankList.do?reqPage="+(pageNo)+"'>"+pageNo+"</a>";
+				if(pageNo!=0) {
+					pageNavi += "<li class='page-item'><a class='btn page-link' href='/rank/rankList.do?reqPage="+(pageNo)+"'>"+pageNo+"</a>";
+				}
 			}
 			pageNo++;
 			if(pageNo > totalPage) {

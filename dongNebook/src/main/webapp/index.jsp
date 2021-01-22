@@ -16,6 +16,112 @@
 	.autor{
 		
 	}
+.container {
+  	width: 80%;
+    height: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 20px;
+    z-index: 1;
+    padding-left: 23px;
+    perspective: 3000px;
+}
+
+.container .book {
+ width: 180px;
+    height: 270px;
+    position: relative;
+    display: block;
+    /* width: 400px; */
+    /* height: 550px; */
+   
+    border-radius: 2px 4px 4px 2px;
+    background: linear-gradient(45deg, #DAD5DC 0%, #f2ebf4 100%);
+    font-family: acumin-pro, sans-serif;
+    -webkit-box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
+    -moz-box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
+    box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
+    font-weight: 400;
+    color: #2b2b2b;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform .5s;
+    -moz-transition: -moz-transform .5s;
+    transition: transform .5s;
+}
+
+.container .book:hover {
+  -webkit-transform: rotate3d(0,1,0,35deg);
+  -moz-transform: rotate3d(0,1,0,35deg);
+  transform: rotate3d(0,1,0,35deg);
+}
+
+.container .book > div,
+.container .front > div {
+  display: block;
+  position: absolute;
+}
+
+
+.container .front {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform-origin: 0% 50%;
+  -moz-transform-origin: 0% 50%;
+  transform-origin: 0% 50%;
+  -webkit-transition: -webkit-transform .5s;
+  -moz-transition: -moz-transform .5s;
+  transition: transform .5s;
+  -webkit-transform: translate3d(0,0,20px);
+  -moz-transform: translate3d(0,0,20px);
+  transform: translate3d(0,0,20px);
+  z-index: 10;
+}
+
+.container .front > div {
+  width: 400px;
+  height: 550px;
+}
+
+.container .left-side{
+  width: 40px;
+  left: -20px;
+  height: 270px;
+  background-color: rgba(232,229,234);
+  -webkit-transform: rotate3d(0,1,0,-90deg);
+  -moz-transform: rotate3d(0,1,0,-90deg);
+  transform: rotate3d(0,1,0,-90deg);
+}
+
+.container .front > div {
+  border-radius: 0 3px 3px 0;
+  box-shadow: 
+    inset 4px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container .front:after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  left: -1px;
+  width: 1px;
+}
+
+.container .cover:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10px;
+  bottom: 0;
+  width: 3px;
+  background: rgba(0,0,0,0.1);
+  box-shadow: 1px 0 3px rgba(255, 255, 255, 0.1);
+}
+
+
 </style>
 
 
@@ -33,7 +139,9 @@
 
             <div style="position:relative">
 
-                <!--가로--> <img class="d-block w-100" src="../image/index/img.png" alt="First slide">
+                <!--가로-->
+                <!-- <img class="d-block w-100" src="../image/index/img.png" alt="First slide"> -->
+                <img class="d-block w-100" src="../image/index/star.jpeg" alt="First slide">
 				<div class="searchBox">
 		<div class="searchFrm">
 			<form action="/book/searchBook.do" name="searchBook" method="get" >
@@ -68,7 +176,18 @@
             <div>
                 <div class="book-rank-frame" id="rank-first-frame">
                 	<div class="book-rank"></div>
-                    <div class="book-img"></div>
+                    <div class="container">
+						<div class="book">
+							<div class="book-img"></div>
+						<div class="front">
+				
+						</div>
+						<div class="left-side">
+						
+					</div>
+					</div>
+                    <input type="hidden" class="book-no">
+					</div>
                     <div class="book-info">
                     	<h3 class="book-title"></h3>
                     	<h4 class="autor"></h4>
@@ -76,7 +195,18 @@
                 </div>
                 <div class="book-rank-frame">
                 <div class="book-rank"></div>
-                    <div class="book-img"></div>
+                    <div class="container">
+						<div class="book">
+							<div class="book-img"></div>
+						<div class="front">
+				
+						</div>
+						<div class="left-side">
+						
+					</div>
+					</div>
+                    <input type="hidden" class="book-no">
+					</div>
                     <div class="book-info">
                     	<h3 class="book-title"></h3>
                     	<h4 class="autor"></h4>
@@ -84,7 +214,18 @@
                 </div>
                 <div class="book-rank-frame">
                 <div class="book-rank"></div>
-                    <div class="book-img"></div>
+                    <div class="container">
+						<div class="book">
+							<div class="book-img"></div>
+						<div class="front">
+				
+						</div>
+						<div class="left-side">
+						
+					</div>
+					</div>
+                    <input type="hidden" class="book-no">
+					</div>
                     <div class="book-info">
                     	<h3 class="book-title"></h3>
                     	<h4 class="autor"></h4>
@@ -92,7 +233,18 @@
                 </div>
                 <div class="book-rank-frame">
                 <div class="book-rank"></div>
-                    <div class="book-img"></div>
+                    <div class="container">
+						<div class="book">
+							<div class="book-img"></div>
+						<div class="front">
+				
+						</div>
+						<div class="left-side">
+						
+					</div>
+					</div>
+                    <input type="hidden" class="book-no">
+					</div>
                     <div class="book-info">
                     	<h3 class="book-title"></h3>
                     	<h4 class="autor"></h4>
@@ -100,7 +252,18 @@
                 </div>
                 <div class="book-rank-frame">
                 <div class="book-rank"></div>
-                    <div class="book-img"></div>
+                    <div class="container">
+						<div class="book">
+							<div class="book-img"></div>
+						<div class="front">
+				
+						</div>
+						<div class="left-side">
+						
+					</div>
+					</div>
+                    <input type="hidden" class="book-no">
+					</div>
                     <div class="book-info">
                     	<h3 class="book-title"></h3>
                     	<h4 class="autor"></h4>
@@ -216,6 +379,7 @@
 						var rank= document.getElementsByClassName("book-img");
 						var title= document.getElementsByClassName("book-title");
 						var autor= document.getElementsByClassName("autor");
+						var number=document.getElementsByClassName("book-no");
 						console.log(data);
 						console.log(data[0]);
 					for(var i=0;i<5;i++){
@@ -223,6 +387,7 @@
 						console.log(i);
 						console.log(data[i].bookName.length);
 						console.log(data[i].bookWriter);
+						console.log("책번호"+data[i].bookNo);
 						var bookName=data[i].bookName;
 						var bookWriter;
 						if(data[i].bookWriter==undefined){
@@ -243,6 +408,7 @@
 							console.log("... 작가:"+bookWriter);
 						}
 						rank[i].innerHTML='<img src="' +data[i].imageurl+ '" />';
+						number[i].value=data[i].bookNo;
 						title[i].innerHTML=bookName;
 						autor[i].innerHTML=bookWriter;
 						
@@ -266,6 +432,12 @@
 					}
 				}
 			});
+		});
+		$('.book').click(function(){
+			$(this).next().trigger('click');
+		});
+		$('.book-no').click(function(){
+			location.href="/book/selectOneBook.do?bookNo="+$(this).val()+"";
 		});
 	</script>
 	<script>

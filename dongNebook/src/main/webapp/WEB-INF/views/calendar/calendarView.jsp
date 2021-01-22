@@ -167,7 +167,7 @@
 #calendar{
 	margin:0 auto;
 }
-.SideMenu li:nth-child(2) a{
+.SideMenu li:nth-child(6) a{
 background:#a8dba8;
 	color:white;
 }
@@ -283,7 +283,10 @@ background:#a8dba8;
 				}
 			})
 		});			
-	
+		$("#calendarStartDate").change(function(){
+			var start = $("#calendarStartDate").val();
+			$("#calendarEndDate").val(start);
+		});
 				
 		function insertCalendar(){
 			var title = $("#calendarTitle").val();

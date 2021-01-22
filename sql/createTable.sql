@@ -78,8 +78,11 @@ CREATE TABLE BOOK_RENTAL(
     BOOK_NO NUMBER ,
     RENTAL_LOCATION_NO NUMBER NOT NULL,
     ENROLL_DATE DATE,
-    RETURN_DATE DATE
+    RETURN_DATE DATE,
+    isReturn CHAR(1) DEFAULT 'N'
 );
+ALTER TABLE book_rental ADD(isReturn char(1) default 'N');
+
 ALTER TABLE BOOK_RENTAL ADD CONSTRAINT BOOK_RENTAL_USER_NO_Fk
 FOREIGN KEY(USER_NO) REFERENCES "USER"(USER_NO) ON DELETE CASCADE;
 
@@ -154,6 +157,26 @@ create table alert(
     book_name varchar2(500),
     chk number default 0
 );
+
+create table proposal_alert(
+proposal_alert_no number not null,
+user_no number,
+book_name varchar2(500),
+chk number default 0
+);
+
+create sequence proposal_alert_seq;
+
+create or replace trigger proposal_alert_trg
+after update on book_proposal
+for each row
+begin
+    insert into proposal_alert values(
+     proposal_alert_seq.nextval,
+    :old.user_no, :old.book_name, default, :new.isproposal);
+    end;
+/
+sel
 
 ALTER TABLE alert ADD CONSTRAINT ALERT_BOOK_RENTAL_NO_FK
 FOREIGN KEY(BOOK_RENTAL_NO) REFERENCES BOOK_RENTAL(BOOK_RENTAL_NO) ON DELETE CASCADE;

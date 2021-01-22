@@ -12,12 +12,7 @@
 </head>
 <body>
 	<div class="admin-contents-frame">
-        <div class="admin-contents-main">
-            도서검색
-        </div>
-        <div class="admin-contents-menu" id="sub1">상세 검색+</div>
-        <div class="admin-contents-menu" id="sub2">상호 대차+</div>
-        <div class="admin-contents-menu" id="sub3">도서 신청+</div>
+        
         <div class="admin-contents">
             <p class="admin-contents-maintext">수령 위치 검색</p>
             <div class="admin-line"></div>

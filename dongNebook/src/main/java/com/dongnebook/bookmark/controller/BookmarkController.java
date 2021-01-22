@@ -49,10 +49,12 @@ public class BookmarkController {
 	
 	@RequestMapping("/bookMarkList.do")
 	public String searchUser(HttpSession session, Model model) {
+		ArrayList<Bookmark> list=null;
 		User loginUser = (User)session.getAttribute("loginUser");
-		System.out.println(loginUser.getUserNo());
-		int userNo = loginUser.getUserNo();
-		ArrayList<Bookmark> list = service.searchBookMark(userNo);
+		if(loginUser!=null) {
+			int userNo = loginUser.getUserNo();
+			list = service.searchBookMark(userNo);			
+		}
 		
 //		System.out.println(bookmark.get(0).getISBN());
 //		ArrayList<Book> list=new ArrayList<Book>();
@@ -60,8 +62,11 @@ public class BookmarkController {
 //			Book book=service.searchBookMarkList(bookmark.get(i).getISBN());
 //			list.add(book);			
 //		}
-		
-		model.addAttribute("bookList", list);
+		if(list==null) {
+			model.addAttribute("bookList", "");
+		}else {
+			model.addAttribute("bookList", list);						
+		}
 		return "bookmark/bookMark";
 	}
 	

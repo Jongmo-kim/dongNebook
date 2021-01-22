@@ -90,6 +90,7 @@ public class RentalController {
 		int result = service.insertReserve(reserve);
 		if(result>0) {
 			model.addAttribute("msg","예약 성공");
+			model.addAttribute("result", "true");
 		}else {
 			model.addAttribute("msg","예약 실패");
 		}
@@ -149,6 +150,7 @@ public class RentalController {
 			model.addAttribute("msg","대출장소 등록 실패");
 		}
 		RentalLoc lastLoc = service.lastLoc();
+		System.out.println(bookNo);
 		for(int i : bookNo) {
 			//이 부분은 대출했을때 책 수를 차감하기 위함!
 			bRental = new BookRental();
@@ -162,7 +164,8 @@ public class RentalController {
 			//book테이블에 bookCount와 rCount 가감작업
 			int bookUpdateCount = service.updateCount(bookNo);
 			if(bookUpdateCount>0) {
-				model.addAttribute("msg","대출 성공");				
+				model.addAttribute("msg","대출 성공");
+				model.addAttribute("result", "true");
 			}
 		}else {
 			model.addAttribute("msg","대출 실패");

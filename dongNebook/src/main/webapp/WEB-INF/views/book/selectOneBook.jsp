@@ -11,8 +11,12 @@
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	<jsp:include page="/views/common/userSide.jsp" />
-	<div class="content-wrap">
+	<div class="contents-frame">
+		
+		<div class="contents">
+				<jsp:include page="/views/common/userSide.jsp" />
+			<div class="admin-contents">
+				<div id="main-container" class="main-container nav-effect-1">
 		<h1 style="font-size:30px;">도서등록</h1>
 		<hr>
 		<div class="content">
@@ -51,16 +55,27 @@
 					<li><strong>반납 예정일</strong></li>
 					<li><strong>대출상태</strong></li>
 					<li>${b.ISBN}</li>
-					<li>반납예정일</li>
-					<li style="line-height: normal;">대출불가상태(다른 사용자 대출중 21/01/20 반납예정)</li>
+					<c:if test="${b.bookCount!=0}"> 
+					<li></li>
+					<li style="line-height: normal; color: blue;">대출 가능</li>
+					</c:if>
+					<c:if test="${b.bookCount==0}"> 
+					<li>${returnDate}</li>
+					<li style="line-height: normal;">대출불가상태(다른 사용자 대출중 ${returnDate} 반납예정)</li>
+					</c:if>
 				</ul>
 			</div>
 			<div class="content-bottom">
 				<c:if test="${loginUser!=null }">
-					<a href="/bookRental.do?bookNo=${b.bookNo}">대출신청</a><a>이전으로</a>
+					<c:if test="${b.bookCount!=0}"> 
+						<a href="/bookRental.do?bookNo=${b.bookNo}">대출신청</a><a href="/book/searchBookFrm.do">이전으로</a>
+					</c:if>
+					<c:if test="${b.bookCount==0}"> 
+						<a href="/insertReserve.do?bookNo=${b.bookNo}">예약신청</a><a href="/book/searchBookFrm.do">이전으로</a>
+					</c:if>
  				</c:if>
  				<c:if test="${loginUser==null }">
-					<a href="/loginFrm.do">대출신청</a><a style="color: #80e27e;">이전으로</a>
+					<a id="notLogin" href="/user/loginFrm.do">대출신청</a><a href="/book/searchBookFrm.do">이전으로</a>
 				</c:if>
 			</div>
 		</div>
@@ -84,5 +99,13 @@
 		</tr>
 	</table>
 	 -->
+	 </div>
+	 </div>
+	 </div>
 </body>
+<script>
+	$('#notLogin').click(function () {
+		alert('로그인 후 이용가능합니다');
+	});
+</script>
 </html>

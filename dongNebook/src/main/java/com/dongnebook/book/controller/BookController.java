@@ -1,5 +1,6 @@
 package com.dongnebook.book.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
@@ -16,7 +17,7 @@ import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.book.model.vo.BookPageData;
 import com.dongnebook.common.hangulTrie;
 import com.dongnebook.common.hangulTrie.trieNode;
-import com.dongnebook.proposal.model.vo.ProposalVO;
+import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.user.model.vo.User;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -65,7 +66,7 @@ public class BookController {
 		b.setBookCount(1);
 		
 		Book book = service.selectOneBook(b.getISBN());
-		
+		System.out.println(b.getBookName());
 		int result=0;
 		if(book==null) {			
 			result = service.insertBook(b);
@@ -140,8 +141,18 @@ public class BookController {
 		return "common/msg";
 	}
 	@RequestMapping("/selectOneBook.do")
-	public String selectOneBook(Model model, int bookNo) {
+	public String selectOneBook( Model model, int bookNo) {
+		System.out.println("입장");
+		System.out.println(bookNo);
 		Book book = service.selectOneBook(bookNo);
+		BookRental isRental = service.selectIsRental(bookNo);
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		if(isRental != null) {
+			String returnDate = transFormat.format(isRental.getReturnDate());
+			model.addAttribute("returnDate", returnDate);			
+		}else {
+			model.addAttribute("returnDate", "");
+		}
 		model.addAttribute("b", book);
 		return "book/selectOneBook";
 	}

@@ -12,6 +12,7 @@ import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.book.model.vo.BookPageData;
 import com.dongnebook.proposal.model.vo.ProposalPageData;
 import com.dongnebook.proposal.model.vo.ProposalVO;
+import com.dongnebook.rental.model.vo.BookRental;
 
 
 /**
@@ -222,4 +223,9 @@ public class BookService {
 		}
 		return pageNavi;
 	}
+
+	public BookRental selectIsRental(int bookNo) {
+		return dao.selectIsRental(bookNo);
+	}
+
 }

@@ -147,6 +147,10 @@ public class AdminService {
 		UserPageData upd=new UserPageData(list,pageNavi);
 		return upd;
 	}
+
+	public int returnBooks(ArrayList<Integer> list) {
+		return dao.returnBooks(list);
+	}
 	
 	//Start
 }

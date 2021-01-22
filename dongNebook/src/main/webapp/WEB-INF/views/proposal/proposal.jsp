@@ -71,7 +71,7 @@ table>tbody>tr:first-child>th:first-child {
 }
 
 table>tbody>tr:first-child>th:nth-child(2) {
-	width: 100px;
+	width: 130px;
 }
 
 table>tbody>tr:first-child>th:nth-child(3) {
@@ -93,7 +93,7 @@ table>tbody>tr:first-child>th:nth-child(6) {
 table>tbody>tr>td {
 	font-size: 15px;
 	border-top: 1px solid lightgray;
-	height: 150px;
+	height: 200px;
 	border-right: 1px dashed lightgray;
 }
 
@@ -124,8 +124,8 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 	text-align: center;
 }
 	img{
-	width:100%;
-	height : 100%;
+	width:95%;
+	height : 95%;
 	}
 .pbtn {
 	width: 100px;
@@ -224,7 +224,9 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 						<c:when test = "${b.isproposal eq null}">
 							<tr>
 								<td><input type="checkbox" class="chk"></td>
-								<td><img alt="${b.bookName }Image" src="${b.imageurl }"></td>
+								<td><img alt="${b.bookName }Image" src="${b.imageurl }" >
+								<input type="hidden" value="${b.imageurl }">
+								</td>
 								<td>
 									<p>${b.bookName }</p>
 									<p>${b.bookWriter }</p>
@@ -415,7 +417,7 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 													var book = new Object();
 													var imageurl = $(item)
 															.parent().next()
-															.html();
+															.children().next().val();
 													var bookName = $(item)
 															.parent().parent()
 															.find("td").eq(2)

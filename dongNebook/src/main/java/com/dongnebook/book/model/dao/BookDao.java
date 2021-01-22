@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.proposal.model.vo.ProposalVO;
+import com.dongnebook.rental.model.vo.BookRental;
 
 
 
@@ -37,7 +38,8 @@ public class BookDao {
 	}
 
 	public int bookDelete(int bookNo) {
-		return session.delete("book.bookDelete",bookNo);
+		System.out.println(bookNo);
+		return session.delete("book.deleteBook",bookNo);
 	}
 	public ArrayList<Book> selectBookByKeyword(String inputStr, String searchKeyword) {
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -66,6 +68,7 @@ public class BookDao {
 	}
 	
 	public Book selectOneBook(int bookNo) {
+		System.out.println("dao"+bookNo);
 		return session.selectOne("book.selectOneBook", bookNo);
 	}	
 	public ArrayList<Book> newBook() {
@@ -96,5 +99,10 @@ public class BookDao {
 		map.put("searchKeyword", searchKeyword);
 		return session.selectOne("book.selectSearchCount",map);
 	}
+
+	public BookRental selectIsRental(int bookNo) {
+		return session.selectOne("rental.selectIsRental", bookNo);
+	}
+
 
 }

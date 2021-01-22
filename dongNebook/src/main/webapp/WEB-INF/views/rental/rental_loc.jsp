@@ -12,15 +12,11 @@
 </head>
 <body>
 	<div class="admin-contents-frame">
-        <div class="admin-contents-main">
-            도서검색
-        </div>
-        <div class="admin-contents-menu" id="sub1">상세 검색+</div>
-        <div class="admin-contents-menu" id="sub2">상호 대차+</div>
-        <div class="admin-contents-menu" id="sub3">도서 신청+</div>
+       
         <div class="admin-contents">
-            <p class="admin-contents-maintext">수령 위치 검색</p>
-            <div class="admin-line"></div>
+        	<h3>상호대차 위치검색</h3>
+        	<hr>
+           <br>
             <div class="admin-map">
             	<div class="map_wrap">
 				    <div id="map" style="width:100%;height:555px;position:relative;overflow:hidden;"></div>
@@ -41,15 +37,15 @@
 </div>
             </div>
             <div class="admin-explain">
-            	<input type="text" value="${rentalList }">
-            </div>
             <form action="/mergeLoc.do">
             
 	            <input type="text" class="loc-inform" name="placeName" id="loc-inform" readonly>
+            	<input type="hidden" value="${rentalList }">
 				<input type="hidden" id="loc-addr" name="addr">
 				<input type="hidden" id="loc-phone" name="phone">
 	            <button class="loc-inform-submit">확인</button>
             </form>
+            </div>
         </div>
     </div>
     

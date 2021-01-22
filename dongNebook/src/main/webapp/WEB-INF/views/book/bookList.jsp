@@ -31,7 +31,7 @@
              </tr>
             <c:forEach items="${list }" var ="b">
                <tr>
-                  <td>${b.bookNo }</td><td><img src=${b.imageurl}></td><td><p>${b.bookName }</p><p>${b.bookWriter }</p><p>${b.ISBN }</p></td><td>${b.bookKind }</td><td>${b.bookPublisher }</td><td><button type="button" class="pbtn success" data-toggle="modal" data-target="#myModal" onclick="updateInform(${b.bookNo },'${b.bookName}','${b.bookKind}','${b.bookWriter}','${b.bookPublisher}','${b.bookIntroduce}')">수정</button><button class="pbtn success" onclick="location.href='/book/bookDelete.do?bookNo=${b.bookNo}'">삭제</button></td>         
+                  <td>${b.bookNo }</td><td><img src=${b.imageurl}></td><td><p>${b.bookName }</p><p>${b.bookWriter }</p><p>${b.ISBN }</p></td><td>${b.bookKind }</td><td>${b.bookPublisher }</td><td><button type="button" class="pbtn success" data-toggle="modal" data-target="#myModal" onclick="updateInform(${b.bookNo },'${b.bookName}','${b.bookKind}','${b.bookWriter}','${b.bookPublisher}','${b.bookIntroduce}')"><i class="fas fa-edit"></i></button><button class="pbtn success pp" onclick="location.href='/book/bookDelete.do?bookNo=${b.bookNo}'"><i class="fas fa-trash-alt"></i></button></td>         
                </tr>
                
                <!-- The Modal -->

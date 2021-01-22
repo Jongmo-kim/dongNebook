@@ -17,10 +17,13 @@
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	<jsp:include page="/views/common/userSide.jsp" />
+	<div class="main-wrap">
+		<div class="contents">
+				<jsp:include page="/views/common/userSide.jsp" />
+			<div class="admin-contents">
+				<div id="main-container" class="main-container nav-effect-1">
 	<h2>도서검색</h2>
 	<hr>
-	<div class="content">
 	<div class="searchBox">
 		<div class="searchFrm">
 			<form action="/book/searchBook.do" name="searchBook" method="get" >
@@ -98,11 +101,8 @@
 			</tr>			
 			</c:forEach>
 		</table>
-		<div class="navi">
-			<ul class="pagination justify-content-center" id="pageNavi">
-				${navi}
-			</ul>
-		</div>
+		
+	</div>
 	</c:when>
 	<c:otherwise>
 	<div class="notice" style="text-align:center;">
@@ -111,8 +111,13 @@
 	</c:otherwise>
 	</c:choose>
 	</div>
+		<div class="navi">
+			<ul class="pagination justify-content-center" id="pageNavi">
+				${navi}
+			</ul>
+		</div>
 	</div>
-	
-
+</div>
+>>>>>>> fa89e807bf1ac8262eebba206cd1665784cf4e98
 </body>
 </html>

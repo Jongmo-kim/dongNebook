@@ -502,6 +502,7 @@ ul {
 			//window.opener.location.reload();
 			
 		};
+		
 		function closeWindow(){
 			window.opener.location.reload();
 			self.close();			
