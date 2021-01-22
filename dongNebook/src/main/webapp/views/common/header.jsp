@@ -34,6 +34,9 @@
 									<c:when test="${loginAdmin == null }">
 										<li><a href="/user/loginFrm.do">로그인</a></li>
 										<li><a href="/user/signupFrm.do">회원가입</a></li>
+												<li>
+									 <a data-target="#reviewModal" data-toggle="modal" href="#" >도서 추천</a>
+								</li>
 									</c:when>
 									<c:otherwise>
 										<li><a href="/aladin/searchInAladin.do">관리자</a></li>
@@ -44,7 +47,7 @@
 							<c:otherwise>
 								<li><a href="/user/mypageFrm.do">마이페이지</a></li>
 								<li>
-									<!-- <i class="fas fa-clipboard"></i> --> <a href="#">도서 추천</a>
+									 <a data-target="#reviewModal" data-toggle="modal" href="#" >도서 추천</a>
 								</li>
 								<li><a href="/user/logout.do">로그아웃</a></li>
 								<li><a class="chat-bell" onclick="openWindow()"> <!-- <i class="fas fa-bell"></i> -->

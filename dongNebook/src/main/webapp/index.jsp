@@ -133,7 +133,8 @@
 		<input type="hidden" id="userNo" value=${sessionScope.loginUser.userNo }>
 	</c:if>
 	<jsp:include page="/views/common/header.jsp" />
-	
+	<jsp:include page="/views/common/linkReview.jsp" />
+	<jsp:include page="/views/common/reviewModal.jsp" />
 	 <div class="content">
        <div class="img-main">
 
