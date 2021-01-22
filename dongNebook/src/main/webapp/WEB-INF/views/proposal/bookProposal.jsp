@@ -988,6 +988,31 @@ function bookSearch(page){
 		dataType:"jsonp"	//cors우회..	 해킹
 	});
 };
+var sessionEmail='';
+$(document).ready(function(){
+	 sessionCheck();
+});
+
+function sessionCheck(){
+	$.ajax({
+		type:'POST',
+		datatype:'json',
+		url:"/main/memberSessionCheck.do",
+		async:false,
+		success:function(result){
+			sessionEmail=result;
+		}
+	});
+	if(sessionEmail ==''){
+		var reLogin = confirm('로그인이 필요한 서비스 입니다. 확인 시 로그인 창으로 이동됩니다.');
+		if(reLogin){
+			location.href='/user/loginFrm.do';
+			return;
+		}
+	}else{
+		return;
+	}
+}
 </script>
 </body>
 </html>
