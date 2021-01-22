@@ -160,7 +160,7 @@
 		
 	</select>
 	<update id="updateBook" parameterType="book">
-		update book set book_name=#{bookName},book_kind=#{bookKind} where book_no=#{bookNo}
+		update book set book_count=#{bookCount} where book_no=#{bookNo}
 	</update>
 	<select id="selectBookMark" parameterType="_int" resultType="string">
 		select isbn from bookmark where user_no=#{userNo}

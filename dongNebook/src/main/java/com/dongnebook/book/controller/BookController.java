@@ -127,7 +127,8 @@ public class BookController {
 	}
 	@RequestMapping("/updateBook.do")
 	public String updateBook(Model model,Book b) {
-		System.out.println(b.getBookName());
+		System.out.println("책번호"+b.getBookCount());
+		
 		int result = service.updateBook(b);
 		
 		if(result>0) {
