@@ -1009,6 +1009,10 @@ function sessionCheck(){
 			location.href='/user/loginFrm.do';
 			return;
 		}
+		else{
+			location.href='/';
+			return;
+		}
 	}else{
 		return;
 	}

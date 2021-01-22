@@ -231,6 +231,9 @@ background:#a8dba8;
 			if(reLogin){
 				location.href='/user/loginFrm.do';
 				return;
+			}else{
+				location.href='/';
+				return;
 			}
 		}else{
 			return;
