@@ -16,6 +16,7 @@ import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.rental.model.service.RentalService;
 import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.rental.model.vo.BookRentalReserve;
+import com.dongnebook.rental.model.vo.Rental;
 import com.dongnebook.rental.model.vo.RentalDate;
 import com.dongnebook.rental.model.vo.RentalLoc;
 import com.dongnebook.user.model.vo.User;
@@ -172,5 +173,14 @@ public class RentalController {
 		}
 		model.addAttribute("loc","/");
 		return "common/msg";
+	}
+	
+	@RequestMapping("/rentalList.do")
+	public String rentalList(int userNo) {
+		ArrayList<Rental> list = service.rentalList(userNo);
+		for(Rental r : list) {
+			System.out.println(r.toString());
+		}
+		return "user/rentalList";
 	}
 }

@@ -22,4 +22,13 @@
 	<select id="selectIsRental" parameterType="_int" resultType="rental">
 		select * from book_rental where book_no=#{bookNo}
 	</select>
+	<select id="rentalList" parameterType="_int" resultType="rentalJ">
+		select *
+		from book_rental br
+    	join book b
+    		on br.book_no = b.book_no
+    	join rental_location r
+    		on br.rental_location_no = r.rental_location_no
+    	where br.user_no = #{_int}
+	</select>
 </mapper>

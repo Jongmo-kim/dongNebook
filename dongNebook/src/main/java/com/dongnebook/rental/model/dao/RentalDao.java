@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.rental.model.vo.BookRentalReserve;
+import com.dongnebook.rental.model.vo.Rental;
 import com.dongnebook.rental.model.vo.RentalLoc;
 
 @Repository
@@ -54,6 +55,11 @@ public class RentalDao {
 	}
 	public int updateCount(int[] bookNo) {
 		return session.update("book.updateCount", bookNo);
+	}
+
+	public ArrayList<Rental> rentalList(int userNo) {
+		List<Rental> list = session.selectList("rental.rentalList", userNo);
+		return (ArrayList<Rental>) list;
 	}
 
 	

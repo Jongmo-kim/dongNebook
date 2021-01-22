@@ -9,6 +9,7 @@ import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.rental.model.dao.RentalDao;
 import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.rental.model.vo.BookRentalReserve;
+import com.dongnebook.rental.model.vo.Rental;
 import com.dongnebook.rental.model.vo.RentalLoc;
 
 @Service
@@ -47,6 +48,10 @@ public class RentalService {
 
 	public int updateCount(int[] bookNo) {
 		return dao.updateCount(bookNo);
+	}
+
+	public ArrayList<Rental> rentalList(int userNo) {
+		return dao.rentalList(userNo);
 	}
 	
 	

@@ -62,8 +62,9 @@ public class AdminController {
 		}
 		return "admin/manageUser";
 	}
+	
 	@RequestMapping("/deleteBooks")
-	public String deleteBooks(Model model, String[] books) {
+	public void deleteBooks(Model model, String[] books) {
 		System.out.println("책명"+books.length);
 		ArrayList<Integer> list =new ArrayList<Integer>() ;
 		for(int i=0 ; i<books.length;i++) {
@@ -76,7 +77,6 @@ public class AdminController {
 		//int result = service.deleteBooks(list);
 		int result = service.returnBooks(list);
 		System.out.println(result);
-		return null;
 	}
 	
 }

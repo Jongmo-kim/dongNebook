@@ -28,6 +28,7 @@
 	<div class="content">	
 	<form action="/user/update.do" method="post">
 		<h1>내 정보 수정하기</h1><hr>
+		<button onclick="rentalList();">대출 목록</button>
 		<input type="hidden" name="userNo" value="${loginUser.userNo }">
 		<br>
 		<div class="name inputBox">
@@ -74,6 +75,9 @@
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	</div>
 	<script>
+	function rentalList(){
+		location.href="/rentalList.do?userNo="+$("input[name=userNo]").val();
+	}
 	document.delete.addEventListener('submit',deleteFunc);
 
 	function deleteFunc(e){
