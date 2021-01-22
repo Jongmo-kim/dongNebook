@@ -124,7 +124,7 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 	text-align: center;
 }
 	img{
-	width:95%;
+	/* width:95%; */
 	height : 95%;
 	}
 .pbtn {
