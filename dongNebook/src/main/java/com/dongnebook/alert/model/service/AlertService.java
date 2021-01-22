@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.dongnebook.alert.model.dao.AlertDao;
 import com.dongnebook.alert.model.vo.Alert;
-
+/**
+ * @author 진수경
+ *
+ */
 @Service
 public class AlertService {
 	@Autowired

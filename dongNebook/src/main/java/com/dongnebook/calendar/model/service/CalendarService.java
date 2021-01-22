@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.dongnebook.calendar.model.dao.CalendarDao;
 import com.dongnebook.calendar.model.vo.Calendar;
-
+/**
+ * @author 진수경
+ *
+ */
 @Service
 public class CalendarService {
 	@Autowired

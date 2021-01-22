@@ -9,7 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import com.dongnebook.alert.model.vo.Alert;
 import com.dongnebook.user.model.vo.User;
-
+/**
+ * @author 진수경
+ *
+ */
 @Repository
 public class AlertDao {
 	@Autowired

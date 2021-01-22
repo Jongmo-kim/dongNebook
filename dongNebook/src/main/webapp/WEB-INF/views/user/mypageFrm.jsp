@@ -26,9 +26,9 @@
 <body>
 	<jsp:include page="/views/common/header.jsp" />
 	<div class="content">	
+		
 	<form action="/user/update.do" method="post">
 		<h1>내 정보 수정하기</h1><hr>
-		<button onclick="rentalList();">대출 목록</button>
 		<input type="hidden" name="userNo" value="${loginUser.userNo }">
 		<br>
 		<div class="name inputBox">
@@ -70,6 +70,7 @@
 	
 	<form name="delete" style="text-align:right; width:80%;">
 	<input type="hidden" name="userNo" value="${loginUser.userNo }"><br>
+	<button type="button" class="btn btn-outline-primary" onclick="rentalList();">대출 목록</button>
 		<button class="btn btn-outline-primary">탈퇴하기</button>
 	</form>
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

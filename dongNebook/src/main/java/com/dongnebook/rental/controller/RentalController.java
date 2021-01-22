@@ -175,12 +175,15 @@ public class RentalController {
 		return "common/msg";
 	}
 	
+	/**
+	 * @author 진수경
+	 *
+	 */
 	@RequestMapping("/rentalList.do")
-	public String rentalList(int userNo) {
+	public String rentalList(int userNo, Model model) {
 		ArrayList<Rental> list = service.rentalList(userNo);
-		for(Rental r : list) {
-			System.out.println(r.toString());
-		}
+		//여기도 RentalPageDate를 add해줄것
+		model.addAttribute("list", list);
 		return "user/rentalList";
 	}
 }

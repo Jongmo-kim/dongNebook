@@ -22,8 +22,20 @@
 	<select id="selectIsRental" parameterType="_int" resultType="rental">
 		select * from book_rental where book_no=#{bookNo}
 	</select>
+	
+	<!-- @author 진수경 -->
 	<select id="rentalList" parameterType="_int" resultType="rentalJ">
-		select *
+		select 
+			br.book_rental_no as bookRentalNo,
+			br.user_no as userNo,
+			br.book_no as bookNo,
+			b.book_name as bookName,
+			r.placeName,
+			r.addr,
+			br.enroll_date as enrollDate,
+			br.return_date as returnDate,
+			b.imageurl,
+			br.isReturn
 		from book_rental br
     	join book b
     		on br.book_no = b.book_no

@@ -49,8 +49,15 @@ public class RentalService {
 	public int updateCount(int[] bookNo) {
 		return dao.updateCount(bookNo);
 	}
-
+	
+	
+	/**
+	 * @author 진수경
+	 *
+	 */
 	public ArrayList<Rental> rentalList(int userNo) {
+		//매개변수 reqPage와 userNo로 바꾸고, service내에서 list = dao.rentalList(userNo)하기
+		//pagination처리도 여기서 진행
 		return dao.rentalList(userNo);
 	}
 	

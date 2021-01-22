@@ -12,7 +12,10 @@ import com.dongnebook.calendar.model.service.CalendarService;
 import com.dongnebook.calendar.model.vo.Calendar;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-
+/**
+ * @author 진수경
+ *
+ */
 @Controller
 @RequestMapping("/calendar")
 public class CalendarController {

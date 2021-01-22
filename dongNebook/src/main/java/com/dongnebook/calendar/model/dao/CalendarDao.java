@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dongnebook.calendar.model.vo.Calendar;
-
+/**
+ * @author 진수경
+ *
+ */
 @Repository
 public class CalendarDao {
 	@Autowired
