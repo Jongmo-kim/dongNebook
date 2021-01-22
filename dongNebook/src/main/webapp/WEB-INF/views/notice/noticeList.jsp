@@ -26,7 +26,24 @@ text-align:center;
 	text-decoration: none;
 	color:#a8dba8;
 }
-.page{
+.pagination{
+	margin : 0 auto;
+	margin-top : 50px;
+	margin-bottom : 50px;
+	
+	}
+	.pagination>li>a{
+        color: #79bd9a;
+        border:none;
+        }
+	.pagination>li>.selectPage{
+	color: black; 
+	border:none;
+	}
+	.pagination>li>a:hover{
+	color : #79bd9a;
+	}
+/* .page{
 color:black;
 text-decoration: none;
 font-size:17px;
@@ -45,7 +62,7 @@ font-size:17px;
 width:20x;
 height:40px;
 display:inline-block;
-}
+} */
 .SideMenu li:nth-child(5) a{
 background:#a8dba8;
 	color:white;
@@ -99,7 +116,8 @@ background:#a8dba8;
 		<button onclick="deleteNotice();" class="btn btn-lg btn-danger">삭제하기</button>
 	</div>
 	</c:if>
-	<p style="text-align:center">${pageNavi }</p>
+	<%-- <p style="text-align:center">${pageNavi }</p> --%>
+	<div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
 	</div>
 	</div>
 	
