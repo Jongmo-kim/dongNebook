@@ -56,5 +56,10 @@ public class RentalDao {
 		return session.update("book.updateCount", bookNo);
 	}
 
+	public ArrayList<BookRental> userRentalList(int userNo) {
+		List<BookRental> list = session.selectList("rental.UserRentalList", userNo);
+		return (ArrayList<BookRental>)list;
+	}
+
 	
 }

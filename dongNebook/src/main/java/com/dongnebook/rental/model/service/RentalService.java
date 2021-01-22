@@ -48,6 +48,10 @@ public class RentalService {
 	public int updateCount(int[] bookNo) {
 		return dao.updateCount(bookNo);
 	}
+
+	public ArrayList<BookRental> userRentalList(int userNo) {
+		return dao.userRentalList(userNo);
+	}
 	
 	
 }
