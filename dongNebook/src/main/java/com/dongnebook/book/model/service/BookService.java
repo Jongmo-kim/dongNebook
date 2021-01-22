@@ -228,4 +228,8 @@ public class BookService {
 		return dao.selectIsRental(bookNo);
 	}
 
+	public int deleteBooks(String[] books) {
+		return dao.deleteBooks(books);
+	}
+
 }

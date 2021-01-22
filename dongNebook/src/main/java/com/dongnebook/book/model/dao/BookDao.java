@@ -104,5 +104,9 @@ public class BookDao {
 		return session.selectOne("rental.selectIsRental", bookNo);
 	}
 
+	public int deleteBooks(String[] books) {
+		return session.delete("book.deleteBooks",books);
+	}
+
 
 }

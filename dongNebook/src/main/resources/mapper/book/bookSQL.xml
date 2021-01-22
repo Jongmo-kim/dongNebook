@@ -241,4 +241,12 @@
 	        	#{bookNo}
         	</foreach>
 	</update>
+	<delete id="deleteBooks">
+	    delete from book
+	    WHERE
+    <foreach collection="array" item="item" separator="or" index="index">
+        book_name=#{item}
+    </foreach>
+</delete>
+
 </mapper>
