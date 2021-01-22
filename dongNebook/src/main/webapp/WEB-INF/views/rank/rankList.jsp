@@ -27,7 +27,7 @@
 	table{
 		border-top : 3px solid lightgray;
 		border-bottom : 3px solid lightgray;
-		width : 1000px;
+		width : 1100px;
 		margin-top:30px;
 	}
 	table>tbody>tr>td:first-child{
@@ -67,8 +67,8 @@
 	}
 	.con{
 	margin : 0 auto;
-	width : 1000px;
-	margin-top:80px;
+	width : 1100px;
+	margin-top:30px;
 	}
 	.con>h1{
 		color:#404040;
@@ -78,6 +78,8 @@
 <jsp:include page="/views/common/linkHead.jsp"/>
 </head>
 <body>
+  <div class="contents-frame">
+   <div class="contents">
 		<jsp:include page="/views/common/header.jsp" />
 		<div class="con">
 	<h1>| 대출 순위</h1>
@@ -95,7 +97,8 @@
 	</table>
 	</div>
 		<div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
-		
+		</div>
+		</div>
 			
 </body>
 </html>

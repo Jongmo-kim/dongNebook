@@ -224,7 +224,9 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 						<c:when test = "${b.isproposal eq null}">
 							<tr>
 								<td><input type="checkbox" class="chk"></td>
-								<td><img alt="${b.bookName }Image" src="${b.imageurl }"></td>
+								<td><img alt="${b.bookName }Image" src="${b.imageurl }" >
+								<input type="hidden" value="${b.imageurl }">
+								</td>
 								<td>
 									<p>${b.bookName }</p>
 									<p>${b.bookWriter }</p>
@@ -415,7 +417,7 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 													var book = new Object();
 													var imageurl = $(item)
 															.parent().next()
-															.html();
+															.children().next().val();
 													var bookName = $(item)
 															.parent().parent()
 															.find("td").eq(2)
