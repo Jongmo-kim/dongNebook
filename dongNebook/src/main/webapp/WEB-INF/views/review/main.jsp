@@ -17,9 +17,9 @@
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
+	<div class="content">
 	<h2>리뷰페이지</h2>
 	<hr>
-	<div class="content">
 	<a href="/review/writeFrm.do">글쓰기</a>
 	<c:choose>
 		<c:when test="${reviewList == null }">
@@ -32,23 +32,22 @@
 			<table class="bookListTable" border=1>
 				<tr class="table-header">
 					<th>게시글번호</th>
-					<th>글쓰니</th>
+					<th>글쓴이</th>
 					<th>제목</th>
-					<th>컨텐츠</th>
-					<th>좋아요</th>
-					<th>싫어용</th>
 				</tr>
 			<c:forEach var="b" items="${reviewList }">
 				<tr>
 					<td>${b.reviewNo }</td>
 					<td>${b.user.userName }</td>
 					<td><a href="/review/view.do?reviewNo=${b.reviewNo }">${b.title }</a></td>
-					<td>${b.content }</td>
-					<td>${b.like}</td>
-					<td>${b.dislike}</td>
 				</tr>
 			</c:forEach>
 			</table>
+			<div class="navi">
+				<ul class="pagination justify-content-center" id="pageNavi">
+					${navi }
+				</ul>
+			</div>
 		</c:when>
 		<c:otherwise>
 			<div class="notice" style="text-align:center;">

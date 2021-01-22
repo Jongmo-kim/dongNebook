@@ -45,6 +45,11 @@ public class AdminDao {
 		System.out.println(string);
 		return sqlsession.selectOne("admin.selectBook",string);
 	}
+
+
+	public int returnBooks(ArrayList<Integer> list) {
+		return sqlsession.update("admin.returnBooks",list);
+	}
 	
 	//Start
 }
