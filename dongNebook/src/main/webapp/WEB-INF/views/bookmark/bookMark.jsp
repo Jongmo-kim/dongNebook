@@ -71,6 +71,8 @@
 </head>
 <jsp:include page="/views/common/linkHead.jsp"/>
 <body>
+  <div class="contents-frame">
+   <div class="contents">
 	<jsp:include page="/views/common/header.jsp" />
 	
 	<table>
@@ -101,6 +103,8 @@
 	<input type="button" class="rBtn bmDelete" value="북마크 삭제">
 	</c:if>
 	</div>
+	</div>
+	
 	<script>
     var maxChecked=3;
     var totalChecked = 0;
