@@ -23,6 +23,7 @@
     text-align: center;
     padding-top: 20px;
     z-index: 1;
+    padding-left: 23px;
     perspective: 3000px;
 }
 

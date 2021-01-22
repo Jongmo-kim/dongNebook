@@ -8,7 +8,6 @@
 <jsp:include page="/views/common/linkHead.jsp"/>
 </head>
 <body>
-	<div class="wrap">
 		<div class="SideBar">
 			<div class="blank"></div>
 			<div class="SideMenu">
@@ -23,6 +22,5 @@
 				</ul>
 			</div>
 		</div>
-	</div>
 </body>
 </html>

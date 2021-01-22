@@ -4,7 +4,7 @@
 		height:auto;
 		float:left;
 		margin-right: 20px;
-		/* margin-top:53px; */
+		 margin-top:53px;
 	}
 	.adminSideMenu{
 		background:white;
@@ -43,7 +43,7 @@
 	.adminSideMain{
 		height:100px;
 		text-align:center;
-		background: #3b8686;
+		background: #2f6969;
 	}
 	.adminSideMain h2{
 		height:100px;

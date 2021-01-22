@@ -12,14 +12,15 @@
 		<div class="menu-frame">
 			<div>
 				<div class="main-img">
-					<a href="/"> <img src="../image/header/colorBook-logo.png">
+					<a href="/"> <img src="../image/header/logo.png">
 					</a>
 				</div>
 				<div class="main-menu">
 					<ul class="menu-list">
-						<li><a href="/book/searchBookFrm.do">Book</a></li>
-						<li><a href="/calendar/calendarView.do">Service</a></li>
-						<li><a href="/notice/noticeList.do?reqPage=1">Notice</a></li>
+						<li><a href="/book/searchBookFrm.do">도서대출</a></li>
+						<li><a href="/calendar/calendarView.do">사용자 서비스</a></li>
+						<li><a href="/notice/noticeList.do?reqPage=1">공지사항</a></li>
+						<li><a href="/book/searchBookFrm.do">일정</a></li>
 					</ul>
 				</div>
 

@@ -46,9 +46,17 @@ width:20x;
 height:40px;
 display:inline-block;
 }
-.SideMenu li:nth-child(1) a{
+.SideMenu li:nth-child(3) a{
 background:#a8dba8;
 	color:white;
+}
+.admin-button{
+	text-align: right;
+
+    margin-bottom: 5rem;
+}
+.notice-table{
+	margin-bottom:3rem !important;
 }
 </style>
 </head>
@@ -69,7 +77,7 @@ background:#a8dba8;
 	<div id="main-container" class="main-container nav-effect-1">
 	<h1 style="font-size:30px;">| 공지사항</h1>
 	<hr>
-	<table class="table table-hover">
+	<table class="table table-hover notice-table">
 		<tr>
 			<c:if test="${sessionScope.loginAdmin!=null}">
 				<th style="width:5%;"><input type="checkbox" class="allCheck"></th>
@@ -86,12 +94,15 @@ background:#a8dba8;
 		</c:forEach>
 	</table>
 	<c:if test="${sessionScope.loginAdmin!=null}">
+	<div class="admin-button">
 		<button onclick="insertNotice();" class="btn btn-lg btn-primary">작성하기</button>
 		<button onclick="deleteNotice();" class="btn btn-lg btn-danger">삭제하기</button>
+	</div>
 	</c:if>
-	</div>
-	</div>
 	<p style="text-align:center">${pageNavi }</p>
+	</div>
+	</div>
+	
 	</div>
 	</div>
 	

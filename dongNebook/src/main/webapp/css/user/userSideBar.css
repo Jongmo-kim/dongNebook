@@ -8,6 +8,7 @@
 		height:auto;
 		float:left;
 		margin-top:53px;
+		margin-right: 20px;
 	}
 	.SideMenu{
 		background:white;
@@ -22,7 +23,7 @@
 		border-bottom:1px solid lightgray;
 	}
 	.SideMenu a:hover{
-		background:#b5eeb4;
+		background:#a8dba8;
 		color:white;
 	}
 	.SideMenu a{
@@ -46,7 +47,7 @@
 	.SideMain{
 		height:100px;
 		text-align:center;
-		background: #5efc82;
+		background:#2f6969;
 	}
 	.SideMain h2{
 		height:100px;

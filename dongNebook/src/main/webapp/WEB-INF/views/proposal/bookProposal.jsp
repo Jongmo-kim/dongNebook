@@ -831,10 +831,10 @@ body {
 .indicator{
 	background-image: url("/image/common/loading.svg");
 }
-.adminSideMenu li:nth-child(1) a{
-         background:#a8dba8;
-		color:white;
-         }
+.SideMenu li:nth-child(2) a {
+    background: #a8dba8;
+    color: white;
+}
 .aladin-img{
 	height: 50px;
     width: 14%;
@@ -857,14 +857,14 @@ body {
 </style>
 <body>
 <jsp:include page="/views/common/header.jsp" />
-	<jsp:include page="/views/common/userSide.jsp" />
+	<div class="contents-frame">
 	<div class="contents">
-	<h1 style="font-size:30px;">도서등록</h1>
-		<hr>
+	<jsp:include page="/views/common/userSide.jsp" />
+	<div class="admin-contents">
+	
 	<div id="main-container" class="main-container nav-effect-1">
-
- 
-
+<h1 style="font-size:30px;">도서등록</h1>
+		<hr>
   <div class="main clearfix">
 
     <!-- Header Content -->
@@ -909,8 +909,10 @@ body {
     <div class="overlay-full"></div>
   </div>
 </div>
+</div>
 <!-- /main-container -->
 <div class = "pagination justify-content-center" id="pageNavi"></div>
+</div>
 </div>
 <script>
 var pageSize=10;

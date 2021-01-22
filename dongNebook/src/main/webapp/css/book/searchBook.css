@@ -58,8 +58,12 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-around;
-	height: 262px;
+	height: 161px;
 	position: relative;
+}
+.SideMenu li:nth-child(1) a {
+    background: #a8dba8;
+    color: white;
 }
 .guessedBox{
 	width: 85%;
