@@ -17,7 +17,7 @@
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	<div class="main-wrap">
+	<div class="contents-frame">
 		<div class="contents">
 				<jsp:include page="/views/common/userSide.jsp" />
 			<div class="admin-contents">

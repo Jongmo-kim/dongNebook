@@ -367,6 +367,7 @@ body {margin: 10px;}
 		                           	<p class="book-sub">책이름:</p><input type="text" class="bookInput" name="book0" id="bookName0" >
 		                           	<p class="book-sub">대출일:</p><input type="text" class="bookInput" id="bookEnroll0"><br>
 		                          	 <p class="book-sub">반납일:</p><input type="text" class="bookInput" id="bookReturn0">
+		                          	 <input type="hidden" name="books">
 	                        	</div>
 	                        </div>
 	                        <div class="bookName" style="display:none">
@@ -380,6 +381,7 @@ body {margin: 10px;}
 			                           	<p class="book-sub">책이름:</p><input type ="text" class="bookInput" name="book1" id="bookName1" >
 			                           	<p class="book-sub">대출일:</p><input type="text" class="bookInput" id="bookEnroll1"><br>
 										<p class="book-sub">반납일:</p><input type="text" class="bookInput" id="bookReturn1">
+		                        		<input type="hidden" name="books">
 		                        	</div>
 	                        </div>
 	                        <div class="bookName" style="display:none">
@@ -393,6 +395,7 @@ body {margin: 10px;}
 		                           	<p class="book-sub">책이름:</p><input type ="text" class="bookInput" name="book2" id="bookName2" >
 		                           	<p class="book-sub">대출일:</p><input type="text" class="bookInput" id="bookEnroll2"><br>
 		                            <p class="book-sub">반납일:</p><input type="text" class="bookInput" id="bookReturn2">
+	                        		<input type="hidden" name="books">
 	                        	</div>
 	                        </div>
                         </div>
@@ -413,47 +416,39 @@ body {margin: 10px;}
   </div>
   </div>
   <script>
- // var arr = new Array();
+ var arr =new Array();
+ 
   	window.onload = function(){
+  		console.log("시작 배열 길이"+arr.length)
   		var chk0 = document.getElementById("book0");
   		var chk1 = document.getElementById("book1");
   		var chk2 = document.getElementById("book2");
   		var name0=document.getElementById("bookName0");
   		var name1=document.getElementById("bookName1");
   		var name2=document.getElementById("bookName2");
-  		var arr = new Array();
   		var deleteBooks=document.getElementById("deleteBooks");
-  		
+  		var books = document.getElementsByName("books");
   		chk0.onclick=function(){
-  			if(chk0.checked){  				
-	  			console.log(0);
-	  			arr[0]= name0.value;
-	  			console.log(arr[0]);
+  			if(chk0.checked){  		
+  				books[0].value=name0.value;
   			}else{
-  				arr[0]==null;
+  				books[0].value="";
   			}
   			
   		};
   		chk1.onclick=function(){
-  			if(chk0.checked){  				
-	  			console.log(1);
-	  			arr[1]= name1.value;
-	  			console.log(arr[1]);
+  			if(chk1.checked){  		
+  				books[1].value=name0.value;
   			}else{
-  				arr[1]==null;
+  				books[1].value="";
   			}
   		};
   		chk2.onclick=function(){
-  			if(chk0.checked){  				
-	  			console.log(2);
-	  			arr[2]= name2.value;
-	  			console.log(arr[2]);
+  			if(chk2.checked){  		
+  				books[2].value=name0.value;
   			}else{
-  				arr[2]==null;
+  				books[2].value="";
   			}
-  		};
-  		deleteBooks.onclick=function(){
-  			location.href='/admin/deleteBooks.do?books='+arr;
   		};
   		
   	};
