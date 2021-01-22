@@ -27,7 +27,7 @@
 						제목
 					</th>
 					<td style="width:75%;">
-						<input type="text" name="title" value="${view.title }">
+						<input type="text" name="title" value="${view.title }" style="width:100%;">
 					</td>
 				</tr>
 				<tr>
@@ -53,14 +53,11 @@
 		</table>
 		
 		
-		
-		
-		<button class="btn">수정하기</button>
+		<div style="text-align:right">
+		<button class=" btn btn-lg btn-outline-secondary">수정하기</button>
+		</div>
 	</form>
-	<form name="delete" method="post">
-		<input type="hidden" name="reviewNo" value="${view.reviewNo }">
-		<button class="deleteBtn btn">삭제하기</button>
-	</form>
+	
 	</div>
 	
 	<script src="/js/review/updateFrm.js" type="text/javascript"></script>

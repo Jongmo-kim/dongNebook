@@ -47,7 +47,7 @@
 				<div class="your-class">
 					<c:forEach var="t" items="${tags }">
 					<div style="text-align:center; outline:none;">
-						<img src="${t.book.imageurl }" style="width:250px; display:inline; height:500px;">
+						<img src="${t.book.imageurl }" style="width:180px; display:inline; height:270px;">
 						</div>
 					</c:forEach>
 					</div>
@@ -70,19 +70,24 @@
 			</c:forEach>
 			
 			  </table>
+			  <div style="text-align:center;">
 		<c:choose>
 			<c:when test="${sessionScope.loginUser.userNo == view.user.userNo }" >
-				<button class="btn-outline-primary">수정하기</button>
+				<button class="btn btn-lg btn-outline-secondary">수정하기</button>
+				
 				</form>
 				<form name="delete" method="post" style="display:inline;">
 					<input type="hidden" name="reviewNo" value="${view.reviewNo }">
-					<button class="deleteBtn btn-outline-primary">삭제하기</button>
+					<button class="deleteBtn btn btn-lg btn-outline-secondary">삭제하기</button>
 				</form>
+				</div>				
 			</c:when>
 			<c:otherwise>
 				</form>
 			</c:otherwise>
 		</c:choose>
+		</div>
+		
 	</div>
 	<script src="/lib/slick/slick.min.js" type="text/javascript"></script>
 	<script src="/js/review/reviewView.js" type="text/javascript"></script>

@@ -20,7 +20,11 @@
 	<div class="content">
 	<h2>리뷰페이지</h2>
 	<hr>
-	<a href="/review/writeFrm.do">글쓰기</a>
+	<c:if test="${sessionScope.loginUser != null }" >
+	<div style="text-align:right; font-size:25px;">
+	<a  href="/review/writeFrm.do">글쓰기</a>
+	</div>
+	</c:if>
 	<c:choose>
 		<c:when test="${reviewList == null }">
 			<!-- 첫 페이지 -->
