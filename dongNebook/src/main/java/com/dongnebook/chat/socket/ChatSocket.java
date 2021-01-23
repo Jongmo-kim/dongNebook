@@ -53,8 +53,6 @@ public class ChatSocket extends TextWebSocketHandler{
 				connectMembers.get(data).sendMessage(new TextMessage(String.valueOf(count)));				
 			}
 			//header의 onMessage메소드로 보냄
-		}else if(type.equals("cntAdmin")){
-		
 		}
 		else {
 		
@@ -65,7 +63,9 @@ public class ChatSocket extends TextWebSocketHandler{
 			int count = dao.cmCount(data);//data = memberId
 			//jObj.put("receiver", receiver);
 			//jObj.put("count", count);
-			//dao.readChat(receiver);
+			dao.readChat(receiver);
+			
+			
 			connectMembers.get(data).sendMessage(new TextMessage(receiver));
 			connectMembers.get(data).sendMessage(new TextMessage(String.valueOf(count)));
 		}
@@ -80,7 +80,6 @@ public class ChatSocket extends TextWebSocketHandler{
 			WebSocketSession currentSession = connectMembers.get(key);
 			if(currentSession.equals(session)) {
 				//dao.readChat(key);
-				String receiver=key;
 				System.out.println("종료 키값"+key);
 				connectMembers.remove(key);
 				break;

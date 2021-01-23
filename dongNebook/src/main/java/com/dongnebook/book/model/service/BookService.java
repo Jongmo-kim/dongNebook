@@ -232,12 +232,12 @@ public class BookService {
 		return dao.deleteBooks(books);
 	}
 
-	/**
-	 * @author 진수경
-	 *
-	 */
-	public int returnBooks(String[] books) {
-		return dao.returnBooks(books);
+	public ArrayList<Integer> selectBookNo(String[] books) {
+		
+		return dao.selectBookNo(books);
+	}
+	public int updateIsRental(int userNo,ArrayList<Integer> no) {
+		return dao.updateIsRental(userNo,no);
 	}
 
 }

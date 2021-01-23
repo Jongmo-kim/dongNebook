@@ -69,5 +69,11 @@ public class ChatDao {
 		
 		return session.update("chat.readCm",cm);
 	}
+
+	public int cmAdminCnt(String data) {
+		return session.selectOne("chat.cmAdminCnt", data);
+	}
+
+	
 	
 }

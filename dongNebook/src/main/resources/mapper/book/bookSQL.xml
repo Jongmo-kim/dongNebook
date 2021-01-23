@@ -229,7 +229,7 @@
 		update book SET book_count= book_count + 1 WHERE isbn=#{ISBN}
 	</update>
 	<select id="rentalInfo" parameterType="_int" resultType="bookrental">
-		select * from book_rental where user_no=#{_parameter}
+		select * from book_rental where user_no=#{_parameter} and isreturn='N'
 	</select>
 	<select id="rBookList" parameterType="_int" resultType="book">
 		select * from book where book_no=#{_parameter}
@@ -242,18 +242,33 @@
         	</foreach>
 	</update>
 	<delete id="deleteBooks">
-	    delete from book
+	    update book set book_count =book_count+1, rcount=rcount-1
 	    WHERE
 	    <foreach collection="array" item="item" separator="or" index="index">
 	        book_name=#{item}
 	    </foreach>
 	</delete>
 	
-	<!-- @author 진수경 -->
+	<!-- @author 진수경 
 	<update id="returnBooks" parameterType="java.util.List">
 		update book_rental set isReturn='Y' where 
 		<foreach collection="array" item="item" separator="or" index="index">
 	        book_name=#{item}
 	    </foreach>
+	</update>-->
+	<select id="selectBookNo" resultType="_int">
+		select book_no from book
+		where
+		<foreach collection="array" item="item" separator="or" index="index">
+			book_name=#{item}
+		</foreach>
+	</select>
+	<update id="updateIsRental" parameterType="hashmap">
+		update book_rental set isreturn='y'
+		where
+		user_no=#{userNo} and book_no in
+		<foreach index="key" item="value" collection="bookNo" separator="," open="(" close=")">
+			#{value}
+		</foreach>
 	</update>
 </mapper>

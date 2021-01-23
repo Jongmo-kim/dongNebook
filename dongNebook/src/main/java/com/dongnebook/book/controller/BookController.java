@@ -183,10 +183,15 @@ public class BookController {
 		return pageNavi.toString();
 	}
 	@RequestMapping("/deleteBooks")
-	public String deleteBooks(Model model, String[] books) {
+	public String deleteBooks(Model model,int userNo, String[] books) {
 		//int result = service.deleteBooks(books);
-		int result = service.returnBooks(books);
-		
+		System.out.println("유저넘버"+userNo);
+		int result = service.deleteBooks(books);
+		System.out.println("테스트1"+result);
+		ArrayList<Integer> no = service.selectBookNo(books);
+		System.out.println("no"+no.get(0));
+		result=service.updateIsRental(userNo,no);
+		System.out.println("테스트2"+result);
 		if(result>0) {
 			model.addAttribute("msg", "수정 성공");
 			model.addAttribute("result", "true");
