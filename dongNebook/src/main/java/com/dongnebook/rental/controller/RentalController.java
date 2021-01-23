@@ -138,6 +138,7 @@ public class RentalController {
 		RentalLoc rLoc = new RentalLoc();
 		BookRental bRental = null;
 		ArrayList<BookRental> bRList = new ArrayList<BookRental>();
+		ArrayList<BookRental> userRentalList = new ArrayList<BookRental>();
 		rLoc.setPlaceName(placeName);
 		rLoc.setAddr(addr);
 		rLoc.setPhone(phone);
@@ -149,7 +150,7 @@ public class RentalController {
 		}else {
 			model.addAttribute("msg","대출장소 등록 실패");
 		}
-		ArrayList<BookRental> userRentalList = service.userRentalList(userNo);
+		userRentalList = service.userRentalList(userNo);
 		if(userRentalList.size()>2) {
 			model.addAttribute("msg", "이미 3권을 대출중이십니다.\n반납 후 다시 이용해주세요!");
 			model.addAttribute("result", "true");

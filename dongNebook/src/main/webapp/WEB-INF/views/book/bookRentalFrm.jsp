@@ -52,7 +52,7 @@
 								<td style="width: 100px; height: 150px;"><img src="${b.imageurl }" width="100%" height="100%"></td>
 								<td>${b.bookName}</td>
 								<td>${b.bookWriter}</td>
-								<td>1/${bookCount}</td>
+								<td>1/${b.bookCount}</td>
 								<td><%= sf.format(nowTime) %></td>
 								<td><%= sf.format(cal.getTime())%></td>
 							</tr>
