@@ -60,7 +60,9 @@ table>tbody>tr>td>p:nth-child(2) {
 	color:gray;
 	font-weight:500;
 }
-table>tbody>tr>td>p:nth-child(7) {
+table>tbody>tr>td>p:last-child {
+	font-size:15px;
+	font-weight:500;
 	text-align:right;
 }
 .con {
@@ -155,7 +157,9 @@ color:black;
 											<p>${r.bookWriter }</p><br>
 											<p><b>대출장소</b> : ${r.placeName }</p>
 											<p><b>대출일</b> : ${r.enrollDate }</p>
-											<p><b>반납일</b> : ${r.returnDate }</p> <c:choose>
+											<p><b>반납일</b> : ${r.returnDate }</p>
+											<br><br>
+											<c:choose>
 												<c:when test="${r.isReturn.equals('Y') }">
 													<p>반납</p>
 												</c:when>
