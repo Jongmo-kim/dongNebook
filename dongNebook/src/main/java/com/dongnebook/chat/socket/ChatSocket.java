@@ -53,7 +53,11 @@ public class ChatSocket extends TextWebSocketHandler{
 				connectMembers.get(data).sendMessage(new TextMessage(String.valueOf(count)));				
 			}
 			//header의 onMessage메소드로 보냄
-		}else {
+		}else if(type.equals("cntAdmin")){
+		
+		}
+		else {
+		
 			//type이 receiver일때 호출
 			System.out.println("메세지를 보내는 곳으로 이동");
 			//JSONObject jObj = new JSONObject();
@@ -71,12 +75,13 @@ public class ChatSocket extends TextWebSocketHandler{
 		//연결끊어졌을때 웹에서 빼내는 작업->하지않으면 connectMembers에 계속 남아있음
 		System.out.println("클라이언트 접속 해제");
 		Set<String> keys = connectMembers.keySet();
+		System.out.println("스테이터스 확인하자!!!!"+status);
 		for(String key : keys) {
 			WebSocketSession currentSession = connectMembers.get(key);
 			if(currentSession.equals(session)) {
-				dao.readChat(key);
+				//dao.readChat(key);
 				String receiver=key;
-				System.out.println("종료 키값"+receiver);
+				System.out.println("종료 키값"+key);
 				connectMembers.remove(key);
 				break;
 			}

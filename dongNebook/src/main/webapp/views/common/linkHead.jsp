@@ -26,6 +26,7 @@
 
 <!-- CSS FILES -->
 <link href="/css/header/header2.css" type="text/css" rel="stylesheet">
+<link href="../css/chat/chat.css" type="text/css" rel="stylesheet">
 <link href="/css/footer/footer.css" type="text/css" rel="stylesheet">
 <link href="/css/admin/admin.css?v=<%=System.currentTimeMillis()%>" type="text/css" rel="stylesheet" >
 <link href="/css/user/userSideBar.css?v=<%=System.currentTimeMillis()%>" type="text/css" rel="stylesheet" >
