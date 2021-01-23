@@ -129,7 +129,9 @@ position:relative;
 		<tr>
             <td>${status.count}</td>
             <td>${room.getCmSender()}님</td>
-            <td><button class="button chatAdminRoom" value="${room.getCmSender() }">채팅방 입장</button></td>
+            <td><button class="button chatAdminRoom" value="${room.getCmSender() }">채팅방 입장</button> <div class="cmCount-frame">
+											<p class="cmCount"></p>
+										</div></td>
         </tr> 
 		<%-- <div class="chat-room-frame">
 			<p class="chat-room-name">${room.getCmSender()}님의 채팅방</p>

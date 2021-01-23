@@ -64,5 +64,10 @@ public class ChatDao {
 	public int cmCount(String data) {
 		return session.selectOne("chat.cmCount", data);
 	}
+
+	public int readCm(ChatMessage cm) {
+		
+		return session.update("chat.readCm",cm);
+	}
 	
 }
