@@ -108,5 +108,22 @@ public class BookDao {
 		return session.delete("book.deleteBooks",books);
 	}
 
+	
+
+
+	public ArrayList<Integer> selectBookNo(String[] books) {
+		List<Integer> list = session.selectList("book.selectBookNo",books);
+		
+		return (ArrayList<Integer>)list;
+	}
+
+	public int updateIsRental(int userNo, ArrayList<Integer> no) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("bookNo", no);
+		map.put("userNo",userNo);
+		
+		return session.update("book.updateIsRental",map);
+	}
+
 
 }
