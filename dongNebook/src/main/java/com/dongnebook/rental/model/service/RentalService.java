@@ -12,6 +12,7 @@ import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.rental.model.vo.BookRentalReserve;
 import com.dongnebook.rental.model.vo.Rental;
 import com.dongnebook.rental.model.vo.RentalLoc;
+import com.dongnebook.user.model.vo.User;
 import com.dongnebook.rental.model.vo.RentalPageData;
 
 @Service
@@ -50,6 +51,10 @@ public class RentalService {
 
 	public int updateCount(int[] bookNo) {
 		return dao.updateCount(bookNo);
+	}
+
+	public boolean isBookRentalLimitOver(User loginUser) {
+		return dao.isBookRentalLimitOver(loginUser);
 	}
 	
 	
