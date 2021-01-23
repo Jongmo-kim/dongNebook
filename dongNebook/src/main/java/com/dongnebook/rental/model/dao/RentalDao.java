@@ -57,7 +57,7 @@ public class RentalDao {
 	}
 
 	public ArrayList<BookRental> userRentalList(int userNo) {
-		List<BookRental> list = session.selectList("rental.UserRentalList", userNo);
+		List<BookRental> list = session.selectList("rental.userRentalList", userNo);
 		return (ArrayList<BookRental>)list;
 	}
 
