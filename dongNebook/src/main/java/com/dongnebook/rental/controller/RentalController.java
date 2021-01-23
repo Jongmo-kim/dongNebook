@@ -161,6 +161,7 @@ public class RentalController {
 			bRList.add(bRental);
 		}
 		boolean isBookRentalLimitOver = service.isBookRentalLimitOver(loginUser);
+		
 		if(!isBookRentalLimitOver) {
 			int BookRental = service.insertBookRental(bRList);
 			if(BookRental>0) {

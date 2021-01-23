@@ -60,7 +60,7 @@ public class RentalDao {
 	}
 
 	public boolean isBookRentalLimitOver(User loginUser) {
-		return (Integer)session.selectOne("rental.isBookRentalLimitOver",loginUser) > 3;
+		return (Integer)session.selectOne("rental.isBookRentalLimitOver",loginUser) >= 3;
 	}
 
 	
