@@ -278,7 +278,11 @@
     <br>
     <jsp:include page="/views/common/footer2.jsp" />
     
+  
+  
+ 
 	<script>
+	
 	$(function(){
 		var userNo = $("#userNo").val();
 	      if(!(typeof userNo == "undefined")){

@@ -1,6 +1,7 @@
 package com.dongnebook.chat.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -41,28 +42,37 @@ public class ChatController {
 		model.addAttribute("pageNavi", cupd.getPageNavi());
 		return "chat/chatRoom";
 	}
+	@ResponseBody
 	@RequestMapping("/chatRoom.do")
-	public String chatRoom(String chatUser,Model model,HttpSession session) {
+	public HashMap<String, Object> chatRoom(String chatUser,Model model,HttpSession session) {
 		System.out.println("이거지"+chatUser);
+		ArrayList<ChatMessage> list=null;
+		User loginUser =  (User)session.getAttribute("loginUser");
 		if(chatUser.equals("admin")) {
+			System.out.println("뉴 챗");
 			System.out.println("이걸 거친다"+chatUser);
-			User loginUser =  (User)session.getAttribute("loginUser");
-			ArrayList<ChatMessage> list = service.selectOneCmList(loginUser.getUserId());
-			System.out.println("읽음에 들어가는 값"+loginUser.getUserId());
-			service.readChat(loginUser.getUserId());
-			model.addAttribute("chatUser", "admin");
-			model.addAttribute("cmList", list);
-			
+			if(loginUser!=null) {
+				list = service.selectOneCmList(loginUser.getUserId());
+				System.out.println("읽음에 들어가는 값"+loginUser.getUserId());
+				service.readChat(loginUser.getUserId());	
+			}
 		}else {
 			System.out.println("이걸 거친다"+chatUser);
-			ArrayList<ChatMessage> list = service.selectOneCmList(chatUser);
+			list = service.selectOneCmList(chatUser);
 			System.out.println("읽음에 들어가는 값 : admin");
 			service.readChat("admin");
-			model.addAttribute("chatUser",chatUser);
-			model.addAttribute("cmList",list);			
+					
 			
 		}
-		return "chat/chatting";
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		if(loginUser!=null) {
+			User u=(User)session.getAttribute("loginUser");
+			map.put("login", u.getUserId());			
+		}else {
+			map.put("login", "admin");
+		}
+		return map;
 	}
 	
 	@ResponseBody
@@ -112,5 +122,13 @@ public class ChatController {
 		}else{
 			return service.insertCM(cm);
 		}
+	}
+	@RequestMapping("/readCm.do")
+	@ResponseBody
+	public String readCm(ChatMessage cm) {
+		System.out.println("보내는사람:"+cm.getCmSender());
+		System.out.println("받는사람:"+cm.getCmReceiver());
+		service.readCm(cm);
+		return "성공";
 	}
 }

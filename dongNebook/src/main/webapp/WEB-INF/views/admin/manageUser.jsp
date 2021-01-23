@@ -354,7 +354,7 @@ body {margin: 10px;}
                      </div>
                
                      <!-- Modal body -->
-                     <form action="/book/updateBook.do">
+                     <form action="/book/deleteBooks.do">
                         <div class="modal-body" id="modal-body">
 	                        <div class="bookName" style="display:none">
 	                        	<div class="user_chk">
@@ -367,7 +367,7 @@ body {margin: 10px;}
 		                           	<p class="book-sub">책이름:</p><input type="text" class="bookInput" name="book0" id="bookName0" >
 		                           	<p class="book-sub">대출일:</p><input type="text" class="bookInput" id="bookEnroll0"><br>
 		                          	 <p class="book-sub">반납일:</p><input type="text" class="bookInput" id="bookReturn0">
-		                          	 <input type="hidden" name="books">
+		                          	 <input type="hidden" class="books">
 	                        	</div>
 	                        </div>
 	                        <div class="bookName" style="display:none">
@@ -381,7 +381,7 @@ body {margin: 10px;}
 			                           	<p class="book-sub">책이름:</p><input type ="text" class="bookInput" name="book1" id="bookName1" >
 			                           	<p class="book-sub">대출일:</p><input type="text" class="bookInput" id="bookEnroll1"><br>
 										<p class="book-sub">반납일:</p><input type="text" class="bookInput" id="bookReturn1">
-		                        		<input type="hidden" name="books">
+		                        		<input type="hidden" class="books">
 		                        	</div>
 	                        </div>
 	                        <div class="bookName" style="display:none">
@@ -395,13 +395,13 @@ body {margin: 10px;}
 		                           	<p class="book-sub">책이름:</p><input type ="text" class="bookInput" name="book2" id="bookName2" >
 		                           	<p class="book-sub">대출일:</p><input type="text" class="bookInput" id="bookEnroll2"><br>
 		                            <p class="book-sub">반납일:</p><input type="text" class="bookInput" id="bookReturn2">
-	                        		<input type="hidden" name="books">
+	                        		<input type="hidden" class="books">
 	                        	</div>
 	                        </div>
                         </div>
                      <!-- Modal footer -->
                      <div class="modal-footer">
-                        <input type="button" class="pbtn success" id="deleteBooks" onclick="deleteBooks()" value="삭제">
+                        <input type="submit" class="pbtn success" id="deleteBooks" onclick="deleteOut()" value="삭제">
                      </div>
                   </form>
                
@@ -417,7 +417,7 @@ body {margin: 10px;}
   </div>
   <script>
  var arr =new Array();
- 
+ var cnt = 0;
   	window.onload = function(){
   		console.log("시작 배열 길이"+arr.length)
   		var chk0 = document.getElementById("book0");
@@ -427,37 +427,59 @@ body {margin: 10px;}
   		var name1=document.getElementById("bookName1");
   		var name2=document.getElementById("bookName2");
   		var deleteBooks=document.getElementById("deleteBooks");
-  		var books = document.getElementsByName("books");
+  		var books = document.getElementsByClassName("books");
   		chk0.onclick=function(){
-  			if(chk0.checked){  		
+  			if(chk0.checked){
   				books[0].value=name0.value;
+  				books[0].setAttribute("name","books");
+  				cnt++;
+  				console.log(cnt);
   			}else{
-  				books[0].value="";
+  				books[0].removeAttribute("name");
+  				cnt--;
   			}
   			
   		};
   		chk1.onclick=function(){
   			if(chk1.checked){  		
-  				books[1].value=name0.value;
+  				books[1].value=name1.value;
+  				books[1].setAttribute("name","books");
+  				cnt++;
   			}else{
-  				books[1].value="";
+  				books[1].removeAttribute("name");
+  				cnt--;
   			}
   		};
   		chk2.onclick=function(){
   			if(chk2.checked){  		
-  				books[2].value=name0.value;
+  				books[2].value=name2.value;
+  				books[2].setAttribute("name","books");
+  				cnt++;
   			}else{
-  				books[2].value="";
+  				books[2].removeAttribute("name");
+  				cnt--;
   			}
   		};
   		
   	};
-
+	function deleteOut(){
+		if(cnt>0){
+			document.getElementById("deleteBooks").setAttribute("type","submit");
+		}
+		else{
+			alert("선택한 책이 없습니다.");
+			document.getElementById("deleteBooks").setAttribute("type","button");			
+		}
+	}
   	function grow(userNo){
-  		console.log("유저넘버"+userNo);
+  		cnt = 0;
+  		unCheck();
+  		unName();
 	  	var book=document.getElementsByClassName('bookName');
+	  	var books = document.getElementsByName("books");
   		for(var i=0;i<3;i++){
-			book[i].style.display="none";  			
+			book[i].style.display="none"; 
+			//books[i].removeAttribute("name");
   		}
   		$.ajax({
   			method:"get",
@@ -496,7 +518,16 @@ body {margin: 10px;}
   			}
   		});
   	}
-  	
+  	function unCheck(){
+  		$("input:checkbox").each(function(){this.checked=false});
+  	}
+  	function unName(){
+  		var books = document.getElementsByClassName("books");
+  		for(var i=0;i<books.length;i++){
+	  		books[i].removeAttribute("name");
+  			
+  		}
+  	}
   </script>
 </body>
 </html>

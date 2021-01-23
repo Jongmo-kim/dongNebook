@@ -36,4 +36,7 @@
 	 <select id="cmCount" parameterType="string" resultType="_int">
 	 	select count(*) from chat_message where cm_receiver = #{_parameter} and check_message = '읽지않음'
 	 </select>
+	 <update id="readCm" parameterType="com.dongnebook.chat.model.vo.ChatMessage">
+	 	update chat_message set check_message='읽음' where cm_receiver=#{cmReceiver} and cm_sender=#{cmSender}
+	 </update>
 </mapper>

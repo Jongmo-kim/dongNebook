@@ -61,6 +61,7 @@ public class RentalController {
 	         System.out.println(i);
 	      }         
 	      list = service.selectBooks(bookNo);
+	      System.out.println("테스트카운트:"+list.get(0).getBookCount());
 	      session.setAttribute("rentalList", list);
 	   }      
 	   return "book/bookRentalFrm";
