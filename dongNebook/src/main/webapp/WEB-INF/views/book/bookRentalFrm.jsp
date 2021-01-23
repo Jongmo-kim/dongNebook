@@ -27,9 +27,11 @@
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	<jsp:include page="/views/common/userSide.jsp" />
-	<div class="wrap"> 
-		<div class="content-wrap">
+	<div class="contents-frame">
+		<div class="contents">
+				<jsp:include page="/views/common/userSide.jsp" />
+			<div class="admin-contents">
+				<div id="main-container" class="main-container nav-effect-1">
 			<h1 style="font-size:30px;">책 대출</h1>
 			<hr>
 			<div class="content">
@@ -75,6 +77,8 @@
 			</div>
 		</div>
 	</div>
+	</div>
+</div>
 	<!-- The Modal -->
                <div class="modal" id="myModal">
                  <div class="modal-dialog">
