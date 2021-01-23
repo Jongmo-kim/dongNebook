@@ -11,6 +11,7 @@ import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.rental.model.vo.BookRentalReserve;
 import com.dongnebook.rental.model.vo.RentalLoc;
+import com.dongnebook.user.model.vo.User;
 
 @Repository
 public class RentalDao {
@@ -54,6 +55,10 @@ public class RentalDao {
 	}
 	public int updateCount(int[] bookNo) {
 		return session.update("book.updateCount", bookNo);
+	}
+
+	public boolean isBookRentalLimitOver(User loginUser) {
+		return (Integer)session.selectOne("rental.isBookRentalLimitOver",loginUser) > 3;
 	}
 
 	

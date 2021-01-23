@@ -22,4 +22,7 @@
 	<select id="selectIsRental" parameterType="_int" resultType="rental">
 		select * from book_rental where book_no=#{bookNo}
 	</select>
+	<select id="isBookRentalLimitOver" parameterType="user" resultType="_int">
+		select count(*) from book_rental where user_no = #{userNo}
+	</select>
 </mapper>

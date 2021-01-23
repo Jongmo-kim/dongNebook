@@ -160,16 +160,22 @@ public class RentalController {
 			bRental.setRentalLocationNo(lastLoc.getRentalLocationNo());
 			bRList.add(bRental);
 		}
-		int BookRental = service.insertBookRental(bRList);
-		if(BookRental>0) {
-			//book테이블에 bookCount와 rCount 가감작업
-			int bookUpdateCount = service.updateCount(bookNo);
-			if(bookUpdateCount>0) {
-				model.addAttribute("msg","대출 성공");
-				model.addAttribute("result", "true");
+		boolean isBookRentalLimitOver = service.isBookRentalLimitOver(loginUser);
+		if(!isBookRentalLimitOver) {
+			int BookRental = service.insertBookRental(bRList);
+			if(BookRental>0) {
+				//book테이블에 bookCount와 rCount 가감작업
+				int bookUpdateCount = service.updateCount(bookNo);
+				if(bookUpdateCount>0) {
+					model.addAttribute("msg","대출 성공");
+					model.addAttribute("result", "true");
+				}
+			}else {
+				model.addAttribute("msg","대출 실패");
 			}
-		}else {
+		} else {
 			model.addAttribute("msg","대출 실패");
+			model.addAttribute("subMsg","대출한도 3권을 초과하셔서 실패하였습니다.");
 		}
 		model.addAttribute("loc","/");
 		return "common/msg";
