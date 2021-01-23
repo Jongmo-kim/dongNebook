@@ -264,7 +264,7 @@
 		</foreach>
 	</select>
 	<update id="updateIsRental" parameterType="hashmap">
-		update book_rental set isreturn='y'
+		update book_rental set isreturn='Y'
 		where
 		user_no=#{userNo} and book_no in
 		<foreach index="key" item="value" collection="bookNo" separator="," open="(" close=")">
