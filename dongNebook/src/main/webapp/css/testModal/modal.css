@@ -7,6 +7,7 @@
     width: 100px;
     height: 100px;
 }
+
 /* multipleBoardWrap*/
  ::-webkit-scrollbar {
          width:10px;    /*-- 세로 스크롤바 굵기 --*/
@@ -20,31 +21,40 @@
          background-color:#868686;    /*-- 스클로 배경 색상 --*/
      } 
      .multipleBoardWrap{
-         border: 1px solid;
-         height: 700px;
          width: 500px;
+         height: 700px;
          overflow: scroll;
          overflow-x: hidden;
          flex-direction: column;
      }
      .multipleBoardWrap >div > div{
          width:100%;
-         border: 1px dashed red;
          
      }
+     .boardBody{
+         border: 1px solid #868686;
+   		border-radius: 10px;
+   		margin:10px 10px 10px 10px;
+   		    overflow: hidden;
+     }
      .boardHeader{
-         display:flex;
-         flex-direction: row-reverse;
+     background-color:#86868630;
+         border-bottom : 1px solid;
+     }
+     .boardHeader > h2{
+     	padding-top: 20px;
+    padding-left: 20px;
      }
      .boardHeader > p{
-         font-size:15px;
-         font-weight: bold;
+         font-size:13px;
      }
+     
      .boardHeader  > img{
          height: 50px;
          width: 50px;
      }
      .boardContent > .textContent{
+  		  overflow: scroll;
          margin-left: 25px;
          margin-right: 25px;
      }
@@ -55,13 +65,16 @@
      .boardContent > .imageContent > img{
          width: 300px;
          height: 300px;
-         border : 1px solid;
      }
      .boardContent{
-         height: 500px;
+         border-bottom : 1px solid;
      }
      .boardFooter{
-         height: 100px;
+      background-color:#333333; 
+     }
+     .boardFooter{
+     	font-size:15px;
+     	font-weight:bold;
      }
      .loadingContent{
             background-image: url(../../image/common/loading.svg);

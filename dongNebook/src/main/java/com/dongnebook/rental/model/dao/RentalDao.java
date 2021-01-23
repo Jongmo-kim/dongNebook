@@ -1,6 +1,7 @@
 package com.dongnebook.rental.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Repository;
 import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.rental.model.vo.BookRentalReserve;
+import com.dongnebook.rental.model.vo.Rental;
 import com.dongnebook.rental.model.vo.RentalLoc;
+import com.dongnebook.user.model.vo.User;
 
 @Repository
 public class RentalDao {
@@ -59,6 +62,27 @@ public class RentalDao {
 	public ArrayList<BookRental> userRentalList(int userNo) {
 		List<BookRental> list = session.selectList("rental.userRentalList", userNo);
 		return (ArrayList<BookRental>)list;
+	public boolean isBookRentalLimitOver(User loginUser) {
+		return (Integer)session.selectOne("rental.isBookRentalLimitOver",loginUser) >= 3;
+	}
+
+	
+	
+	/**
+	 * @author 진수경
+	 *
+	 */
+	public ArrayList<Rental> selectRentalList(int userNo, int start, int end) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("userNo", userNo);
+		map.put("start", start);
+		map.put("end", end);
+		List<Rental> list = session.selectList("rental.selectRentalList", map);
+		return (ArrayList<Rental>) list;
+	}
+
+	public int totalCount(int userNo) {
+		return session.selectOne("rental.totalCount", userNo);
 	}
 
 	

@@ -1,5 +1,8 @@
 package com.dongnebook.common;
-
+/**
+ * @author 진수경
+ *
+ */
 public class FileVO {
 	private int fileNo;
 	private int tableNo;

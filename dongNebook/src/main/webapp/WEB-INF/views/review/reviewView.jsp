@@ -76,11 +76,12 @@
 				<button class="btn btn-lg btn-outline-secondary">수정하기</button>
 				
 				</form>
-				<form name="delete" method="post" style="display:inline;">
+			
+				</div>		
+					<form name="delete" method="post" style="display:inline;">
 					<input type="hidden" name="reviewNo" value="${view.reviewNo }">
 					<button class="deleteBtn btn btn-lg btn-outline-secondary">삭제하기</button>
-				</form>
-				</div>				
+				</form>		
 			</c:when>
 			<c:otherwise>
 				</form>

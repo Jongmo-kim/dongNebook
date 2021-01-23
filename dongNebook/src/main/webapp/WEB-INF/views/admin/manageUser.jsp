@@ -357,6 +357,7 @@ body {margin: 10px;}
                      <form action="/book/deleteBooks.do">
                         <div class="modal-body" id="modal-body">
 	                        <div class="bookName" style="display:none">
+	                        <input type="hidden" name="userNo" id="no">
 	                        	<div class="user_chk">
 	                        		<div class="checks etrans">
 									  <input type="checkbox" id="book0"> 
@@ -489,6 +490,7 @@ body {margin: 10px;}
   				console.log(data);
   			},
   			success:function(data){
+  				document.getElementById("no").value=userNo;
   				for(var i=0;i<data.length;i++){
   					var modal=document.getElementById('bookName'+i);
   					console.log(data);

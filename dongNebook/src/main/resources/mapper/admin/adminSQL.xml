@@ -21,10 +21,4 @@
 	            book_no=#{bookNo}
 	    </foreach>
 	</delete>
-	<update id="returnBooks" parameterType="java.util.List">
-		update book_rental set isReturn='Y' where 
-		<foreach collection="list" item="bookNo" separator="or">
-	            book_no=#{bookNo}
-	    </foreach>
-	</update>
 </mapper>

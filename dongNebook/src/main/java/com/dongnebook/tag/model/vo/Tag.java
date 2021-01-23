@@ -49,4 +49,9 @@ public class Tag {
 		this.book.setBookNo(bookNo);
 		
 	}
+	@Override
+	public String toString() {
+		return "Tag [tagNo=" + tagNo + ", review=" + review + ", book=" + book + "]";
+	}
+	
 }

@@ -34,6 +34,9 @@
 									<c:when test="${loginAdmin == null }">
 										<li><a href="/user/loginFrm.do">로그인</a></li>
 										<li><a href="/user/signupFrm.do">회원가입</a></li>
+												<li>
+									 <a data-target="#reviewModal" data-toggle="modal" href="#" >도서 추천</a>
+								</li>
 									</c:when>
 									<c:otherwise>
 										<li><a href="/aladin/searchInAladin.do">관리자</a></li>
@@ -44,7 +47,7 @@
 							<c:otherwise>
 								<li><a href="/user/mypageFrm.do">마이페이지</a></li>
 								<li>
-									<!-- <i class="fas fa-clipboard"></i> --> <a href="#">도서 추천</a>
+									 <a data-target="#reviewModal" data-toggle="modal" href="#" >도서 추천</a>
 								</li>
 								<li><a href="/user/logout.do">로그아웃</a></li>
 								<li><a class="chat-bell"> <!-- <i class="fas fa-bell"></i> -->
@@ -76,11 +79,13 @@
     </div>
 	    <div class="chat-input-holder">
 	    <c:if test="${sessionScope.loginUser!=null }">
+	   			 <input type="hidden" id="cmSender" name="cmSender" value="${sessionScope.loginUser.userId}">
 		    	<input type="hidden" id="cmReceiver" name="cmReceiver" value="admin">
 		      <textarea class="chat-input" id="chat-input" name="message"></textarea>
 		      <button onclick="insertCm('${sessionScope.loginUser.userId}')">Send</button>
 	      </c:if>
 	      <c:if test="${sessionScope.loginAdmin!=null }">
+	      		<input type="hidden" id="cmSender" name="cmSender" value="admin">
 	      		<input type="hidden" id="cmReceiver" name="cmReceiver" >
 		      <textarea class="chat-input" id="chat-input" name="message"></textarea>
 		      <button onclick="insertCm('admin')">Send</button>
@@ -147,6 +152,15 @@
  	  			$(".cmCount-frame").css("display","none");
  	  		  });
  	  		$('.hideChat').click(function(){
+ 	  			$(".cmCount-frame").css("display","none");
+ 	  			$.ajax({
+        			url : "/chat/readCm.do",
+        			data : {cmSender:$("#cmReceiver").val(),cmReceiver:$("#cmSender").val()},
+        			type : "post",
+        			success : function(data){
+        				console.log("읽음처리 완료");
+        			}
+        		});
  				  $(".chatbox").hide();
  			  });
  	  		$('.chatAdminRoom').click(function(){
@@ -157,31 +171,7 @@
  		  			$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
  	  		});
    		});
-        	function insertAdminCm(cmSender){
-        		var cmReceiver = $("[name=cmReceiver]").val();
-        		console.log(cmSender);
-        		console.log(cmReceiver);
-        		var message = $("[name = message]").val();
-        		console.log(message);
-        		$.ajax({
-        			url : "/chat/cmAdminInsert.do",
-        			data : {cmReceiver:cmReceiver, cmSender:cmSender, message:message},
-        			type : "post",
-        			success : function(data){
-        				if(data == 1){
-        					console.log(1);
-        					//alert("쪽지보내기 성공");
-        					//sendMsg(cmSender);
-        					//saveReceiver(cmReceiver);
-        					//샌드메세지에 받은 사람아이디를 줘서 주회함
-        					//reloadChat();
-        				}
-        				else{
-        					alert("쪽지보내기 실패");
-        				}
-        			}
-        		});
-        	}
+        	
         	function insertCm(cmSender){
         		var cmReceiver = $("[name=cmReceiver]").val();
         		console.log(cmSender);
@@ -198,6 +188,7 @@
         					//alert("쪽지보내기 성공");
         					sendMsg(cmSender);
         					saveReceiver(cmReceiver);
+        					cntAdmin(cmSender)
         					//샌드메세지에 받은 사람아이디를 줘서 주회함
         					reloadChat();
         				}else{
@@ -252,6 +243,7 @@
 				success : function(data){
 					console.log(data);
 					//채팅 css 추가하는것  (리시버일때만)
+					//$(".cmCount-frame").css("display","none");
 					$(".chat-messages").append("<div class='message-box-holder'><div class='message-sender'>"+data.cmSender+"</div><div class='message-box message-partner'>"+data.message+"</div></div>");
 					$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
 					//$(".cmCount").html(0);
@@ -265,15 +257,27 @@
 				success : function(data){
 					console.log(data);
 					//채팅 css 추가하는것  (리시버일때만)
+					//$(".cmCount-frame").css("display","none");
+					
 					$(".chat-messages").append("<div class='message-box-holder'><div class='message-sender'>"+data.cmSender+"</div><div class='message-box message-partner'>"+data.message+"</div></div>");
 					$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
+					if($('#chatBox').is(":visible")){
+						$(".cmCount-frame").css("display","none");
+					}
 				}
 			});
 		}
 		else{				
 			var count = e.data;
-			$(".cmCount-frame").css("display","block");
 			$(".cmCount").html(count);
+			if($('#chatBox').is(":visible")){
+				$(".cmCount-frame").css("display","none");
+			}else{
+				
+				$(".cmCount-frame").css("display","block");
+			}
+				
+			
 		}
 	}
 	function onClose() {
@@ -293,6 +297,14 @@
 		var msg = {
 				type : "save",
 				data : receiver
+		}
+		ws.send(JSON.stringify(msg));
+	}
+	//관리자용 카운트
+	function cntAdmin(cmSender){
+		var msg={
+				type:"cntAdmin",
+				data:cmSender
 		}
 		ws.send(JSON.stringify(msg));
 	}

@@ -1,5 +1,8 @@
 package com.dongnebook.calendar.model.vo;
-
+/**
+ * @author 진수경
+ *
+ */
 public class Calendar {
 	private int calendarNo;
 	private String calendarTitle;

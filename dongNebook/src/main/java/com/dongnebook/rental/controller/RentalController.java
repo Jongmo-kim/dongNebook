@@ -18,6 +18,7 @@ import com.dongnebook.rental.model.vo.BookRental;
 import com.dongnebook.rental.model.vo.BookRentalReserve;
 import com.dongnebook.rental.model.vo.RentalDate;
 import com.dongnebook.rental.model.vo.RentalLoc;
+import com.dongnebook.rental.model.vo.RentalPageData;
 import com.dongnebook.user.model.vo.User;
 
 
@@ -166,6 +167,19 @@ public class RentalController {
 				bRental.setRentalLocationNo(lastLoc.getRentalLocationNo());
 				bRList.add(bRental);
 			}
+		RentalLoc lastLoc = service.lastLoc();
+		System.out.println(bookNo);
+		for(int i : bookNo) {
+			//이 부분은 대출했을때 책 수를 차감하기 위함!
+			bRental = new BookRental();
+			bRental.setUserNo(userNo);
+			bRental.setBookNo(i);
+			bRental.setRentalLocationNo(lastLoc.getRentalLocationNo());
+			bRList.add(bRental);
+		}
+		boolean isBookRentalLimitOver = service.isBookRentalLimitOver(loginUser);
+		
+		if(!isBookRentalLimitOver) {
 			int BookRental = service.insertBookRental(bRList);
 			if(BookRental>0) {
 				//book테이블에 bookCount와 rCount 가감작업
@@ -178,7 +192,23 @@ public class RentalController {
 				model.addAttribute("msg","대출 실패");
 			}
 		}	
+		} else {
+			model.addAttribute("msg","대출 실패");
+			model.addAttribute("subMsg","대출한도 3권을 초과하셔서 실패하였습니다.");
+		}
 		model.addAttribute("loc","/");
 		return "common/msg";
+	}
+	
+	/**
+	 * @author 진수경
+	 *
+	 */
+	@RequestMapping("/rentalList.do")
+	public String rentalList(int userNo, int reqPage, Model model) {
+		RentalPageData rpd = service.selectRentalList(userNo, reqPage);
+		model.addAttribute("list", rpd.getList());
+		model.addAttribute("pageNavi", rpd.getPageNavi());
+		return "user/rentalList";
 	}
 }

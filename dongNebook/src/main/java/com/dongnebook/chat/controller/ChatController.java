@@ -123,4 +123,12 @@ public class ChatController {
 			return service.insertCM(cm);
 		}
 	}
+	@RequestMapping("/readCm.do")
+	@ResponseBody
+	public String readCm(ChatMessage cm) {
+		System.out.println("보내는사람:"+cm.getCmSender());
+		System.out.println("받는사람:"+cm.getCmReceiver());
+		service.readCm(cm);
+		return "성공";
+	}
 }

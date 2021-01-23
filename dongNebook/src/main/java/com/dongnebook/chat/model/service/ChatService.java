@@ -112,4 +112,10 @@ public class ChatService {
 		return dao.readChat(loginUser);
 		
 	}
+
+
+	public int readCm(ChatMessage cm) {
+		return dao.readCm(cm);
+		
+	}
 }

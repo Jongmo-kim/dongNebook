@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dongnebook.alert.model.service.AlertService;
 import com.dongnebook.alert.model.vo.Alert;
-
+/**
+ * @author 진수경
+ *
+ */
 @Controller
 @RequestMapping("/alert")
 public class AlertController {
