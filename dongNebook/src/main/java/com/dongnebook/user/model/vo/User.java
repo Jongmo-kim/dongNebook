@@ -80,6 +80,9 @@ public class User {
 	public User() {
 		super();
 	}
+	public User(int userNo) {
+		this.userNo = userNo;
+	}
 	@Override
 	public String toString() {
 		return "User [userNo=" + userNo + ", category=" + category + ", userId=" + userId + ", userPw=" + userPw

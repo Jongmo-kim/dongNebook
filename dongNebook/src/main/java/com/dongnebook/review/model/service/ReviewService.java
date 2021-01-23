@@ -96,4 +96,49 @@ public class ReviewService {
 	public int selectReviewCount() {
 		return dao.selectReviewCount();
 	}
+
+	public String selectReviewNaviByReqpage(int reqPage) {
+		int totalCount = dao.selectReviewCount();
+		int numPerPage = 10;
+		int totalPage = 0;
+		if (totalCount % numPerPage == 0) {
+			totalPage = totalCount / numPerPage;
+		} else {
+			totalPage = totalCount / numPerPage + 1;
+		}
+
+		int pageNaviSize = 5;
+		String pageNavi = "";
+
+		int pageNo = reqPage - 2;
+		if (reqPage <= 3) {
+			pageNo = 1;
+		}else if(reqPage >= totalPage){
+			pageNo = totalPage-3;
+		}else if (pageNo > totalPage - 4) {
+			pageNo = totalPage - 4;
+		}
+		
+		if (pageNo != 1) {
+			pageNavi += "<li class='page-item'><a class='btn page-link' href='/review/main.do?"
+					+ (pageNo - 1) +"'>이전</a>";
+		}
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (reqPage == pageNo) {
+				pageNavi += "<li class='page-item'><span class='selectPage page-link'>" + pageNo + "</span>";
+			} else {
+				pageNavi += "<li class='page-item'><a class='btn page-link' href='/review/main.do?reqPage="
+						+ pageNo +"'>" + pageNo + "</a>";
+			}
+			pageNo++;
+			if (pageNo > totalPage) {
+				break;
+			}
+		}
+		if (pageNo <= totalPage) {
+			pageNavi += "<li class='page-item'><a class='btn page-link' href='/review/main.do?reqPage="
+					+ (pageNo) + "'>다음</a>";
+		}
+		return pageNavi;
+	}
 }

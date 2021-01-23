@@ -63,6 +63,7 @@ public class ReviewController {
 	@RequestMapping("/main")
 	public String sendToMain(Model model,int reqPage) {
 		model.addAttribute("reviewList", service.selectReviewByReqpage(reqPage));
+		model.addAttribute("navi", service.selectReviewNaviByReqpage(reqPage));
 		return "/review/main";
 	}
 	
@@ -90,8 +91,6 @@ public class ReviewController {
 	public JsonArray item(){
 		JsonArray arr = new JsonArray();
 		JsonObject o = new JsonObject();
-		o.addProperty("value", "One");
-		o.addProperty("label", "Label One");
 		arr.add(o);
 		arr.add(o);
 		arr.add(o);

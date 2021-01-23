@@ -127,7 +127,8 @@ public class BookController {
 	}
 	@RequestMapping("/updateBook.do")
 	public String updateBook(Model model,Book b) {
-		System.out.println(b.getBookName());
+		System.out.println("책번호"+b.getBookCount());
+		
 		int result = service.updateBook(b);
 		
 		if(result>0) {
@@ -182,7 +183,17 @@ public class BookController {
 	}
 	@RequestMapping("/deleteBooks")
 	public String deleteBooks(Model model, String[] books) {
-		System.out.println("책명"+books[0]);
-		return null;
+		
+		int result = service.deleteBooks(books);
+		
+		if(result>0) {
+			model.addAttribute("msg", "수정 성공");
+			model.addAttribute("result", "true");
+		}else {
+			model.addAttribute("msg","수정 실패");
+		}
+		model.addAttribute("loc", "/");
+		
+		return "common/msg";
 	}
 }

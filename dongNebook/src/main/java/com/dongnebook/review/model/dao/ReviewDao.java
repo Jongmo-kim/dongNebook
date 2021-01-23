@@ -75,7 +75,11 @@ public class ReviewDao {
 	}
 
 	public Object selectReviewByReqpage(int reqPage) {
-		return session.selectList("review.selectReviewByReqpage", reqPage);
+		List<Review> list = session.selectList("review.selectReviewByReqpage", reqPage);
+		for(Review r : list) {
+			r.setUser(userService.selectOneUser(new User(r.getUserNo())));
+		}
+		return list;
 	}
 
 	public Review selectReviewForModal(int currReview) {
@@ -84,5 +88,9 @@ public class ReviewDao {
 
 	public int selectReviewCount() {
 		return session.selectOne("review.selectReviewCount");
+	}
+
+	public String selectReviewNaviByReqpage(int reqPage) {
+		return session.selectOne("review.selectReviewNaviByReqpage",reqPage);
 	}
 }

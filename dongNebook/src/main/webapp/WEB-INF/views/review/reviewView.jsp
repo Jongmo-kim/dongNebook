@@ -12,37 +12,84 @@
 <script src="/lib/choices/choices.min.js" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+<link rel="stylesheet" type="text/css" href="/lib/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/lib/slick/slick-theme.css"/>
+
+
+
+<style>
+	.content{
+	width:80%;
+	margin: 0 auto;
+	}
+</style>
 
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
+	<div class="content">
 	<h2>리뷰 보기</h2>
 	<hr>
-	<div class="content">
+
 	<form action="/review/updateFrm.do" method="post">
 		<input type="hidden" name="userNo" value="${sessionScope.loginUser.userNo }">
 		<input type="hidden" name="reviewNo" value="${view.reviewNo}">
-		<input type="text" name="title" value="${view.title}">
-		<textarea rows="5" name="content" cols="50" style="resize:none;">${view.content}</textarea>
-		
-		<c:forEach var="t" items="${tags }">
-			<a href="/book/searchBook.do?reqPage=1&searchKeyword=전체&inputStr=${t.book.bookName }">${t.book.bookName }</a>
-		</c:forEach>
-		
+		<table class="table table-bordered">
+				<tr>
+						<td>
+							<h2>${view.title}</h2>
+							<h4 style="text-align:right;">글쓴이 : ${view.user.userName }</h4>
+						</td>
+				</tr>
+				<tr>
+				<td>
+				<div style="width:1300px">
+				<div class="your-class">
+					<c:forEach var="t" items="${tags }">
+					<div style="text-align:center; outline:none;">
+						<img src="${t.book.imageurl }" style="width:180px; display:inline; height:270px;">
+						</div>
+					</c:forEach>
+					</div>
+					</div>
+					</td>
+					
+					</tr>
+			<tr>
+				<td>
+					<p>${view.content}</p>
+				</td>
+			<tr>
+			<c:forEach var="t" items="${tags }">
+			<tr>
+				<td>
+				<a href="/book/selectOneBook.do?bookNo=${t.book.bookNo }">#${t.book.bookName }</a>
+				
+				</td>
+			</tr>
+			</c:forEach>
+			
+			  </table>
+			  <div style="text-align:center;">
 		<c:choose>
 			<c:when test="${sessionScope.loginUser.userNo == view.user.userNo }" >
-				<button>수정하기</button>
+				<button class="btn btn-lg btn-outline-secondary">수정하기</button>
+				
 				</form>
-				<form name="delete" method="post">
+				<form name="delete" method="post" style="display:inline;">
 					<input type="hidden" name="reviewNo" value="${view.reviewNo }">
-					<button class="deleteBtn">삭제하기</button>
+					<button class="deleteBtn btn btn-lg btn-outline-secondary">삭제하기</button>
 				</form>
+				</div>				
 			</c:when>
 			<c:otherwise>
 				</form>
 			</c:otherwise>
 		</c:choose>
+		</div>
+		
 	</div>
+	<script src="/lib/slick/slick.min.js" type="text/javascript"></script>
 	<script src="/js/review/reviewView.js" type="text/javascript"></script>
 </body>
 </html>
