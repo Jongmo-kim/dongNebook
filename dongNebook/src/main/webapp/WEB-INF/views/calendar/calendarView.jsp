@@ -254,7 +254,7 @@ background:#a8dba8;
 	<div class="admin-contents">
 	
 	<div id="main-container" class="main-container nav-effect-1">
-	<h1 style="font-size:30px;">| 이달의 도서관</h1>
+	<h1 style="font-size:30px;">이달의 도서관</h1>
 	<hr>
 	<br>
 	<div id='calendar'></div>

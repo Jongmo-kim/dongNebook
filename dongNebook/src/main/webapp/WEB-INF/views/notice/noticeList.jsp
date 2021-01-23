@@ -93,7 +93,7 @@ background:#a8dba8;
 	<div class="admin-contents">
 	
 	<div id="main-container" class="main-container nav-effect-1">
-	<h1 style="font-size:30px;">| 공지사항</h1>
+	<h1 style="font-size:30px;">공지사항</h1>
 	<hr>
 	<table class="table table-hover notice-table">
 		<tr>
