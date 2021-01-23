@@ -33,6 +33,7 @@ table {
 	border-bottom: 3px solid lightgray;
 	width: 1100px;
 	margin-top: 30px;
+	margin:0 auto;
 }
 
 table>tbody>tr>td:first-child {
@@ -59,7 +60,7 @@ table>tbody>tr>td>p:nth-child(2) {
 	color:gray;
 	font-weight:500;
 }
-table>tbody>tr>td>p:nth-child(6) {
+table>tbody>tr>td>p:nth-child(7) {
 	text-align:right;
 }
 .con {
@@ -83,11 +84,14 @@ table>tbody>tr>td>p:nth-child(6) {
 	font-size:1.3em;
 }
 
-table>tbody>tr>td, .img-td{
-	padding: 0 !important;
+.img-td{
+	padding-top:50px;
+	padding-bottom:50px;
+	padding-left:120px;
+	padding-right:120px;
 }
-.img-td>img{
-width:150%;
+.img-td>a>img{
+	width:100%;
 }
 .prev{
 text-align:right;}
@@ -98,6 +102,7 @@ text-align:right;}
 	font-size:18px;
 }
 .bookName:hover{
+color:black;
 }
 </style>
 <jsp:include page="/views/common/linkHead.jsp" />
@@ -139,15 +144,18 @@ text-align:right;}
 							<table>
 								<c:forEach items="${list }" var="r">
 									<tr>
-										<td style="width:30%;"><a href="/book/selectOneBook.do?bookNo=${r.bookNo }"><img
-												alt="${r.bookName }Image" src="${r.imageurl }"></a></td>
+										<td class="img-td" style="width:40%;">
+											<a href="/book/selectOneBook.do?bookNo=${r.bookNo }">
+												<img alt="${r.bookName }Image" src="${r.imageurl }">
+											</a>
+										</td>
 										<td><p>
 												<a class="bookName" href="/book/selectOneBook.do?bookNo=${r.bookNo }">${r.bookName }</a>
 											</p>
-											<p>${r.bookWriter }</p>
-											<p>대출장소 : ${r.placeName }</p>
-											<p>대출일 : ${r.enrollDate }</p>
-											<p>반납일 : ${r.returnDate }</p> <c:choose>
+											<p>${r.bookWriter }</p><br>
+											<p><b>대출장소</b> : ${r.placeName }</p>
+											<p><b>대출일</b> : ${r.enrollDate }</p>
+											<p><b>반납일</b> : ${r.returnDate }</p> <c:choose>
 												<c:when test="${r.isReturn.equals('Y') }">
 													<p>반납</p>
 												</c:when>

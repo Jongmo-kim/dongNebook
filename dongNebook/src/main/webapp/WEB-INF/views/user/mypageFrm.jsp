@@ -25,6 +25,7 @@
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
+	
 	<div class="content">	
 		
 	<form action="/user/update.do" method="post">
