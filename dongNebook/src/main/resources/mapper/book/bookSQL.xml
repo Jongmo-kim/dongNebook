@@ -244,9 +244,16 @@
 	<delete id="deleteBooks">
 	    delete from book
 	    WHERE
-    <foreach collection="array" item="item" separator="or" index="index">
-        book_name=#{item}
-    </foreach>
-</delete>
-
+	    <foreach collection="array" item="item" separator="or" index="index">
+	        book_name=#{item}
+	    </foreach>
+	</delete>
+	
+	<!-- @author 진수경 -->
+	<update id="returnBooks" parameterType="java.util.List">
+		update book_rental set isReturn='Y' where 
+		<foreach collection="array" item="item" separator="or" index="index">
+	        book_name=#{item}
+	    </foreach>
+	</update>
 </mapper>

@@ -65,6 +65,7 @@ public class AdminController {
 	
 	@RequestMapping("/deleteBooks")
 	public void deleteBooks(Model model, String[] books) {
+		System.out.println("111111111");
 		System.out.println("책명"+books.length);
 		ArrayList<Integer> list =new ArrayList<Integer>() ;
 		for(int i=0 ; i<books.length;i++) {
@@ -74,8 +75,7 @@ public class AdminController {
 			}
 		}
 		System.out.println("다시뽑은책명"+list.get(0));
-		//int result = service.deleteBooks(list);
-		int result = service.returnBooks(list);
+		int result = service.deleteBooks(list);
 		System.out.println(result);
 	}
 	

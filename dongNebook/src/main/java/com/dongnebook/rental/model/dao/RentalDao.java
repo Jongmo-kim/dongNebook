@@ -1,6 +1,7 @@
 package com.dongnebook.rental.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -57,9 +58,23 @@ public class RentalDao {
 		return session.update("book.updateCount", bookNo);
 	}
 
-	public ArrayList<Rental> rentalList(int userNo) {
-		List<Rental> list = session.selectList("rental.rentalList", userNo);
+	
+	
+	/**
+	 * @author 진수경
+	 *
+	 */
+	public ArrayList<Rental> selectRentalList(int userNo, int start, int end) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("userNo", userNo);
+		map.put("start", start);
+		map.put("end", end);
+		List<Rental> list = session.selectList("rental.selectRentalList", map);
 		return (ArrayList<Rental>) list;
+	}
+
+	public int totalCount(int userNo) {
+		return session.selectOne("rental.totalCount", userNo);
 	}
 
 	

@@ -77,7 +77,7 @@
 	</div>
 	<script>
 	function rentalList(){
-		location.href="/rentalList.do?userNo="+$("input[name=userNo]").val();
+		location.href="/rentalList.do?reqPage=1&userNo="+$("input[name=userNo]").val();
 	}
 	document.delete.addEventListener('submit',deleteFunc);
 

@@ -14,6 +14,7 @@ public class Rental {
 	private int userNo;
 	private int bookNo;
 	private String bookName;	//book
+	private String bookWriter;	//book
 	private String placeName;	//rental_location
 	private String addr;		//rental_location
 	private Date enrollDate;
@@ -24,13 +25,14 @@ public class Rental {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Rental(int bookRentalNo, int userNo, int bookNo, String bookName, String placeName, String addr,
-			Date enrollDate, Date returnDate, String imageurl, String isReturn) {
+	public Rental(int bookRentalNo, int userNo, int bookNo, String bookName, String bookWriter, String placeName,
+			String addr, Date enrollDate, Date returnDate, String imageurl, String isReturn) {
 		super();
 		this.bookRentalNo = bookRentalNo;
 		this.userNo = userNo;
 		this.bookNo = bookNo;
 		this.bookName = bookName;
+		this.bookWriter = bookWriter;
 		this.placeName = placeName;
 		this.addr = addr;
 		this.enrollDate = enrollDate;
@@ -61,6 +63,12 @@ public class Rental {
 	}
 	public void setBookName(String bookName) {
 		this.bookName = bookName;
+	}
+	public String getBookWriter() {
+		return bookWriter;
+	}
+	public void setBookWriter(String bookWriter) {
+		this.bookWriter = bookWriter;
 	}
 	public String getPlaceName() {
 		return placeName;
@@ -98,10 +106,10 @@ public class Rental {
 	public void setIsReturn(String isReturn) {
 		this.isReturn = isReturn;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Rental [ bookRentalNo = "+bookRentalNo+", userNo = "+userNo+", bookNo = "+bookNo+", bookName = "+bookName+", placeName = "+placeName+", addr = "+addr+
+		return "Rental [ bookRentalNo = "+bookRentalNo+", userNo = "+userNo+", bookNo = "+bookNo+", bookName = "+bookName+", bookWriter ="+bookWriter+", placeName = "+placeName+", addr = "+addr+
 				"enrollDate = "+enrollDate+", returnDate = "+returnDate+", imageurl = "+imageurl+", isReturn = "+isReturn+"]";
 	}
 }
