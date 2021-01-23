@@ -12,7 +12,7 @@
 		<div class="menu-frame">
 			<div>
 				<div class="main-img">
-					<a href="/"> <img src="../image/header/DongNeBook2nd.png">
+					<a href="/"> <img src="../image/header/finalLogo.png">
 					</a>
 				</div>
 				<div class="main-menu">
@@ -188,7 +188,7 @@
         					//alert("쪽지보내기 성공");
         					sendMsg(cmSender);
         					saveReceiver(cmReceiver);
-        					cntAdmin(cmSender)
+        					//cntAdmin(cmSender)
         					//샌드메세지에 받은 사람아이디를 줘서 주회함
         					reloadChat();
         				}else{
@@ -301,13 +301,7 @@
 		ws.send(JSON.stringify(msg));
 	}
 	//관리자용 카운트
-	function cntAdmin(cmSender){
-		var msg={
-				type:"cntAdmin",
-				data:cmSender
-		}
-		ws.send(JSON.stringify(msg));
-	}
+	
 	$(function() {
 		connect();
 	});

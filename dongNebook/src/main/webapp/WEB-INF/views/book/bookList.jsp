@@ -183,9 +183,9 @@
             </c:forEach>
          </table>
       </div>
+         <div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
       </div>
       </div>
-         <p style="text-align:center">${pageNavi }</p>
    </div>
 </div>
    <script>

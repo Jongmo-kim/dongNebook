@@ -40,6 +40,7 @@ public class ChatController {
 		System.out.println(cupd.getList().get(0).getCmSender());
 		model.addAttribute("list", cupd.getList());
 		model.addAttribute("pageNavi", cupd.getPageNavi());
+		//어드민 읽지않음 데이터 불러오기
 		return "chat/chatRoom";
 	}
 	@ResponseBody

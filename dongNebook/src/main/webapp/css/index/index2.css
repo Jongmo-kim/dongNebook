@@ -86,7 +86,7 @@
     	border-left: 1px solid lightgray;
     }
     #searchFrm{
-    	background: #a8dba8 !important;
+    	
     	padding: 10px 29px 10px 38px !important;
     }
     .book-img {
@@ -147,9 +147,9 @@
     font-size: 18px;
     height: 70px;
     color: #333;
-    background: linear-gradient(to right, #a8dba8 0%, #a8dba8 87%, #3b8686 96%, #3b8686 100%);
+    background: linear-gradient(to right, white 0%, darkseagreen 78%, #3b8686 95%, #3b8686 100%);
   font-family: 'Lato', sans-serif;
-  
+  background: whitesmoke !important;
   box-shadow: 0 8px 20px 0 rgba(0,0,0,.15);
     overflow: hidden;
     border-radius: 34px;
@@ -174,7 +174,7 @@
 .icon-wrap > svg{
   width: 34px;
     height: 34px;
-    fill: #fff;
+    fill: darkgray;
 }
 
 .searchBox{
@@ -204,7 +204,7 @@
   right: -23px;
 }
 .exit-icon> .icon-wrap > svg{
-  fill: #333333;
+  fill: darkgray;
 }
 .exit-icon{
   position: relative;

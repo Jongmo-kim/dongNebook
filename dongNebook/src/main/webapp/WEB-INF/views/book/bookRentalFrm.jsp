@@ -26,10 +26,12 @@
 
 </head>
 <body>
-	<jsp:include page="/views/common/header.jsp" />
-	<jsp:include page="/views/common/userSide.jsp" />
-	<div class="wrap"> 
-		<div class="content-wrap">
+<jsp:include page="/views/common/header.jsp" />
+   <div class="contents-frame">
+      <div class="contents">
+   <jsp:include page="/views/common/adminSide.jsp" />
+   <div class="admin-contents">
+   <div id="main-container" class="main-container nav-effect-1">
 			<h1 style="font-size:30px;">책 대출</h1>
 			<hr>
 			<div class="content">
@@ -139,6 +141,8 @@
 	<form action="/rentalLoc.do"  method="post">
 		<input type="submit" id="goRentalLoc" value="검색" style="display:none">
 	</form>
+</div>
+</div>
 
 </body>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d94e3fab43df95c64983cf272918d89e&libraries=services"></script>

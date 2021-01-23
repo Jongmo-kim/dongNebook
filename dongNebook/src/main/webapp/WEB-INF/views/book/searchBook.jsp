@@ -110,12 +110,12 @@
 	</div>
 	</c:otherwise>
 	</c:choose>
-	</div>
 		<div class="navi">
 			<ul class="pagination justify-content-center" id="pageNavi">
 				${navi}
 			</ul>
 		</div>
+	</div>
 	</div>
 </div>
 </body>

@@ -916,10 +916,10 @@ body {
   <div class="main-overlay">
     <div class="overlay-full"></div>
   </div>
+<div class = "pagination justify-content-center" id="pageNavi"></div>
 </div>
 </div>
 <!-- /main-container -->
-<div class = "pagination justify-content-center" id="pageNavi"></div>
 </div>
 </div>
 <script>

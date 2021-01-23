@@ -64,14 +64,15 @@ public class BookService {
 		String pageNavi = "";
 		//이전버튼 생성
 		if(pageNo != 1) {
-			pageNavi += "<a href='/book/bookList.do?reqPage="+(pageNo-1)+"'>[이전]</a>";
+			pageNavi += "<li class='page-item'><a class='btn page-link' href='/book/bookList.do?reqPage="+(pageNo-1)+"'>이전</a>";
 		}
 		for(int i=0;i<pageNaviSize;i++) {
 			if(pageNo!=reqPage) {
 				
-				pageNavi += "<a href='/book/bookList.do?reqPage="+pageNo+"'>"+pageNo+"</a>";
+				pageNavi += "<li class='page-item'><a class='btn page-link' href='/book/bookList.do?reqPage="
+						+ pageNo + "'>" + pageNo + "</a>";
 			}else {
-				pageNavi+="<span class='selectedPage'>"+pageNo+"</span>";
+				pageNavi+="<li class='page-item'><span class='selectPage page-link'>" + pageNo + "</span>";
 			}
 			pageNo++;
 			if(pageNo>totalPage) {
@@ -80,7 +81,8 @@ public class BookService {
 		}
 		//총게시물 전까진  위의 포문 이후엔 페이지 넘버가 각 네비 끝에 와있기에  그것이 총게시물전이라면
 		if(pageNo<=totalPage) {
-			pageNavi +="<a href='/book/bookList.do?reqPage="+pageNo+"'>[다음]</a>";
+			pageNavi +="<li class='page-item'><a class='btn page-link' href='/book/bookList.do?reqPage="
+					+ (pageNo) + "'>다음</a>";
 		}
 		BookPageData npd=new BookPageData(list,pageNavi);
 		return npd;
@@ -232,12 +234,20 @@ public class BookService {
 		return dao.deleteBooks(books);
 	}
 
+	/**
+	 * @author 진수경
+	 *
+	 
+	public int returnBooks(String[] books) {
+		return dao.returnBooks(books);
+	}
+*/
 	public ArrayList<Integer> selectBookNo(String[] books) {
-		
 		return dao.selectBookNo(books);
 	}
-	public int updateIsRental(int userNo,ArrayList<Integer> no) {
-		return dao.updateIsRental(userNo,no);
+
+	public int updateIsRental(int userNo, ArrayList<Integer> no) {
+		return dao.updateIsRental(userNo, no);
 	}
 
 }

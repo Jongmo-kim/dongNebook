@@ -7,7 +7,10 @@
 html { 
 	overflow-y:scroll; 
 }
-
+.pagination>li>a {
+    color: #79bd9a;
+    border: none;
+}
 .nav-bar {
         width: 100vw;
         height: 40px;
