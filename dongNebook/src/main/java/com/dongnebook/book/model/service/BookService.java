@@ -232,4 +232,12 @@ public class BookService {
 		return dao.deleteBooks(books);
 	}
 
+	/**
+	 * @author 진수경
+	 *
+	 */
+	public int returnBooks(String[] books) {
+		return dao.returnBooks(books);
+	}
+
 }

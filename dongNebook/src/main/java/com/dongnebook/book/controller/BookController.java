@@ -92,6 +92,7 @@ public class BookController {
 	}
 	@RequestMapping("/bookDelete")
 	public String bookDelete(Model model,Book b) {
+		System.out.println("2222222222");
 		System.out.println(b.getBookNo());
 		int result = service.bookDelete(b.getBookNo());
 		
@@ -183,8 +184,8 @@ public class BookController {
 	}
 	@RequestMapping("/deleteBooks")
 	public String deleteBooks(Model model, String[] books) {
-		
-		int result = service.deleteBooks(books);
+		//int result = service.deleteBooks(books);
+		int result = service.returnBooks(books);
 		
 		if(result>0) {
 			model.addAttribute("msg", "수정 성공");
@@ -192,7 +193,7 @@ public class BookController {
 		}else {
 			model.addAttribute("msg","수정 실패");
 		}
-		model.addAttribute("loc", "/");
+		model.addAttribute("loc", "/admin/manageUser.do?reqPage=1");
 		
 		return "common/msg";
 	}

@@ -19,6 +19,7 @@
 		<typeAlias type="com.dongnebook.calendar.model.vo.Calendar" alias="calendar"/>
 		<typeAlias type="com.dongnebook.admin.model.vo.Admin" alias="admin"/>
 		<typeAlias type="com.dongnebook.rental.model.vo.BookRental" alias="bookrental"/>
+		<typeAlias type="com.dongnebook.rental.model.vo.Rental" alias="rentalJ"/>
 		<typeAlias type="com.dongnebook.alert.model.vo.Alert" alias="alert"/>
 		<typeAlias type="com.dongnebook.review.model.vo.Review" alias="review"/>
 		<typeAlias type="com.dongnebook.review_co_comment.model.vo.ReviewCoComment" alias="review_co_comment"/>

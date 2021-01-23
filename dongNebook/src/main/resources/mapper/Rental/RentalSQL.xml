@@ -22,4 +22,28 @@
 	<select id="selectIsRental" parameterType="_int" resultType="rental">
 		select * from book_rental where book_no=#{bookNo}
 	</select>
+	
+	<!-- @author 진수경 -->
+	<select id="selectRentalList" parameterType="map" resultType="rentalJ">
+		select br.book_rental_no as bookRentalNo,
+			br.user_no as userNo,
+			br.book_no as bookNo,
+			b.book_name as bookName,
+			b.book_writer as bookWriter,
+			rl.placeName,
+			rl.addr,
+			br.enroll_date as enrollDate,
+			br.return_date as returnDate,
+			b.imageurl,
+			br.isReturn
+		from (select rownum as rnum, n.* from(select * from book_rental order by 1 desc)n) br
+		join book b
+		on br.book_no = b.book_no
+		join rental_location rl
+		on br.rental_location_no = rl.rental_location_no
+		where br.user_no=#{userNo} and rnum between #{start} and #{end}
+	</select>
+	<select id="totalCount" resultType="_int" parameterType="_int">
+		select count(*) from book_rental where user_no=#{_int}
+	</select>
 </mapper>

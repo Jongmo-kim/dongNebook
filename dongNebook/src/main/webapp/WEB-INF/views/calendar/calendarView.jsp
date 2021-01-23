@@ -1,3 +1,4 @@
+<!-- @author 진수경 -->
 <%@page import="com.dongnebook.calendar.model.vo.Calendar"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

@@ -108,5 +108,14 @@ public class BookDao {
 		return session.delete("book.deleteBooks",books);
 	}
 
+	
+	/**
+	 * @author 진수경
+	 *
+	 */
+	public int returnBooks(String[] books) {
+		return session.update("book.returnBooks",books);
+	}
+
 
 }
