@@ -194,6 +194,13 @@ svg:not(:root).svg-inline--fa {
     overflow: visible;
     text-align: center;
 }
+.fa-w-16{
+	position:relative !important;
+}
+.fa-w-14{
+	position:relative !important;
+	top:0px !important;
+}
 </style>
 </head>
 
