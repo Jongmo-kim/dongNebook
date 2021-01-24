@@ -332,8 +332,10 @@ table>tbody>tr>td:nth-child(3)>p:nth-child(3) {
 					</div>
 				</div>
 			</div>
-</div></div>
+</div>
+
 			<div class="pagination justify-content-center" id="pageNavi">${pageNavi }</div>
+</div>
 
 
 		</div>

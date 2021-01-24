@@ -411,9 +411,9 @@ body {margin: 10px;}
                </div>
 	    </c:forEach>
 	  </ul>
-	  </div>
-	  </div>
 		  <div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
+	  </div>
+	  </div>
   </div>
   </div>
   <script>

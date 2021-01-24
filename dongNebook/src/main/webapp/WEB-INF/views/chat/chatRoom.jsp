@@ -153,6 +153,7 @@ position:relative;
    </div>
    </div>
    
+   <!-- 오픈로드로 센더만 뿌려주기 new 활성화 -->
  
    <script >
    		function openAdminWindow(data){

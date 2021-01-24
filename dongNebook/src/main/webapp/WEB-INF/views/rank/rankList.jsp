@@ -34,7 +34,12 @@
 		width:20px;
 	}
 	table>tbody>tr>td:nth-child(2){
+	padding-top: 10px;
+    padding-bottom: 10px;
 		width:100px;
+	}
+	table>tbody>tr>td:nth-child(2) img{
+		width:150px;
 	}
 	table>tbody>tr>td:nth-child(3){
 		width:500px;
@@ -103,8 +108,8 @@
 				</tr>
 		</c:forEach>
 	</table>
-	</div>
 		<div class = "pagination justify-content-center" id="pageNavi">${pageNavi }</div>
+	</div>
 		</div>
 		</div>
 			</div>

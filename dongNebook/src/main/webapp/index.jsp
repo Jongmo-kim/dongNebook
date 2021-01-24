@@ -142,7 +142,7 @@
 
                 <!--가로-->
                 <!-- <img class="d-block w-100" src="../image/index/img.png" alt="First slide"> -->
-                <img class="d-block w-100" src="../image/index/star.jpeg" alt="First slide">
+                <img class="d-block w-100" src="../image/index/greenwinter.jpg" alt="First slide">
 				<div class="searchBox">
 		<div class="searchFrm">
 			<form action="/book/searchBook.do" name="searchBook" method="get" >
