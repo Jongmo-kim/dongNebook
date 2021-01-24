@@ -65,7 +65,7 @@ public class ChatSocket extends TextWebSocketHandler{
 			//dao.readChat(receiver);
 			
 			
-			connectMembers.get(data).sendMessage(new TextMessage(receiver));
+			connectMembers.get(data).sendMessage(new TextMessage(data));
 			connectMembers.get(data).sendMessage(new TextMessage(String.valueOf(count)));
 		}
 	}
