@@ -6,5 +6,5 @@ insert into "USER" values(user_seq.nextval,1,'1234','03ac674216f3e15c761ee1a5e25
 insert into review_comment values(review_comment_seq.nextval,1,1,'ㄴ는바보');
 insert into review_co_comment values(REVIEW_CO_COMMENT_SEQ.NEXTVAL,null,1,1,6,'ㄴ애도 바보');
 insert into "TAG" values(tag_seq.nextval,1,1);
-insert into book values(1,'없는 책입니다.','없는 책입니다 ㅠㅠ','무명','무판사','없는책이다','0000000000','0','0','https://image.aladin.co.kr/product/2821/17/cover150/8993908729_1.jpg');
+insert into book values(1,'없는 책입니다.','없는 책입니다 ㅠㅠ','무명','무판사','없는책이다','0000000000','0','0','https://image.aladin.co.kr/img/noimg_b.gif');
 commit;

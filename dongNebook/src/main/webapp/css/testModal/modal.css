@@ -13,12 +13,8 @@
          width:10px;    /*-- 세로 스크롤바 굵기 --*/
          height:10px;  /*-- 가로 스크롤바 높이 --*/
      }
-     ::-webkit-scrollbar-track-piece  {
-         background-color:transparent;   /*-- 스크롤 색상 --*/
-     }
      ::-webkit-scrollbar-thumb {
          width: 5px;     /*-- ?? --*/
-         background-color:#868686;    /*-- 스클로 배경 색상 --*/
      } 
      .multipleBoardWrap{
          width: 500px;
