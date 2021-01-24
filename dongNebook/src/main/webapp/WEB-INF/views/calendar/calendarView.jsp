@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<title>이달의 도서관</title>
 <jsp:include page="/views/common/linkHead.jsp" />
 <link type="text/css" rel="stylesheet" href="/css/calendar/calendar.css?v=<%=System.currentTimeMillis()%>">
 
@@ -128,8 +128,9 @@
  				
  				
  				var bc = $("input[name='backgroundColor']");
+ 				$('.fa-check').detach();
  				//.check가 포함된 요소를 전부 지운다.(i요소를 지움);
- 				$(".check").detach();
+ 				//$(".check").detach();
  				
  				bc.each(function(index, item){
  					//색상 radio의 value와 현재 이벤트에 적용된 배경색이 같을 경우
