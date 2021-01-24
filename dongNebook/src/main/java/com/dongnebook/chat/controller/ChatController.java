@@ -37,7 +37,7 @@ public class ChatController {
 	@RequestMapping("/oneByOneChat.do")
 	public String oneByOneChat(Model model, int reqPage) {
 		ChatUserPageData cupd = service.chatUserList(reqPage);
-		System.out.println(cupd.getList().get(0).getCmSender());
+		//System.out.println(cupd.getList().get(0).getCmSender());
 		ArrayList<ChatMessage> cm = service.adminReadChat();
 		model.addAttribute("list", cupd.getList());
 		model.addAttribute("pageNavi", cupd.getPageNavi());

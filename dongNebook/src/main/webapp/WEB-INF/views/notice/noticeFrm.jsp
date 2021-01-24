@@ -52,6 +52,15 @@ textarea{
 .contents{
 	width:1000px;
 }
+.defaultMsg {
+    position: relative;
+    text-align: center;
+}
+svg:not(:root).svg-inline--fa {
+    position: absolute;
+    margin: 0px;
+    overflow: visible;
+}
 </style>
 </head>
 <body>

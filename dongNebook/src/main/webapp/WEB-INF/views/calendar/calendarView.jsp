@@ -172,6 +172,27 @@
 background:#a8dba8;
 	color:white;
 }
+.radio-label {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    outline: none;
+    line-height: 30px;
+    border-radius: 50px;
+    text-align: center;
+    color: white;
+    /* border: 2px solid white; */
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+    margin-right: 10px;
+    margin-bottom: 0px;
+}
+svg:not(:root).svg-inline--fa {
+    position: absolute;
+    top: 7px;
+    left: 6px;
+    overflow: visible;
+    text-align: center;
+}
 </style>
 </head>
 
