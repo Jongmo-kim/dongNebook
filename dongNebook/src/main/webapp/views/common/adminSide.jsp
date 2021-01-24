@@ -14,7 +14,7 @@
 	<div class="adminSideBar">
 		<div class="adminSideMenu">
 			<div class="adminSideMain">
-				<h2>Admin</h2>
+				<h2>관리자</h2>
 			</div>
 			<ul>
 				<li><a href="/aladin/searchInAladin.do">도서등록</a></li>
