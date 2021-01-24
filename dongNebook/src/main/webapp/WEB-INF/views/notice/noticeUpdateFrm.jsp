@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항</title>
 <jsp:include page="/views/common/linkHead.jsp" />
 <style>
 table{
@@ -35,7 +35,7 @@ input{
 }
 textarea{
 	width:100%;
-	height: 200px;
+	height: 400px;
 	border : 1px solid #cccccc;
 	outline : none;
 }
@@ -43,7 +43,13 @@ textarea{
 	text-align:right;
 }
 .defaultMsg{
+position: relative;
 	text-align: center;
+}
+svg:not(:root).svg-inline--fa {
+    position: absolute;
+    margin: 0px;
+    overflow: visible;
 }
 </style>
 </head>
@@ -86,16 +92,6 @@ textarea{
 								</div>
 							</div>										
 					</div>
-								<%-- <div class="fileWrap">
-									<input type="hidden" class="status" name="status" value="stay"> 
-									<img src="/common/file.png" width="16px" class="delFile">
-									<span class="delFile">${f.filename }</span>
-									<button type="button" class="btn btn-primary btn-sm delFile fileDelBtn">삭제</button>
-									
-									<!-- 기존 파일 -->
-									<input type="hidden" name="oldFilename" class="oldFilename" value=${f.filename }>
-									<input type="hidden" name="oldFilepath" class="oldFilepath" value=${f.filepath }>
-								</div> --%>
 				</td>
 			</tr>
 			<tr>
@@ -104,7 +100,7 @@ textarea{
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea name="noticeContent" row="3" col="40">${n.noticeContent }</textarea></td>
+				<td><textarea name="noticeContent" row="3" col="40" style="resize: none;">${n.noticeContent }</textarea></td>
 			</tr>
 			<tr>
 				<th colspan="2">
