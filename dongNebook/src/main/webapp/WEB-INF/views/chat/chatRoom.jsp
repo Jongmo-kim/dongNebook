@@ -175,7 +175,7 @@ position:relative;
 		<tr style="position:relative">
             <td>${status.count}</td>
             <td>${room.getCmSender()}님</td>
-            <td class="admin-table-th"><button class="button chatAdminRoom" value="${room.getCmSender() }">채팅방 입장</button> 
+            <td class="admin-table-th"><button class="button chatAdminRoom" onclick="connect()" value="${room.getCmSender() }">채팅방 입장</button> 
             	<c:forEach items="${cm }" var="cmSender">
             	<c:if test="${room.getCmSender()==cmSender.getCmSender() }">
             		<p class="adminNew">N</p>
