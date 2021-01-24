@@ -120,29 +120,7 @@ color:black;
 					<h1 style="font-size: 30px;">대출 목록</h1>
 					<hr>
 					<c:choose>
-						<c:when test="${list != null}">
-							<%-- <table>
-								<c:forEach items="${list }" var="r">
-									<tr>
-										<td><a href="/book/selectOneBook.do?bookNo=${r.bookNo }"><img
-												alt="${r.bookName }Image" src="${r.imageurl }"></a></td>
-										<td class="td3"><p>
-												<a href="/book/selectOneBook.do?bookNo=${r.bookNo }">${r.bookName }</a>
-											</p>
-											<p>${r.placeName }</p>
-											<p>${r.addr }</p>
-											<p>${r.enrollDate }</p>
-											<p>${r.returnDate }</p> <c:choose>
-												<c:when test="${r.isReturn.equals('Y') }">
-													<p>반납</p>
-												</c:when>
-												<c:otherwise>
-													<p>미반납</p>
-												</c:otherwise>
-											</c:choose></td>
-									</tr>
-								</c:forEach>
-							</table> --%>
+						<c:when test="${not empty list}">
 							<table>
 								<c:forEach items="${list }" var="r">
 									<tr>
