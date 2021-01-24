@@ -214,6 +214,7 @@
         				if(data == 1){
         					console.log(1);
         					//alert("쪽지보내기 성공");
+        					//onOpen();
         					sendMsg(cmSender);
         					saveReceiver(cmReceiver);
         					//cntAdmin(cmSender)
