@@ -82,7 +82,7 @@ table>tbody>tr{
 		<tr>
 			<th>내용</th>
 			<td class="contentTd" style="padding-top:40px;">
-				${n.noticeContentBr }<br>
+				${n.noticeContentBr }<br><br>
 				<c:forEach items="${n.fileList }" var="f">
 					<script>
 						var ext = '${f.filepath}'.split('.').pop().toLowerCase();
