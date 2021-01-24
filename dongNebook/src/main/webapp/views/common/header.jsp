@@ -113,8 +113,8 @@
 	      <c:if test="${sessionScope.loginAdmin!=null }">
 	      		<input type="hidden" id="cmSender" name="cmSender" value="admin">
 	      		<input type="hidden" id="cmReceiver" name="cmReceiver" >
-		      <input type="text" class="chat-input" id="chat-input" name="message" onkeypress="insertCm('admin')">
-		      <button class="planeBtn" onclick="insertCm('admin')"><i class="fas fa-paper-plane plane"></i></button>
+		      <input type="text" class="chat-input" id="chat-input" name="message" onkeypress="insertCm('${sessionScope.loginAdmin.adminId}')">
+		      <button class="planeBtn" onclick="insertCm('${sessionScope.loginAdmin.adminId}')"><i class="fas fa-paper-plane plane"></i></button>
 	      </c:if>
 	    </div>
 	    
@@ -131,7 +131,7 @@
             	$(".chat-input").html("");
             	$("#receiver").html(chatRoom);
             	document.getElementById("chat-input").value="";
-            	console.log(chatRoom);
+            	
         		$.ajax({
         			url : "/chat/chatRoom.do",
         			data : {chatUser:chatRoom},
@@ -140,10 +140,10 @@
         				var tag="";
         				var id=data.login;
         				var receiver;
-        				console.log(data);
+        				
         				for(var i=0 ; i<data.list.length;i++){
         					if(data.list[i].cmSender==id){
-        						console.log(data.list[i]);
+        						
         						tag+="<div class='message-box-holder'><div class='message-box'>"+data.list[i].message+"</div></div>";
         						receiver=data.list[i].cmReceiver;
         					}else{
@@ -172,6 +172,7 @@
         	});
            $(function(){
  	  		  $('.chat-bell').click(function(){    
+ 	  			  
  	  			reloadChat();
  	  			  $(".chatbox").show();
  	  			$(".chatbox").css("display","flex");
@@ -186,11 +187,12 @@
         			data : {cmSender:$("#cmReceiver").val(),cmReceiver:$("#cmSender").val()},
         			type : "post",
         			success : function(data){
-        				console.log("읽음처리 완료");
+        				
         			}
         		});
  			  });
  	  		$('.chatAdminRoom').click(function(){
+
  	  				$("#cmReceiver").val($(this).val());
  	  				reloadChat();
  	  				$(".chatbox").show();
@@ -202,17 +204,16 @@
         	function insertCm(cmSender){
         	if ( window.event.keyCode == 13||window.event.type=="click" ) {
         		var cmReceiver = $("[name=cmReceiver]").val();
-        		console.log(cmSender);
-        		console.log(cmReceiver);
+        		
         		var message = $("[name = message]").val();
-        		console.log(message);
+        		
         		$.ajax({
         			url : "/chat/cmAdminInsert.do",
         			data : {cmReceiver:cmReceiver, cmSender:cmSender, message:message},
         			type : "post",
         			success : function(data){
         				if(data == 1){
-        					console.log(1);
+        					
         					//alert("쪽지보내기 성공");
         					//onOpen();
         					sendMsg(cmSender);
@@ -239,17 +240,16 @@
 		ws.onclose = onClose;
 	}
 	function onOpen(){
-		console.log("접속 성공");
+		
 		if(memberId!=""){
-			console.log("유저");
-			var msg = {
+						var msg = {
 					type : "register",
 					data : memberId
 			}
 			sendMsg(memberId);
 		}
 		else{
-			console.log("관리자");
+			
 			var msg = {
 					type : "register",
 					data : adminId
@@ -263,7 +263,7 @@
 	function onMessage(e) {
 		//리시버를 데이터에 넣는다
 		var receiver=e.data;
-		console.log("e데이터"+e.data);
+		
 		
 		if(receiver=="${sessionScope.loginUser.userId}"){ //로그인 유저랑 리시버랑 비교
 			$.ajax({
@@ -271,7 +271,7 @@
 				data : {loginUser:"${sessionScope.loginUser.userId}"},
 				type : "post",
 				success : function(data){
-					console.log(data);
+					
 					//채팅 css 추가하는것  (리시버일때만)
 					//$(".cmCount-frame").css("display","none");
 					$(".chat-messages").append("<div class='message-box-holder'><div class='message-sender'>"+data.cmSender+"</div><div class='message-box message-partner'>"+data.message+"</div></div>");
@@ -285,8 +285,7 @@
 				data : {loginUser:"admin"},
 				type : "post",
 				success : function(data){
-					console.log(data);
-					//채팅 css 추가하는것  (리시버일때만)
+										//채팅 css 추가하는것  (리시버일때만)
 					//$(".cmCount-frame").css("display","none");
 					
 					$(".chat-messages").append("<div class='message-box-holder'><div class='message-sender'>"+data.cmSender+"</div><div class='message-box message-partner'>"+data.message+"</div></div>");
@@ -314,6 +313,8 @@
 		console.log("접속 종료");
 	}
 	function sendMsg(receiver) {
+		//console.log("응??"+${loginAdmin})
+		console.log("리시버"+receiver);
 		var msg = {
 				type : "count",
 				data : receiver
