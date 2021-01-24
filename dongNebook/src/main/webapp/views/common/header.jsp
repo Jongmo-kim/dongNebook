@@ -26,6 +26,10 @@
     	border: 0px;
     width: 41px;
     }
+    .hideChat{
+    	width:12px;
+    	float:right;
+    }
 </style>
 <header>
 
@@ -92,7 +96,8 @@
       <div class="chat-partner-name">
         <span class="statusChat online"></span>
         <a target="_blank" href="https://www.facebook.com/mfreak" id="receiver"></a>
-        <i class="fas fa-times hideChat"></i>
+        
+        <div class="hideChat"><i class="fas fa-times"></i></div>
       </div>     
     </div>
     
@@ -175,6 +180,7 @@
  	  		  });
  	  		$('.hideChat').click(function(){
  	  			$(".cmCount-frame").css("display","none");
+ 				  $(".chatbox").hide();
  	  			$.ajax({
         			url : "/chat/readCm.do",
         			data : {cmSender:$("#cmReceiver").val(),cmReceiver:$("#cmSender").val()},
@@ -183,7 +189,6 @@
         				console.log("읽음처리 완료");
         			}
         		});
- 				  $(".chatbox").hide();
  			  });
  	  		$('.chatAdminRoom').click(function(){
  	  				$("#cmReceiver").val($(this).val());
@@ -195,7 +200,7 @@
    		});
         	
         	function insertCm(cmSender){
-        		  if ( window.event.keyCode == 13 ) {
+        	if ( window.event.keyCode == 13||window.event.type=="click" ) {
         		var cmReceiver = $("[name=cmReceiver]").val();
         		console.log(cmSender);
         		console.log(cmReceiver);
