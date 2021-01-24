@@ -39,4 +39,7 @@
 	 <update id="readCm" parameterType="com.dongnebook.chat.model.vo.ChatMessage">
 	 	update chat_message set check_message='읽음' where cm_receiver=#{cmReceiver} and cm_sender=#{cmSender}
 	 </update>
+	 <select id="adminReadChat" resultType="com.dongnebook.chat.model.vo.ChatMessage">
+	 	select DISTINCT cm_sender from chat_message where check_message='읽지않음' and cm_receiver='admin'
+	 </select>
 </mapper>

@@ -72,6 +72,13 @@
 						<!-- <form action="/rentalLoc.do"  method="post"> -->
 							<input type="submit" id="goRentalLoc" data-toggle="modal" data-target="#myModal" value="검색" style="display:none">
 						<!-- </form> -->
+
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- The Modal -->
                <div class="modal" id="myModal">
                  <div class="modal-dialog">
@@ -162,10 +169,12 @@ $(document).ready(function(){
 });
 $("#rentalBtn").click(function(){ 
     // id 'testInput'의 value의 null 체크
-    if(vali($("#loc-inform").val())){
-        alert("데이터가 존재하지 않습니다.");
+    if($("#loc-inform").val()==""){
+        alert("상호대차 위치를 입력하세요");
+        return false;
     } else {
-        alert("데이터 존재.");
+       
+        return true;
     }
     
 });

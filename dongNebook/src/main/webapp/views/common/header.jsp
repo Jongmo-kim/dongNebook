@@ -5,6 +5,31 @@
 .fa-clipboard, .fa-bell {
 	cursor: pointer;
 }
+.svg-inline--fa {
+    display: inline-block;
+    font-size: inherit;
+    height: 1em;
+    margin-right: 14px;
+    /* padding-right: 10px; */
+    overflow: visible;
+    float: right;
+    }
+    .chat-partner-name{
+    	padding:0px !important;
+    }
+    .plane{
+    	width: 100% !important;
+    margin: 0px !important;
+    color: #30649c !important;
+    }
+    .planeBtn{
+    	border: 0px;
+    width: 41px;
+    }
+    .hideChat{
+    	width:12px;
+    	float:right;
+    }
 </style>
 <header>
 
@@ -70,8 +95,9 @@
     <div class="chatbox-top">
       <div class="chat-partner-name">
         <span class="statusChat online"></span>
-        <a target="_blank" href="https://www.facebook.com/mfreak">${chatUser }</a>
-        <button class="hideChat">창닫기</button>
+        <a target="_blank" href="https://www.facebook.com/mfreak" id="receiver"></a>
+        
+        <div class="hideChat"><i class="fas fa-times"></i></div>
       </div>     
     </div>
     
@@ -81,14 +107,14 @@
 	    <c:if test="${sessionScope.loginUser!=null }">
 	   			 <input type="hidden" id="cmSender" name="cmSender" value="${sessionScope.loginUser.userId}">
 		    	<input type="hidden" id="cmReceiver" name="cmReceiver" value="admin">
-		      <textarea class="chat-input" id="chat-input" name="message"></textarea>
-		      <button onclick="insertCm('${sessionScope.loginUser.userId}')">Send</button>
+		      <input type="text" class="chat-input" id="chat-input" name="message" onkeypress="insertCm('${sessionScope.loginUser.userId}')">
+		      <button class="planeBtn" onclick="insertCm('${sessionScope.loginUser.userId}')"><i class="fas fa-paper-plane plane"></i></button>
 	      </c:if>
 	      <c:if test="${sessionScope.loginAdmin!=null }">
 	      		<input type="hidden" id="cmSender" name="cmSender" value="admin">
 	      		<input type="hidden" id="cmReceiver" name="cmReceiver" >
-		      <textarea class="chat-input" id="chat-input" name="message"></textarea>
-		      <button onclick="insertCm('admin')">Send</button>
+		      <input type="text" class="chat-input" id="chat-input" name="message" onkeypress="insertCm('admin')">
+		      <button class="planeBtn" onclick="insertCm('admin')"><i class="fas fa-paper-plane plane"></i></button>
 	      </c:if>
 	    </div>
 	    
@@ -103,6 +129,7 @@
             function reloadChat(){
             	var chatRoom=$("#cmReceiver").val();
             	$(".chat-input").html("");
+            	$("#receiver").html(chatRoom);
             	document.getElementById("chat-input").value="";
             	console.log(chatRoom);
         		$.ajax({
@@ -153,6 +180,7 @@
  	  		  });
  	  		$('.hideChat').click(function(){
  	  			$(".cmCount-frame").css("display","none");
+ 				  $(".chatbox").hide();
  	  			$.ajax({
         			url : "/chat/readCm.do",
         			data : {cmSender:$("#cmReceiver").val(),cmReceiver:$("#cmSender").val()},
@@ -161,7 +189,6 @@
         				console.log("읽음처리 완료");
         			}
         		});
- 				  $(".chatbox").hide();
  			  });
  	  		$('.chatAdminRoom').click(function(){
  	  				$("#cmReceiver").val($(this).val());
@@ -173,6 +200,7 @@
    		});
         	
         	function insertCm(cmSender){
+        	if ( window.event.keyCode == 13||window.event.type=="click" ) {
         		var cmReceiver = $("[name=cmReceiver]").val();
         		console.log(cmSender);
         		console.log(cmReceiver);
@@ -196,6 +224,7 @@
         				}
         			}
         		});
+        	}
         	}
         	
 	
