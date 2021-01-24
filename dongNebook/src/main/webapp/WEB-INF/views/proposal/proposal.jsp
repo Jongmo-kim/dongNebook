@@ -56,7 +56,9 @@ table>tbody>tr:first-child>th {
 	border-bottom: 2px solid lightgray;
 	border-right: 1px dashed lightgray;
 }
-
+.container{
+    max-width: 1900px !important;
+}
 table>tbody>tr:first-child>th:last-child {
 	border-right: none;
 }

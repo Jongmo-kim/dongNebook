@@ -129,6 +129,7 @@
             
             function reloadChat(){
             	var chatRoom=$("#cmReceiver").val();
+            	$(".chat-messages").html("");
             	$(".chat-input").html("");
             	$("#receiver").html(chatRoom);
             	document.getElementById("chat-input").value="";
@@ -142,7 +143,7 @@
         				var id=data.login;
         				var receiver;
         				
-        				for(var i=0 ; i<data.list.length-1;i++){
+        				for(var i=0 ; i<data.list.length;i++){
         					if(data.list[i].cmSender==id){
         						
         						tag+="<div class='message-box-holder'><div class='message-box'>"+data.list[i].message+"</div></div>";
