@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항</title>
 <jsp:include page="/views/common/linkHead.jsp" />
 <style>
 
@@ -31,13 +31,10 @@ table>tbody>tr{
 }
 
 .btn-div{
-	
+	text-align:right;
 }
 .btn{
 	margin-bottom:15px;
-}
-.notice-btn{
-	float:right;
 }
 </style>
 </head>

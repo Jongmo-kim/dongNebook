@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>대출 목록</title>
 <style>
 .pagination {
 	margin: 0 auto;
