@@ -89,7 +89,7 @@ table>tbody>tr{
 						console.log('${f.filepath}');
 						console.log("확장자>>"+ext)
 						if($.inArray(ext, ['gif','png','jpg','jpeg']) != -1){
-							var imgTag = "<img src='/resources/upload/notice/${f.filepath }' width='85%;'><br>";
+							var imgTag = "<img src='/resources/upload/notice/${f.filepath }' width='88%;'><br>";
 							$(".contentTd").append(imgTag);
 						}
 					</script>
