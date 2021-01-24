@@ -420,7 +420,7 @@ body {margin: 10px;}
  var arr =new Array();
  var cnt = 0;
   	window.onload = function(){
-  		console.log("시작 배열 길이"+arr.length)
+  		
   		var chk0 = document.getElementById("book0");
   		var chk1 = document.getElementById("book1");
   		var chk2 = document.getElementById("book2");
@@ -434,7 +434,7 @@ body {margin: 10px;}
   				books[0].value=name0.value;
   				books[0].setAttribute("name","books");
   				cnt++;
-  				console.log(cnt);
+  				
   			}else{
   				books[0].removeAttribute("name");
   				cnt--;
@@ -487,14 +487,14 @@ body {margin: 10px;}
   			url:"/rentalBookName.do",
   			data:{userNo:userNo},
   			complete: function(data){
-  				console.log(data);
+  				
   			},
   			success:function(data){
   				document.getElementById("no").value=userNo;
   				for(var i=0;i<data.length;i++){
   					var modal=document.getElementById('bookName'+i);
-  					console.log(data);
-  					console.log(data[i].bookName);
+  					
+  					
   					modal.value=data[i].bookName;
   					modal.style.display='block';  	
   					book[i].style.display="block";
@@ -507,10 +507,10 @@ body {margin: 10px;}
   			url:"/rentalInfo.do",
   			data: {userNo:userNo},
   			complete: function(data){
-  				console.log(data);
+  				
   			},
   			success: function(data){
-  				console.log(data);
+  				
   				for(var i=0;i<data.length;i++){
   					var enroll = document.getElementById("bookEnroll"+i);
   					var rDate = document.getElementById("bookReturn"+i);

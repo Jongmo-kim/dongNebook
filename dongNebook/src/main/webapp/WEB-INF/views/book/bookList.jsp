@@ -206,7 +206,7 @@
  	}
 
       function updateInform(bookNo,bookName,bookKind,bookWriter,bookPublisher,bookIntroduce,bookCount){
-         console.log(bookCount);
+         
          document.getElementById("no").value=bookNo;
          document.getElementById("bookName").innerHTML=bookName;
         // document.getElementById("count").innerHTML="보유수량:"+bookCount;
