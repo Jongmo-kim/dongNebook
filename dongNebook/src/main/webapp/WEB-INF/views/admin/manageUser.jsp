@@ -344,7 +344,7 @@ body {margin: 10px;}
 	   		
 	   		<!-- The Modal -->
                <div class="modal" id="myModal">
-                 <div class="modal-dialog">
+                 <div class="modal-dialog" style="width:800px">
                    <div class="modal-content">
                
                      <!-- Modal Header -->

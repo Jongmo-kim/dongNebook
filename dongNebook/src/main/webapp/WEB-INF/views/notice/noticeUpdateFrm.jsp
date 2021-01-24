@@ -49,9 +49,13 @@ textarea{
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	<div class="main-wrap">
-	<jsp:include page="/views/common/adminSide.jsp" />
+	<div class="contents-frame">
 	<div class="contents">
+	<jsp:include page="/views/common/adminSide.jsp" />
+	<div class="admin-contents">
+	<div id="main-container" class="main-container nav-effect-1">
+	<h1 style="font-size:30px;">공지사항 수정</h1>
+	<hr>
 	<form action="/notice/updateNotice.do" id="updateFrm" method="post"
 		enctype="multipart/form-data">
 		<input type="hidden" name="noticeNo" id="noticeNo" value=${n.noticeNo }>
@@ -113,6 +117,9 @@ textarea{
 	</form>
 	</div>
 	</div>
+	</div>
+	</div>
+	
 	<script>
 		if($('.upFileList').length==0){
 			$(".defaultMsg").show();

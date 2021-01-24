@@ -22,7 +22,7 @@ table>tbody>tr{
 }
 
 .main-wrap{
-	width:1200px;
+	width:80%;
 	margin:0 auto;
 }
 .adminSideMenu li:nth-child(7) a{
@@ -31,10 +31,13 @@ table>tbody>tr{
 }
 
 .btn-div{
-	text-align:right;
+	
 }
 .btn{
 	margin-bottom:15px;
+}
+.notice-btn{
+	float:right;
 }
 </style>
 </head>
@@ -52,10 +55,9 @@ table>tbody>tr{
 		<div class="contents">
 			<div class="admin-contents">
 				<div id="main-container" class="main-container nav-effect-1">
-	<c:if test="${n.noticeWriter.equals(sessionScope.loginAdmin.nickName) }">
-		<button onclick="updateNotice();" class="btn btn-lg btn-primary">수정하기</button>
-		<button onclick="deleteNotice();" class="btn btn-lg btn-danger">삭제하기</button>
-	</c:if>
+				<h1 style="font-size:30px;">공지사항</h1>
+	<hr>
+	
 	<table class="table">
 		<tr>
 			<th style="width:20%;">제목</th>
@@ -97,7 +99,11 @@ table>tbody>tr{
 		</tr>
 	</table>
 	<div class="btn-div">
-		<button onclick="noticeList();" class="btn btn-lg btn-outline-secondary">목록</button>
+	<c:if test="${n.noticeWriter.equals(sessionScope.loginAdmin.nickName) }">
+		<button onclick="deleteNotice();" class="btn btn-lg btn-danger notice-btn">삭제하기</button>
+		<button onclick="updateNotice();" class="btn btn-lg btn-primary notice-btn">수정하기</button>
+	</c:if>
+		<button onclick="noticeList();" class="btn btn-lg btn-outline-secondary notice-list">목록</button>
 	</div>
 		</div></div></div>
 	

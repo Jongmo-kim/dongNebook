@@ -28,7 +28,7 @@ table>tbody>tr>td{
 	color:white;
 }
 .main-wrap{
-	width:1200px;
+	width:80%;
 	margin:0 auto;
 }
 input{
