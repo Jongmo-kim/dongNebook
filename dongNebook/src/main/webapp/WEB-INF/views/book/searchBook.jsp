@@ -71,7 +71,7 @@
 			</tr>
 			<c:forEach var="b" items="${bookList }">
 			<tr>
-				<td><img alt="${fn:length(b.bookIntroduce)<8 ? b.bookName : fn:substring(b.bookName,0,7)  }Image" src="${b.imageurl }"></td>
+				<td><a href="/book/selectOneBook.do?bookNo=${b.bookNo}"><img alt="${fn:length(b.bookIntroduce)<8 ? b.bookName : fn:substring(b.bookName,0,7)  }Image" src="${b.imageurl }"></a></td>
 				
 				<!-- 여기는 북마크 전용 구간입니다. -->
 				<c:if test="${loginUser!=null }">
