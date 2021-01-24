@@ -18,6 +18,12 @@
 .green {
   
 }
+.chatAdminRoom{
+	color: #2f6969;
+    border: 2px solid #2f6969;
+    background: white;
+    margin: 0 auto;
+}
 .button {
     display: block;
     position: relative;
@@ -69,6 +75,45 @@ position:relative;
     z-index:999;
     color: white;
     }
+    .adminNew{
+    position: absolute;
+    border: 1px solid red;
+    border-radius: 50%;
+    background: red;
+    width: 15px;
+    top: 24px;
+    right: 219px;
+    color: white;
+    margin: 0px;
+    font-size: 7px;
+    }
+    .adminNewFrame{
+    	position: relative;
+    /* position: absolute; */
+    /* left: 709px; */
+    /* top: 178px; */
+    /* border: 1px solid red; */
+    /* background: red; */
+    /* border-radius: 50%; */
+    padding: 0px !important;
+    width: 15px;
+    text-align: center;
+    }
+    .admin-table-th{
+    	position: relative;
+    text-align: center;
+    }
+    .table thead th {
+    vertical-align: bottom;
+    text-align: center;
+    border-bottom: 2px solid rgb(222, 226, 230);
+}
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+     text-align: center;
+}
 </style>
 <body>
 
@@ -89,6 +134,7 @@ position:relative;
             <th>방번호</th>
             <th>유저아이디</th>
             <th>입장</th>
+            <!-- <th class="admin-table-th"></th> -->
         </tr>
     </thead>
      <tbody>
@@ -126,12 +172,18 @@ position:relative;
      <c:forEach items="${list}" var="room" varStatus="status">
 		<!--  <form action="/chat/chatRoom.do?chatUser=${room.getCmSender()}" method="post">-->
 		<c:if test="${room.getCmSender()!=null}">
-		<tr>
+		<tr style="position:relative">
             <td>${status.count}</td>
             <td>${room.getCmSender()}님</td>
-            <td><button class="button chatAdminRoom" value="${room.getCmSender() }">채팅방 입장</button> <div class="cmCount-frame">
-											<p class="cmCount"></p>
-										</div></td>
+            <td class="admin-table-th"><button class="button chatAdminRoom" value="${room.getCmSender() }">채팅방 입장</button> 
+            	<c:forEach items="${cm }" var="cmSender">
+            	<c:if test="${room.getCmSender()==cmSender.getCmSender() }">
+            		<p class="adminNew">N</p>
+            	</c:if>
+            </c:forEach>
+            
+            </td>
+            
         </tr> 
 		<%-- <div class="chat-room-frame">
 			<p class="chat-room-name">${room.getCmSender()}님의 채팅방</p>
@@ -156,12 +208,12 @@ position:relative;
    <!-- 오픈로드로 센더만 뿌려주기 new 활성화 -->
  
    <script >
-   		function openAdminWindow(data){
-   			console.log(data);
-   			var parameter=data;
-			   var	ret = window.open("/chat/chatRoom.do?chatUser="+parameter+"", "PopupWin", "width=420,height=600,top=-100,left=12000,status=0,toolbar=0,scrollbars=0,titlebar=0");	
-			   
-   		}
+   $(function(){
+		  $('.chatAdminRoom').click(function(){
+			  console.log($(this).parent().next());
+			  $(this).next().css("display","none");
+		  });    
+	});
    		
    </script>
 </body>

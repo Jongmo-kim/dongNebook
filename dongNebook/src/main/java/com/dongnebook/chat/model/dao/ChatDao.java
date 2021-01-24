@@ -74,6 +74,11 @@ public class ChatDao {
 		return session.selectOne("chat.cmAdminCnt", data);
 	}
 
+	public ArrayList<ChatMessage> adminReadChat() {
+		List<ChatMessage> list = session.selectList("chat.adminReadChat");
+		return (ArrayList<ChatMessage>)list;
+	}
+
 	
 	
 }

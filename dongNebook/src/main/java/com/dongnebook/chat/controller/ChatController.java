@@ -38,9 +38,12 @@ public class ChatController {
 	public String oneByOneChat(Model model, int reqPage) {
 		ChatUserPageData cupd = service.chatUserList(reqPage);
 		System.out.println(cupd.getList().get(0).getCmSender());
+		ArrayList<ChatMessage> cm = service.adminReadChat();
 		model.addAttribute("list", cupd.getList());
 		model.addAttribute("pageNavi", cupd.getPageNavi());
+		model.addAttribute("cm", cm);
 		//어드민 읽지않음 데이터 불러오기
+		
 		return "chat/chatRoom";
 	}
 	@ResponseBody

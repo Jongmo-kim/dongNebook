@@ -118,4 +118,9 @@ public class ChatService {
 		return dao.readCm(cm);
 		
 	}
+
+
+	public ArrayList<ChatMessage> adminReadChat() {
+		return dao.adminReadChat();
+	}
 }

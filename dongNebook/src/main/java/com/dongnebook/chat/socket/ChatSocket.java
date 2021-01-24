@@ -55,7 +55,6 @@ public class ChatSocket extends TextWebSocketHandler{
 			//header의 onMessage메소드로 보냄
 		}
 		else {
-		
 			//type이 receiver일때 호출
 			System.out.println("메세지를 보내는 곳으로 이동");
 			//JSONObject jObj = new JSONObject();
@@ -63,7 +62,7 @@ public class ChatSocket extends TextWebSocketHandler{
 			int count = dao.cmCount(data);//data = memberId
 			//jObj.put("receiver", receiver);
 			//jObj.put("count", count);
-			dao.readChat(receiver);
+			//dao.readChat(receiver);
 			
 			
 			connectMembers.get(data).sendMessage(new TextMessage(receiver));
