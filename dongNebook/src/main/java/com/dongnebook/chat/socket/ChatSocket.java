@@ -29,24 +29,25 @@ public class ChatSocket extends TextWebSocketHandler{
 	}
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception{
-		
+		System.out.println("클라이언트 접속(DM)");
 	}
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage messag) throws Exception{
-		
+		System.out.println("여기까지면 성공");
 		String recMsg = messag.getPayload();
 		JsonParser parser = new JsonParser();
 		JsonObject msg = (JsonObject)parser.parse(recMsg);
 		String type = msg.get("type").getAsString();
 		String data = msg.get("data").getAsString();
-		
+		System.out.println("리시버:"+data);
+		System.out.println("타입:"+type);
 		if(type.equals("register")) {
-			
+			System.out.println("레지스터:"+data);
 			connectMembers.put(data, session);
 		}else if(type.equals("count")) {
-			
+			System.out.println("읽지않은 메세지 검사할:"+data);
 			int count = dao.cmCount(data);//data = memberId
-			
+			System.out.println("읽지않은 메세지:"+count);
 			if(count!=0) {
 				connectMembers.put(data, session);
 				connectMembers.get(data).sendMessage(new TextMessage(String.valueOf(count)));				
@@ -55,7 +56,9 @@ public class ChatSocket extends TextWebSocketHandler{
 		}
 		else {
 			//type이 receiver일때 호출
-			
+			System.out.println("메세지를 보내는 곳으로 이동");
+			System.out.println("세이브리시버:"+data);
+			System.out.println("세이브타입:"+type);
 			//JSONObject jObj = new JSONObject();
 			String receiver=data;  //보낸사람을ㄹ 저장하고 전송
 			int count = dao.cmCount(data);//data = memberId
@@ -70,6 +73,7 @@ public class ChatSocket extends TextWebSocketHandler{
 				}
 			
 		}			
+			
 		}
 	}
 	@Override
@@ -77,7 +81,7 @@ public class ChatSocket extends TextWebSocketHandler{
 		//연결끊어졌을때 웹에서 빼내는 작업->하지않으면 connectMembers에 계속 남아있음
 		System.out.println("클라이언트 접속 해제");
 		Set<String> keys = connectMembers.keySet();
-		
+		System.out.println("스테이터스 확인하자!!!!"+keys);
 		for(String key : keys) {
 			WebSocketSession currentSession = connectMembers.get(key);
 			if(currentSession.equals(session)) {

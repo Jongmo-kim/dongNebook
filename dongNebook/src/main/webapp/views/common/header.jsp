@@ -109,6 +109,7 @@
 		    	<input type="hidden" id="cmReceiver" name="cmReceiver" value="admin">
 		      <input type="text" class="chat-input" id="chat-input" name="message" onkeypress="insertCm('${sessionScope.loginUser.userId}')">
 		      <button class="planeBtn" onclick="insertCm('${sessionScope.loginUser.userId}')"><i class="fas fa-paper-plane plane"></i></button>
+		   
 	      </c:if>
 	      <c:if test="${sessionScope.loginAdmin!=null }">
 	      		<input type="hidden" id="cmSender" name="cmSender" value="admin">
@@ -128,6 +129,7 @@
             
             function reloadChat(){
             	var chatRoom=$("#cmReceiver").val();
+            	$(".chat-messages").html("");
             	$(".chat-input").html("");
             	$("#receiver").html(chatRoom);
             	document.getElementById("chat-input").value="";
@@ -313,7 +315,8 @@
 		console.log("접속 종료");
 	}
 	function sendMsg(receiver) {
-		
+		//console.log("응??"+${loginAdmin})
+		console.log("리시버"+receiver);
 		var msg = {
 				type : "count",
 				data : receiver

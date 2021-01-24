@@ -69,7 +69,7 @@ svg:not(:root).svg-inline--fa {
 			<tr>
 				<th>제목</th>
 				<td><input type="text" name="noticeTitle"
-					value=${n.noticeTitle }></td>
+					value='${n.noticeTitle }'></td>
 			</tr>
 			<tr>
 				<th>첨부파일</th>
@@ -85,8 +85,8 @@ svg:not(:root).svg-inline--fa {
 											<c:forEach items="${n.fileList }" var="f">
 												<div class='upFileList'>
 													<span>${f.filename }</span> <button type='button' class='btn btn-primary btn-sm fileDelBtn'>삭제</button>
-													<input type="hidden" name="oldFilename" class="oldFilename" value=${f.filename }>
-													<input type="hidden" name="oldFilepath" class="oldFilepath" value=${f.filepath }>
+													<input type="hidden" name="oldFilename" class="oldFilename" value='${f.filename }'>
+													<input type="hidden" name="oldFilepath" class="oldFilepath" value='${f.filepath }'>
 												</div>
 											</c:forEach>
 								</div>
@@ -127,22 +127,22 @@ svg:not(:root).svg-inline--fa {
 		filezone.on("dragenter",function(e){        
 		    e.stopPropagation();
 		    e.preventDefault();
-		    $(this).css('border', '3px dashed #593196');
+		    $(this).css('border', '3px dashed #3b8686');
 	
 		});
 		filezone.on("dragleave",function(e){
 		    e.stopPropagation();
 		    e.preventDefault();
-		    $(this).css('border', '3px dashed #a991d4');
+		    $(this).css('border', '3px dashed #a8dba8');
 		});
 		filezone.on("dragover",function(e){
 		  	e.stopPropagation();
 		  	e.preventDefault();
-			$(this).css('border', '3px solid #593196');
+		  	$(this).css('border', '3px solid #3b8686');
 		});
 	  	filezone.on("drop",function(e){
-	    	e.preventDefault();
-		    $(this).css('border', '3px dashed #593196');
+	  		e.preventDefault();
+		    $(this).css('border', 'none');
 		    $(".defaultMsg").hide();
 		    
 		    //드롭한 항목

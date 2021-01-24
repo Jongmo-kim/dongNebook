@@ -36,9 +36,6 @@ table>tbody>tr{
 .btn{
 	margin-bottom:15px;
 }
-.notice-list{
-	float:left;
-}
 </style>
 </head>
 <body>
@@ -82,14 +79,14 @@ table>tbody>tr{
 		<tr>
 			<th>내용</th>
 			<td class="contentTd" style="padding-top:40px;">
-				${n.noticeContentBr }<br>
+				${n.noticeContentBr }<br><br>
 				<c:forEach items="${n.fileList }" var="f">
 					<script>
 						var ext = '${f.filepath}'.split('.').pop().toLowerCase();
 						console.log('${f.filepath}');
 						console.log("확장자>>"+ext)
 						if($.inArray(ext, ['gif','png','jpg','jpeg']) != -1){
-							var imgTag = "<img src='/resources/upload/notice/${f.filepath }' width='500px'><br>";
+							var imgTag = "<img src='/resources/upload/notice/${f.filepath }' width='88%;'><br>";
 							$(".contentTd").append(imgTag);
 						}
 					</script>
@@ -99,11 +96,11 @@ table>tbody>tr{
 		</tr>
 	</table>
 	<div class="btn-div">
-	<c:if test="${n.noticeWriter.equals(sessionScope.loginAdmin.nickName) }">
-		<button onclick="updateNotice();" class="btn btn-lg btn-primary notice-btn">수정하기</button>
-		<button onclick="deleteNotice();" class="btn btn-lg btn-danger notice-btn">삭제하기</button>
-	</c:if>
 		<button onclick="noticeList();" class="btn btn-lg btn-outline-secondary notice-list">목록</button>
+		<c:if test="${n.noticeWriter.equals(sessionScope.loginAdmin.nickName) }">
+			<button onclick="updateNotice();" class="btn btn-lg btn-primary notice-btn">수정하기</button>
+			<button onclick="deleteNotice();" class="btn btn-lg btn-danger notice-btn">삭제하기</button>
+		</c:if>
 	</div>
 		</div></div></div>
 	
