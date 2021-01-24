@@ -3,6 +3,7 @@ package com.dongnebook.rental.controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.dongnebook.book.model.service.BookService;
 import com.dongnebook.book.model.vo.Book;
 import com.dongnebook.rental.model.service.RentalService;
 import com.dongnebook.rental.model.vo.BookRental;
@@ -36,15 +36,14 @@ public class RentalController {
 		System.out.println(loc.getAddr());
 		System.out.println(loc.getPhone());
 		int result = service.insertLoc(loc);
-//		
-//		if(result>0) {
-//			model.addAttribute("msg","등록 성공");
-//		}else {
-//			model.addAttribute("msg","등록 실패");
-//		}
+		
+		if(result>0) {
+			model.addAttribute("msg","등록 성공");
+		}else {
+			model.addAttribute("msg","등록 실패");
+		}
 //		model.addAttribute("loc","/");
-////	
-		//여기서 대출 마지막 값을 뽑아서 대출정보에 넘긴다
+//		여기서 대출 마지막 값을 뽑아서 대출정보에 넘긴다
 		RentalLoc lastLoc=service.lastLoc();
 		
 		System.out.println(lastLoc.getRentalLocationNo());
@@ -54,14 +53,21 @@ public class RentalController {
 		return "common/msg";
 	}
 	@RequestMapping("/bookRental.do")
-	public String bookRental( Model model, int[] bookNo,HttpSession session) {
+	public String bookRental( Model model, int[] bookNo,HttpSession session, HttpServletRequest request) {
 	   System.out.println("book : "+bookNo.length);
 	   ArrayList<Book> list = new ArrayList<Book>();
+	   String referer = request.getHeader("Referer");
 	   if(bookNo.length>0) {
 	      for(int i : bookNo) {
-	         System.out.println(i);
+	         System.out.println("넘어온 책 ["+i+"]번: "+bookNo);
 	      }         
 	      list = service.selectBooks(bookNo);
+	      for(int i=0; i<bookNo.length; i++) {
+	    	  if(list.get(i).getBookCount()<0) {
+	    		  System.out.println(list.get(i).getBookName()+"은 현재 대출불가 상태입니다.");
+	    		  return "redirect:"+referer;
+	    	  }
+		  }
 	      System.out.println("테스트카운트:"+list.get(0).getBookCount());
 	      session.setAttribute("rentalList", list);
 	   }      
@@ -149,52 +155,42 @@ public class RentalController {
 		int resultLoc = service.insertLoc(rLoc); 
 		if(resultLoc>0) {
 			model.addAttribute("msg","대출장소 등록 성공");
+			userRentalList = service.userRentalList(userNo);
+			if(userRentalList.size()>2) {
+				model.addAttribute("msg", "이미 3권을 대출중이십니다.\n반납 후 다시 이용해주세요!");
+				model.addAttribute("result", "true");
+			}else {
+				RentalLoc lastLoc = service.lastLoc();
+				System.out.println(bookNo);
+				for(int i : bookNo) {
+					//이 부분은 대출했을때 책 수를 차감하기 위함!
+					bRental = new BookRental();
+					bRental.setUserNo(userNo);
+					bRental.setBookNo(i);
+					bRental.setRentalLocationNo(lastLoc.getRentalLocationNo());
+					bRList.add(bRental);
+				}
+				boolean isBookRentalLimitOver = service.isBookRentalLimitOver(loginUser);
+				
+				if(!isBookRentalLimitOver) {
+					int BookRental = service.insertBookRental(bRList);
+					if(BookRental>0) {
+						//book테이블에 bookCount와 rCount 가감작업
+						int bookUpdateCount = service.updateCount(bookNo);
+						if(bookUpdateCount>0) {
+							model.addAttribute("msg","대출 성공");
+							model.addAttribute("result", "true");
+						}else {
+							model.addAttribute("msg","대출 실패");
+						}	
+					} else {
+						model.addAttribute("msg","대출 실패");
+						model.addAttribute("subMsg","대출한도 3권을 초과하셔서 실패하였습니다.");
+					}
+				}
+			}
 		}else {
 			model.addAttribute("msg","대출장소 등록 실패");
-		}
-		userRentalList = service.userRentalList(userNo);
-		if(userRentalList.size()>2) {
-			model.addAttribute("msg", "이미 3권을 대출중이십니다.\n반납 후 다시 이용해주세요!");
-			model.addAttribute("result", "true");
-		}else {
-			RentalLoc lastLoc = service.lastLoc();
-			System.out.println(bookNo);
-			for(int i : bookNo) {
-				//이 부분은 대출했을때 책 수를 차감하기 위함!
-				bRental = new BookRental();
-				bRental.setUserNo(userNo);
-				bRental.setBookNo(i);
-				bRental.setRentalLocationNo(lastLoc.getRentalLocationNo());
-				bRList.add(bRental);
-			}
-		RentalLoc lastLoc = service.lastLoc();
-		System.out.println(bookNo);
-		for(int i : bookNo) {
-			//이 부분은 대출했을때 책 수를 차감하기 위함!
-			bRental = new BookRental();
-			bRental.setUserNo(userNo);
-			bRental.setBookNo(i);
-			bRental.setRentalLocationNo(lastLoc.getRentalLocationNo());
-			bRList.add(bRental);
-		}
-		boolean isBookRentalLimitOver = service.isBookRentalLimitOver(loginUser);
-		
-		if(!isBookRentalLimitOver) {
-			int BookRental = service.insertBookRental(bRList);
-			if(BookRental>0) {
-				//book테이블에 bookCount와 rCount 가감작업
-				int bookUpdateCount = service.updateCount(bookNo);
-				if(bookUpdateCount>0) {
-					model.addAttribute("msg","대출 성공");
-					model.addAttribute("result", "true");
-				}
-			}else {
-				model.addAttribute("msg","대출 실패");
-			}
-		}	
-		} else {
-			model.addAttribute("msg","대출 실패");
-			model.addAttribute("subMsg","대출한도 3권을 초과하셔서 실패하였습니다.");
 		}
 		model.addAttribute("loc","/");
 		return "common/msg";

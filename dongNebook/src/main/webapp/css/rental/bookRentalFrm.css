@@ -1,14 +1,6 @@
 @charset "UTF-8";
-	.content-wrap{
-		
-		float: left;
-		margin-left: 20px;
-		width: 80%;
-	}
 	.content{
 		width: 100%;
-		margin: 0 auto;
-		text-align: center;
 	}
 	.content-top{
 		margin: 30px;
@@ -21,6 +13,7 @@
 		text-align: center;
 	}
 	.content-middle{
+		padding: 20px 0px 0px 20px;
 		width: 100%;
 	}
 	.content-middle>input:first-child{
@@ -42,14 +35,14 @@
 
 
 	.content-bottom{
-		width: 900px;
+		width: 80%;
 		margin-top: 50px;
 		text-align: center;
 	}
 	.content-bottom>*{
 		padding: 0px 0px 0px 0px;
-		width: 100px;
-		height: 40px;
+		width: 80px;
+		height: 47px;
 		color: #80e27e;
 		background-color: #fff;
 		border: 3px solid #80e27e;
@@ -59,26 +52,11 @@
 	a{
 		text-decoration: none;
 	}
-	.content-bottom>a{
-		display: inline-block;
-		width: 74px;
-		height: 15px;
-		font-size: 13.5px;
-		margin-left: 15px;
-		outline: none;
-	}
-	.content-bottom>a:hover{
+	.content-bottom>*:hover{
 		color: #fff;
 		background-color: #80e27e;
 		cursor: pointer;
 	}
-	#pageBack{
-		outline: none;
-		display: inline-block;
-		margin-left: 15px;
-	}
-	#PageBack:hover{
-		color: #fff;
-		background-color: #80e27e;
-		cursor: pointer;
+	.content-bottom>input:last-child{
+		margin-left: 20px;
 	}

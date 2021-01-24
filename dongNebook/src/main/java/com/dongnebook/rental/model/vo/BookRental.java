@@ -9,12 +9,13 @@ public class BookRental {
 	private int RentalLocationNo;
 	private Date enrollDate;
 	private Date returnDate;
+	private String isreturn;
 	public BookRental() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public BookRental(int bookRentalNo, int userNo, int bookNo, int rentalLocationNo, Date enrollDate,
-			Date returnDate) {
+			Date returnDate, String isreturn) {
 		super();
 		this.bookRentalNo = bookRentalNo;
 		this.userNo = userNo;
@@ -22,6 +23,13 @@ public class BookRental {
 		RentalLocationNo = rentalLocationNo;
 		this.enrollDate = enrollDate;
 		this.returnDate = returnDate;
+		this.isreturn = isreturn;
+	}
+	public String getIsreturn() {
+		return isreturn;
+	}
+	public void setIsreturn(String isreturn) {
+		this.isreturn = isreturn;
 	}
 	public int getBookRentalNo() {
 		return bookRentalNo;

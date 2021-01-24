@@ -24,6 +24,7 @@
 	</select>
 	<select id="userRentalList" parameterType="_int" resultType="rental">
 		select * from book_rental where user_no=#{userNo} and isreturn='N'
+	</select>
 	<select id="isBookRentalLimitOver" parameterType="user" resultType="_int">
 		select count(*) from book_rental where user_no = #{userNo} and isReturn = 'N'
 	</select>
