@@ -313,8 +313,7 @@
 		console.log("접속 종료");
 	}
 	function sendMsg(receiver) {
-		//console.log("응??"+${loginAdmin})
-		console.log("리시버"+receiver);
+		
 		var msg = {
 				type : "count",
 				data : receiver
