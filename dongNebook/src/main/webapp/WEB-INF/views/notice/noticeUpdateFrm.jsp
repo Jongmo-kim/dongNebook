@@ -43,7 +43,13 @@ textarea{
 	text-align:right;
 }
 .defaultMsg{
+position: relative;
 	text-align: center;
+}
+svg:not(:root).svg-inline--fa {
+    position: absolute;
+    margin: 0px;
+    overflow: visible;
 }
 </style>
 </head>
@@ -73,7 +79,7 @@ textarea{
 							<div class="card-body filezone">						
 								<div class="card-text">
 											<div class="defaultMsg">
-													<!-- <i class="fas fa-upload"></i><br> -->
+													<i class="fas fa-upload"></i><br>
 													여기에 파일을 올려주세요
 											</div>
 											<c:forEach items="${n.fileList }" var="f">
