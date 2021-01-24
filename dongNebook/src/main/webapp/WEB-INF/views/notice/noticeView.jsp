@@ -36,6 +36,9 @@ table>tbody>tr{
 .btn{
 	margin-bottom:15px;
 }
+.notice-list{
+	float:left;
+}
 </style>
 </head>
 <body>
@@ -97,8 +100,8 @@ table>tbody>tr{
 	</table>
 	<div class="btn-div">
 	<c:if test="${n.noticeWriter.equals(sessionScope.loginAdmin.nickName) }">
-		<button onclick="deleteNotice();" class="btn btn-lg btn-danger notice-btn">삭제하기</button>
 		<button onclick="updateNotice();" class="btn btn-lg btn-primary notice-btn">수정하기</button>
+		<button onclick="deleteNotice();" class="btn btn-lg btn-danger notice-btn">삭제하기</button>
 	</c:if>
 		<button onclick="noticeList();" class="btn btn-lg btn-outline-secondary notice-list">목록</button>
 	</div>
