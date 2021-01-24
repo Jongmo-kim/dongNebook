@@ -70,7 +70,7 @@
 								</c:choose>
 								</c:when>
 							<c:otherwise>
-								<li><a href="/user/mypageFrm.do">마이페이지</a></li>
+								<li style="padding: 0px"><a href="/user/mypageFrm.do">마이페이지</a></li>
 								<li>
 									 <a data-target="#reviewModal" data-toggle="modal" href="#" >도서 추천</a>
 								</li>

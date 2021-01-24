@@ -82,7 +82,7 @@ position:relative;
     background: red;
     width: 15px;
     top: 24px;
-    right: 219px;
+    right: 187px;
     color: white;
     margin: 0px;
     font-size: 7px;
@@ -133,7 +133,7 @@ position:relative;
         <tr>
             <th>방번호</th>
             <th>유저아이디</th>
-            <th>입장</th>
+            <th style="width:500px">입장</th>
             <!-- <th class="admin-table-th"></th> -->
         </tr>
     </thead>
@@ -175,7 +175,7 @@ position:relative;
 		<tr style="position:relative">
             <td>${status.count}</td>
             <td>${room.getCmSender()}님</td>
-            <td class="admin-table-th"><button class="button chatAdminRoom" onclick="connect()" value="${room.getCmSender() }">채팅방 입장</button> 
+            <td class="admin-table-th"><button class="button chatAdminRoom" onclick="connect()" value="${room.getCmSender() }">채팅방 입장 </button> 
             	<c:forEach items="${cm }" var="cmSender">
             	<c:if test="${room.getCmSender()==cmSender.getCmSender() }">
             		<p class="adminNew">N</p>

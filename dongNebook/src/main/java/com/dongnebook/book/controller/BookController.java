@@ -138,7 +138,7 @@ public class BookController {
 		}else {
 			model.addAttribute("msg","수정 실패");
 		}
-		model.addAttribute("loc", "/");
+		model.addAttribute("loc", "/book/bookList.do?reqPage=1");
 		
 		return "common/msg";
 	}

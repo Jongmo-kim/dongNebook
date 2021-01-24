@@ -40,9 +40,7 @@ body {
   background: #ecf0f1;
 }
 
-.container{
-    max-width: 1900px;
-}
+
 .row {
   max-width: 1024px;
 }
