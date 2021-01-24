@@ -20,7 +20,7 @@
 	    </foreach>) A
 	</insert>
 	<select id="selectIsRental" parameterType="_int" resultType="rental">
-		select * from book_rental where book_no=#{bookNo}
+		select * from book_rental where book_no=#{bookNo} and isreturn='N'
 	</select>
 	<select id="userRentalList" parameterType="_int" resultType="rental">
 		select * from book_rental where user_no=#{userNo} and isreturn='N'

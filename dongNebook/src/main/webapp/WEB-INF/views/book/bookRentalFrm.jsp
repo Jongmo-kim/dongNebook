@@ -173,10 +173,8 @@ $("#rentalBtn").click(function(){
         alert("상호대차 위치를 입력하세요");
         return false;
     } else {
-       
         return true;
     }
-    
 });
 // null 체크 함수(custom)
 function vali(val){
