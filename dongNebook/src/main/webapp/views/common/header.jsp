@@ -109,6 +109,7 @@
 		    	<input type="hidden" id="cmReceiver" name="cmReceiver" value="admin">
 		      <input type="text" class="chat-input" id="chat-input" name="message" onkeypress="insertCm('${sessionScope.loginUser.userId}')">
 		      <button class="planeBtn" onclick="insertCm('${sessionScope.loginUser.userId}')"><i class="fas fa-paper-plane plane"></i></button>
+		   
 	      </c:if>
 	      <c:if test="${sessionScope.loginAdmin!=null }">
 	      		<input type="hidden" id="cmSender" name="cmSender" value="admin">
@@ -141,7 +142,7 @@
         				var id=data.login;
         				var receiver;
         				
-        				for(var i=0 ; i<data.list.length;i++){
+        				for(var i=0 ; i<data.list.length-1;i++){
         					if(data.list[i].cmSender==id){
         						
         						tag+="<div class='message-box-holder'><div class='message-box'>"+data.list[i].message+"</div></div>";
@@ -313,7 +314,8 @@
 		console.log("접속 종료");
 	}
 	function sendMsg(receiver) {
-		
+		//console.log("응??"+${loginAdmin})
+		console.log("리시버"+receiver);
 		var msg = {
 				type : "count",
 				data : receiver
