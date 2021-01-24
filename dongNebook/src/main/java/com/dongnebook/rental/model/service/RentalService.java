@@ -53,6 +53,9 @@ public class RentalService {
 		return dao.updateCount(bookNo);
 	}
 
+	public ArrayList<BookRental> userRentalList(int userNo) {
+		return dao.userRentalList(userNo);
+	}
 	public boolean isBookRentalLimitOver(User loginUser) {
 		return dao.isBookRentalLimitOver(loginUser);
 	}
