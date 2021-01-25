@@ -79,7 +79,7 @@ public class ReviewDao {
 		for(Review r : list) {
 			System.out.println(r);
 			if(r.getUser() == null) {
-				User exitUser = new User(0, null, "exitUser", null, "탈퇴환 회원", "010-0000-0000", "exit@example", "addr");
+				User exitUser = new User(0, null, "exitUser", null, "탈퇴한 회원", "010-0000-0000", "exit@example", "addr");
 				r.setUser(exitUser);
 			} else {
 				r.setUser(userService.selectOneUser(new User(r.getUserNo())));
