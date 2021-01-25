@@ -151,10 +151,11 @@ public class BookController {
 		Book book = service.selectOneBook(bookNo);
 		ArrayList<BookRental> isRental = service.selectIsRental(bookNo);
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-		if(book.getBookCount()>0 && isRental!=null) {
-			
-		}
-		if(book.getBookCount()==0 && isRental!=null) {
+		if(book.getBookCount()>0) {	
+			model.addAttribute("returnDate", null);
+		}else if(book.getBookCount()==0 && book.getrCount()==0){
+			model.addAttribute("returnDate", null);
+		}else if(book.getBookCount()==0 && isRental!=null) {
 			if(isRental.get(0).getIsreturn().equals("N")) {						//재고가 없고 rental테이블에 반납이 안된 책이 있는 경우
 				String returnDate = transFormat.format(isRental.get(0).getReturnDate());
 				model.addAttribute("returnDate", returnDate);				
@@ -164,13 +165,13 @@ public class BookController {
 			}
 		}else if(book.getBookCount()==0 && isRental==null) {					//재고가 없고 rental테이블에 반납해야할 책이 없는경우
 			System.out.println("bookCount나rental테이블 누락");						// 대출불가 처리
-			model.addAttribute("returnDate", " ");
+			model.addAttribute("returnDate", null);
 		}else if(book.getBookCount()<0){										//재고가 마이너스인 경우
 			model.addAttribute("msg", "관리자에게 문의하세요.");
 			System.out.println("book테이블에 bookCount 마이너스값 오류 해당 bookNo : "+bookNo);
 			return "redirect:"+referer;
 		}else {
-			model.addAttribute("returnDate", "");
+			model.addAttribute("returnDate", null);
 		}
 		model.addAttribute("b", book);			
 		return "book/selectOneBook";

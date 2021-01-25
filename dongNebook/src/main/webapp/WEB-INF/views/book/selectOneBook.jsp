@@ -58,11 +58,11 @@
 								<li></li>
 								<li style="line-height: normal; color: blue;">대출 가능</li>
 								</c:if>
-								<c:if test="${b.bookCount==0 }"> 
+								<c:if test="${b.bookCount==0 && returnDate!=null}"> 
 								<li>${returnDate}</li>
 								<li style="line-height: normal;">대출불가상태(다른 사용자 대출중 ${returnDate} 반납예정)</li>
 								</c:if>
-								<c:if test="${b.bookCount==0 && returnDate.equals(' ')"}>
+								<c:if test="${b.bookCount==0 && (b.rCount==0 || returnDate==null)}">
 								<li>${returnDate}</li>
 								<li style="line-height: normal;">대출불가상태(재고 없음)</li>
 								</c:if>
@@ -70,11 +70,14 @@
 						</div>
 						<div class="content-bottom">
 							<c:if test="${loginUser!=null }">
-								<c:if test="${b.bookCount!=0}"> 
+								<c:if test="${b.bookCount!=0 && b.rCount!=0}"> 
 									<a href="/bookRental.do?bookNo=${b.bookNo}">대출신청</a><a href="javascript:history.back();">이전으로</a>
 								</c:if>
-								<c:if test="${b.bookCount==0}"> 
+								<c:if test="${b.bookCount==0 && returnDate!=null}"> 
 									<a href="/insertReserve.do?bookNo=${b.bookNo}">예약신청</a><a href="javascript:history.back();">이전으로</a>
+								</c:if>
+								<c:if test="${b.bookCount==0 && returnDate==null}"> 
+									<a href="/proposal/bookProposal.do">도서신청</a><a href="javascript:history.back();">이전으로</a>
 								</c:if>
 			 				</c:if>
 			 				<c:if test="${loginUser==null }">
