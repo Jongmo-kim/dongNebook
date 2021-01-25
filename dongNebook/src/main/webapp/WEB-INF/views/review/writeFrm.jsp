@@ -35,7 +35,7 @@
 							내용
 						</th>
 					<td>
-						<textarea rows="5" name="content" cols="50" style="width:100%; resize:none;">왕</textarea>
+						<textarea rows="5" name="content" cols="50" style="width:100%; resize:none;"></textarea>
 					</td>
 				</tr>
 				<tr>
