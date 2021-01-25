@@ -70,7 +70,7 @@
 						</div>
 						<div class="content-bottom">
 							<c:if test="${loginUser!=null }">
-								<c:if test="${b.bookCount!=0 && b.rCount!=0}"> 
+								<c:if test="${b.bookCount!=0}"> 
 									<a href="/bookRental.do?bookNo=${b.bookNo}">대출신청</a><a href="javascript:history.back();">이전으로</a>
 								</c:if>
 								<c:if test="${b.bookCount==0 && returnDate!=null}"> 
