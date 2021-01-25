@@ -16,6 +16,8 @@
 table{
 text-align:center;
 }
+table>tbody>tr>td{
+cursor: pointer;}
 .adminSideMenu li:nth-child(6) a{
    	background:#a8dba8;
 	color:white;
@@ -44,26 +46,6 @@ text-align:center;
 	.pagination>li>a:hover{
 	color : #79bd9a;
 	}
-/* .page{
-color:black;
-text-decoration: none;
-font-size:17px;
-width:20px;
-height:40px;
-display:inline-block;
-}
-.selectedPage{
-font-size:20px;
-font-weight: bold;
-color:#3b8686;
-}
-.previous, .next{
-color:black;
-font-size:17px;
-width:20x;
-height:40px;
-display:inline-block;
-} */
 .SideMenu li:nth-child(5) a{
 background:#a8dba8;
 	color:white;
@@ -107,7 +89,7 @@ background:#a8dba8;
 				<c:if test="${sessionScope.loginAdmin!=null}">
 					<td><input type="checkbox" name="noticeCheck" value=${n.noticeNo }></td>
 				</c:if>
-				<td>${n.rNum }</td><td id="noticeTitle" onclick="noticeView(${n.noticeNo});">${n.noticeTitle }</td><td>${n.noticeWriter }</td><td>${n.enrollDate }</td>			
+				<td onclick="noticeView(${n.noticeNo});">${n.rNum }</td><td id="noticeTitle" onclick="noticeView(${n.noticeNo});">${n.noticeTitle }</td><td onclick="noticeView(${n.noticeNo});">${n.noticeWriter }</td><td onclick="noticeView(${n.noticeNo});">${n.enrollDate }</td>			
 			</tr>
 		</c:forEach>
 	</table>
