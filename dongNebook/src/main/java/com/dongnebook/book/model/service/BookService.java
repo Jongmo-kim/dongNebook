@@ -226,7 +226,7 @@ public class BookService {
 		return pageNavi;
 	}
 
-	public BookRental selectIsRental(int bookNo) {
+	public ArrayList<BookRental> selectIsRental(int bookNo) {
 		return dao.selectIsRental(bookNo);
 	}
 

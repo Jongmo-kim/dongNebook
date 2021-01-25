@@ -62,6 +62,10 @@
 								<li>${returnDate}</li>
 								<li style="line-height: normal;">대출불가상태(다른 사용자 대출중 ${returnDate} 반납예정)</li>
 								</c:if>
+								<c:if test="${b.bookCount==0 && returnDate.equals(' ')"}>
+								<li>${returnDate}</li>
+								<li style="line-height: normal;">대출불가상태(재고 없음)</li>
+								</c:if>
 							</ul>
 						</div>
 						<div class="content-bottom">

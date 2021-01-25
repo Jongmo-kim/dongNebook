@@ -64,6 +64,7 @@ public class RentalController {
 	      list = service.selectBooks(bookNo);
 	      for(int i=0; i<bookNo.length; i++) {
 	    	  if(list.get(i).getBookCount()<0) {
+	    		  model.addAttribute("msg", list.get(i).getBookName()+"은 현재 대출불가 상태입니다.");
 	    		  System.out.println(list.get(i).getBookName()+"은 현재 대출불가 상태입니다.");
 	    		  return "redirect:"+referer;
 	    	  }

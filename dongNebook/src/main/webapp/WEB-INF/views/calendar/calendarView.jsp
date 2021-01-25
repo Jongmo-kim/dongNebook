@@ -78,6 +78,7 @@
 						$('#insertCalendar').show();
 						$('#updateCalendar').hide();
 						
+						$("#calendarTitle").val('');
 						$("#calendarStartDate").val(date);
 						$("#calendarEndDate").val(date);
 						//체크되어있던 색깔 초기화
@@ -201,6 +202,11 @@ svg:not(:root).svg-inline--fa {
 	position:relative !important;
 	top:0px !important;
 }
+.notice{
+color:gray;
+margin-bottom:-5px;
+font-weight:100;
+}
 </style>
 </head>
 
@@ -284,6 +290,8 @@ svg:not(:root).svg-inline--fa {
 	
 	<div id="main-container" class="main-container nav-effect-1">
 	<h1 style="font-size:30px;">이달의 도서관</h1>
+	<p class="notice">* 일정을 추가하려면 달력 날짜를 클릭하세요.</p>
+	<p class="notice">* 일정을 수정하려면 등록되어있는 일정을 클릭하세요.</p>
 	<hr>
 	<br>
 	<div id='calendar'></div>

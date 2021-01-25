@@ -874,8 +874,8 @@ body {
       <div class="aladin-img"><img src="/image/book/aladin.png"></div>
       <div align="right" class="form-inline">
 	  	
-		  <input type="text" class="form-control" placeholder="검색어를 입력하세요" id="kwd">
-		  <button type="submit" class="btn btn-primary searchBtn" onclick="bookSearch(1)">Submit</button>
+		  <input type="text" class="form-control" placeholder="신청하고싶은 도서 제목을 입력하세요" id="kwd">
+		  <button type="submit" class="btn btn-primary searchBtn" onclick="bookSearch(1)">검색하기</button>
 		</div>
     </header>
 	<div class="informSearch" id="informSearch">

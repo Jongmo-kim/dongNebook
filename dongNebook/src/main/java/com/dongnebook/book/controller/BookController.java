@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,27 +144,31 @@ public class BookController {
 		return "common/msg";
 	}
 	@RequestMapping("/selectOneBook.do")
-	public String selectOneBook( Model model, int bookNo) {
+	public String selectOneBook( Model model, int bookNo, HttpServletRequest request) {
 		System.out.println("입장");
 		System.out.println(bookNo);
+		String referer = request.getHeader("Referer");
 		Book book = service.selectOneBook(bookNo);
-		BookRental isRental = service.selectIsRental(bookNo);
+		ArrayList<BookRental> isRental = service.selectIsRental(bookNo);
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		if(book.getBookCount()>0 && isRental!=null) {
+			
+		}
 		if(book.getBookCount()==0 && isRental!=null) {
-			if(isRental.getIsreturn().equals("N")) {
-				String returnDate = transFormat.format(isRental.getReturnDate());
+			if(isRental.get(0).getIsreturn().equals("N")) {						//재고가 없고 rental테이블에 반납이 안된 책이 있는 경우
+				String returnDate = transFormat.format(isRental.get(0).getReturnDate());
+				model.addAttribute("returnDate", returnDate);				
+			}else {
+				String returnDate = transFormat.format(isRental.get(0).getReturnDate());
 				model.addAttribute("returnDate", returnDate);				
 			}
-		}else if(book.getBookCount()==0 && isRental==null) {
-			System.out.println("bookCount나rental테이블 누락");
-			model.addAttribute("msg", "관리자에게 문의하세요");
-			model.addAttribute("loc", "/");
-			return "common/msg";
-		}else if(book.getBookCount()<0){
-			model.addAttribute("msg", "*오류발생* 관리자에게 문의하세요.");
+		}else if(book.getBookCount()==0 && isRental==null) {					//재고가 없고 rental테이블에 반납해야할 책이 없는경우
+			System.out.println("bookCount나rental테이블 누락");						// 대출불가 처리
+			model.addAttribute("returnDate", " ");
+		}else if(book.getBookCount()<0){										//재고가 마이너스인 경우
+			model.addAttribute("msg", "관리자에게 문의하세요.");
 			System.out.println("book테이블에 bookCount 마이너스값 오류 해당 bookNo : "+bookNo);
-			model.addAttribute("loc", "/");
-			return "common/msg";
+			return "redirect:"+referer;
 		}else {
 			model.addAttribute("returnDate", "");
 		}
