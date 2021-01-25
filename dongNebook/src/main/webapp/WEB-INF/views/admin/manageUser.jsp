@@ -311,6 +311,25 @@ body {margin: 10px;}
   text-align: center;
   border: 1px solid #3b8686;
 }
+.btn-user{
+	line-height: 24px;
+    font-size: 0.875em;
+    font-weight: bold;
+    padding: 0 1em;
+    color: white;
+    background-color: #3b8686;
+    border: 2px solid #3b8686;
+    border-radius: 5px;
+    transition: all .1s linear;
+}
+#inputStr{
+	border: 2px solid #3b8686;
+}
+#keyword{
+	border: 2px solid #3b8686;
+    margin-top: 2px;
+}
+}
 </style>
 <body>
 <jsp:include page="/views/common/header.jsp" />
@@ -324,13 +343,13 @@ body {margin: 10px;}
          <hr>
          <form action="/admin/manageUser.do" method="get">
          		<input type="hidden" name="reqPage" value="1">
-			   <input type="text" name="inputStr" placeholder="inputStr">
-			   <select name="searchKeyword">
+			   <input type="text" id="inputStr" style="height: 27px" name="inputStr" placeholder="회원아이디를 입력하세요">
+			   <select id="keyword" name="searchKeyword">
 			   		<option value="전체">전체</option>
 			   		<option value="아이디">아이디</option>
 			   		<option value="이름">이름</option>
 			   </select>
-			   <button>검색하기</button>
+			   <button class="btn-user">검색하기</button>
          </form>
 	  <ul class="user-list">
 	    
@@ -344,7 +363,7 @@ body {margin: 10px;}
 	   		
 	   		<!-- The Modal -->
                <div class="modal" id="myModal">
-                 <div class="modal-dialog">
+                 <div class="modal-dialog" style="width:800px">
                    <div class="modal-content">
                
                      <!-- Modal Header -->

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항</title>
 <jsp:include page="/views/common/linkHead.jsp" />
 <style>
 /* .drag-over { 
@@ -28,7 +28,7 @@ table>tbody>tr>td{
 	color:white;
 }
 .main-wrap{
-	width:1200px;
+	width:80%;
 	margin:0 auto;
 }
 input{
@@ -39,7 +39,7 @@ input{
 }
 textarea{
 	width:100%;
-	height: 200px;
+	height: 400px;
 	border : 1px solid #cccccc;
 	outline : none;
 }
@@ -51,6 +51,15 @@ textarea{
 }
 .contents{
 	width:1000px;
+}
+.defaultMsg {
+    position: relative;
+    text-align: center;
+}
+svg:not(:root).svg-inline--fa {
+    position: absolute;
+    margin: 0px;
+    overflow: visible;
 }
 </style>
 </head>
@@ -81,7 +90,7 @@ textarea{
 										<div class="card-body filezone">						
 											<div class="card-text">
 												<div class="defaultMsg">
-													<i class="fas fa-upload"></i><br>
+													<i class="fas fa-upload icon"></i><br>
 													여기에 파일을 올려주세요
 												</div>
 											</div>
@@ -98,7 +107,7 @@ textarea{
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td><textarea name="noticeContent" id="noticeContent" row="3" col="40" style="resize: none;"></textarea></td>
+							<td><textarea name="noticeContent" id="noticeContent" row="3" col="70" style="resize: none;"></textarea></td>
 						</tr>
 					</table>
 					<div class="btn-div">

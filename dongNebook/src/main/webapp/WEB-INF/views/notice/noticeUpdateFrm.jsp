@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항</title>
 <jsp:include page="/views/common/linkHead.jsp" />
 <style>
 table{
@@ -35,7 +35,7 @@ input{
 }
 textarea{
 	width:100%;
-	height: 200px;
+	height: 400px;
 	border : 1px solid #cccccc;
 	outline : none;
 }
@@ -43,15 +43,25 @@ textarea{
 	text-align:right;
 }
 .defaultMsg{
+position: relative;
 	text-align: center;
+}
+svg:not(:root).svg-inline--fa {
+    position: absolute;
+    margin: 0px;
+    overflow: visible;
 }
 </style>
 </head>
 <body>
 	<jsp:include page="/views/common/header.jsp" />
-	<div class="main-wrap">
-	<jsp:include page="/views/common/adminSide.jsp" />
+	<div class="contents-frame">
 	<div class="contents">
+	<jsp:include page="/views/common/adminSide.jsp" />
+	<div class="admin-contents">
+	<div id="main-container" class="main-container nav-effect-1">
+	<h1 style="font-size:30px;">공지사항 수정</h1>
+	<hr>
 	<form action="/notice/updateNotice.do" id="updateFrm" method="post"
 		enctype="multipart/form-data">
 		<input type="hidden" name="noticeNo" id="noticeNo" value=${n.noticeNo }>
@@ -59,7 +69,7 @@ textarea{
 			<tr>
 				<th>제목</th>
 				<td><input type="text" name="noticeTitle"
-					value=${n.noticeTitle }></td>
+					value='${n.noticeTitle }'></td>
 			</tr>
 			<tr>
 				<th>첨부파일</th>
@@ -75,23 +85,13 @@ textarea{
 											<c:forEach items="${n.fileList }" var="f">
 												<div class='upFileList'>
 													<span>${f.filename }</span> <button type='button' class='btn btn-primary btn-sm fileDelBtn'>삭제</button>
-													<input type="hidden" name="oldFilename" class="oldFilename" value=${f.filename }>
-													<input type="hidden" name="oldFilepath" class="oldFilepath" value=${f.filepath }>
+													<input type="hidden" name="oldFilename" class="oldFilename" value='${f.filename }'>
+													<input type="hidden" name="oldFilepath" class="oldFilepath" value='${f.filepath }'>
 												</div>
 											</c:forEach>
 								</div>
 							</div>										
 					</div>
-								<%-- <div class="fileWrap">
-									<input type="hidden" class="status" name="status" value="stay"> 
-									<img src="/common/file.png" width="16px" class="delFile">
-									<span class="delFile">${f.filename }</span>
-									<button type="button" class="btn btn-primary btn-sm delFile fileDelBtn">삭제</button>
-									
-									<!-- 기존 파일 -->
-									<input type="hidden" name="oldFilename" class="oldFilename" value=${f.filename }>
-									<input type="hidden" name="oldFilepath" class="oldFilepath" value=${f.filepath }>
-								</div> --%>
 				</td>
 			</tr>
 			<tr>
@@ -100,7 +100,7 @@ textarea{
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea name="noticeContent" row="3" col="40">${n.noticeContent }</textarea></td>
+				<td><textarea name="noticeContent" row="3" col="40" style="resize: none;">${n.noticeContent }</textarea></td>
 			</tr>
 			<tr>
 				<th colspan="2">
@@ -113,6 +113,9 @@ textarea{
 	</form>
 	</div>
 	</div>
+	</div>
+	</div>
+	
 	<script>
 		if($('.upFileList').length==0){
 			$(".defaultMsg").show();
@@ -124,22 +127,22 @@ textarea{
 		filezone.on("dragenter",function(e){        
 		    e.stopPropagation();
 		    e.preventDefault();
-		    $(this).css('border', '3px dashed #593196');
+		    $(this).css('border', '3px dashed #3b8686');
 	
 		});
 		filezone.on("dragleave",function(e){
 		    e.stopPropagation();
 		    e.preventDefault();
-		    $(this).css('border', '3px dashed #a991d4');
+		    $(this).css('border', '3px dashed #a8dba8');
 		});
 		filezone.on("dragover",function(e){
 		  	e.stopPropagation();
 		  	e.preventDefault();
-			$(this).css('border', '3px solid #593196');
+		  	$(this).css('border', '3px solid #3b8686');
 		});
 	  	filezone.on("drop",function(e){
-	    	e.preventDefault();
-		    $(this).css('border', '3px dashed #593196');
+	  		e.preventDefault();
+		    $(this).css('border', 'none');
 		    $(".defaultMsg").hide();
 		    
 		    //드롭한 항목

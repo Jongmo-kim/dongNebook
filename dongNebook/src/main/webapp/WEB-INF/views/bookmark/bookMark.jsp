@@ -132,7 +132,7 @@ background:#a8dba8;
         $(".bmDelete").click(function(){
              $(".chk:checked").each(function(idx,item){
         	var isbn = $(item).next().next().val();
-                   console.log(isbn);
+                  
     	
           $.ajax({
    			url : "/book/deleteBookmark.do",
@@ -196,7 +196,7 @@ background:#a8dba8;
            location.href="/bookRental.do?bookNo="+arr;
        });
        /*
-       console.log(arr.length);
+       
        $.ajax({
             type : "get",
             url : "/bookRental.do",

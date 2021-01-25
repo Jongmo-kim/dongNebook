@@ -34,12 +34,12 @@
 		<br>
 		<div class="name inputBox">
 				
-	            <input type="text" name="userId" value="${loginUser.userId }" class="form-textbox">
+	            <input type="text" name="userId" value="${loginUser.userId }" style="background-color: #80808030;" readonly class="form-textbox">
 	            <span class="form-label label-focused">아이디</span>
 	            <span class="additional-info" id="idInfo"></span>
         </div>
 		<div class="name inputBox">
-	            <input type="text" name="userName" value="${loginUser.userName }" class="form-textbox">
+	            <input type="text" name="userName" value="${loginUser.userName }" style="background-color: #80808030;" readonly class="form-textbox">
 	            <span class="form-label label-focused">이름</span>
 	            <span class="additional-info" id="nameInfo"></span>
         </div>
@@ -54,7 +54,7 @@
 	            <span class="additional-info" id="emailInfo"></span>
         </div>
 		<div class="name inputBox">
-	            <input type="text" name="addr" value="${loginUser.addr }" class="form-textbox">
+	            <input type="text" name="addr" value="${loginUser.addr }" readonly style="background-color: #80808030;"class="form-textbox">
 	            <span class="form-label label-focused">주소</span>
 	            <button class="btn btn-outline-primary" id="searchBtn" type="button" onclick="addrSearch()">주소검색</button>
         </div>

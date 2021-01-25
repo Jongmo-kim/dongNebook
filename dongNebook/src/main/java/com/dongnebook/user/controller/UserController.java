@@ -154,7 +154,8 @@ public class UserController {
 		String msg = "";
 		try {
 			isUserNull(searchUser);
-			sendMail(searchUser.getEmail(), "아이디 찾기", "귀하의 아이디는" + searchUser.getUserId());
+			sendMail(searchUser.getEmail(), "아이디 찾기", "귀하의 아이디는 '" + searchUser.getUserId() +"' 입니다.");
+			msg = "성공적으로 이메일로 아이디를 발송했습니다.";
 			model.addAttribute("result", "true");
 		} catch(Exception e){
 			msg = e.getMessage();
@@ -180,7 +181,7 @@ public class UserController {
 			searchUser.setUserPw(tempPw);
 			int result = service.updateUser(searchUser);
 			isUpdateFail(result);
-			sendMail(searchUser.getEmail(), "비밀번호 찾기", "귀하의 비밀번호는" + tempPw);
+			sendMail(searchUser.getEmail(), "비밀번호 찾기", "귀하의 임시 비밀번호는 '" + tempPw +"'입니다. 로그인후 꼭 비밀번호를 변경해주세요.///");
 			msg = "메일 전송 성공  메일을 확인해주세요";
 			model.addAttribute("result", "true");
 		}catch (Exception e) {

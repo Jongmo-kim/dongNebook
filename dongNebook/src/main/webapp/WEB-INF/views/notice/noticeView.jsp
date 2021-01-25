@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항</title>
 <jsp:include page="/views/common/linkHead.jsp" />
 <style>
 
@@ -22,7 +22,7 @@ table>tbody>tr{
 }
 
 .main-wrap{
-	width:1200px;
+	width:80%;
 	margin:0 auto;
 }
 .adminSideMenu li:nth-child(7) a{
@@ -52,10 +52,9 @@ table>tbody>tr{
 		<div class="contents">
 			<div class="admin-contents">
 				<div id="main-container" class="main-container nav-effect-1">
-	<c:if test="${n.noticeWriter.equals(sessionScope.loginAdmin.nickName) }">
-		<button onclick="updateNotice();" class="btn btn-lg btn-primary">수정하기</button>
-		<button onclick="deleteNotice();" class="btn btn-lg btn-danger">삭제하기</button>
-	</c:if>
+				<h1 style="font-size:30px;">공지사항</h1>
+	<hr>
+	
 	<table class="table">
 		<tr>
 			<th style="width:20%;">제목</th>
@@ -80,14 +79,14 @@ table>tbody>tr{
 		<tr>
 			<th>내용</th>
 			<td class="contentTd" style="padding-top:40px;">
-				${n.noticeContentBr }<br>
+				${n.noticeContentBr }<br><br>
 				<c:forEach items="${n.fileList }" var="f">
 					<script>
 						var ext = '${f.filepath}'.split('.').pop().toLowerCase();
 						console.log('${f.filepath}');
 						console.log("확장자>>"+ext)
 						if($.inArray(ext, ['gif','png','jpg','jpeg']) != -1){
-							var imgTag = "<img src='/resources/upload/notice/${f.filepath }' width='500px'><br>";
+							var imgTag = "<img src='/resources/upload/notice/${f.filepath }' width='88%;'><br>";
 							$(".contentTd").append(imgTag);
 						}
 					</script>
@@ -97,7 +96,11 @@ table>tbody>tr{
 		</tr>
 	</table>
 	<div class="btn-div">
-		<button onclick="noticeList();" class="btn btn-lg btn-outline-secondary">목록</button>
+		<button onclick="noticeList();" class="btn btn-lg btn-outline-secondary notice-list">목록</button>
+		<c:if test="${n.noticeWriter.equals(sessionScope.loginAdmin.nickName) }">
+			<button onclick="updateNotice();" class="btn btn-lg btn-primary notice-btn">수정하기</button>
+			<button onclick="deleteNotice();" class="btn btn-lg btn-danger notice-btn">삭제하기</button>
+		</c:if>
 	</div>
 		</div></div></div>
 	

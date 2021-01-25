@@ -31,7 +31,7 @@ html,
 body,
 .main,
 .main-container {
-  height: 100%;
+  height: 100% !important;
 }
 
 body {
@@ -39,6 +39,7 @@ body {
   color: #313131;
   background: #ecf0f1;
 }
+
 
 .row {
   max-width: 1024px;

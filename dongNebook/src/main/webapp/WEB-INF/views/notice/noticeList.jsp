@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>동서남북 | 공지사항</title>
+<title>공지사항</title>
 <jsp:include page="/views/common/linkHead.jsp"/>
 <style>
 .main-wrap{

@@ -78,6 +78,6 @@
 </div>
 	</div>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	<jsp:include page="/views/common/footer.jsp" />
+	<jsp:include page="/views/common/footer2.jsp" />
 </body>
 </html>

@@ -12,7 +12,7 @@
 			<div class="blank"></div>
 			<div class="SideMenu">
 				<div class="SideMain">
-					<h2>도서</h2>
+					<h2>메뉴</h2>
 				</div>
 				<ul>
 					<li><a href="/book/searchBookFrm.do">도서검색</a></li>

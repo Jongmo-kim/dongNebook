@@ -57,16 +57,23 @@ public class ChatSocket extends TextWebSocketHandler{
 		else {
 			//type이 receiver일때 호출
 			System.out.println("메세지를 보내는 곳으로 이동");
+			System.out.println("세이브리시버:"+data);
+			System.out.println("세이브타입:"+type);
 			//JSONObject jObj = new JSONObject();
 			String receiver=data;  //보낸사람을ㄹ 저장하고 전송
 			int count = dao.cmCount(data);//data = memberId
 			//jObj.put("receiver", receiver);
 			//jObj.put("count", count);
 			//dao.readChat(receiver);
+			Set<String> keys = connectMembers.keySet();
+			for(String key : keys) {
+				if(key.equals(data)) {
+					connectMembers.get(data).sendMessage(new TextMessage(data));
+					connectMembers.get(data).sendMessage(new TextMessage(String.valueOf(count)));
+				}
 			
+		}			
 			
-			connectMembers.get(data).sendMessage(new TextMessage(data));
-			connectMembers.get(data).sendMessage(new TextMessage(String.valueOf(count)));
 		}
 	}
 	@Override
@@ -74,7 +81,7 @@ public class ChatSocket extends TextWebSocketHandler{
 		//연결끊어졌을때 웹에서 빼내는 작업->하지않으면 connectMembers에 계속 남아있음
 		System.out.println("클라이언트 접속 해제");
 		Set<String> keys = connectMembers.keySet();
-		System.out.println("스테이터스 확인하자!!!!"+status);
+		System.out.println("스테이터스 확인하자!!!!"+keys);
 		for(String key : keys) {
 			WebSocketSession currentSession = connectMembers.get(key);
 			if(currentSession.equals(session)) {

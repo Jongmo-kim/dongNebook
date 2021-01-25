@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<title>이달의 도서관</title>
 <jsp:include page="/views/common/linkHead.jsp" />
 <link type="text/css" rel="stylesheet" href="/css/calendar/calendar.css?v=<%=System.currentTimeMillis()%>">
 
@@ -128,8 +128,9 @@
  				
  				
  				var bc = $("input[name='backgroundColor']");
+ 				$('.fa-check').detach();
  				//.check가 포함된 요소를 전부 지운다.(i요소를 지움);
- 				$(".check").detach();
+ 				//$(".check").detach();
  				
  				bc.each(function(index, item){
  					//색상 radio의 value와 현재 이벤트에 적용된 배경색이 같을 경우
@@ -171,6 +172,34 @@
 .SideMenu li:nth-child(6) a{
 background:#a8dba8;
 	color:white;
+}
+.radio-label {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    outline: none;
+    line-height: 30px;
+    border-radius: 50px;
+    text-align: center;
+    color: white;
+    /* border: 2px solid white; */
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+    margin-right: 10px;
+    margin-bottom: 0px;
+}
+svg:not(:root).svg-inline--fa {
+    position: absolute;
+    top: 7px;
+    left: 6px;
+    overflow: visible;
+    text-align: center;
+}
+.fa-w-16{
+	position:relative !important;
+}
+.fa-w-14{
+	position:relative !important;
+	top:0px !important;
 }
 </style>
 </head>

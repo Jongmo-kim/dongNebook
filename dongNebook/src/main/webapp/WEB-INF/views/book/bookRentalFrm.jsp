@@ -84,21 +84,14 @@
                  <div class="modal-dialog">
                    <div class="modal-content">
                
-                     <!-- Modal Header -->
-                     <div class="modal-header">
-                       <h4 class="modal-title">Modal Heading</h4>
-                       <button type="button" class="close" data-dismiss="modal">&times;</button>
-                     </div>
-               
+                     
                      <!-- Modal body -->
                      
                         <div class="modal-body">
                           <div class="loc-contents-frame">
        
 					        <div class="loc-contents">
-					        	<h3>상호대차 위치검색</h3>
-					        	<hr>
-					           <br>
+					        	
 					            <div class="loc-map">
 					            	<div class="map_wrap">
 									    <div id="map" style="width:100%;height:555px;position:relative;overflow:hidden;"></div>
@@ -133,8 +126,8 @@
                         </div>
                      <!-- Modal footer -->
                      <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">확인</button>
+                       <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
                      </div>
                       </div>
                  </div>

@@ -189,6 +189,9 @@
    </div>
 </div>
    <script>
+   $('.close').click(function() {
+	   location.reload();
+	   });
    window.onload=function(){
 	   
    }
@@ -206,7 +209,7 @@
  	}
 
       function updateInform(bookNo,bookName,bookKind,bookWriter,bookPublisher,bookIntroduce,bookCount){
-         console.log(bookCount);
+         
          document.getElementById("no").value=bookNo;
          document.getElementById("bookName").innerHTML=bookName;
         // document.getElementById("count").innerHTML="보유수량:"+bookCount;
@@ -217,7 +220,7 @@
          //document.getElementById("bookIntroduce").value=bookIntroduce;
       }
    </script>
-   <script type="text/javascript">
+  <!--  <script type="text/javascript">
 <!-- $('select').each(function(){
     var $this = $(this), numberOfOptions = $(this).children('option').length;
   
@@ -275,7 +278,7 @@
     });
 
 });
-</script>
+</script>*/--> 
 <script type="text/javascript">
 
   var _gaq = _gaq || [];

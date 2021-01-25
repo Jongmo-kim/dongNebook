@@ -859,6 +859,8 @@ body {
     height: 100%;
     min-width: 1800px;
 }
+.main-container{
+	height:100% !important;
 }
 </style>
 <body>
@@ -910,13 +912,13 @@ body {
 
     </div>
 
+<div class = "pagination justify-content-center" id="pageNavi"></div>
   </div>
   <!-- /main -->
 
   <div class="main-overlay">
     <div class="overlay-full"></div>
   </div>
-<div class = "pagination justify-content-center" id="pageNavi"></div>
 </div>
 </div>
 <!-- /main-container -->
@@ -928,19 +930,16 @@ var searchKeyword;
 const resultFunc = function(success, data){//const = final  상수형변수 
 	if(success){
 		for(var i=0;i<10;i++){
-			console.log(data.item[i].cover);
+			
 			let cover500 = data.item[i].cover.replace(/coversum/g,'cover500');
-			console.log(cover500);
-			console.log(data);
-			console.log("보낼거"+JSON.stringify(data.item[i]));
+		
 			//특수문자 제거중.....
 			var tmp=data.item[i].description;
 			var description = tmp.replace(/\'/g,'');
 			var title=(data.item[i].title).replace(/[\☆♡\[\]★]/g,'');
 			data.item[i].description=description;
 			data.item[i].title=title;
-			console.log("봐봐"+description);
-			console.log("타이틀"+title);
+		
 			var sendData= JSON.stringify(data.item[i]);
 			//특수문자 제거완료.....
 			$("#grid").append("<li class='book-item small-12 medium-6 columns' data-groups='[classic]' data-date-created='1937' data-title='Of Mice and Men' data-color='#fcc278'>"+"<div class='bk-img'>"+"<div class='bk-wrapper'>"+"<div class='bk-book bk-bookdefault'>"+"<div class='bk-front'>"+"<div class='bk-cover' style='background-image: url("+cover500+")'>"+"</div>"+"</div>"+"<div class='bk-back'>"+"</div>"+"<div class='bk-left'></div></div></div></div><div class='item-details'><h3 class='book-item_title'>"+data.item[i].title+"</h3><p class='author'>"+data.item[i].author+"</p><p>"+(data.item[i].description)+"</p><a onclick='bookinsert("+sendData+")' class='button'>신청</div></li>");
@@ -952,25 +951,24 @@ const resultFunc = function(success, data){//const = final  상수형변수
 			success: function(data){
 				document.getElementById("pageNavi").innerHTML="";
 				$("#pageNavi").append(data);
-				console.log(data);
-			}
+							}
 		});
-		console.log(data.totalResults);
+	
 	}else{
-		console.log("실패");
+		
 	}
 };
 function bookinsert(item){
-	console.log("진입성공");
+	
 	$.ajax({
 		method: "get",
 		url:"/book/insertAsJson.do",
 		data: {item:JSON.stringify(item)},
 		complete: function(data){
-			console.log(data);
+			
 		},
 		success: function(data){
-			console.log(data);
+			
 			alert("등록완료");
 		}
 	});
@@ -979,7 +977,7 @@ function bookSearch(page){
 	var inform=document.getElementById("informSearch");
 	inform.style.display="none";
 	var pageNo=page;
-	console.log(page);
+	
 	$(".book-item").remove();
 	searchKeyword=$("#kwd").val();
 	$.ajax({ 
