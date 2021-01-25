@@ -236,7 +236,7 @@
 	var memberId = '${sessionScope.loginUser.userId}';
 	var adminId='${sessionScope.loginAdmin.adminId}';
 	function connect(){
-		ws = new WebSocket("ws://localhost/chat.do");
+		ws = new WebSocket("ws://khdsa1.iptime.org:18080/chat.do");
 		ws.onopen = onOpen;
 		ws.onmessage = onMessage;
 		ws.onclose = onClose;
