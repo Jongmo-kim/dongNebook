@@ -60,7 +60,7 @@
 								</table>
 								<h3 style="display: inline-block;">상호대차 지정</h3>
 								<div class="content-middle">
-									<input type="text" id="loc-inform" name="placeName" value="${rentalLoc.placeName }" readonly><input type="button" class="goRentalLoc" value="검색">
+									<input type="hidden" id="loc-inform" name="placeName" value="${rentalLoc.placeName }" readonly><input type="button" class="goRentalLoc" value="검색">
 									<input type="hidden" id="loc-addr" name="addr" value="${rentalLoc.addr }">
 									<input type="hidden" id="loc-phone" name="phone" value="${rentalLoc.phone }">
 								</div>
