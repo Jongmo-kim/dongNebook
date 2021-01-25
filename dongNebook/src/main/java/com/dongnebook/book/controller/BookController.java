@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,9 +144,10 @@ public class BookController {
 		return "common/msg";
 	}
 	@RequestMapping("/selectOneBook.do")
-	public String selectOneBook( Model model, int bookNo) {
+	public String selectOneBook( Model model, int bookNo, HttpServletRequest request) {
 		System.out.println("입장");
 		System.out.println(bookNo);
+		String referer = request.getHeader("Referer");
 		Book book = service.selectOneBook(bookNo);
 		BookRental isRental = service.selectIsRental(bookNo);
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -156,14 +158,12 @@ public class BookController {
 			}
 		}else if(book.getBookCount()==0 && isRental==null) {
 			System.out.println("bookCount나rental테이블 누락");
-			model.addAttribute("msg", "관리자에게 문의하세요");
-			model.addAttribute("loc", "/");
-			return "common/msg";
+			model.addAttribute("msg", "재고없음. 도서신청 메뉴에서 신청하세요.");
+			return "redirect:"+referer;
 		}else if(book.getBookCount()<0){
-			model.addAttribute("msg", "*오류발생* 관리자에게 문의하세요.");
+			model.addAttribute("msg", "관리자에게 문의하세요.");
 			System.out.println("book테이블에 bookCount 마이너스값 오류 해당 bookNo : "+bookNo);
-			model.addAttribute("loc", "/");
-			return "common/msg";
+			return "redirect:"+referer;
 		}else {
 			model.addAttribute("returnDate", "");
 		}
