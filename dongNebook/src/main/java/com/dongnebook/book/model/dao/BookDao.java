@@ -100,8 +100,9 @@ public class BookDao {
 		return session.selectOne("book.selectSearchCount",map);
 	}
 
-	public BookRental selectIsRental(int bookNo) {
-		return session.selectOne("rental.selectIsRental", bookNo);
+	public ArrayList<BookRental> selectIsRental(int bookNo) {
+		List<BookRental> list = session.selectList("rental.selectIsRental", bookNo);
+		return (ArrayList<BookRental>)list;
 	}
 
 	public int deleteBooks(String[] books) {
