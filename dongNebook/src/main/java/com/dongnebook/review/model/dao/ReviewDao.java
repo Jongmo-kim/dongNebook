@@ -77,7 +77,13 @@ public class ReviewDao {
 	public Object selectReviewByReqpage(int reqPage) {
 		List<Review> list = session.selectList("review.selectReviewByReqpage", reqPage);
 		for(Review r : list) {
-			r.setUser(userService.selectOneUser(new User(r.getUserNo())));
+			System.out.println(r);
+			if(r.getUser() == null) {
+				User exitUser = new User(0, null, "exitUser", null, "탈퇴환 회원", "010-0000-0000", "exit@example", "addr");
+				r.setUser(exitUser);
+			} else {
+				r.setUser(userService.selectOneUser(new User(r.getUserNo())));
+			}
 		}
 		return list;
 	}
