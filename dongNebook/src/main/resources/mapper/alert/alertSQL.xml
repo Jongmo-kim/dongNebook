@@ -15,8 +15,8 @@
 		on 
 			book_rental.book_no = book.book_no
 		where 
-			to_char(return_date,'yy/MM/dd')=to_char(sysdate+3,'yy/MM/dd') and ISRETURN ='N'
-			<!-- to_char(return_date,'yy/MM/dd')=to_char(sysdate+1,'yy/MM/dd') and ISRETURN ='N' -->
+			to_char(return_date,'yy/MM/dd')=to_char(sysdate+1,'yy/MM/dd') and ISRETURN ='N'
+			<!-- to_char(return_date,'yy/MM/dd')=to_char(sysdate+3,'yy/MM/dd') and ISRETURN ='N' -->
 	</insert>
 	<delete id="deleteAlert">
 		delete from alert
